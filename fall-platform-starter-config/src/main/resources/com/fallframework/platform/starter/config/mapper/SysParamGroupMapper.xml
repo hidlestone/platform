@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fallframework.platform.starter.config.mapper.SysParamGroupMapper">
+    <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.config.model.SysParamGroupResponse">
+        <!--@mbg.generated-->
+        <id column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="desc" jdbcType="VARCHAR" property="desc"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <!-- 配置一对多的关系 -->
+        <collection property="sysParamItemList" javaType="list" ofType="com.fallframework.platform.starter.config.model.SysParamItemResponse">
+            <!-- 配置主键，是关联Order的唯一标识 -->
+            <id column="code" jdbcType="VARCHAR" property="code"/>
+            <result column="value" jdbcType="VARCHAR" property="value"/>
+            <result column="encrypted_value" jdbcType="VARCHAR" property="encryptedValue"/>
+            <result column="desc" jdbcType="VARCHAR" property="desc"/>
+            <result column="status" jdbcType="CHAR" property="status"/>
+            <result column="group_code" jdbcType="VARCHAR" property="groupCode"/>
+        </collection>
+    </resultMap>
+
+    <select id="findByCode" resultType="com.fallframework.platform.starter.config.model.SysParamGroupResponse" parameterType="string">
+        SELECT
+            `code`,
+            `desc`,
+            `status`
+        FROM
+            s_sys_param_group
+        WHERE
+            `code` = #{code,jdbcType=VARCHAR}
+    </select>
+
+    <select id="groupList" resultType="com.fallframework.platform.starter.config.model.SysParamGroupResponse">
+        SELECT
+            `code`,
+            `desc`,
+            `status`
+        FROM
+            s_sys_param_group
+    </select>
+
+    <select id="findAllSysParamGroup" resultType="com.fallframework.platform.starter.config.model.SysParamGroupResponse">
+        SELECT
+            sgroup.`code`,
+            sgroup.`desc`,
+            sgroup.`status`,
+            sitem.`code`,
+            sitem.`value`,
+            sitem.encrypted_value,
+            sitem.`desc`,
+            sitem.`status`,
+            sitem.group_code
+        FROM
+            s_sys_param_group sgroup
+        LEFT JOIN s_sys_param_item sitem ON sitem.group_code = sgroup.`code`
+    </select>
+
+</mapper>
