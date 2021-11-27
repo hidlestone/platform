@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>fall-platform-starter-cache-parent</artifactId>
+        <groupId>com.fallframework.platform</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../fall-platform-starters/pom.xml</relativePath>
+    </parent>
+    <groupId>com.fallframework.platform</groupId>
+    <artifactId>fall-platform-starter-cache-simple</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Fall Platform Cache Simple Starter</name>
+    <description>starter of Cache Simple</description>
+    <url>http://www.wordplay.work/#/fall-platform-starters/fall-platform-starter-cache-simple</url>
+
+    
+
+</project>

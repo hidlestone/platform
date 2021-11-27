@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>fall-platform-dependencies</artifactId>
+        <groupId>com.fallframework.platform</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../fall-platform-dependencies/pom.xml</relativePath>
+    </parent>
+    <groupId>com.fallframework.platform</groupId>
+    <artifactId>fall-platform-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Fall Platform Parent</name>
+    <description>Fall Platform Parent</description>
+    <url>http://www.wordplay.work/#/fall-platform-parent</url>
+    <organization>
+        <name>Wordplay Software, Inc.</name>
+        <url>https://wordplay.work</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.baidu.com/banseon/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:git://github.com/hidlestone/platform.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/hidlestone/platform.git</developerConnection>
+        <url>https://github.com/hidlestone/platform</url>
+    </scm>
+    <!--项目的问题管理系统(Bugzilla, Jira, Scarab,或任何你喜欢的问题管理系统)的名称和URL，本例为 jira -->
+    <issueManagement>
+        <!--问题管理系统（例如jira）的名字， -->
+        <system>Github</system>
+        <!--该项目使用的问题管理系统的URL -->
+        <url>https://github.com/hidlestone/platform/issues</url>
+    </issueManagement>
+    
+</project>

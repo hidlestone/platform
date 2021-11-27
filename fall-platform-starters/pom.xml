@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>fall-platform-parent</artifactId>
+        <groupId>com.fallframework.platform</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../fall-platform-parent/pom.xml</relativePath>
+    </parent>
+    <groupId>com.fallframework.platform</groupId>
+    <artifactId>fall-platform-starters</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Fall Platform Starters</name>
+    <description>Fall Platform Starters</description>
+    <url>http://www.wordplay.work/#/fall-platform-starters</url>
+    <organization>
+        <name>Wordplay Software, Inc.</name>
+        <url>https://wordplay.work</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.baidu.com/banseon/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Wordplay</name>
+            <email>info@wordplay.work</email>
+            <organization>Wordplay Software, Inc.</organization>
+            <organizationUrl>https://www.wordplay.work</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/hidlestone/platform.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/hidlestone/platform.git</developerConnection>
+        <url>https://github.com/hidlestone/platform</url>
+    </scm>
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/hidlestone/platform/issues</url>
+    </issueManagement>
+
+    <modules>
+        <module>../fall-platform-starter-cache-ehcache</module>
+        <module>../fall-platform-starter-cache-redis</module>
+        <module>../fall-platform-starter-cache-mongodb</module>
+        <module>../fall-platform-starter-config</module>
+        <module>../fall-platform-starter-cache-parent</module>
+        <module>../fall-platform-starter-i18n</module>
+        <module>../fall-platform-starter-mq-parent</module>
+        <module>../fall-platform-starter-mvc</module>
+    </modules>
+    
+</project>

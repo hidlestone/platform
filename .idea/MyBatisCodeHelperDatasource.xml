@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisCodeHelperDatasource">
+    <option name="projectProfile">
+      <ProjectProfile>
+        <option name="batchInsert" value="true" />
+        <option name="generateService" value="true" />
+        <option name="generateServiceInterface" value="true" />
+        <option name="javaMapperPackage" value="com.fallframework.platform.starter.mvc.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/java" />
+        <option name="javaModelPackage" value="com.fallframework.platform.starter.mvc.entity" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="fall-platform-starter-mvc" />
+        <option name="lombokAnnotation" value="@GetterSetter" />
+        <option name="modelSuperClass" value="com.fallframework.platform.starter.core.entity.BaseEntity" />
+        <option name="moduleNameToPackageAndPathMap">
+          <map>
+            <entry key="fall-platform-starter-config">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.config.model" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-config/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.config.model" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-config/src/main/java" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-config/src/main/java" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-config/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.config.mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-config/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+            <entry key="fall-platform-starter-i18n">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.i18n.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-i18n/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.i18n.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-i18n/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.fallframework.platform.starter.i18n.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-i18n/src/main/java" />
+                  <option name="javaServicePackage" value="com.fallframework.platform.starter.i18n.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-i18n/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.i18n.mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-i18n/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+            <entry key="fall-platform-starter-mvc">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.mvc.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.mvc.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.fallframework.platform.starter.mvc.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/java" />
+                  <option name="javaServicePackage" value="com.fallframework.platform.starter.mvc.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.mvc.mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="fallplatform:s_i18n_resource">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="I18nResource" />
+                  <option name="moduleName" value="fall-platform-starter-i18n" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_permission">
+              <value>
+                <TableGenerateConfig>
+                  <option name="batchInsert" value="true" />
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Permission" />
+                  <option name="moduleName" value="fall-platform-starter-mvc" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_sys_param_group">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="" />
+                  <option name="javaModelName" value="SysParamGroup" />
+                  <option name="moduleName" value="fall-platform-starter-config" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_sys_param_item">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="" />
+                  <option name="javaModelName" value="SysParamItem" />
+                  <option name="moduleName" value="fall-platform-starter-i18n" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="useLomBokOnModel" value="true" />
+        <option name="userMybatisPlus" value="true" />
+        <option name="xmlMapperPackage" value="com.fallframework.platform.starter.mvc.mapper" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/resources" />
+      </ProjectProfile>
+    </option>
+  </component>
+</project>
