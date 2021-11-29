@@ -55,6 +55,10 @@
         <module>../fall-platform-starter-i18n</module>
         <module>../fall-platform-starter-mq-parent</module>
         <module>../fall-platform-starter-mvc</module>
+        <module>../fall-platform-starter-sms-parent</module>
+        <module>../fall-platform-starter-file-parent</module>
+        <module>../fall-platform-starter-mail</module>
+        <module>../fall-platform-starter-wechat</module>
     </modules>
     
 </project>

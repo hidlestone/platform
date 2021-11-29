@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * @author zhuangpf
  */
 @Service
-public class PlatformSysParamService {
+public class PlatformSysParamUtil {
 
 	@Autowired
 	private RedisUtil redisUtil;

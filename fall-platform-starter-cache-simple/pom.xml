@@ -16,6 +16,11 @@
     <description>starter of Cache Simple</description>
     <url>http://www.wordplay.work/#/fall-platform-starters/fall-platform-starter-cache-simple</url>
 
-    
+    <dependencies>
+        <dependency>
+            <groupId>com.fallframework.platform</groupId>
+            <artifactId>fall-platform-starter-core</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

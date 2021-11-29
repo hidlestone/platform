@@ -39,8 +39,8 @@ public class CoreContextConstant {
 	public static final String NONCE = "nonce";
 	// Request Headers:sign 签名
 	public static final String SIGN = "sign";
-	// Request Headers:encrypt-aes AES密文
-	public static final String ENCRYPT_AES = "encrypt-aes";
+	// Request Headers:encrypt-code AES密文
+	public static final String ENCRYPT_CODE = "encrypt-code";
 	// Request Headers:show-error-details 异常详细信息
 	public static final String SHOW_ERROR_DETAILS = "show-error-details";
 	// 内部请求签名
@@ -56,6 +56,7 @@ public class CoreContextConstant {
 
 	// 默认中文：zh_CN
 	public static final String DEFAULT_LANGUAGE = "zh_CN";
-
+	// 默认字符集
+	public static final String DEFAULT_CHARSET = "UTF-8";
 
 }

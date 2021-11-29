@@ -1,9 +1,10 @@
 package com.fallframework.platform.starter.mvc.config;
 
 import com.fallframework.platform.starter.config.model.SysParamItemResponse;
-import com.fallframework.platform.starter.config.service.PlatformSysParamService;
+import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
 import com.fallframework.platform.starter.mvc.filter.CurrentContextFilter;
 import com.fallframework.platform.starter.mvc.filter.LanguageFilter;
+import com.fallframework.platform.starter.mvc.filter.RepeatSubmitFilter;
 import com.fallframework.platform.starter.mvc.filter.XSSFilter;
 import com.fallframework.platform.starter.mvc.interceptor.CommonInfoInterceptor;
 import com.fallframework.platform.starter.mvc.interceptor.TokenInterceptor;
@@ -38,7 +39,7 @@ public class WebMvcPlatformConfig implements WebMvcConfigurer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebMvcPlatformConfig.class);
 	@Autowired(required = false)
-	private static PlatformSysParamService platformSysParamService;
+	private static PlatformSysParamUtil platformSysParamUtil;
 
 	public static final int LANGUAGE_FILTER_ORDER;
 	public static final int CURRENT_CONTEXT_FILTER_ORDER;
@@ -46,7 +47,7 @@ public class WebMvcPlatformConfig implements WebMvcConfigurer {
 	public static final int XSS_FILTER_ORDER;
 
 	static {
-		Map<String, String> sysItemMap = platformSysParamService.getSysParamGroupItemMap("FILTER_ORDER").getData();
+		Map<String, String> sysItemMap = platformSysParamUtil.getSysParamGroupItemMap("FILTER_ORDER").getData();
 		LANGUAGE_FILTER_ORDER = Integer.valueOf(sysItemMap.get("LANGUAGE_FILTER_ORDER"));
 		CURRENT_CONTEXT_FILTER_ORDER = Integer.valueOf(sysItemMap.get("CURRENT_CONTEXT_FILTER_ORDER"));
 		SIGNATURE_FILTER_ORDER = Integer.valueOf(sysItemMap.get("SIGNATURE_FILTER_ORDER"));
@@ -57,7 +58,7 @@ public class WebMvcPlatformConfig implements WebMvcConfigurer {
 	 * 异步请求(Async-Support)配置 ASYNC_SUPPORT_CONFIG
 	 */
 	public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
-		SysParamItemResponse sysParamItem = platformSysParamService.getSysParamItem("ASYNC_SUPPORT", "ASYNC_SUPPORT_TIMEOUT").getData();
+		SysParamItemResponse sysParamItem = platformSysParamUtil.getSysParamItem("ASYNC_SUPPORT", "ASYNC_SUPPORT_TIMEOUT").getData();
 		// 设置默认的超时时间，（毫秒，Tomcat下默认是10000毫秒，即10秒）
 		configurer.setDefaultTimeout(Integer.valueOf(sysParamItem.getValue()));
 		// 注册异步的拦截器
@@ -71,7 +72,7 @@ public class WebMvcPlatformConfig implements WebMvcConfigurer {
 	 */
 	@Bean
 	public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
-		Map<String, String> sysItemMap = platformSysParamService.getSysParamGroupItemMap("ASYNC_SUPPORT").getData();
+		Map<String, String> sysItemMap = platformSysParamUtil.getSysParamGroupItemMap("ASYNC_SUPPORT").getData();
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
 		executor.setCorePoolSize(Integer.valueOf(sysItemMap.get("ASYNC_SUPPORT_CORE_POOL_SIZE")));
 		executor.setMaxPoolSize(Integer.valueOf(sysItemMap.get("ASYNC_SUPPORT_MAX_POOL_SIZE")));
@@ -98,7 +99,7 @@ public class WebMvcPlatformConfig implements WebMvcConfigurer {
 	 */
 	@Bean
 	public CorsFilter corsFilter() {
-		Map<String, String> sysItemMap = platformSysParamService.getSysParamGroupItemMap("ASYNC_SUPPORT").getData();
+		Map<String, String> sysItemMap = platformSysParamUtil.getSysParamGroupItemMap("ASYNC_SUPPORT").getData();
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(Boolean.valueOf(sysItemMap.get("ALLOW_CREDENTIALS")));
@@ -151,16 +152,16 @@ public class WebMvcPlatformConfig implements WebMvcConfigurer {
 	 * Filter：防止表单重复提交的过滤器
 	 */
 	@Bean
-	public FilterRegistrationBean<RepeatSignatureValidateFilter> repeatSignatureValidateFilter() {
-		FilterRegistrationBean<RepeatSignatureValidateFilter> bean = new FilterRegistrationBean();
-		bean.setFilter(new RepeatSignatureValidateFilter());
+	public FilterRegistrationBean<RepeatSubmitFilter> repeatSignatureValidateFilter() {
+		FilterRegistrationBean<RepeatSubmitFilter> bean = new FilterRegistrationBean();
+		bean.setFilter(new RepeatSubmitFilter());
 		bean.addUrlPatterns(new String[]{"/*"});
 		bean.setOrder(SIGNATURE_FILTER_ORDER);
 		return bean;
 	}
 
 	/**
-	 * Filter：
+	 * Filter：xss攻击过滤器
 	 */
 	@Bean
 	public FilterRegistrationBean<XSSFilter> xssFilter() {
@@ -171,4 +172,53 @@ public class WebMvcPlatformConfig implements WebMvcConfigurer {
 		return bean;
 	}
 
+	/*@Bean({"httpsRestTemplate"})
+	public RestTemplate httpsRestTemplate() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
+		TrustStrategy acceptingTrustStrategy = (chain, authType) -> {
+			return true;
+		};
+		SSLContext sslContext = SSLContexts.custom().loadTrustMaterial((KeyStore)null, acceptingTrustStrategy).build();
+		OkHttpClient.Builder builder = new OkHttpClient.Builder();
+		OkHttpClient okHttpClient = builder.sslSocketFactory(sslContext.getSocketFactory(), new TrustManager()).build();
+		OkHttp3ClientHttpRequestFactory requestFactory = new OkHttp3ClientHttpRequestFactory(okHttpClient);
+		RestTemplate restTemplate = new RestTemplate(requestFactory);
+		restTemplate.setErrorHandler(new RestTemplateResponseErrorHandler());
+		setRestTemplateEncode(restTemplate);
+		return restTemplate;
+	}
+
+	@Bean({"loadBalancedRestTemplate"})
+	@LoadBalanced
+	public RestTemplate loadBalancedRestTemplate() {
+		OkHttp3ClientHttpRequestFactory requestFactory = new OkHttp3ClientHttpRequestFactory();
+		RestTemplate restTemplate = new RestTemplate(requestFactory);
+		restTemplate.setErrorHandler(new RestTemplateResponseErrorHandler());
+		List<ClientHttpRequestInterceptor> interceptors = restTemplate.getInterceptors() == null ? new ArrayList() : restTemplate.getInterceptors();
+		((List)interceptors).add(new RestTemplateInterceptor());
+		restTemplate.setInterceptors((List)interceptors);
+		setRestTemplateEncode(restTemplate);
+		return restTemplate;
+	}
+
+	@Bean({"restTemplate"})
+	public RestTemplate restTemplate() {
+		OkHttp3ClientHttpRequestFactory requestFactory = new OkHttp3ClientHttpRequestFactory();
+		RestTemplate restTemplate = new RestTemplate(requestFactory);
+		restTemplate.setErrorHandler(new RestTemplateResponseErrorHandler());
+		setRestTemplateEncode(restTemplate);
+		return restTemplate;
+	}
+	
+	public static void setRestTemplateEncode(RestTemplate restTemplate) {
+		if (null != restTemplate && !ObjectUtils.isEmpty(restTemplate.getMessageConverters())) {
+			List<HttpMessageConverter<?>> messageConverters = restTemplate.getMessageConverters();
+
+			for(int i = 0; i < messageConverters.size(); ++i) {
+				HttpMessageConverter<?> httpMessageConverter = (HttpMessageConverter)messageConverters.get(i);
+				if (httpMessageConverter.getClass().equals(StringHttpMessageConverter.class)) {
+					messageConverters.set(i, new StringHttpMessageConverter(StandardCharsets.UTF_8));
+				}
+			}
+		}
+	}*/
 }

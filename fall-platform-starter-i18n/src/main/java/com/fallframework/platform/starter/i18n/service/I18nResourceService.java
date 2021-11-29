@@ -16,7 +16,11 @@ public interface I18nResourceService extends IService<I18nResource> {
 
 	ResponseResult update(I18nResource i18nResource);
 
+	ResponseResult<I18nResource> get(Long id);
+	
 	ResponseResult<List<I18nResource>> findByResourceKey(String resourceKey);
 
 	ResponseResult<Page<I18nResource>> resourceKeyList(I18nResourceRequest request);
+	
+	ResponseResult refreshI18nResourceCache();
 }

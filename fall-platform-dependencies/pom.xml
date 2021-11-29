@@ -161,6 +161,11 @@
                 <artifactId>fall-platform-starter-cache-redis</artifactId>
                 <version>${platform.starters.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.fallframework.platform</groupId>
+                <artifactId>fall-platform-starter-i18n</artifactId>
+                <version>${platform.starters.version}</version>
+            </dependency>
 
             <!-- Spring Cloud -->
             <dependency>

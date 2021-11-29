@@ -1,11 +1,12 @@
 package com.fallframework.platform.starter.mvc.filter;
 
-import com.wordplay.ceep.core.constant.CoreContextConstant;
-import com.wordplay.ceep.core.context.CeepApplicationContext;
-import com.wordplay.ceep.core.context.config.PlatformConfig;
-import com.wordplay.ceep.mvc.util.CookieFilterUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
+import com.fallframework.platform.starter.mvc.util.CookieFilterUtil;
+import com.fallframework.platform.starter.mvc.util.PlatformRequestUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.AntPathMatcher;
 
 import javax.servlet.Filter;
@@ -18,10 +19,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 过滤XSS跨站脚本攻击
@@ -30,44 +31,54 @@ import java.util.Set;
  */
 public class XSSFilter implements Filter {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(LanguageFilter.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(XSSFilter.class);
 
-	// exclude urls
-	private static Set<String> excludes = new HashSet();
-	// include urls
-	private static Set<String> includes = new HashSet();
+	@Autowired
+	private static PlatformSysParamUtil platformSysParamUtil;
 	private AntPathMatcher matcher = new AntPathMatcher();
-	private PlatformConfig platformConfig;
+
+	private static final Boolean XSS_ENABLE;
+	private static final String EXCLUDE_PATTERN;
+	private static final String INCLUDE_PATTERN;
+
+	private static final List<String> excludePatternList;
+	private static final List<String> includePatternlist;
+
+	static {
+		Map<String, String> sysItemMap = platformSysParamUtil.getSysParamGroupItemMap("XSS_CONFIG").getData();
+		LOGGER.info("SYS PAPRAM XSS_CONFIG : " + sysItemMap.toString());
+		XSS_ENABLE = Boolean.valueOf(sysItemMap.get("XSS_ENABLE"));
+		EXCLUDE_PATTERN = sysItemMap.get("EXCLUDE_PATTERN");
+		INCLUDE_PATTERN = sysItemMap.get("INCLUDE_PATTERN");
+
+		String[] excludePatternArr = EXCLUDE_PATTERN.split(",");
+		excludePatternList = new ArrayList<>(excludePatternArr.length);
+		Collections.addAll(excludePatternList, excludePatternArr);
+		String[] includePatternArr = INCLUDE_PATTERN.split(",");
+		includePatternlist = new ArrayList<>(includePatternArr.length);
+		Collections.addAll(includePatternlist, includePatternArr);
+	}
 
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
+	public void init(FilterConfig filterConfig) {
 		LOGGER.debug("XSSFilter init.");
-		// 获取默认配置
-		if ((null != this.platformConfig) && (null != this.excludes) && (null != this.includes)) {
-			this.platformConfig = CeepApplicationContext.getBean(PlatformConfig.class);
-			if (this.platformConfig != null && this.platformConfig.getSecurityConfig() != null && this.platformConfig.getSecurityConfig().getXssConfig() != null) {
-				this.excludes = new HashSet(Arrays.asList(this.platformConfig.getSecurityConfig().getXssConfig().getExcludes()));
-				this.includes = new HashSet(Arrays.asList(this.platformConfig.getSecurityConfig().getXssConfig().getIncludes()));
-			}
-		}
 	}
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
-		if (this.isXXSFilterRequest(request) && !this.isInternalCall(request)) {
-			request = this.wrapperRequest(request);
+		// 内部请求/不需要过滤的资源 则放行
+		if (PlatformRequestUtil.isInternalCall(request) || !this.isXXSFilterRequest(request)) {
+			chain.doFilter(request, response);
 		}
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
-			Cookie[] cookieArr = cookies;
 			int len = cookies.length;
 			for (int i = 0; i < len; ++i) {
-				Cookie cookie = cookieArr[i];
+				Cookie cookie = cookies[i];
 				if (cookie.getValue() != null && CookieFilterUtil.isValidate(cookie.getValue().toLowerCase())) {
-					response.sendError(403, cookie.getName() + ":" + cookie.getValue() + " exist script!");
-					return;
+					throw new RuntimeException("cookiename " + cookie.getName() + ":" + cookie.getValue() + " exist script!");
 				}
 			}
 		}
@@ -79,52 +90,33 @@ public class XSSFilter implements Filter {
 	 */
 	protected boolean isXXSFilterRequest(HttpServletRequest request) {
 		String url = request.getRequestURI();
-		if (!this.includes.isEmpty() && this.match(url, this.includes)) {
-			return true;
-		} else if (!this.isXssEnabled()) {
+		if (!XSS_ENABLE) {
 			return false;
-		} else {
-			return this.excludes.isEmpty() || !this.match(url, this.excludes);
 		}
+		if (CollectionUtil.isEmpty(includePatternlist) || !this.match(url, includePatternlist)) {
+			return false;
+		}
+		if (CollectionUtil.isNotEmpty(excludePatternList) && this.match(url, excludePatternList)) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
 	 * 是否匹配
 	 */
-	protected boolean match(String url, Set<String> patterns) {
-		Iterator iterator = patterns.iterator();
-		String p;
-		do {
-			if (!iterator.hasNext()) {
-				return false;
+	protected boolean match(String url, List<String> patterns) {
+		for (String pattern : patterns) {
+			if ((this.matcher.match(pattern, url) && this.matcher.match("/" + pattern, url))) {
+				return true;
 			}
-			p = (String) iterator.next();
-		} while (!this.matcher.match(p, url) && !this.matcher.match("/" + p, url));
-		return true;
-	}
-
-	/**
-	 * 是否启用
-	 */
-	private boolean isXssEnabled() {
-		return this.platformConfig != null && this.platformConfig.getSecurityConfig() != null
-				&& this.platformConfig.getSecurityConfig().getXssConfig() != null
-				&& this.platformConfig.getSecurityConfig().getXssConfig().isEnable();
-	}
-
-	private boolean isInternalCall(HttpServletRequest request) {
-		String callType = request.getHeader(CoreContextConstant.CALL_TYPE);
-		return CoreContextConstant.CALL_TYPE.equals(callType);
-	}
-
-
-	protected HttpServletRequest wrapperRequest(HttpServletRequest request) throws IOException {
-		return null;
-//		return new XSSHttpRequestWrapper(request);
+		}
+		return false;
 	}
 
 	@Override
 	public void destroy() {
 		LOGGER.debug("XSSFilter destroy.");
 	}
+
 }
