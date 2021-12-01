@@ -1,5 +1,6 @@
-package com.fallframework.platform.starter.core.entity;
+package com.fallframework.platform.starter.data.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,21 +25,25 @@ public class BaseEntity implements Serializable {
 	/**
 	 * 创建用户ID
 	 */
+	@TableField(value = "create_user_id")
 	private Long createUserId;
 
 	/**
 	 * 修改用户ID
 	 */
+	@TableField(value = "modify_user_id")
 	private Long modifyUserId;
 
 	/**
 	 * 创建时间
 	 */
+	@TableField(value = "gmt_create")
 	private Date gmtCreate;
 
 	/**
 	 * 更改时间
 	 */
+	@TableField(value = "gmt_modified")
 	private Date gmtModified;
 
 }

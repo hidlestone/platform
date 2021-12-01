@@ -57,6 +57,96 @@ CREATE TABLE `s_permission` (
 ) ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统接口权限表';
 
 
+CREATE TABLE `s_mail_sender_config` (
+	`id` BIGINT (20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+	`from` VARCHAR (200) DEFAULT NULL COMMENT '发送者',
+	`host` VARCHAR (200) DEFAULT NULL COMMENT '如：smtp.163.com',
+	`username` VARCHAR (200) DEFAULT NULL COMMENT '账号',
+	`password` VARCHAR (1000) DEFAULT NULL COMMENT '密码',
+	`properties` VARCHAR (1000) DEFAULT NULL COMMENT '配置',
+	`create_user_id` BIGINT (20) DEFAULT NULL COMMENT '创建用户ID',
+	`modify_user_id` BIGINT (20) DEFAULT NULL COMMENT '修改用户ID',
+	`gmt_create` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	`gmt_modified` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更改时间',
+	PRIMARY KEY (`id`)
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '邮件发送配置表';
+
+CREATE TABLE `s_mail_template` (
+	`code` VARCHAR (50) COMMENT '邮件模板配置编码',
+	`desc` VARCHAR (200) DEFAULT NULL COMMENT '邮件模板配置描述',
+	`title` VARCHAR (200) DEFAULT NULL COMMENT '标题',
+	`from` VARCHAR (200) DEFAULT NULL COMMENT '发送者',
+	`content` text COMMENT '内容',
+	`file_group_id` BIGINT (20) DEFAULT NULL COMMENT '文件组ID',
+	`retry_count` TINYINT (3) UNSIGNED DEFAULT NULL COMMENT '重试次数',
+	`create_user_id` BIGINT (20) DEFAULT NULL COMMENT '创建用户ID',
+	`modify_user_id` BIGINT (20) DEFAULT NULL COMMENT '修改用户ID',
+	`gmt_create` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	`gmt_modified` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更改时间',
+	PRIMARY KEY (`code`)
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '邮件模板表';
+
+CREATE TABLE `s_mail_history` (
+	`id` BIGINT (20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+	`title` VARCHAR (200) DEFAULT NULL COMMENT '标题',
+	`from` VARCHAR (200) DEFAULT NULL COMMENT '发送者',
+	`user_id` BIGINT (20) DEFAULT NULL COMMENT '用户ID',
+	`receiver` VARCHAR (1000) DEFAULT NULL COMMENT '接收者',
+	`cc` VARCHAR (1000) DEFAULT NULL COMMENT '抄送者',
+	`bcc` VARCHAR (1000) DEFAULT NULL COMMENT '密送者',
+	`content` text COMMENT '内容',
+	`file_group_id` BIGINT (20) DEFAULT NULL COMMENT '文件组ID',
+	`try_count` TINYINT (3) UNSIGNED DEFAULT NULL COMMENT '发送次数',
+	`last_send_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后一次发送时间',
+	`send_flag` TINYINT (3) UNSIGNED DEFAULT NULL COMMENT '0-失败，1-成功',
+	`create_user_id` BIGINT (20) DEFAULT NULL COMMENT '创建用户ID',
+	`modify_user_id` BIGINT (20) DEFAULT NULL COMMENT '修改用户ID',
+	`gmt_create` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	`gmt_modified` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更改时间',
+	PRIMARY KEY (`id`)
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '邮件发送历史表';
+
+
+
+
+-- 待定
+CREATE TABLE `s_mq_record` (
+	`id` BIGINT (20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+	`message_id` BIGINT (20) NOT NULL COMMENT '消息唯一标识',
+	`stage` VARCHAR (30) DEFAULT NULL COMMENT '阶段',
+	`content` text DEFAULT NULL COMMENT '消息体JSON',
+	`exchange` VARCHAR (255) DEFAULT NULL COMMENT '交换机',
+	`route_key` VARCHAR (255) DEFAULT NULL COMMENT '路由',
+	`delivery_tag` VARCHAR (255) DEFAULT NULL COMMENT '投递TAG',
+	`consumer_tag` VARCHAR (255) DEFAULT NULL COMMENT '消费TAG',
+	`ack_mode` VARCHAR (30) DEFAULT NULL COMMENT 'ACK模式',
+	`publish_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
+	`consume_time` datetime DEFAULT NULL COMMENT '消费时间',
+	`status` TINYINT UNSIGNED DEFAULT 1 COMMENT '状态',
+	`request_id` BIGINT (20) DEFAULT NULL COMMENT '请求ID',
+	`subscriber` VARCHAR (255) DEFAULT NULL COMMENT '订阅者',
+	`create_user_id` BIGINT (20) DEFAULT NULL COMMENT '创建用户ID',
+	`modify_user_id` BIGINT (20) DEFAULT NULL COMMENT '修改用户ID',
+	`gmt_create` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	`gmt_modified` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更改时间',
+	PRIMARY KEY (`id`)
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COMMENT = 'MQ消息投递日志记录表';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

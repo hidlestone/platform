@@ -3,15 +3,13 @@
   <component name="MyBatisCodeHelperDatasource">
     <option name="projectProfile">
       <ProjectProfile>
-        <option name="batchInsert" value="true" />
-        <option name="generateService" value="true" />
-        <option name="generateServiceInterface" value="true" />
-        <option name="javaMapperPackage" value="com.fallframework.platform.starter.mvc.mapper" />
-        <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/java" />
-        <option name="javaModelPackage" value="com.fallframework.platform.starter.mvc.entity" />
-        <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/java" />
-        <option name="lastDatabaseCrudChooseModuleName" value="fall-platform-starter-mvc" />
+        <option name="javaMapperPackage" value="com.fallframework.platform.starter.mail.tmp" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/java" />
+        <option name="javaModelPackage" value="com.fallframework.platform.starter.mail.tmp" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="fall-platform-starter-mail" />
         <option name="lombokAnnotation" value="@GetterSetter" />
+        <option name="mapperAnnotaion" value="true" />
         <option name="modelSuperClass" value="com.fallframework.platform.starter.core.entity.BaseEntity" />
         <option name="moduleNameToPackageAndPathMap">
           <map>
@@ -45,6 +43,18 @@
                 </UserPackageAndPathInfoByModule>
               </value>
             </entry>
+            <entry key="fall-platform-starter-mail">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.mail.tmp" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.mail.tmp" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.mail.tmp" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
             <entry key="fall-platform-starter-mvc">
               <value>
                 <UserPackageAndPathInfoByModule>
@@ -72,6 +82,35 @@
                   <option name="generatedKey" value="id" />
                   <option name="javaModelName" value="I18nResource" />
                   <option name="moduleName" value="fall-platform-starter-i18n" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_mail_history">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="MailHistory" />
+                  <option name="moduleName" value="fall-platform-starter-mail" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_mail_sender_config">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="MailSenderConfig" />
+                  <option name="moduleName" value="fall-platform-starter-mail" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_mail_template">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="MailTemplate" />
+                  <option name="moduleName" value="fall-platform-starter-mail" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -110,9 +149,8 @@
           </map>
         </option>
         <option name="useLomBokOnModel" value="true" />
-        <option name="userMybatisPlus" value="true" />
-        <option name="xmlMapperPackage" value="com.fallframework.platform.starter.mvc.mapper" />
-        <option name="xmlMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/resources" />
+        <option name="xmlMapperPackage" value="com.fallframework.platform.starter.mail.tmp" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/resources" />
       </ProjectProfile>
     </option>
   </component>

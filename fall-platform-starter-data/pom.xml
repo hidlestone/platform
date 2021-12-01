@@ -51,8 +51,6 @@
             <artifactId>fall-platform-starter-core</artifactId>
         </dependency>
 
-
-
         <!-- mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -78,7 +76,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-commons</artifactId>
-            <version>2.2.5.RELEASE</version>
         </dependency>
     </dependencies>
 

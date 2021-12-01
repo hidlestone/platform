@@ -59,6 +59,10 @@
         <module>../fall-platform-starter-file-parent</module>
         <module>../fall-platform-starter-mail</module>
         <module>../fall-platform-starter-wechat</module>
+        <module>../fall-platform-starter-excel</module>
+        <module>../fall-platform-starter-webflux</module>
+        <module>../fall-platform-starter-websocket</module>
+        <module>../fall-platform-starter-quartz</module>
     </modules>
     
 </project>
