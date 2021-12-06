@@ -3,13 +3,14 @@
   <component name="MyBatisCodeHelperDatasource">
     <option name="projectProfile">
       <ProjectProfile>
-        <option name="javaMapperPackage" value="com.fallframework.platform.starter.mail.tmp" />
-        <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/java" />
-        <option name="javaModelPackage" value="com.fallframework.platform.starter.mail.tmp" />
-        <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/java" />
-        <option name="lastDatabaseCrudChooseModuleName" value="fall-platform-starter-mail" />
+        <option name="generateService" value="true" />
+        <option name="generateServiceInterface" value="true" />
+        <option name="javaMapperPackage" value="com.fallframework.platform.starter.file.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-file-api/src/main/java" />
+        <option name="javaModelPackage" value="com.fallframework.platform.starter.file.entity" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-file-api/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="fall-platform-starter-file-api" />
         <option name="lombokAnnotation" value="@GetterSetter" />
-        <option name="mapperAnnotaion" value="true" />
         <option name="modelSuperClass" value="com.fallframework.platform.starter.core.entity.BaseEntity" />
         <option name="moduleNameToPackageAndPathMap">
           <map>
@@ -24,6 +25,22 @@
                   <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-config/src/main/java" />
                   <option name="xmlPackage" value="com.fallframework.platform.starter.config.mapper" />
                   <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-config/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+            <entry key="fall-platform-starter-file-api">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.file.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-file-api/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.file.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-file-api/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.fallframework.platform.starter.file.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-file-api/src/main/java" />
+                  <option name="javaServicePackage" value="com.fallframework.platform.starter.file.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-file-api/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.file.mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-file-api/src/main/resources" />
                 </UserPackageAndPathInfoByModule>
               </value>
             </entry>
@@ -50,8 +67,26 @@
                   <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/java" />
                   <option name="javaModelPacakge" value="com.fallframework.platform.starter.mail.tmp" />
                   <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/java" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/java" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/java" />
                   <option name="xmlPackage" value="com.fallframework.platform.starter.mail.tmp" />
                   <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+            <entry key="fall-platform-starter-mq-api">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.mq.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mq-api/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.mq.api" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-mq-api/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.fallframework.platform.starter.mq.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-mq-api/src/main/java" />
+                  <option name="javaServicePackage" value="com.fallframework.platform.starter.mq.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-mq-api/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.mq.mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-mq-api/src/main/resources" />
                 </UserPackageAndPathInfoByModule>
               </value>
             </entry>
@@ -75,6 +110,26 @@
         </option>
         <option name="tableGenerateConfigs">
           <map>
+            <entry key="fallplatform:s_file_group">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="FileGroup" />
+                  <option name="moduleName" value="fall-platform-starter-file-api" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_file_info">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="FileInfo" />
+                  <option name="moduleName" value="fall-platform-starter-file-api" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="fallplatform:s_i18n_resource">
               <value>
                 <TableGenerateConfig>
@@ -115,6 +170,15 @@
                 </TableGenerateConfig>
               </value>
             </entry>
+            <entry key="fallplatform:s_mq_trace_record">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="MqTraceRecord" />
+                  <option name="moduleName" value="fall-platform-starter-mq-api" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="fallplatform:s_permission">
               <value>
                 <TableGenerateConfig>
@@ -149,8 +213,9 @@
           </map>
         </option>
         <option name="useLomBokOnModel" value="true" />
-        <option name="xmlMapperPackage" value="com.fallframework.platform.starter.mail.tmp" />
-        <option name="xmlMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mail/src/main/resources" />
+        <option name="userMybatisPlus" value="true" />
+        <option name="xmlMapperPackage" value="com.fallframework.platform.starter.file.mapper" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/fall-platform-starter-file-api/src/main/resources" />
       </ProjectProfile>
     </option>
   </component>

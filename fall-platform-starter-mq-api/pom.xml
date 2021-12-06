@@ -12,5 +12,11 @@
 
     <artifactId>fall-platform-starter-mq-api</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.fallframework.platform</groupId>
+            <artifactId>fall-platform-starter-data</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

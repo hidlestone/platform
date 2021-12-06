@@ -7,5 +7,5 @@ package com.fallframework.platform.starter.core.constant;
  * @author payn
  */
 public class CoreStarterConstant {
-	
+
 }
