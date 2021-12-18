@@ -1,0 +1,58 @@
+<!-- ehcache配置 -->
+<ehcache
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+        updateCheck="false">
+    <!--缓存路径，用户目录下的base_ehcache目录-->
+    <diskStore path="user.home/base_ehcache"/>
+
+    <defaultCache
+            maxElementsInMemory="20000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            overflowToDisk="true"
+            maxElementsOnDisk="10000000"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU"/>
+
+    <!--
+    缓存文件名：inkblogcache，同样的可以配置多个缓存
+    maxElementsInMemory：内存中最多存储
+    eternal：外部存储
+    overflowToDisk：超出缓存到磁盘
+    diskPersistent：磁盘持久化
+    timeToLiveSeconds：缓存时间
+    diskExpiryThreadIntervalSeconds：磁盘过期时间
+    -->
+    <!--发布间隔-->
+    <cache name="comments:frequency"
+           maxElementsInMemory="20000"
+           eternal="false"
+           overflowToDisk="true"
+           diskPersistent="false"
+           timeToLiveSeconds="30"
+           diskExpiryThreadIntervalSeconds="120"/>
+
+    <!--文章点击量-->
+    <cache name="article:hit"
+           maxElementsInMemory="20000"
+           eternal="true"
+           timeToLiveSeconds="0"
+           overflowToDisk="true"
+           maxElementsOnDisk="10000000"
+           diskPersistent="false"
+           diskExpiryThreadIntervalSeconds="120"
+           memoryStoreEvictionPolicy="LRU"/>
+
+    <!--发布间隔-->
+    <cache name="login_error_count"
+           maxElementsInMemory="100"
+           eternal="false"
+           overflowToDisk="true"
+           diskPersistent="false"
+           timeToLiveSeconds="900"
+           diskExpiryThreadIntervalSeconds="120"/>
+    
+</ehcache>

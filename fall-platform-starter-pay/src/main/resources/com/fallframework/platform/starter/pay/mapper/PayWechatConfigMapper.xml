@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fallframework.platform.starter.pay.mapper.PayWechatConfigMapper">
+  <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.pay.entity.PayWechatConfig">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pay_type_code" jdbcType="VARCHAR" property="payTypeCode" />
+    <result column="encrypt_type" jdbcType="VARCHAR" property="encryptType" />
+    <result column="cert_file_id" jdbcType="BIGINT" property="certFileId" />
+    <result column="api_key" jdbcType="VARCHAR" property="apiKey" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="mch_id" jdbcType="VARCHAR" property="mchId" />
+    <result column="status" jdbcType="BOOLEAN" property="status" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, pay_type_code, encrypt_type, cert_file_id, api_key, app_id, mch_id, `status`, 
+    create_user_id, modify_user_id, gmt_create, gmt_modified
+  </sql>
+</mapper>

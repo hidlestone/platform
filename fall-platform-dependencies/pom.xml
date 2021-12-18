@@ -137,6 +137,12 @@
         <bcprov-jdk15on.version>1.66</bcprov-jdk15on.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- qiniu -->
+        <okhttp.version>3.14.2</okhttp.version>
+        <gson.version>2.8.5</gson.version>
+        <happy-dns.version>0.1.6</happy-dns.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
     <dependencyManagement>
@@ -164,6 +170,11 @@
             <dependency>
                 <groupId>com.fallframework.platform</groupId>
                 <artifactId>fall-platform-starter-i18n</artifactId>
+                <version>${platform.starters.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fallframework.platform</groupId>
+                <artifactId>fall-platform-starter-mq-api</artifactId>
                 <version>${platform.starters.version}</version>
             </dependency>
 
@@ -652,6 +663,32 @@
                 <groupId>org.bouncycastle</groupId>
                 <artifactId>bcprov-jdk15on</artifactId>
                 <version>${bcprov-jdk15on.version}</version>
+            </dependency>
+
+            <!-- qiniu -->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.qiniu</groupId>
+                <artifactId>happy-dns-java</artifactId>
+                <version>${happy-dns.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

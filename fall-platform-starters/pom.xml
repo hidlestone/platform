@@ -64,6 +64,8 @@
         <module>../fall-platform-starter-websocket</module>
         <module>../fall-platform-starter-quartz</module>
         <module>../fall-platform-starter-pay-parent</module>
+        <module>../fall-platform-starter-doc</module>
+        <module>../fall-platform-starter-ureport</module>
     </modules>
     
 </project>

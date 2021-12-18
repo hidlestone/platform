@@ -14,7 +14,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>../fall-platform-starter-file-api</module>
-        <module>../fall-platform-starter-file-oss</module>
+        <module>../fall-platform-starter-file-ali</module>
         <module>../fall-platform-starter-file-qiniu</module>
     </modules>
 
