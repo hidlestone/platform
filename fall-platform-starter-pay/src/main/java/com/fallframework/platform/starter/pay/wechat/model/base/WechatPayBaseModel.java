@@ -1,7 +1,9 @@
-package com.fallframework.platform.starter.pay.wechat.model;
+package com.fallframework.platform.starter.pay.wechat.model.base;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * 微信支付接口的 基础 参数
@@ -12,7 +14,9 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class WechatPayDto {
+public class WechatPayBaseModel implements Serializable {
+
+	private static final long serialVersionUID = -8892198675662728101L;
 
 	// 公众账号ID
 	protected String appId;

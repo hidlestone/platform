@@ -6,7 +6,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="pay_type_code" jdbcType="VARCHAR" property="payTypeCode" />
     <result column="encrypt_type" jdbcType="VARCHAR" property="encryptType" />
-    <result column="cert_file_id" jdbcType="BIGINT" property="certFileId" />
+    <result column="cert_file_id" jdbcType="VARCHAR" property="certFileId" />
     <result column="api_key" jdbcType="VARCHAR" property="apiKey" />
     <result column="app_id" jdbcType="VARCHAR" property="appId" />
     <result column="mch_id" jdbcType="VARCHAR" property="mchId" />

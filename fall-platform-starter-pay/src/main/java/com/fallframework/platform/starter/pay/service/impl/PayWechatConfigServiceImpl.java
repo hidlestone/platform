@@ -36,7 +36,7 @@ public class PayWechatConfigServiceImpl extends ServiceImpl<PayWechatConfigMappe
 	}
 
 	@Override
-	public ResponseResult get(Long id) {
+	public ResponseResult<PayWechatConfig> get(Long id) {
 		PayWechatConfig payWechatConfig = configMapper.selectById(id);
 		return ResponseResult.success(payWechatConfig);
 	}
@@ -48,3 +48,4 @@ public class PayWechatConfigServiceImpl extends ServiceImpl<PayWechatConfigMappe
 		return ResponseResult.success();
 	}
 }
+

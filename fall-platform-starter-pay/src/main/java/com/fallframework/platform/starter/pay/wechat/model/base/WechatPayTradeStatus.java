@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.pay.wechat.model;
+package com.fallframework.platform.starter.pay.wechat.model.base;
 
 /**
  * 微信支付-订单查询的时候 返回的交易状态
@@ -13,5 +13,5 @@ package com.fallframework.platform.starter.pay.wechat.model;
 public enum WechatPayTradeStatus {
 
 	SUCCESS, REFUND, NOTPAY, CLOSED, REVOKED, USERPAYING, PAYERROR;
-	
+
 }

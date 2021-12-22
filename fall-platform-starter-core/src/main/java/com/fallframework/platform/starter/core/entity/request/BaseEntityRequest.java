@@ -1,5 +1,8 @@
 package com.fallframework.platform.starter.core.entity.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +10,8 @@ import java.io.Serializable;
  *
  * @author payn
  */
+@Getter
+@Setter
 public class BaseEntityRequest implements Serializable {
 
 	private static final long serialVersionUID = -3908244974737701868L;

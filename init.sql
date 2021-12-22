@@ -249,38 +249,62 @@ CREATE TABLE `pay_merchant_channel` (
   KEY `pay_channel_id` (`pay_channel_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `pay_order`;
+-- 支付订单
 CREATE TABLE `pay_order` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pay_type_code` varchar(50) DEFAULT NULL,
-  `pay_order_no` varchar(255) NOT NULL,
-  `trade_pay_no` varchar(255) DEFAULT NULL,
-  `pre_pay_id` varchar(100) DEFAULT NULL,
-  `pay_id` varchar(100) DEFAULT NULL,
-  `user_ip` varchar(50) DEFAULT NULL,
-  `pay_amount` int(11) DEFAULT NULL,
-  `pay_time` datetime DEFAULT NULL,
-  `status` smallint(6) DEFAULT NULL,
-  `error_code` varchar(32) DEFAULT NULL,
-  `error_msg` varchar(128) DEFAULT NULL,
-  `start_time` datetime DEFAULT NULL,
-  `expire_time` datetime DEFAULT NULL,
-  `open_id` varchar(255) DEFAULT NULL,
-  `buyer_logon_id` varchar(255) DEFAULT NULL,
-  `notify_url` varchar(255) DEFAULT NULL,
-  `extra` varchar(100) DEFAULT NULL,
-  `subject` varchar(100) DEFAULT NULL,
-  `detail` varchar(500) DEFAULT NULL,
-  `code_url` varchar(255) DEFAULT NULL,
-  `merchant_id` varchar(255) DEFAULT NULL,
-  `trade_type` varchar(255) DEFAULT NULL,
-  `return_url` varchar(255) DEFAULT NULL,
-  `refund_amount` int(11) DEFAULT NULL,
+  `id` BIGINT (20) NOT NULL COMMENT '主键',
+  `pay_type_code` varchar(50) DEFAULT NULL COMMENT '支付类型：PayTypeCode',
+  `pay_order_no` varchar(255) NOT NULL COMMENT '业务方，支付订单号',
+  `trade_pay_no` varchar(255) DEFAULT NULL COMMENT '微信/支付宝的商户交易流水号',
+  `pre_pay_id` varchar(100) DEFAULT NULL COMMENT '微信/支付宝返回的给app或者网页的支付凭证，客户端通过此信息调起支付界面。',
+  `pay_id` varchar(100) DEFAULT NULL COMMENT '微信/支付宝的商户交易流水号',
+  `user_ip` varchar(50) DEFAULT NULL COMMENT '微信/支付宝的商户交易流水号',
+  `pay_amount` int(11) DEFAULT NULL COMMENT '支付金额，精确到分',
+  `pay_time` datetime DEFAULT NULL COMMENT '支付时间',
+  `status` smallint(6) DEFAULT NULL COMMENT '支付状态：PayProcessStatus',
+  `error_code` varchar(32) DEFAULT NULL COMMENT '如果创建订单失败，则保存第三方返回的失败错误码',
+  `error_msg` varchar(128) DEFAULT NULL COMMENT '错误信息',
+  `start_time` datetime DEFAULT NULL COMMENT '支付申请时间',
+  `expire_time` datetime DEFAULT NULL COMMENT '支付过期时间，默认为2小时',
+  `open_id` varchar(255) DEFAULT NULL COMMENT '微信为用户的openId，支付宝为buyer_id买家支付宝用户号',
+  `buyer_logon_id` varchar(255) DEFAULT NULL COMMENT '支付宝中：买家支付宝账号',
+  `notify_url` varchar(255) DEFAULT NULL COMMENT '回调业务方的url',
+  `extra` varchar(100) DEFAULT NULL COMMENT '附加信息，支付完成后通知时候会原封不动返回业务方',
+  `subject` varchar(100) DEFAULT NULL COMMENT '订单标题，微信中对应body字段',
+  `detail` varchar(500) DEFAULT NULL COMMENT '订单描述，微信中对应detail字段，为json格式。支付宝中对应body字段，表示描述',
+  `code_url` varchar(255) DEFAULT NULL COMMENT '二维码链接',
+  `merchant_id` varchar(255) DEFAULT NULL COMMENT '业务方商户号：PayMerchant',
+  `trade_type` varchar(255) DEFAULT NULL COMMENT '支付类型，如扫码、app支付、wap支付等：TradeTypeCode',
+  `return_url` varchar(255) DEFAULT NULL COMMENT '支付成功页，支付宝：页面跳转同步通知页面路径，需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问。微信需要在前端自己设置',
+  `refund_amount` int(11) DEFAULT NULL COMMENT '退款额度，精确到分',
   PRIMARY KEY (`id`),
   UNIQUE KEY `pay_order_no` (`pay_order_no`) USING BTREE,
   KEY `trade_pay_no` (`trade_pay_no`),
   KEY `pay_id` (`pay_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12478 DEFAULT CHARSET=utf8;
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COMMENT = '支付订单';
+
+CREATE TABLE `pay_channel` (
+  `id` BIGINT (20) NOT NULL COMMENT '主键',
+  `pay_type_code` varchar(255) DEFAULT NULL COMMENT '支付类型编码',
+  `encrypt_type` varchar(255) DEFAULT NULL  COMMENT '加密方式',
+  `cert_file_id` varchar(32) DEFAULT NULL COMMENT '仅微信使用，凭证文件Id，对应 FileResources',
+  `api_key` varchar(255) DEFAULT NULL COMMENT '仅微信使用，开通微信支付后，会把 微信支付的账号，密码，以及 apikey发给开发者。  用于签名',
+  `app_id` varchar(255) NOT NULL COMMENT '微信为公众账号Id，  支付宝为20开头的一串数字（管理中心-我的应用）',
+  `mch_id` varchar(255) NOT NULL COMMENT '商户Id/合作伙伴Id， 例如 微信为12开头的一串数字(账户信息-微信支付商户号)，支付宝为（从我的应用-查看-使用者管理-使用者Id）',
+  `status` smallint(6) NOT NULL COMMENT '加密方式',
+  `mch_key` varchar(1024) DEFAULT NULL COMMENT '商户私钥，  商户公钥需要在支付宝开放平台设置，',
+  `platform_key` varchar(1024) DEFAULT NULL COMMENT '支付宝公钥，  又支付宝开放平台提供',
+  `query_channel_id` int(11) DEFAULT '0' COMMENT '对应PayChannel,0表示本身， 在调用支付宝查询订单(AliPayService.synchronize)功能时候，对应的开放平台秘钥Id。',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+
+
+
+
+
+
+
+
 
 DROP TABLE IF EXISTS `refund_order`;
 CREATE TABLE `refund_order` (

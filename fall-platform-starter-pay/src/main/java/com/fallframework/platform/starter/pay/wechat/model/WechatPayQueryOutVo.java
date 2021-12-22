@@ -1,6 +1,7 @@
 package com.fallframework.platform.starter.pay.wechat.model;
 
 import com.fallframework.platform.starter.core.entity.response.BaseEntityResponse;
+import com.fallframework.platform.starter.pay.wechat.model.base.WechatPayTradeStatus;
 import lombok.Getter;
 import lombok.Setter;
 

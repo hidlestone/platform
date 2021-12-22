@@ -14,8 +14,9 @@ public interface PayWechatConfigService extends IService<PayWechatConfig> {
 
 	ResponseResult update(PayWechatConfig config);
 
-	ResponseResult get(Long id);
+	ResponseResult<PayWechatConfig> get(Long id);
 
 	ResponseResult<Page<PayWechatConfig>> wechatPayConfigList(PayWechatConfigInVo inVo);
 
 }
+

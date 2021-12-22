@@ -126,10 +126,29 @@
         </option>
         <option name="tableGenerateConfigs">
           <map>
+            <entry key="fallplatform:pay_ali_config">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="PayAliConfig" />
+                  <option name="moduleName" value="fall-platform-starter-pay" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="fallplatform:pay_cert_file">
               <value>
                 <TableGenerateConfig>
                   <option name="javaModelName" value="PayCertFile" />
+                  <option name="moduleName" value="fall-platform-starter-pay" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:pay_order">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="" />
+                  <option name="javaModelName" value="PayOrder" />
                   <option name="moduleName" value="fall-platform-starter-pay" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>

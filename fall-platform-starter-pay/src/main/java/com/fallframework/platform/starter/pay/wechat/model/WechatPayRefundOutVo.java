@@ -41,5 +41,5 @@ public class WechatPayRefundOutVo extends BaseEntityResponse {
 	private String outTradeNo;
 
 	private String refundFee;
-	
+
 }

@@ -1,7 +1,10 @@
-package com.fallframework.platform.starter.pay.api;
+package com.fallframework.platform.starter.pay.common.api;
 
 import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.pay.entity.PayOrder;
+import com.fallframework.platform.starter.pay.entity.PayWechatConfig;
 import com.fallframework.platform.starter.pay.model.PayNotifyResponse;
+import com.fallframework.platform.starter.pay.wechat.exception.WechatPayException;
 
 /**
  * 支付接口定义， 微信，支付宝支付逻辑均 继承此接口。
@@ -11,7 +14,7 @@ public interface PayService {
 	/**
 	 * 统一的支付接口
 	 */
-	ResponseResult pay();
+	ResponseResult pay(PayWechatConfig config, PayOrder order) throws WechatPayException;
 
 	/**
 	 * 获取回调的内容
