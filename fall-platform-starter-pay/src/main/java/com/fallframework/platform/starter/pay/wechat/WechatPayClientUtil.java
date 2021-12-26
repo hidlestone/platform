@@ -2,7 +2,7 @@ package com.fallframework.platform.starter.pay.wechat;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.XmlUtil;
-import com.fallframework.platform.starter.pay.wechat.util.WechatPayUtil;
+import com.fallframework.platform.starter.pay.wechat.util.WXPayUtil;
 import com.fallframework.platform.starter.pay.wechat.exception.WechatPayException;
 import com.fallframework.platform.starter.pay.wechat.model.base.WechatPayPrePayModel;
 import lombok.Getter;
@@ -86,7 +86,7 @@ public class WechatPayClientUtil {
 
 		// 所有参与传参的参数按照accsii排序（升序）
 		SortedMap<String, String> paramMap = new TreeMap<String, String>(map);
-		String sign = WechatPayUtil.createSign(apiKey, paramMap);
+		String sign = WXPayUtil.createSign(apiKey, paramMap);
 		model.setSign(sign);
 		paramMap.put("sign", sign);
 		// 判断是否需要带上支付证书

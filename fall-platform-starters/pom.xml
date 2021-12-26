@@ -66,6 +66,7 @@
         <module>../fall-platform-starter-pay-parent</module>
         <module>../fall-platform-starter-doc</module>
         <module>../fall-platform-starter-ureport</module>
+        <module>../fall-platform-starter-httpClient</module>
     </modules>
     
 </project>
