@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.core.entity.response;
+package com.fallframework.platform.starter.api.response;
 
 /**
  * @author payn

@@ -2,7 +2,7 @@ package com.fallframework.platform.starter.pay.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.pay.entity.PayCertFile;
 import com.fallframework.platform.starter.pay.mapper.PayCertFileMapper;
 import com.fallframework.platform.starter.pay.model.PayCertFileInVo;

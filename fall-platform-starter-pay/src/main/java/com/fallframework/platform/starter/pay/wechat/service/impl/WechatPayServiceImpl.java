@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.pay.wechat.service.impl;
 
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.pay.util.ZxingUtil;
 import com.fallframework.platform.starter.pay.wechat.constant.WXPayConstants;
 import com.fallframework.platform.starter.pay.wechat.constant.WechatPayConstant;
@@ -285,6 +285,10 @@ public class WechatPayServiceImpl implements WechatPayService {
 
 	@Override
 	public String refundQuery() {
+		
+		
+		
+		
 		return null;
 	}
 

@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.pay.wechat.model;
 
-import com.fallframework.platform.starter.core.entity.response.BaseEntityResponse;
+import com.fallframework.platform.starter.api.response.BaseEntityResponse;
 
 /**
  * 查询订单响应信息

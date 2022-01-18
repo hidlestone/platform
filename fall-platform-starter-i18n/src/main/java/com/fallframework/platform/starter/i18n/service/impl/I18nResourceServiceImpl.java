@@ -4,13 +4,14 @@ import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
 import com.fallframework.platform.starter.i18n.constant.I18nStarterConstant;
 import com.fallframework.platform.starter.i18n.entity.I18nResource;
 import com.fallframework.platform.starter.i18n.mapper.I18nResourceMapper;
 import com.fallframework.platform.starter.i18n.model.I18nResourceRequest;
 import com.fallframework.platform.starter.i18n.service.I18nResourceService;
+import com.github.nobodxbodon.zhconverter.简繁转换类;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

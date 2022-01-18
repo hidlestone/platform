@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.core.entity.request;
+package com.fallframework.platform.starter.api.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.io.Serializable;
 
 /**
- * 基础请求参数类 TODO
+ * 基础请求参数类
  *
  * @author payn
  */

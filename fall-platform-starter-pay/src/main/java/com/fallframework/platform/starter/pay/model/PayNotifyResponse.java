@@ -5,7 +5,7 @@ package com.fallframework.platform.starter.pay.model;
  * 支付回调内容
  */
 public class PayNotifyResponse {
-	private PayTypeCode payType;
+	/*private PayTypeCode payType;
 	private String extra;
 	private int payAmount;
 	private String tradePayNo;
@@ -70,5 +70,5 @@ public class PayNotifyResponse {
 
 	public void setPayTime(String payTime) {
 		this.payTime = payTime;
-	}
+	}*/
 }

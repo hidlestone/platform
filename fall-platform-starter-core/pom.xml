@@ -21,10 +21,8 @@
     </organization>
     <licenses>
         <license>
-            <name>Apache 2</name>
-            <url>http://www.baidu.com/banseon/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
     <developers>
@@ -46,6 +44,11 @@
     </issueManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>com.fallframework.platform</groupId>
+            <artifactId>fall-platform-starter-api-dependency</artifactId>
+        </dependency>
+        
         <!-- spring-boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,11 +67,6 @@
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
-        </dependency>
-        <!-- lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
         <!-- test -->
         <dependency>

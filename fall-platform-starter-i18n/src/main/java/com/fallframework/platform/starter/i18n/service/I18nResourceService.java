@@ -2,7 +2,7 @@ package com.fallframework.platform.starter.i18n.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.i18n.entity.I18nResource;
 import com.fallframework.platform.starter.i18n.model.I18nResourceRequest;
 

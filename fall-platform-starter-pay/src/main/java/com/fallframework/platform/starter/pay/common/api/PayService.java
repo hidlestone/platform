@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.pay.common.api;
 
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.pay.entity.PayOrder;
 import com.fallframework.platform.starter.pay.entity.PayWechatConfig;
 import com.fallframework.platform.starter.pay.model.PayNotifyResponse;

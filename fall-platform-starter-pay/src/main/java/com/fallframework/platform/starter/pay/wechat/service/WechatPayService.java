@@ -1,15 +1,15 @@
 package com.fallframework.platform.starter.pay.wechat.service;
 
 import com.arronlong.httpclientutil.exception.HttpProcessException;
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.pay.wechat.model.CloseOrderRequest;
 import com.fallframework.platform.starter.pay.wechat.model.OrderQueryRequest;
+import com.fallframework.platform.starter.pay.wechat.model.RefundQueryRequest;
 import com.fallframework.platform.starter.pay.wechat.model.RefundRequest;
 import com.fallframework.platform.starter.pay.wechat.model.UnifiedOrderRequest;
 import com.google.zxing.WriterException;
 import org.jdom.JDOMException;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -55,7 +55,7 @@ public interface WechatPayService {
 	 * 查询退款
 	 * https://api.mch.weixin.qq.com/pay/refundquery
 	 */
-	String refundQuery();
+	String refundQuery(RefundQueryRequest request);
 
 	/**
 	 * 下载交易账单

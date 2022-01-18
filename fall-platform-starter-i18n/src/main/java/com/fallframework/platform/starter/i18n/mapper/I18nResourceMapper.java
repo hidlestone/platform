@@ -9,5 +9,4 @@ public interface I18nResourceMapper extends BaseMapper<I18nResource> {
     
     int batchInsert(@Param("list") List<I18nResource> list);
     
-    
 }

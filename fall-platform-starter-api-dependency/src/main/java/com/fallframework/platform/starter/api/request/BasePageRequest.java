@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.core.entity.request;
+package com.fallframework.platform.starter.api.request;
 
 import lombok.Getter;
 import lombok.Setter;

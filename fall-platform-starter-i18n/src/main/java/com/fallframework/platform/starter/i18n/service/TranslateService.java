@@ -1,0 +1,17 @@
+package com.fallframework.platform.starter.i18n.service;
+
+import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.i18n.model.I18nResourceResponse;
+import com.fallframework.platform.starter.i18n.model.TranslateReqeust;
+
+/**
+ * @author zhuangpf
+ */
+public interface TranslateService {
+
+	/**
+	 * 翻译词条
+	 */
+	ResponseResult<I18nResourceResponse> translate(TranslateReqeust request);
+
+}
