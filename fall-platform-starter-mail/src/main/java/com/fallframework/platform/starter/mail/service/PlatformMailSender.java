@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.mail.service;
 
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.mail.model.MailSendInfoRequest;
 
 public interface PlatformMailSender {

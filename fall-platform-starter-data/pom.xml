@@ -21,10 +21,8 @@
     </organization>
     <licenses>
         <license>
-            <name>Apache 2</name>
-            <url>http://www.baidu.com/banseon/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
     <developers>
@@ -46,11 +44,11 @@
     </issueManagement>
 
     <dependencies>
+        <!-- starter-core -->
         <dependency>
             <groupId>com.fallframework.platform</groupId>
             <artifactId>fall-platform-starter-core</artifactId>
         </dependency>
-        
         <!-- mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>

@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.mvc.model;
 
-import com.fallframework.platform.starter.core.entity.request.BasePageRequest;
+import com.fallframework.platform.starter.api.request.BasePageRequest;
 import lombok.Getter;
 import lombok.Setter;
 

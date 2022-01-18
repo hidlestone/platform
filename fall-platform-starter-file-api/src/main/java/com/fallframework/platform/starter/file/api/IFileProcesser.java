@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.file.api;
 
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.file.entity.FileInfo;
 
 import java.util.List;

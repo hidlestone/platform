@@ -3,7 +3,7 @@ package com.fallframework.platform.starter.mvc.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.mvc.entity.Permission;
 import com.fallframework.platform.starter.mvc.mapper.PermissionMapper;
 import com.fallframework.platform.starter.mvc.model.PermissionRequest;

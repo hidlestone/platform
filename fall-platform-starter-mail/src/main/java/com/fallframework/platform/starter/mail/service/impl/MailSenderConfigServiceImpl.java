@@ -2,7 +2,7 @@ package com.fallframework.platform.starter.mail.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.mail.entity.MailSenderConfig;
 import com.fallframework.platform.starter.mail.mapper.MailSenderConfigMapper;
 import com.fallframework.platform.starter.mail.model.MailSenderConfigRequest;

@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.i18n.model;
 
-import com.fallframework.platform.starter.core.entity.response.BaseEntityResponse;
+import com.fallframework.platform.starter.api.response.BaseEntityResponse;
 import lombok.Getter;
 import lombok.Setter;
 

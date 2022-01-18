@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.i18n.service.impl;
 
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.i18n.model.I18nResourceResponse;
 import com.fallframework.platform.starter.i18n.model.TranslateReqeust;
 import com.fallframework.platform.starter.i18n.model.langCodeEnum;

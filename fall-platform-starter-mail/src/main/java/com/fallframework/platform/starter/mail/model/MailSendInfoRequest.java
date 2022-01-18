@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.mail.model;
 
-import com.fallframework.platform.starter.core.entity.request.BaseEntityRequest;
+import com.fallframework.platform.starter.api.request.BaseEntityRequest;
 import com.fallframework.platform.starter.mail.entity.MailSenderConfig;
 import com.fallframework.platform.starter.mail.entity.MailTemplate;
 import lombok.Getter;

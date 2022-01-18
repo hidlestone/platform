@@ -15,20 +15,48 @@
     <name>Fall Platform Cache Redis Starter</name>
     <description>starter of Cache Redis</description>
     <url>http://www.wordplay.work/#/fall-platform-starters/fall-platform-starter-cache-redis</url>
+    <organization>
+        <name>Wordplay Software, Inc.</name>
+        <url>https://wordplay.work</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Wordplay</name>
+            <email>info@wordplay.work</email>
+            <organization>Wordplay Software, Inc.</organization>
+            <organizationUrl>https://www.wordplay.work</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/hidlestone/platform.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/hidlestone/platform.git</developerConnection>
+        <url>https://github.com/hidlestone/platform</url>
+    </scm>
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/hidlestone/platform/issues</url>
+    </issueManagement>
 
     <dependencies>
+        <!-- starter-core -->
+        <dependency>
+            <groupId>com.fallframework.platform</groupId>
+            <artifactId>fall-platform-starter-core</artifactId>
+        </dependency>
+        <!-- redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        <!-- fastjson -->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
         </dependency>
     </dependencies>
 

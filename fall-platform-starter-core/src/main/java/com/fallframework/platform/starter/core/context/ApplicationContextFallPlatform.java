@@ -31,7 +31,7 @@ public class ApplicationContextFallPlatform {
 	public static void setApplicationContext(ApplicationContext ac) {
 		if (applicationContext == null) {
 			applicationContext = ac;
-			LOGGER.info("FallPlatformApplicationContext ready to use: " + applicationContext);
+			LOGGER.info("fall platform application context ready to use : " + applicationContext);
 		}
 	}
 

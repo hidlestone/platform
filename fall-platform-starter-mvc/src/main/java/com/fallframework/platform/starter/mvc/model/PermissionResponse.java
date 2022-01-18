@@ -1,7 +1,7 @@
 package com.fallframework.platform.starter.mvc.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fallframework.platform.starter.core.entity.request.BaseEntityRequest;
+import com.fallframework.platform.starter.api.request.BaseEntityRequest;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

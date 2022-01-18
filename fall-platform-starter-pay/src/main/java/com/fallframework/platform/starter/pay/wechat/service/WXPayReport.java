@@ -197,11 +197,11 @@ public class WXPayReport {
 		ReportInfo reportInfo = new ReportInfo(uuid, currentTimestamp, elapsedTimeMillis,
 				firstDomain, primaryDomain, firstConnectTimeoutMillis, firstReadTimeoutMillis,
 				firstHasDnsError, firstHasConnectTimeout, firstHasReadTimeout);
-		String data = reportInfo.toLineString(config.getKey());
-		WXPayUtil.getLogger().info("report {}", data);
-		if (data != null) {
-			reportMsgQueue.offer(data);
-		}
+//		String data = reportInfo.toLineString(config.getKey());
+//		WXPayUtil.getLogger().info("report {}", data);
+//		if (data != null) {
+//			reportMsgQueue.offer(data);
+//		}
 	}
 
 

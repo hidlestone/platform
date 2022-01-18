@@ -6,6 +6,10 @@ import com.fallframework.platform.starter.pay.alipay.service.AliPayToFaceService
  * @author zhuangpf
  */
 public class AliPayToFaceServiceImpl implements AliPayToFaceService {
-	
-	
+
+
+	@Override
+	public void precreate() {
+		
+	}
 }

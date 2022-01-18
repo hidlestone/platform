@@ -9,16 +9,17 @@
         <!-- 配置一对多的关系 -->
         <collection property="sysParamItemList" javaType="list" ofType="com.fallframework.platform.starter.config.model.SysParamItemResponse">
             <!-- 配置主键，是关联Order的唯一标识 -->
-            <id column="code" jdbcType="VARCHAR" property="code"/>
-            <result column="value" jdbcType="VARCHAR" property="value"/>
+            <!-- 这里的column对应的是下面查询的别名，而不是表字段名 -->
+            <id column="tcode" jdbcType="VARCHAR" property="code"/>
+            <result column="tvalue" jdbcType="VARCHAR" property="value"/>
             <result column="encrypted_value" jdbcType="VARCHAR" property="encryptedValue"/>
-            <result column="desc" jdbcType="VARCHAR" property="desc"/>
-            <result column="status" jdbcType="CHAR" property="status"/>
+            <result column="tdesc" jdbcType="VARCHAR" property="desc"/>
+            <result column="tstatus" jdbcType="CHAR" property="status"/>
             <result column="group_code" jdbcType="VARCHAR" property="groupCode"/>
         </collection>
     </resultMap>
 
-    <select id="findByCode" resultType="com.fallframework.platform.starter.config.model.SysParamGroupResponse" parameterType="string">
+    <select id="selectByCode" resultType="com.fallframework.platform.starter.config.model.SysParamGroupResponse" parameterType="string">
         SELECT
             `code`,
             `desc`,
@@ -38,20 +39,45 @@
             s_sys_param_group
     </select>
 
-    <select id="findAllSysParamGroup" resultType="com.fallframework.platform.starter.config.model.SysParamGroupResponse">
+    <select id="findAllSysParamGroup" resultMap="BaseResultMap">
         SELECT
             sgroup.`code`,
             sgroup.`desc`,
             sgroup.`status`,
-            sitem.`code`,
-            sitem.`value`,
-            sitem.encrypted_value,
-            sitem.`desc`,
-            sitem.`status`,
+            sitem.`code` as tcode,
+            sitem.`value` as tvalue,
+            sitem.encrypted_value as encrypted_value,
+            sitem.`desc` as tdesc,
+            sitem.`status` as tstatus,
             sitem.group_code
         FROM
             s_sys_param_group sgroup
         LEFT JOIN s_sys_param_item sitem ON sitem.group_code = sgroup.`code`
+    </select>
+
+    <select id="list" resultType="com.fallframework.platform.starter.config.model.SysParamGroupResponse"
+            parameterType="com.fallframework.platform.starter.config.model.SysParamGroupRequest">
+        SELECT
+            sgroup.`code`,
+            sgroup.`desc`,
+            sgroup.`status`,
+            sitem.`code` as tcode,
+            sitem.`value` as tvalue,
+            sitem.encrypted_value as encrypted_value,
+            sitem.`desc` as tdesc,
+            sitem.`status` as tstatus,
+            sitem.group_code
+        FROM
+            s_sys_param_group sgroup
+        LEFT JOIN s_sys_param_item sitem ON sitem.group_code = sgroup.`code`
+        <where>
+            <if test="param2.code != null">
+                sgroup.`code` LIKE CONCAT('%', #{code,jdbcType=VARCHAR}, '%'),
+            </if>
+            <if test="param2.desc != null">
+                sgroup.`desc` LIKE CONCAT('%', #{code,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
     </select>
 
 </mapper>

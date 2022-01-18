@@ -3,7 +3,7 @@ package com.fallframework.platform.starter.mq.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.mq.entity.MqTraceRecord;
 import com.fallframework.platform.starter.mq.mapper.MqTraceRecordMapper;
 import com.fallframework.platform.starter.mq.model.MqTraceRecordRequest;

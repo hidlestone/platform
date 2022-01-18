@@ -6,6 +6,7 @@ import com.fallframework.platform.starter.pay.wechat.constant.WXPayConstants;
 import com.fallframework.platform.starter.pay.wechat.constant.WechatPayConstant;
 import com.fallframework.platform.starter.pay.wechat.model.CloseOrderRequest;
 import com.fallframework.platform.starter.pay.wechat.model.OrderQueryRequest;
+import com.fallframework.platform.starter.pay.wechat.model.RefundQueryRequest;
 import com.fallframework.platform.starter.pay.wechat.model.RefundRequest;
 import com.fallframework.platform.starter.pay.wechat.model.UnifiedOrderRequest;
 import com.fallframework.platform.starter.pay.wechat.service.WechatPayService;
@@ -284,6 +285,11 @@ public class WechatPayServiceImpl implements WechatPayService {
 	}
 
 	@Override
+	public String refundQuery(RefundQueryRequest request) {
+		return null;
+	}
+
+//	@Override
 	public String refundQuery() {
 		
 		

@@ -29,12 +29,12 @@ public class ApplicationContextInitializer implements ServletContextListener {
 			ApplicationContext ctx = (ApplicationContext) sce.getServletContext().getAttribute("org.springframework.web.context.WebApplicationContext.ROOT");
 			// 初始化ceep应用上下文环境
 			ApplicationContextFallPlatform.setApplicationContext(ctx);
-			LOGGER.info("Fall Platform context initialized : " + ctx);
+			LOGGER.info("fall platform context initialized : " + ctx);
 		}
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		LOGGER.info("Fall Platform context destroyed.");
+		LOGGER.info("fall platform context destroyed.");
 	}
 }

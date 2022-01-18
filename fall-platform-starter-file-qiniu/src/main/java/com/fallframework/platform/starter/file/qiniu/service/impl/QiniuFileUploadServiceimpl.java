@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.file.qiniu.service.impl;
 
-import com.fallframework.platform.starter.core.entity.response.ResponseResult;
+import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.file.qiniu.config.QiniuPropertyResource;
 import com.fallframework.platform.starter.file.qiniu.service.QiniuFileUploadService;
 import com.google.gson.Gson;

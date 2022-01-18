@@ -1,6 +1,7 @@
 package com.fallframework.platform.starter.config.model;
 
-import com.fallframework.platform.starter.core.entity.request.BaseEntityRequest;
+import com.fallframework.platform.starter.api.request.BaseEntityRequest;
+import com.fallframework.platform.starter.api.request.BasePageRequest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class SysParamGroupRequest extends BaseEntityRequest {
+public class SysParamGroupRequest extends BasePageRequest {
 
 	private static final long serialVersionUID = -494029364432150004L;
 

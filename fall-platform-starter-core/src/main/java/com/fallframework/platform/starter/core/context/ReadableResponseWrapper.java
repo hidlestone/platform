@@ -32,6 +32,7 @@ public class ReadableResponseWrapper extends HttpServletResponseWrapper {
 			this.add("text/xml;charset=UTF-8");
 		}
 	};
+	
 	final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 	public ReadableResponseWrapper(HttpServletResponse response) {

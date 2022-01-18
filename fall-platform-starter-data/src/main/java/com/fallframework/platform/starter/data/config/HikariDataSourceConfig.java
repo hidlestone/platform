@@ -32,7 +32,7 @@ public class HikariDataSourceConfig {
 	@ConditionalOnProperty(name = {"platform.security.enable-database-password-encryption"}, havingValue = "true", matchIfMissing = true)
 	public HikariDataSource dataSource(DataSourceProperties properties) throws Exception {
 		// 密码AES解密，重新设置密码
-		properties.setPassword(EncryptionUtil.decryptAES(properties.getPassword(), DataStarterConstant.AES_KEY));
+//		properties.setPassword(EncryptionUtil.decryptAES(properties.getPassword(), DataStarterConstant.AES_KEY));
 		HikariDataSource dataSource = (HikariDataSource) properties.initializeDataSourceBuilder().type(HikariDataSource.class).build();
 		// 如果有设置name，则重新设置数据库连接池名称
 		if (StringUtils.hasText(properties.getName())) {
