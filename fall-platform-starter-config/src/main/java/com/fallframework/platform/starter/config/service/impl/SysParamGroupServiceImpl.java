@@ -45,6 +45,9 @@ public class SysParamGroupServiceImpl extends ServiceImpl<SysParamGroupMapper, S
 	@Override
 	public ResponseResult delete(String code) {
 		int i = sysParamGroupMapper.deleteById(code);
+		QueryWrapper<SysParamItem> wrapper = new QueryWrapper<>();
+		wrapper.eq("group_code", code);
+		int i1 = sysParamItemMapper.delete(wrapper);
 		return ResponseResult.success();
 	}
 

@@ -18,19 +18,19 @@ public class SysParamGroup extends BaseEntity {
 	/**
 	 * 系统参数组编码
 	 */
-	@TableId(value = "code", type = IdType.INPUT)
+	@TableId(value = "`code`", type = IdType.INPUT)
 	private String code;
 
 	/**
 	 * 系统参数组描述
 	 */
-	@TableField(value = "desc")
+	@TableField(value = "`desc`")
 	private String desc;
 
 	/**
 	 * 是否启用：0-停用，1-启用
 	 */
-	@TableField(value = "status")
+	@TableField(value = "`status`")
 	private String status;
 
 }
