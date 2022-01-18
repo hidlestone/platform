@@ -39,17 +39,9 @@ public class PlatformSysParamUtil {
 	private SysParamGroupMapper sysParamGroupMapper;
 
 	/**
-	 * 根据系统参数组，查询组对应的明细项
+	 * @param groupCode 参数组编码
+	 * @return 系统参数明细的map形式
 	 */
-	public ResponseResult<List<SysParamItemResponse>> getSysParamGroupItems(String groupCode) {
-		List<SysParamItemResponse> sysParamItemList = (List<SysParamItemResponse>) redisUtil.hget(ConfigStarterConstant.SYS_PARAM_CACHE_KEY, groupCode);
-		if (CollectionUtil.isEmpty(sysParamItemList)) {
-			SysParamGroupResponse sysParamGroupResponse = sysParamGroupService.select(groupCode).getData();
-			sysParamItemList = sysParamGroupResponse.getSysParamItemList();
-		}
-		return ResponseResult.success(sysParamItemList);
-	}
-
 	public ResponseResult<Map<String, String>> getSysParamGroupItemMap(String groupCode) {
 		List<SysParamItemResponse> sysParamItemList = (List<SysParamItemResponse>) redisUtil.hget(ConfigStarterConstant.SYS_PARAM_CACHE_KEY, groupCode);
 		if (CollectionUtil.isEmpty(sysParamItemList)) {
@@ -65,6 +57,10 @@ public class PlatformSysParamUtil {
 
 	/**
 	 * 系统参数明细项
+	 *
+	 * @param groupCode 参数组编码
+	 * @param itemCode  明细项编码
+	 * @return 系统参数明细项信息
 	 */
 	public ResponseResult<SysParamItemResponse> getSysParamItem(String groupCode, String itemCode) {
 		List<SysParamItemResponse> sysParamItemList = (List<SysParamItemResponse>) redisUtil.hget(ConfigStarterConstant.SYS_PARAM_CACHE_KEY, groupCode);
@@ -76,7 +72,11 @@ public class PlatformSysParamUtil {
 		return ResponseResult.success(sysParamItemResponse);
 	}
 
-
+	/**
+	 * 刷新系统参数缓存
+	 *
+	 * @return 是否更新系统参数缓存成功
+	 */
 	public ResponseResult refreshSysParamCache() {
 		List<SysParamGroupResponse> sysParamGroupResponseList = sysParamGroupMapper.findAllSysParamGroup();
 		redisUtil.del(ConfigStarterConstant.SYS_PARAM_CACHE_KEY);
