@@ -19,7 +19,7 @@ public class SysParamGroupResponse extends BaseEntityResponse {
 
 	private String desc;
 
-	private String status;
+	private Byte status;
 
 	List<SysParamItemResponse> sysParamItemList;
 }

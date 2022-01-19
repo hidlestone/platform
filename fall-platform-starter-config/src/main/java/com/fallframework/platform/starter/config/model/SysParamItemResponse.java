@@ -21,8 +21,8 @@ public class SysParamItemResponse extends BaseEntityResponse {
 
 	private String desc;
 
-	private String status;
+	private Byte status;
 
 	private String groupCode;
-	
+
 }

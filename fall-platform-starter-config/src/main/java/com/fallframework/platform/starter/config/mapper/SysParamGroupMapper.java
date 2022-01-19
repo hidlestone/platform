@@ -10,11 +10,7 @@ import com.fallframework.platform.starter.config.model.SysParamGroupResponse;
 import java.util.List;
 
 public interface SysParamGroupMapper extends BaseMapper<SysParamGroup> {
-
-	SysParamGroupResponse selectByCode(String code);
-
-	List<SysParamGroupResponse> groupList(Page<SysParamGroupResponse> page, BasePageRequest pageRequest);
-
+	
 	List<SysParamGroupResponse> findAllSysParamGroup();
 
 	Page<SysParamGroupResponse> list(Page<SysParamGroupResponse> page, SysParamGroupRequest request);

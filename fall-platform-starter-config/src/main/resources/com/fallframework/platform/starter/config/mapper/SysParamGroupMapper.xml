@@ -5,7 +5,7 @@
         <!--@mbg.generated-->
         <id column="code" jdbcType="VARCHAR" property="code"/>
         <result column="desc" jdbcType="VARCHAR" property="desc"/>
-        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
         <!-- 配置一对多的关系 -->
         <collection property="sysParamItemList" javaType="list" ofType="com.fallframework.platform.starter.config.model.SysParamItemResponse">
             <!-- 配置主键，是关联Order的唯一标识 -->
@@ -14,30 +14,10 @@
             <result column="tvalue" jdbcType="VARCHAR" property="value"/>
             <result column="encrypted_value" jdbcType="VARCHAR" property="encryptedValue"/>
             <result column="tdesc" jdbcType="VARCHAR" property="desc"/>
-            <result column="tstatus" jdbcType="CHAR" property="status"/>
+            <result column="tstatus" jdbcType="TINYINT" property="status"/>
             <result column="group_code" jdbcType="VARCHAR" property="groupCode"/>
         </collection>
     </resultMap>
-
-    <select id="selectByCode" resultType="com.fallframework.platform.starter.config.model.SysParamGroupResponse" parameterType="string">
-        SELECT
-            `code`,
-            `desc`,
-            `status`
-        FROM
-            s_sys_param_group
-        WHERE
-            `code` = #{code,jdbcType=VARCHAR}
-    </select>
-
-    <select id="groupList" resultType="com.fallframework.platform.starter.config.model.SysParamGroupResponse">
-        SELECT
-            `code`,
-            `desc`,
-            `status`
-        FROM
-            s_sys_param_group
-    </select>
 
     <select id="findAllSysParamGroup" resultMap="BaseResultMap">
         SELECT

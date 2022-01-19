@@ -7,7 +7,7 @@
         <result column="value" jdbcType="VARCHAR" property="value"/>
         <result column="encrypted_value" jdbcType="VARCHAR" property="encryptedValue"/>
         <result column="desc" jdbcType="VARCHAR" property="desc"/>
-        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
         <result column="group_code" jdbcType="VARCHAR" property="groupCode"/>
         <result column="create_user_id" jdbcType="BIGINT" property="createUserId"/>
         <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId"/>

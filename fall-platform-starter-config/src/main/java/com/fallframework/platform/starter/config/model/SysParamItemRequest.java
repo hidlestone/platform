@@ -21,7 +21,7 @@ public class SysParamItemRequest extends BaseEntityRequest {
 
 	private String desc;
 
-	private String status;
+	private Byte status;
 
 	private String groupCode;
 	

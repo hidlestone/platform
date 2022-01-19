@@ -20,7 +20,7 @@ public class SysParamGroupRequest extends BasePageRequest {
 
 	private String desc;
 
-	private String status;
+	private Byte status;
 
 	private List<SysParamItemRequest> sysParamItemList;
 
