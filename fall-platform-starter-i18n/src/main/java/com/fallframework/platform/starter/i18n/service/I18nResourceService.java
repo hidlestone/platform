@@ -16,9 +16,9 @@ public interface I18nResourceService extends IService<I18nResource> {
 
 	ResponseResult update(I18nResource i18nResource);
 
-	ResponseResult<I18nResource> get(Long id);
+	ResponseResult<I18nResource> select(Long id);
 	
-	ResponseResult<List<I18nResource>> findByResourceKey(String resourceKey);
+	ResponseResult<List<I18nResource>> selectByResourceKey(String resourceKey);
 
 	ResponseResult<Page<I18nResource>> resourceKeyList(I18nResourceRequest request);
 	

@@ -9,7 +9,5 @@ public class I18nStarterConstant {
 
 	// 缓存key：支持的国际化类型
 	public static final String I18N_SUPPORTED = "i18n:supported";
-
-	
 	
 }

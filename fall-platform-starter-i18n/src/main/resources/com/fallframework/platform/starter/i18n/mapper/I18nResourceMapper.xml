@@ -18,16 +18,5 @@
     id, lang_code, resource_key, resource_value, module_code, create_user_id, modify_user_id, 
     gmt_create, gmt_modified
   </sql>
-  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into s_i18n_resource
-    (lang_code, resource_key, resource_value, module_code, create_user_id, modify_user_id, 
-      gmt_create, gmt_modified)
-    values
-    <foreach collection="list" item="item" separator=",">
-      (#{item.langCode,jdbcType=VARCHAR}, #{item.resourceKey,jdbcType=VARCHAR}, #{item.resourceValue,jdbcType=LONGVARCHAR}, 
-        #{item.moduleCode,jdbcType=VARCHAR}, #{item.createUserId,jdbcType=BIGINT}, #{item.modifyUserId,jdbcType=BIGINT}, 
-        #{item.gmtCreate,jdbcType=TIMESTAMP}, #{item.gmtModified,jdbcType=TIMESTAMP})
-    </foreach>
-  </insert>
+  
 </mapper>
