@@ -3,6 +3,9 @@ package com.fallframework.platform.starter.mail.service;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.mail.model.MailSendInfoRequest;
 
+/**
+ * 平台邮件发送服务
+ */
 public interface PlatformMailSender {
 
 	/**
@@ -24,5 +27,5 @@ public interface PlatformMailSender {
 	 * 模板邮件
 	 */
 	ResponseResult sendTemplateEmail(MailSendInfoRequest request);
-	
+
 }

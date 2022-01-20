@@ -20,7 +20,7 @@ public class MailHistory extends BaseEntity {
 	/**
 	 * 主键
 	 */
-	@TableId(value = "id", type = IdType.AUTO)
+	@TableId(value = "id", type = IdType.ASSIGN_ID)
 	private Long id;
 
 	/**
@@ -28,7 +28,7 @@ public class MailHistory extends BaseEntity {
 	 */
 	@TableField(value = "template_code")
 	private String templateCode;
-	
+
 	/**
 	 * 标题
 	 */
@@ -99,6 +99,6 @@ public class MailHistory extends BaseEntity {
 	 * 0-失败，1-成功
 	 */
 	@TableField(value = "send_flag")
-	private String sendFlag;
+	private Byte sendFlag;
 
 }

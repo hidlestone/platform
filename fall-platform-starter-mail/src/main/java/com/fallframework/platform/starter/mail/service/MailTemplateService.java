@@ -14,7 +14,7 @@ public interface MailTemplateService extends IService<MailTemplate> {
 
 	ResponseResult update(MailTemplate mailSenderConfig);
 
-	ResponseResult<MailTemplate> get(Long id);
+	ResponseResult<MailTemplate> select(Long id);
 
 	ResponseResult<Page<MailTemplate>> list(MailTemplateRequest request);
 

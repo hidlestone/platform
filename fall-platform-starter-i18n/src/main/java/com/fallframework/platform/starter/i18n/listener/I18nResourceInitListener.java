@@ -1,0 +1,32 @@
+package com.fallframework.platform.starter.i18n.listener;
+
+import com.fallframework.platform.starter.api.response.ResponseResult;
+import com.fallframework.platform.starter.i18n.service.I18nResourceService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
+
+/**
+ * 多语言词条初始化监听器
+ *
+ * @author zhuangpf
+ */
+@Component
+public class I18nResourceInitListener implements ApplicationListener<ApplicationStartedEvent> {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(I18nResourceInitListener.class);
+
+	@Autowired
+	private I18nResourceService i18nResourceService;
+
+	@Override
+	public void onApplicationEvent(ApplicationStartedEvent event) {
+		// 启动时更新多语言词条
+		ResponseResult responseResult = i18nResourceService.refreshI18nResourceCache();
+		LOGGER.info(responseResult.toString());
+		LOGGER.info("init i18n resources to cache.");
+	}
+}

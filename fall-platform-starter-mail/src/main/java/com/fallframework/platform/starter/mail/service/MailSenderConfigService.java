@@ -14,7 +14,7 @@ public interface MailSenderConfigService extends IService<MailSenderConfig> {
 
 	ResponseResult update(MailSenderConfig mailSenderConfig);
 
-	ResponseResult<MailSenderConfig> get(Long id);
+	ResponseResult<MailSenderConfig> select(Long id);
 
 	ResponseResult<Page<MailSenderConfig>> list(MailSenderConfigRequest request);
 

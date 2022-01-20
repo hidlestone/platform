@@ -19,6 +19,6 @@ public class MailHistoryRequest extends BasePageRequest {
 
 	private String title;
 
-	private String sendFlag;
-	
+	private Byte sendFlag;
+
 }

@@ -35,7 +35,7 @@ public class MailTemplateServiceImpl extends ServiceImpl<MailTemplateMapper, Mai
 	}
 
 	@Override
-	public ResponseResult<MailTemplate> get(Long id) {
+	public ResponseResult<MailTemplate> select(Long id) {
 		MailTemplate mailTemplate = mailTemplateMapper.selectById(id);
 		return ResponseResult.success(mailTemplate);
 	}

@@ -11,6 +11,9 @@ public interface TranslateService {
 
 	/**
 	 * 翻译词条
+	 *
+	 * @param request 请求参数
+	 * @return 多语言词条
 	 */
 	ResponseResult<I18nResourceResponse> translate(TranslateReqeust request);
 

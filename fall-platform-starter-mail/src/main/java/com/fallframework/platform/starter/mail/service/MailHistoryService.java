@@ -14,7 +14,7 @@ public interface MailHistoryService extends IService<MailHistory> {
 
 	ResponseResult update(MailHistory mailHistory);
 
-	ResponseResult<MailHistory> get(Long id);
+	ResponseResult<MailHistory> select(Long id);
 
 	ResponseResult<Page<MailHistory>> list(MailHistoryRequest request);
 

@@ -53,14 +53,8 @@
 			<artifactId>fall-platform-starter-cache-redis</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.github.nobodxbodon</groupId>
-			<artifactId>zhconverter</artifactId>
-			<version>0.0.5</version>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.5.2</version>
 		</dependency>
 	</dependencies>
 

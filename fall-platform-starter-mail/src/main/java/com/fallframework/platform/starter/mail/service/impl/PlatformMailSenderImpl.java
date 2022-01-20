@@ -22,6 +22,8 @@ import java.io.File;
 import java.util.Date;
 
 /**
+ * 平台邮件发送服务
+ *
  * @author zhuangpf
  */
 @Service
@@ -40,7 +42,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		MailSenderConfig mailSenderConfig = request.getMailSenderConfig();
 		MailTemplate mailTemplate = request.getMailTemplate();
 		// 0-失败，1-成功
-		String sendFlag = SendFlagEnum.SUCCESS.ordinal() + "";
+		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		try {
 			SimpleMailMessage message = new SimpleMailMessage();
 			message.setFrom(mailSenderConfig.getFrom());
@@ -53,7 +55,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			}
 			mailSender.send(message);
 		} catch (Exception e) {
-			sendFlag = SendFlagEnum.FAIL.ordinal() + "";
+			sendFlag = (byte) SendFlagEnum.FAIL.ordinal();
 			e.printStackTrace();
 		}
 		// 添加历史记录
@@ -82,7 +84,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		MailTemplate mailTemplate = request.getMailTemplate();
 		MimeMessage message = null;
 		// 0-失败，1-成功
-		String sendFlag = SendFlagEnum.SUCCESS.ordinal() + "";
+		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		try {
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -99,7 +101,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			}
 			mailSender.send(message);
 		} catch (Exception e) {
-			sendFlag = SendFlagEnum.FAIL.ordinal() + "";
+			sendFlag = (byte) SendFlagEnum.FAIL.ordinal();
 			e.printStackTrace();
 		}
 		// 添加历史记录
@@ -128,7 +130,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		MailTemplate mailTemplate = request.getMailTemplate();
 		MimeMessage message = null;
 		// 0-失败，1-成功
-		String sendFlag = SendFlagEnum.SUCCESS.ordinal() + "";
+		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		try {
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -146,7 +148,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			helper.addInline("img", file);
 			mailSender.send(message);
 		} catch (Exception e) {
-			sendFlag = SendFlagEnum.FAIL.ordinal() + "";
+			sendFlag = (byte) SendFlagEnum.FAIL.ordinal();
 			e.printStackTrace();
 		}
 		// 添加历史记录
@@ -175,7 +177,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		MailTemplate mailTemplate = request.getMailTemplate();
 		MimeMessage message = null;
 		// 0-失败，1-成功
-		String sendFlag = SendFlagEnum.SUCCESS.ordinal() + "";
+		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		// 模板内容
 		String template = "";
 		try {

@@ -35,7 +35,7 @@ public class MailSenderConfigServiceImpl extends ServiceImpl<MailSenderConfigMap
 	}
 
 	@Override
-	public ResponseResult get(Long id) {
+	public ResponseResult select(Long id) {
 		MailSenderConfig mailSenderConfig = mailSenderConfigMapper.selectById(id);
 		return ResponseResult.success(mailSenderConfig);
 	}

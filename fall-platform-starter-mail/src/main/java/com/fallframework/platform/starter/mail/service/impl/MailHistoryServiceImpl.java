@@ -35,7 +35,7 @@ public class MailHistoryServiceImpl extends ServiceImpl<MailHistoryMapper, MailH
 	}
 
 	@Override
-	public ResponseResult<MailHistory> get(Long id) {
+	public ResponseResult<MailHistory> select(Long id) {
 		MailHistory mailHistory = mailHistoryMapper.selectById(id);
 		return ResponseResult.success(mailHistory);
 	}

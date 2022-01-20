@@ -16,7 +16,7 @@
         <result column="file_group_id" jdbcType="BIGINT" property="fileGroupId"/>
         <result column="try_count" jdbcType="TINYINT" property="tryCount"/>
         <result column="last_send_time" jdbcType="TIMESTAMP" property="lastSendTime"/>
-        <result column="send_flag" jdbcType="CHAR" property="sendFlag"/>
+        <result column="send_flag" jdbcType="TINYINT" property="sendFlag"/>
         <result column="create_user_id" jdbcType="BIGINT" property="createUserId"/>
         <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId"/>
         <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>

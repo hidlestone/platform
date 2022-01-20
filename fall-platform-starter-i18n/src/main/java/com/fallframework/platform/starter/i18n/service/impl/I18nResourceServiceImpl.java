@@ -51,20 +51,18 @@ public class I18nResourceServiceImpl extends ServiceImpl<I18nResourceMapper, I18
 	}
 
 	@Override
+	public ResponseResult<Page<I18nResource>> list(I18nResourceRequest request) {
+		Page<I18nResource> page = new Page<>(request.getPageNum(), request.getPageSize());
+		page = i18nResourceMapper.list(page, request);
+		return ResponseResult.success(page);
+	}
+
+	@Override
 	public ResponseResult<List<I18nResource>> selectByResourceKey(String resourceKey) {
 		QueryWrapper<I18nResource> wrapper = new QueryWrapper<>();
 		wrapper.eq("resource_key", resourceKey);
 		List<I18nResource> i18nResourceList = i18nResourceMapper.selectList(wrapper);
 		return ResponseResult.success(i18nResourceList);
-	}
-
-	@Override
-	public ResponseResult<Page<I18nResource>> resourceKeyList(I18nResourceRequest request) {
-		Page<I18nResource> page = new Page<>(request.getPageNum(), request.getPageSize());
-		QueryWrapper<I18nResource> wrapper = new QueryWrapper<>();
-		wrapper.eq("lang_code", request.getLangCode());
-		Page<I18nResource> resultPage = i18nResourceMapper.selectPage(page, wrapper);
-		return ResponseResult.success(resultPage);
 	}
 
 	/**
@@ -79,7 +77,7 @@ public class I18nResourceServiceImpl extends ServiceImpl<I18nResourceMapper, I18
 			Map<String, List<I18nResource>> langCodeResMap = i18nResourceList.stream().collect(Collectors.groupingBy(it -> it.getLangCode()));
 			if (CollectionUtil.isNotEmpty(langCodeResMap)) {
 				for (Map.Entry<String, List<I18nResource>> entry : langCodeResMap.entrySet()) {
-					// 删除缓存：i18n:resource:en
+					// 删除语言词条缓存：i18n:resource:en
 					redisUtil.del(I18nStarterConstant.I18N_CACHE_KEY + entry.getKey());
 					for (I18nResource i18nResource : entry.getValue()) {
 						redisUtil.hset(I18nStarterConstant.I18N_CACHE_KEY + entry.getKey(), i18nResource.getResourceKey(), i18nResource.getResourceValue());

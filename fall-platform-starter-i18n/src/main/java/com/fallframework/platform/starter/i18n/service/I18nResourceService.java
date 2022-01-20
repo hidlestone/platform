@@ -17,10 +17,10 @@ public interface I18nResourceService extends IService<I18nResource> {
 	ResponseResult update(I18nResource i18nResource);
 
 	ResponseResult<I18nResource> select(Long id);
-	
+
+	ResponseResult<Page<I18nResource>> list(I18nResourceRequest request);
+
 	ResponseResult<List<I18nResource>> selectByResourceKey(String resourceKey);
 
-	ResponseResult<Page<I18nResource>> resourceKeyList(I18nResourceRequest request);
-	
 	ResponseResult refreshI18nResourceCache();
 }
