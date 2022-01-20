@@ -46,4 +46,5 @@ public class MailTemplateServiceImpl extends ServiceImpl<MailTemplateMapper, Mai
 		page = mailTemplateMapper.list(page, request);
 		return ResponseResult.success(page);
 	}
+	
 }

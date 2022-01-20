@@ -7,11 +7,14 @@ import com.fallframework.platform.starter.mail.entity.MailTemplate;
 import com.fallframework.platform.starter.mail.model.MailSendInfoRequest;
 import com.fallframework.platform.starter.mail.model.SendFlagEnum;
 import com.fallframework.platform.starter.mail.service.MailHistoryService;
+import com.fallframework.platform.starter.mail.service.MailSenderConfigService;
+import com.fallframework.platform.starter.mail.service.MailTemplateService;
 import com.fallframework.platform.starter.mail.service.PlatformMailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
@@ -34,18 +37,29 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 	@Autowired
 	private MailHistoryService mailHistoryService;
 	@Autowired
+	private MailTemplateService mailTemplateService;
+	@Autowired
+	private MailSenderConfigService mailSenderConfigService;
+	@Autowired
 	private TemplateEngine templateEngine;
 
+	/**
+	 * 发送简单邮件
+	 *
+	 * @param request 邮件信息
+	 * @return 是否发送成功
+	 */
 	@Override
 	public ResponseResult sendSimpleEmail(MailSendInfoRequest request) {
-		// 配置&模板
-		MailSenderConfig mailSenderConfig = request.getMailSenderConfig();
-		MailTemplate mailTemplate = request.getMailTemplate();
+		// 模板
+		MailTemplate mailTemplate = mailTemplateService.select(request.getMailTemplateId()).getData();
+		// 配置
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.select(request.getMailSenderConfigId()).getData();
 		// 0-失败，1-成功
-		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
+		byte sendFlag = 1;
 		try {
 			SimpleMailMessage message = new SimpleMailMessage();
-			message.setFrom(mailSenderConfig.getFrom());
+			message.setFrom(mailSenderConfig.getUsername());
 			message.setTo(request.getReceiver());
 			message.setSubject(mailTemplate.getTitle());
 			message.setText(mailTemplate.getContent());
@@ -53,6 +67,10 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			if (null != mailTemplate.getFileGroupId()) {
 
 			}
+			// 获取邮件发送器
+			JavaMailSender mailSender = this.getMailSender(mailSenderConfig);
+
+
 			mailSender.send(message);
 		} catch (Exception e) {
 			sendFlag = (byte) SendFlagEnum.FAIL.ordinal();
@@ -62,9 +80,9 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		MailHistory mailHistory = new MailHistory();
 		mailHistory.setTemplateCode(mailTemplate.getCode());
 		mailHistory.setTitle(mailTemplate.getTitle());
-		mailHistory.setFrom(mailSenderConfig.getFrom());
-		mailHistory.setUserId(request.getUserId());
-		mailHistory.setUserName(request.getUserName());
+		mailHistory.setFrom(mailSenderConfig.getUsername());
+//		mailHistory.setUserId(request.getUserId());
+//		mailHistory.setUserName(request.getUserName());
 		mailHistory.setReceiver(request.getReceiver());
 		mailHistory.setCc(request.getCc());
 		mailHistory.setBcc(request.getBcc());
@@ -77,14 +95,43 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		return ResponseResult.success();
 	}
 
+	/**
+	 * 根据配置构建sender
+	 *
+	 * @param config
+	 * @return
+	 */
+	private JavaMailSender getMailSender(MailSenderConfig config) {
+		JavaMailSenderImpl sender = new JavaMailSenderImpl();
+		if (config.getPort() != null) {
+			sender.setPort(config.getPort());
+		}
+		sender.setUsername(config.getUsername());
+		sender.setPassword(config.getPassword());
+		sender.setProtocol(config.getProtocol());
+		if (config.getDefaultEncoding() != null) {
+			sender.setDefaultEncoding(config.getDefaultEncoding().name());
+		}
+		if (!config.getProperties().isEmpty()) {
+//			sender.setJavaMailProperties(JSON.parse(config.getProperties()));
+		}
+		return sender;
+	}
+
+	/**
+	 * html格式邮件
+	 *
+	 * @param request 邮件信息
+	 * @return 是否发送成功
+	 */
 	@Override
 	public ResponseResult sendMimeMsgEmail(MailSendInfoRequest request) {
 		// 配置&模板
-		MailSenderConfig mailSenderConfig = request.getMailSenderConfig();
-		MailTemplate mailTemplate = request.getMailTemplate();
-		MimeMessage message = null;
+		MailTemplate mailTemplate = mailTemplateService.select(request.getMailTemplateId()).getData();
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.select(request.getMailSenderConfigId()).getData();
 		// 0-失败，1-成功
-		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
+		byte sendFlag = 1;
+		MimeMessage message = null;
 		try {
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -108,9 +155,9 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		MailHistory mailHistory = new MailHistory();
 		mailHistory.setTemplateCode(mailTemplate.getCode());
 		mailHistory.setTitle(mailTemplate.getTitle());
-		mailHistory.setFrom(mailSenderConfig.getFrom());
-		mailHistory.setUserId(request.getUserId());
-		mailHistory.setUserName(request.getUserName());
+		mailHistory.setFrom(mailSenderConfig.getUsername());
+//		mailHistory.setUserId(request.getUserId());
+//		mailHistory.setUserName(request.getUserName());
 		mailHistory.setReceiver(request.getReceiver());
 		mailHistory.setCc(request.getCc());
 		mailHistory.setBcc(request.getBcc());
@@ -123,14 +170,20 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		return ResponseResult.success();
 	}
 
+	/**
+	 * 发送行内邮件
+	 *
+	 * @param request 邮件信息
+	 * @return 是否发送成功
+	 */
 	@Override
 	public ResponseResult sendInlineMail(MailSendInfoRequest request) {
 		// 配置&模板
-		MailSenderConfig mailSenderConfig = request.getMailSenderConfig();
-		MailTemplate mailTemplate = request.getMailTemplate();
-		MimeMessage message = null;
+		MailTemplate mailTemplate = mailTemplateService.select(request.getMailTemplateId()).getData();
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.select(request.getMailSenderConfigId()).getData();
 		// 0-失败，1-成功
-		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
+		byte sendFlag = 1;
+		MimeMessage message = null;
 		try {
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -155,9 +208,9 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		MailHistory mailHistory = new MailHistory();
 		mailHistory.setTemplateCode(mailTemplate.getCode());
 		mailHistory.setTitle(mailTemplate.getTitle());
-		mailHistory.setFrom(mailSenderConfig.getFrom());
-		mailHistory.setUserId(request.getUserId());
-		mailHistory.setUserName(request.getUserName());
+		mailHistory.setFrom(mailSenderConfig.getUsername());
+//		mailHistory.setUserId(request.getUserId());
+//		mailHistory.setUserName(request.getUserName());
 		mailHistory.setReceiver(request.getReceiver());
 		mailHistory.setCc(request.getCc());
 		mailHistory.setBcc(request.getBcc());
@@ -170,14 +223,20 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		return ResponseResult.success();
 	}
 
+	/**
+	 * 发送模板邮件
+	 *
+	 * @param request 邮件信息
+	 * @return 是否发送成功
+	 */
 	@Override
 	public ResponseResult sendTemplateEmail(MailSendInfoRequest request) {
 		// 配置&模板
-		MailSenderConfig mailSenderConfig = request.getMailSenderConfig();
-		MailTemplate mailTemplate = request.getMailTemplate();
-		MimeMessage message = null;
+		MailTemplate mailTemplate = mailTemplateService.select(request.getMailTemplateId()).getData();
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.select(request.getMailSenderConfigId()).getData();
 		// 0-失败，1-成功
-		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
+		byte sendFlag = 1;
+		MimeMessage message = null;
 		// 模板内容
 		String template = "";
 		try {
@@ -199,9 +258,9 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		MailHistory mailHistory = new MailHistory();
 		mailHistory.setTemplateCode(mailTemplate.getCode());
 		mailHistory.setTitle(mailTemplate.getTitle());
-		mailHistory.setFrom(mailSenderConfig.getFrom());
-		mailHistory.setUserId(request.getUserId());
-		mailHistory.setUserName(request.getUserName());
+		mailHistory.setFrom(mailSenderConfig.getUsername());
+//		mailHistory.setUserId(request.getUserId());
+//		mailHistory.setUserName(request.getUserName());
 		mailHistory.setReceiver(request.getReceiver());
 		mailHistory.setCc(request.getCc());
 		mailHistory.setBcc(request.getBcc());

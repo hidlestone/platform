@@ -1,8 +1,6 @@
 package com.fallframework.platform.starter.mail.model;
 
 import com.fallframework.platform.starter.api.request.BaseEntityRequest;
-import com.fallframework.platform.starter.mail.entity.MailSenderConfig;
-import com.fallframework.platform.starter.mail.entity.MailTemplate;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,19 +13,15 @@ public class MailSendInfoRequest extends BaseEntityRequest {
 
 	private static final long serialVersionUID = 4148012618236603712L;
 
-	private MailTemplate mailTemplate;
-
-	private MailSenderConfig mailSenderConfig;
+	/**
+	 * 邮件模板ID
+	 */
+	private Long mailTemplateId;
 
 	/**
-	 * 接收用户ID
+	 * 邮件配置ID
 	 */
-	private Long userId;
-
-	/**
-	 * 接收用户名称
-	 */
-	private Long userName;
+	private Long mailSenderConfigId;
 
 	/**
 	 * 接收者
@@ -44,9 +38,9 @@ public class MailSendInfoRequest extends BaseEntityRequest {
 	 */
 	private String bcc;
 
-
 	/**
 	 * 文件组ID
 	 */
 	private Long fileGroupId;
+
 }

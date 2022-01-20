@@ -26,16 +26,16 @@
 			s_i18n_resource
 		<where>
 			<if test="param2.langCode != null">
-				`lang_code` LIKE CONCAT('%', #{param2.langCode,jdbcType=VARCHAR}, '%'),
+				`lang_code` LIKE CONCAT('%', #{param2.langCode,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.resourceKey != null">
-				`resource_key` LIKE CONCAT('%', #{param2.resourceKey,jdbcType=VARCHAR}, '%')
+				AND `resource_key` LIKE CONCAT('%', #{param2.resourceKey,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.resourceValue != null">
-				`resource_value` LIKE CONCAT('%', #{param2.resourceValue,jdbcType=VARCHAR}, '%')
+				AND `resource_value` LIKE CONCAT('%', #{param2.resourceValue,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.moduleCode != null">
-				`module_code` LIKE CONCAT('%', #{param2.moduleCode,jdbcType=VARCHAR}, '%')
+				AND `module_code` LIKE CONCAT('%', #{param2.moduleCode,jdbcType=VARCHAR}, '%')
 			</if>
 		</where>
 	</select>

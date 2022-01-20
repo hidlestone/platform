@@ -8,19 +8,23 @@ import com.fallframework.platform.starter.data.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Getter
 @Setter
 @TableName(value = "s_mail_template")
 public class MailTemplate extends BaseEntity {
 
 	private static final long serialVersionUID = 705462373226504501L;
-	
+
+	/**
+	 * 主键
+	 */
+	@TableId(value = "id", type = IdType.ASSIGN_ID)
+	private Long id;
+
 	/**
 	 * 邮件模板配置编码
 	 */
-	@TableId(value = "code", type = IdType.INPUT)
+	@TableField(value = "code")
 	private String code;
 
 	/**
@@ -38,7 +42,7 @@ public class MailTemplate extends BaseEntity {
 	/**
 	 * 发送者
 	 */
-	@TableField(value = "from")
+	@TableField(value = "`from`")
 	private String from;
 
 	/**
@@ -58,5 +62,5 @@ public class MailTemplate extends BaseEntity {
 	 */
 	@TableField(value = "retry_count")
 	private Byte retryCount;
-	
+
 }

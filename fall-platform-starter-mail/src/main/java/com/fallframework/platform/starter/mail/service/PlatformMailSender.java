@@ -9,22 +9,34 @@ import com.fallframework.platform.starter.mail.model.MailSendInfoRequest;
 public interface PlatformMailSender {
 
 	/**
-	 * 简单邮件
+	 * 发送简单邮件
+	 *
+	 * @param request 邮件信息
+	 * @return 是否发送成功
 	 */
 	ResponseResult sendSimpleEmail(MailSendInfoRequest request);
 
 	/**
-	 * html 格式邮件
+	 * html格式邮件
+	 *
+	 * @param request 邮件信息
+	 * @return 是否发送成功
 	 */
 	ResponseResult sendMimeMsgEmail(MailSendInfoRequest request);
 
 	/**
-	 * 行内邮件
+	 * 发送行内邮件
+	 *
+	 * @param request 邮件信息
+	 * @return 是否发送成功
 	 */
 	ResponseResult sendInlineMail(MailSendInfoRequest request);
 
 	/**
-	 * 模板邮件
+	 * 发送模板邮件
+	 *
+	 * @param request 邮件信息
+	 * @return 是否发送成功
 	 */
 	ResponseResult sendTemplateEmail(MailSendInfoRequest request);
 

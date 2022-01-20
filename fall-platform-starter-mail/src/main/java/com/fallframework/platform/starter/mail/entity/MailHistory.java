@@ -24,10 +24,16 @@ public class MailHistory extends BaseEntity {
 	private Long id;
 
 	/**
-	 * 模板编码
+	 * 邮件模板ID
 	 */
-	@TableField(value = "template_code")
-	private String templateCode;
+	@TableField(value = "template_id")
+	private Long templateId;
+
+	/**
+	 * 邮件配置ID
+	 */
+	@TableField(value = "config_id")
+	private Long configId;
 
 	/**
 	 * 标题
@@ -44,20 +50,20 @@ public class MailHistory extends BaseEntity {
 	/**
 	 * 接收用户ID
 	 */
-	@TableField(value = "user_id")
-	private Long userId;
+	@TableField(value = "receive_user_id")
+	private Long receiveUserId;
 
 	/**
 	 * 接收用户名称
 	 */
-	@TableField(value = "user_name")
-	private Long userName;
+	@TableField(value = "receive_user_name")
+	private String receiveUserName;
 
 	/**
-	 * 接收者
+	 * 接收邮箱
 	 */
-	@TableField(value = "receiver")
-	private String receiver;
+	@TableField(value = "receive_mail")
+	private String receiveMail;
 
 	/**
 	 * 抄送者
@@ -87,7 +93,7 @@ public class MailHistory extends BaseEntity {
 	 * 发送次数
 	 */
 	@TableField(value = "try_count")
-	private Integer tryCount;
+	private Byte tryCount;
 
 	/**
 	 * 最后一次发送时间
