@@ -1,6 +1,5 @@
 package com.fallframework.platform.starter.mq.rabbit.config;
 
-import com.fallframework.platform.starter.mq.api.IMqLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
@@ -23,11 +22,11 @@ public class DefaultConfirmCallback implements RabbitTemplate.ConfirmCallback {
 	public void confirm(CorrelationData correlationData, boolean ack, String cause) {
 		if (!ack) {
 			// 发送失败
-			LOGGER.info("[wordplay] send message failed : " + cause + correlationData.toString());
+			LOGGER.info("[fall platform] send message failed : " + cause + correlationData.toString());
 		} else {
 			// 更新记录状态
 //			mqLogService.updatetateByMessageId(correlationData.getId(), MqLogStatusEnum.PUBLISH);
-			LOGGER.info("[wordplay] send message success.");
+			LOGGER.info("[fall platform] send message success.");
 		}
 	}
 

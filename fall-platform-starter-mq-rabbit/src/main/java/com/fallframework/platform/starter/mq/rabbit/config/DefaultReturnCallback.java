@@ -23,7 +23,7 @@ public class DefaultReturnCallback implements RabbitTemplate.ReturnCallback {
 		// 发送失败，更新mq日志状态 TODO
 		// 这样如果未能投递到目标 queue 里将调用 returnCallback ，可以记录下详细到投递数据，定期的巡检或者自动纠错都需要这些数据。
 //		mqLogService.update(null);
-		LOGGER.info("[wordplay] message loss:exchange({}),route({}),replyCode({}),replyText({}),message:{}",
+		LOGGER.info("[fall platform] message loss:exchange({}),route({}),replyCode({}),replyText({}),message:{}",
 				exchange, routingKey, replyCode, replyText, message);
 	}
 }

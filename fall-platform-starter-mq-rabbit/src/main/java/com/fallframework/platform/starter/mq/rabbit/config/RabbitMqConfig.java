@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * confrim 模式只能保证消息到达 broker，不能保证消息准确投递到目标 queue 里。
  * 在有些业务场景下，我们需要保证消息一定要投递到目标 queue 里，此时就需要用到 return 退回模式。<br>
  * <p>
- * 利用这两个 callback 控制消息的最终一致性和部分纠错能力 <br>
+ * 利用这两个callback 控制消息的最终一致性和部分纠错能力 <br>
  *
  * @author zhuangpf
  */
@@ -26,6 +26,12 @@ public class RabbitMqConfig {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMqConfig.class);
 
+	/**
+	 * 构建RabbitTemplate
+	 *
+	 * @param connectionFactory 连接工厂
+	 * @return rabbitTemplate
+	 */
 	@Bean
 	public RabbitTemplate rabbitTemplate(CachingConnectionFactory connectionFactory) {
 		// 开启投递确认confirm
