@@ -15,6 +15,7 @@ import java.util.Date;
  * `gmt_modified` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更改时间'<br>
  *
  * @author payn
+ * @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
  */
 @Getter
 @Setter

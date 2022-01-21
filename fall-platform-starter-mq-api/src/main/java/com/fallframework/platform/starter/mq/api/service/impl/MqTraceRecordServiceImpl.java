@@ -1,13 +1,13 @@
-package com.fallframework.platform.starter.mq.service.impl;
+package com.fallframework.platform.starter.mq.api.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fallframework.platform.starter.api.response.ResponseResult;
-import com.fallframework.platform.starter.mq.entity.MqTraceRecord;
-import com.fallframework.platform.starter.mq.mapper.MqTraceRecordMapper;
-import com.fallframework.platform.starter.mq.model.MqTraceRecordRequest;
-import com.fallframework.platform.starter.mq.service.MqTraceRecordService;
+import com.fallframework.platform.starter.mq.api.entity.MqTraceRecord;
+import com.fallframework.platform.starter.mq.api.mapper.MqTraceRecordMapper;
+import com.fallframework.platform.starter.mq.api.model.MqTraceRecordRequest;
+import com.fallframework.platform.starter.mq.api.service.MqTraceRecordService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

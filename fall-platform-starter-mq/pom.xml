@@ -4,17 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>fall-platform-starter-file-parent</artifactId>
+		<artifactId>fall-platform-starters</artifactId>
 		<groupId>com.fallframework.platform</groupId>
 		<version>1.0-SNAPSHOT</version>
-		<relativePath>../fall-platform-starter-file-parent/pom.xml</relativePath>
+		<relativePath>../fall-platform-starters/pom.xml</relativePath>
 	</parent>
 	<groupId>com.fallframework.platform</groupId>
-	<artifactId>fall-platform-starter-file-api</artifactId>
+	<artifactId>fall-platform-starter-mq</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>Fall Platform File Api Starter</name>
-	<description>starter of file api</description>
-	<url>http://www.wordplay.work/#/fall-platform-starters/fall-platform-starter-file-api</url>
+	<name>Fall Platform MQ Starter</name>
+	<description>starter of mq</description>
+	<url>http://www.wordplay.work/#/fall-platform-starters/fall-platform-starter-mq</url>
 	<organization>
 		<name>Wordplay Software, Inc.</name>
 		<url>https://wordplay.work</url>

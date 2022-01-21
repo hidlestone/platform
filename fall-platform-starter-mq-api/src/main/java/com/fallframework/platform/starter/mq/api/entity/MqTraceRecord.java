@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.mq.entity;
+package com.fallframework.platform.starter.mq.api.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

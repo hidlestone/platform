@@ -29,7 +29,7 @@
 		s_file_info
 		<where>
 			<if test="param2.name != null">
-				`name` LIKE CONCAT('%', #{param2.name,jdbcType=VARCHAR, '%')
+				`name` LIKE CONCAT('%', #{param2.name,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.extension != null">
 				AND extension LIKE CONCAT('%', #{param2.extension,jdbcType=VARCHAR}, '%')

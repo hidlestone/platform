@@ -72,6 +72,7 @@
         <module>../fall-platform-starter-api-dependency</module>
         <module>../fall-platform-starter-control-dependency</module>
 	    <module>../fall-platform-starter-file</module>
+	    <module>../fall-platform-starter-mq</module>
     </modules>
 
 </project>

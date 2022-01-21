@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.mq.model;
+package com.fallframework.platform.starter.mq.api.model;
 
 import com.fallframework.platform.starter.api.request.BasePageRequest;
 import lombok.Getter;
