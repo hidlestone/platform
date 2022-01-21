@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * RabbitMQ默认配置 <br>
@@ -20,6 +21,7 @@ import org.springframework.context.annotation.Bean;
  *
  * @author zhuangpf
  */
+@Configuration
 public class RabbitMqConfig {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMqConfig.class);
