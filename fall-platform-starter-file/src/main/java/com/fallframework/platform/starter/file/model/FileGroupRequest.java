@@ -1,9 +1,10 @@
 package com.fallframework.platform.starter.file.model;
 
-import com.fallframework.platform.starter.api.request.BaseEntityRequest;
 import com.fallframework.platform.starter.api.request.BasePageRequest;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 /**
  * @author zhuangpf
@@ -23,5 +24,10 @@ public class FileGroupRequest extends BasePageRequest {
 	 * 文件组状态
 	 */
 	private Byte status;
+
+	/**
+	 * 文件列表
+	 */
+	private List<FileInfoRequest> fileInfoList;
 
 }

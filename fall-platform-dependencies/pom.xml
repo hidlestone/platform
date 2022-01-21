@@ -204,6 +204,12 @@
                 <version>${platform.starters.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.fallframework.platform</groupId>
+                <artifactId>fall-platform-starter-file</artifactId>
+                <version>${platform.starters.version}</version>
+            </dependency>
+
             
             
             <!-- Spring Cloud -->

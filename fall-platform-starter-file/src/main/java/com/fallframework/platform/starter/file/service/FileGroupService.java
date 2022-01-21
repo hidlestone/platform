@@ -17,4 +17,7 @@ public interface FileGroupService extends IService<FileGroup> {
 	ResponseResult<FileGroup> select(Long id);
 
 	ResponseResult<Page<FileGroup>> list(FileGroupRequest request);
+
+	ResponseResult saveGroupAndInfoList(FileGroupRequest request);
+	
 }

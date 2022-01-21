@@ -18,19 +18,19 @@ public class FileGroup extends BaseEntity {
 	/**
 	 * 主键
 	 */
-	@TableId(value = "id", type = IdType.AUTO)
+	@TableId(value = "id", type = IdType.ASSIGN_ID)
 	private Long id;
 
 	/**
 	 * 描述
 	 */
-	@TableField(value = "desc")
+	@TableField(value = "`desc`")
 	private String desc;
 
 	/**
 	 * 文件组状态
 	 */
-	@TableField(value = "status")
+	@TableField(value = "`status`")
 	private Byte status;
 
 }

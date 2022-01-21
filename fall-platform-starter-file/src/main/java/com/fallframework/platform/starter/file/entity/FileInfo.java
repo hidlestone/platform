@@ -18,13 +18,13 @@ public class FileInfo extends BaseEntity {
 	/**
 	 * 主键
 	 */
-	@TableId(value = "id", type = IdType.AUTO)
+	@TableId(value = "id", type = IdType.ASSIGN_ID)
 	private Long id;
 
 	/**
 	 * 文件名
 	 */
-	@TableField(value = "name")
+	@TableField(value = "`name`")
 	private String name;
 
 	/**
@@ -54,7 +54,7 @@ public class FileInfo extends BaseEntity {
 	/**
 	 * 文件状态
 	 */
-	@TableField(value = "status")
+	@TableField(value = "`status`")
 	private Byte status;
 
 	/**
