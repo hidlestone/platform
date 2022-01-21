@@ -1,5 +1,7 @@
 package com.fallframework.platform.starter.mail.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.mail.entity.MailHistory;
 import com.fallframework.platform.starter.mail.entity.MailSenderConfig;
@@ -23,6 +25,7 @@ import org.thymeleaf.context.Context;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * 平台邮件发送服务
@@ -150,11 +153,10 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			helper.setSubject(mailTemplate.getTitle());
 //			helper.setText("<html><body>博客图：<img src='cid:img'/></body></html>", true);
 			helper.setText(mailTemplate.getContent(), true);
-			// 传入附件 TODO
-			FileSystemResource file = new FileSystemResource(new File("src/main/resources/static/img/sunshine.png"));
+			// 传入附件 TODO 读取fileGroupId 中文件
+			FileSystemResource file = new FileSystemResource(new File("E:\\CODESPACE\\PhoenixPlan\\platform-demo\\starter-test-service\\src\\main\\resources\\static\\img\\sunshine.png"));
 			if (null != mailTemplate.getFileGroupId()) {
 				// TODO 添加附件
-
 			}
 			helper.addInline("img", file);
 			mailSender.send(message);
@@ -198,8 +200,12 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			helper.setSubject(mailTemplate.getTitle());
 			// 处理邮件模板
 			Context context = new Context();
-			context.setVariable("code", "");
-			template = templateEngine.process("emailTemplate", context);
+			// 获取模板变量
+			JSONObject jsonObject = JSON.parseObject(request.getTemplateVarStr());
+			for (Map.Entry entry : jsonObject.entrySet()) {
+				context.setVariable(entry.getKey().toString(), entry.getValue().toString());
+			}
+			template = templateEngine.process(mailTemplate.getCode(), context);
 			helper.setText(template, true);
 			mailSender.send(message);
 		} catch (Exception e) {

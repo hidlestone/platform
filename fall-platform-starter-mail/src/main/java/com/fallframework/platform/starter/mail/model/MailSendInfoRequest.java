@@ -54,4 +54,9 @@ public class MailSendInfoRequest extends BaseEntityRequest {
 	 * 接收用户名称
 	 */
 	private String receiveUserName;
+
+	/**
+	 * 模板邮件中使用的变量
+	 */
+	private String templateVarStr;
 }
