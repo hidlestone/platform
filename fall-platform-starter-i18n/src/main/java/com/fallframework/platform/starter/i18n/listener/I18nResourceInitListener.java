@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  *
  * @author zhuangpf
  */
-@Component
+//@Component 暂时注释
 public class I18nResourceInitListener implements ApplicationListener<ApplicationStartedEvent> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(I18nResourceInitListener.class);

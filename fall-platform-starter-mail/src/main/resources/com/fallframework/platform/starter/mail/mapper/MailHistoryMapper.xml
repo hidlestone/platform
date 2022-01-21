@@ -16,6 +16,7 @@
 		<result column="content" jdbcType="LONGVARCHAR" property="content"/>
 		<result column="file_group_id" jdbcType="BIGINT" property="fileGroupId"/>
 		<result column="try_count" jdbcType="TINYINT" property="tryCount"/>
+		<result column="msg" jdbcType="VARCHAR" property="msg"/>
 		<result column="last_send_time" jdbcType="TIMESTAMP" property="lastSendTime"/>
 		<result column="send_flag" jdbcType="TINYINT" property="sendFlag"/>
 		<result column="create_user_id" jdbcType="BIGINT" property="createUserId"/>
@@ -26,7 +27,7 @@
 	<sql id="Base_Column_List">
 		<!--@mbg.generated-->
 		id, template_id, config_id, title, `from`, receive_user_id, receive_user_name, receive_mail,
-		cc, bcc, content, file_group_id, try_count, last_send_time, send_flag, create_user_id,
+		cc, bcc, content, file_group_id, try_count, msg, last_send_time, send_flag, create_user_id,
 		modify_user_id, gmt_create, gmt_modified
 	</sql>
 
@@ -70,6 +71,9 @@
 			</if>
 			<if test="param2.tryCount != null">
 				AND tryCount = #{param2.tryCount,jdbcType=TINYINT},
+			</if>
+			<if test="param2.msg != null">
+				AND msg LIKE CONCAT('%', #{param2.msg,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.sendFlag != null">
 				AND sendFlag = #{param2.sendFlag,jdbcType=BOOLEAN},

@@ -76,6 +76,11 @@ public class MailHistoryRequest extends BasePageRequest {
 	private Integer tryCount;
 
 	/**
+	 * 失败原因
+	 */
+	private Byte msg;
+
+	/**
 	 * 最后一次发送时间
 	 */
 	private Date lastSendTime;

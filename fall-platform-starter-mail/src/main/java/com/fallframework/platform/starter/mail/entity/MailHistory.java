@@ -96,6 +96,12 @@ public class MailHistory extends BaseEntity {
 	private Byte tryCount;
 
 	/**
+	 * 失败原因
+	 */
+	@TableField(value = "msg")
+	private String msg;
+
+	/**
 	 * 最后一次发送时间
 	 */
 	@TableField(value = "last_send_time")
