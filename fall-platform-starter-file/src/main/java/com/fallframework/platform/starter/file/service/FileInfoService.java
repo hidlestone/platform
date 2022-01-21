@@ -14,8 +14,8 @@ public interface FileInfoService extends IService<FileInfo> {
 
 	ResponseResult update(FileInfo fileInfo);
 
-	ResponseResult get(Long id);
+	ResponseResult select(Long id);
 
-	ResponseResult<Page<FileInfo>> findListByFileGroupId(FileInfoRequest request);
+	ResponseResult<Page<FileInfo>> list(FileInfoRequest request);
 
 }

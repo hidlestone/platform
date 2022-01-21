@@ -55,7 +55,7 @@ public class FileInfo extends BaseEntity {
 	 * 文件状态
 	 */
 	@TableField(value = "status")
-	private String status;
+	private Byte status;
 
 	/**
 	 * 文件业务类型

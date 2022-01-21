@@ -36,18 +36,16 @@ public class FileInfoServiceImpl extends ServiceImpl<FileInfoMapper, FileInfo> i
 	}
 
 	@Override
-	public ResponseResult get(Long id) {
+	public ResponseResult select(Long id) {
 		FileInfo fileInfo = fileInfoMapper.selectById(id);
 		return ResponseResult.success(fileInfo);
 	}
 
 	@Override
-	public ResponseResult<Page<FileInfo>> findListByFileGroupId(FileInfoRequest request) {
+	public ResponseResult<Page<FileInfo>> list(FileInfoRequest request) {
 		Page<FileInfo> page = new Page<>(request.getPageNum(), request.getPageSize());
-		QueryWrapper wrapper = new QueryWrapper();
-		wrapper.eq("file_group_id", request.getFileGroupId());
-		Page<FileInfo> resultPage = fileInfoMapper.selectPage(page, wrapper);
-		return ResponseResult.success(resultPage);
+		page = fileInfoMapper.list(page,request);
+		return ResponseResult.success(page);
 	}
-	
+
 }

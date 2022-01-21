@@ -9,7 +9,6 @@ public interface BaseFileService {
 	 * 获取上传所需的 token
 	 */
 	String getUploadToken();
-
 	
 	
 }

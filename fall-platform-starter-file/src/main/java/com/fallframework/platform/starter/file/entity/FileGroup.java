@@ -14,7 +14,7 @@ import lombok.Setter;
 public class FileGroup extends BaseEntity {
 
 	private static final long serialVersionUID = -5841600942384813666L;
-	
+
 	/**
 	 * 主键
 	 */
@@ -26,5 +26,11 @@ public class FileGroup extends BaseEntity {
 	 */
 	@TableField(value = "desc")
 	private String desc;
+
+	/**
+	 * 文件组状态
+	 */
+	@TableField(value = "status")
+	private Byte status;
 
 }
