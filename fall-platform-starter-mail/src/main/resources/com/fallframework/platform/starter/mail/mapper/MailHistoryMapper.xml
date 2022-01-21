@@ -42,7 +42,7 @@
 				AND config_id = #{param2.configId,jdbcType=BIGINT}
 			</if>
 			<if test="param2.title != null">
-				AND `title` LIKE CONCAT('%', #{param2.title,jdbcType=VARCHAR}, '%')
+				AND title LIKE CONCAT('%', #{param2.title,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.from != null">
 				AND `from` LIKE CONCAT('%', #{param2.from,jdbcType=VARCHAR}, '%')

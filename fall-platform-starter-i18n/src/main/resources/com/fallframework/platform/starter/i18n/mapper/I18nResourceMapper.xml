@@ -21,9 +21,9 @@
 
 	<select id="list" resultMap="BaseResultMap" parameterType="com.fallframework.platform.starter.i18n.model.I18nResourceRequest">
 		SELECT
-			<include refid="Base_Column_List"/>
+		<include refid="Base_Column_List"/>
 		FROM
-			s_i18n_resource
+		s_i18n_resource
 		<where>
 			<if test="param2.langCode != null">
 				`lang_code` LIKE CONCAT('%', #{param2.langCode,jdbcType=VARCHAR}, '%')

@@ -1,5 +1,7 @@
 package com.fallframework.platform.starter.mail.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.mail.entity.MailHistory;
 import com.fallframework.platform.starter.mail.entity.MailSenderConfig;
@@ -23,6 +25,8 @@ import org.thymeleaf.context.Context;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.util.Date;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * 平台邮件发送服务
@@ -32,8 +36,8 @@ import java.util.Date;
 @Service
 public class PlatformMailSenderImpl implements PlatformMailSender {
 
-	@Autowired
-	private JavaMailSender mailSender;
+	//	@Autowired
+//	private JavaMailSender mailSender;
 	@Autowired
 	private MailHistoryService mailHistoryService;
 	@Autowired
@@ -60,7 +64,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		try {
 			SimpleMailMessage message = new SimpleMailMessage();
 			message.setFrom(mailSenderConfig.getUsername());
-			message.setTo(request.getReceiver());
+			message.setTo(request.getReceiveMail());
 			message.setSubject(mailTemplate.getTitle());
 			message.setText(mailTemplate.getContent());
 			// TODO 添加附件
@@ -68,27 +72,27 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 
 			}
 			// 获取邮件发送器
-			JavaMailSender mailSender = this.getMailSender(mailSenderConfig);
-
+			JavaMailSender mailSender = this.constructMailSender(mailSenderConfig);
 
 			mailSender.send(message);
 		} catch (Exception e) {
-			sendFlag = (byte) SendFlagEnum.FAIL.ordinal();
+			sendFlag = 0;
 			e.printStackTrace();
 		}
 		// 添加历史记录
 		MailHistory mailHistory = new MailHistory();
-		mailHistory.setTemplateCode(mailTemplate.getCode());
+		mailHistory.setTemplateId(mailTemplate.getId());
+		mailHistory.setConfigId(mailSenderConfig.getId());
 		mailHistory.setTitle(mailTemplate.getTitle());
 		mailHistory.setFrom(mailSenderConfig.getUsername());
-//		mailHistory.setUserId(request.getUserId());
-//		mailHistory.setUserName(request.getUserName());
-		mailHistory.setReceiver(request.getReceiver());
+		mailHistory.setReceiveUserId(request.getReceiveUserId());
+		mailHistory.setReceiveUserName(request.getReceiveUserName());
+		mailHistory.setReceiveMail(request.getReceiveMail());
 		mailHistory.setCc(request.getCc());
 		mailHistory.setBcc(request.getBcc());
 		mailHistory.setContent(mailTemplate.getContent());
 		mailHistory.setFileGroupId(request.getFileGroupId());
-		mailHistory.setTryCount(1);
+		mailHistory.setTryCount((byte) 1);
 		mailHistory.setLastSendTime(new Date());
 		mailHistory.setSendFlag(sendFlag);
 		mailHistoryService.insert(mailHistory);
@@ -101,20 +105,25 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 	 * @param config
 	 * @return
 	 */
-	private JavaMailSender getMailSender(MailSenderConfig config) {
+	private JavaMailSender constructMailSender(MailSenderConfig config) {
 		JavaMailSenderImpl sender = new JavaMailSenderImpl();
-		if (config.getPort() != null) {
-			sender.setPort(config.getPort());
-		}
+		sender.setHost(config.getHost());
+		sender.setPort(config.getPort());
 		sender.setUsername(config.getUsername());
 		sender.setPassword(config.getPassword());
 		sender.setProtocol(config.getProtocol());
-		if (config.getDefaultEncoding() != null) {
-			sender.setDefaultEncoding(config.getDefaultEncoding().name());
+		sender.setDefaultEncoding(config.getDefaultEncoding());
+		Properties properties = new Properties();
+		JSONObject jsonObject = JSON.parseObject(config.getProperties());
+		for (Map.Entry entry : jsonObject.entrySet()) {
+			properties.setProperty(entry.getKey().toString(), entry.getValue().toString());
 		}
-		if (!config.getProperties().isEmpty()) {
-//			sender.setJavaMailProperties(JSON.parse(config.getProperties()));
-		}
+		sender.setJavaMailProperties(properties);
+		// 会话
+//		Authenticator auth = new FallMailAuthentication(config.getUsername(), config.getPassword());
+//		Session session = Session.getDefaultInstance(properties, auth);
+//		MimeMessage msg = new MimeMessage(session);
+//		sender.setSession(session);
 		return sender;
 	}
 
@@ -133,10 +142,12 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		byte sendFlag = 1;
 		MimeMessage message = null;
 		try {
+			// 获取邮件发送器
+			JavaMailSender mailSender = this.constructMailSender(mailSenderConfig);
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 			helper.setFrom(mailTemplate.getFrom());
-			helper.setTo(request.getReceiver()); // 接收地址
+			helper.setTo(request.getReceiveMail()); // 接收地址
 			helper.setSubject(mailTemplate.getTitle()); // 标题
 			// 带HTML格式的内容
 //			StringBuffer sb = new StringBuffer("<p style='color:#42b983'>使用Spring Boot发送HTML格式邮件。</p>");
@@ -153,17 +164,18 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		}
 		// 添加历史记录
 		MailHistory mailHistory = new MailHistory();
-		mailHistory.setTemplateCode(mailTemplate.getCode());
+		mailHistory.setTemplateId(mailTemplate.getId());
+		mailHistory.setConfigId(mailSenderConfig.getId());
 		mailHistory.setTitle(mailTemplate.getTitle());
 		mailHistory.setFrom(mailSenderConfig.getUsername());
-//		mailHistory.setUserId(request.getUserId());
-//		mailHistory.setUserName(request.getUserName());
-		mailHistory.setReceiver(request.getReceiver());
+		mailHistory.setReceiveUserId(request.getReceiveUserId());
+		mailHistory.setReceiveUserName(request.getReceiveUserName());
+		mailHistory.setReceiveMail(request.getReceiveMail());
 		mailHistory.setCc(request.getCc());
 		mailHistory.setBcc(request.getBcc());
 		mailHistory.setContent(mailTemplate.getContent());
 		mailHistory.setFileGroupId(request.getFileGroupId());
-		mailHistory.setTryCount(1);
+		mailHistory.setTryCount((byte) 1);
 		mailHistory.setLastSendTime(new Date());
 		mailHistory.setSendFlag(sendFlag);
 		mailHistoryService.insert(mailHistory);
@@ -185,10 +197,12 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		byte sendFlag = 1;
 		MimeMessage message = null;
 		try {
+			// 获取邮件发送器
+			JavaMailSender mailSender = this.constructMailSender(mailSenderConfig);
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 			helper.setFrom(mailTemplate.getFrom());
-			helper.setTo(request.getReceiver()); // 接收地址
+			helper.setTo(request.getReceiveMail()); // 接收地址
 			helper.setSubject(mailTemplate.getTitle()); // 标题
 //			helper.setText("<html><body>博客图：<img src='cid:img'/></body></html>", true); // 内容
 			helper.setText(mailTemplate.getContent(), true); // 内容
@@ -206,17 +220,18 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		}
 		// 添加历史记录
 		MailHistory mailHistory = new MailHistory();
-		mailHistory.setTemplateCode(mailTemplate.getCode());
+		mailHistory.setTemplateId(mailTemplate.getId());
+		mailHistory.setConfigId(mailSenderConfig.getId());
 		mailHistory.setTitle(mailTemplate.getTitle());
 		mailHistory.setFrom(mailSenderConfig.getUsername());
-//		mailHistory.setUserId(request.getUserId());
-//		mailHistory.setUserName(request.getUserName());
-		mailHistory.setReceiver(request.getReceiver());
+		mailHistory.setReceiveUserId(request.getReceiveUserId());
+		mailHistory.setReceiveUserName(request.getReceiveUserName());
+		mailHistory.setReceiveMail(request.getReceiveMail());
 		mailHistory.setCc(request.getCc());
 		mailHistory.setBcc(request.getBcc());
 		mailHistory.setContent(mailTemplate.getContent());
 		mailHistory.setFileGroupId(request.getFileGroupId());
-		mailHistory.setTryCount(1);
+		mailHistory.setTryCount((byte) 1);
 		mailHistory.setLastSendTime(new Date());
 		mailHistory.setSendFlag(sendFlag);
 		mailHistoryService.insert(mailHistory);
@@ -240,10 +255,12 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		// 模板内容
 		String template = "";
 		try {
+			// 获取邮件发送器
+			JavaMailSender mailSender = this.constructMailSender(mailSenderConfig);
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 			helper.setFrom(mailTemplate.getFrom());
-			helper.setTo(request.getReceiver()); // 接收地址
+			helper.setTo(request.getReceiveMail()); // 接收地址
 			helper.setSubject(mailTemplate.getTitle()); // 标题
 			// 处理邮件模板
 			Context context = new Context();
@@ -256,17 +273,18 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		}
 		// 添加历史记录
 		MailHistory mailHistory = new MailHistory();
-		mailHistory.setTemplateCode(mailTemplate.getCode());
+		mailHistory.setTemplateId(mailTemplate.getId());
+		mailHistory.setConfigId(mailSenderConfig.getId());
 		mailHistory.setTitle(mailTemplate.getTitle());
 		mailHistory.setFrom(mailSenderConfig.getUsername());
-//		mailHistory.setUserId(request.getUserId());
-//		mailHistory.setUserName(request.getUserName());
-		mailHistory.setReceiver(request.getReceiver());
+		mailHistory.setReceiveUserId(request.getReceiveUserId());
+		mailHistory.setReceiveUserName(request.getReceiveUserName());
+		mailHistory.setReceiveMail(request.getReceiveMail());
 		mailHistory.setCc(request.getCc());
 		mailHistory.setBcc(request.getBcc());
 		mailHistory.setContent(template);
 		mailHistory.setFileGroupId(request.getFileGroupId());
-		mailHistory.setTryCount(1);
+		mailHistory.setTryCount((byte) 1);
 		mailHistory.setLastSendTime(new Date());
 		mailHistory.setSendFlag(sendFlag);
 		mailHistoryService.insert(mailHistory);

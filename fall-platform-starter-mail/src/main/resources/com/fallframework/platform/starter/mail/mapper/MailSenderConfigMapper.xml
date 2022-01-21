@@ -8,6 +8,8 @@
 		<result column="port" jdbcType="INTEGER" property="port"/>
 		<result column="username" jdbcType="VARCHAR" property="username"/>
 		<result column="password" jdbcType="VARCHAR" property="password"/>
+		<result column="protocol" jdbcType="VARCHAR" property="protocol"/>
+		<result column="default_encoding" jdbcType="VARCHAR" property="defaultEncoding"/>
 		<result column="properties" jdbcType="LONGVARCHAR" property="properties"/>
 		<result column="create_user_id" jdbcType="BIGINT" property="createUserId"/>
 		<result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId"/>
@@ -16,8 +18,8 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		<!--@mbg.generated-->
-		id, `host`, port, username, `password`, properties, create_user_id, modify_user_id,
-		gmt_create, gmt_modified
+		id, `host`, port, username, `password`, protocol, default_encoding, properties, create_user_id,
+		modify_user_id, gmt_create, gmt_modified
 	</sql>
 
 	<select id="list" resultMap="BaseResultMap">
@@ -29,16 +31,22 @@
 				`host` LIKE CONCAT('%', #{param2.host,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.port != null">
-				port = #{param2.port,jdbcType=INTEGER},
+				AND port = #{param2.port,jdbcType=INTEGER},
 			</if>
 			<if test="param2.username != null">
-				username LIKE CONCAT('%', #{param2.username,jdbcType=VARCHAR}, '%')
+				AND username LIKE CONCAT('%', #{param2.username,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.password != null">
-				password LIKE CONCAT('%', #{param2.password,jdbcType=VARCHAR}, '%')
+				AND password LIKE CONCAT('%', #{param2.password,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.protocol != null">
+				AND protocol LIKE CONCAT('%', #{param2.protocol,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.defaultEncoding != null">
+				AND default_encoding LIKE CONCAT('%', #{param2.defaultEncoding,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.properties != null">
-				properties LIKE CONCAT('%', #{param2.properties,jdbcType=LONGVARCHAR}, '%')
+				AND properties LIKE CONCAT('%', #{param2.properties,jdbcType=LONGVARCHAR}, '%')
 			</if>
 		</where>
 		ORDER by id DESC

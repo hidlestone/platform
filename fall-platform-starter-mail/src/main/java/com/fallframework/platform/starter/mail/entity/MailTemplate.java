@@ -30,7 +30,7 @@ public class MailTemplate extends BaseEntity {
 	/**
 	 * 邮件模板配置描述
 	 */
-	@TableField(value = "desc")
+	@TableField(value = "`desc`")
 	private String desc;
 
 	/**

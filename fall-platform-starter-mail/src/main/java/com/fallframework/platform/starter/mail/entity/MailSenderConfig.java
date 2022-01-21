@@ -8,9 +8,6 @@ import com.fallframework.platform.starter.data.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-
 /**
  * 将原本配置在yml的spring.mail，保存在数据库中
  *
@@ -32,7 +29,7 @@ public class MailSenderConfig extends BaseEntity {
 	/**
 	 * 如：smtp.163.com
 	 */
-	@TableField(value = "host")
+	@TableField(value = "`host`")
 	private String host;
 
 	/**
@@ -54,19 +51,22 @@ public class MailSenderConfig extends BaseEntity {
 	private String password;
 
 	/**
+	 * 协议
+	 */
+	@TableField(value = "protocol")
+	private String protocol = "smtp";
+
+	/**
+	 * 默认编码
+	 */
+	@TableField(value = "default_encoding")
+	private String defaultEncoding = "UTF-8";
+	//	private Charset defaultEncoding = StandardCharsets.UTF_8;
+
+	/**
 	 * 其他的参数配置(JSON格式)
 	 */
 	@TableField(value = "properties")
 	private String properties;
-
-	/**
-	 * Protocol used by the SMTP server.
-	 */
-	private String protocol = "smtp";
-
-	/**
-	 * Default MimeMessage encoding.
-	 */
-	private Charset defaultEncoding = StandardCharsets.UTF_8;
 
 }

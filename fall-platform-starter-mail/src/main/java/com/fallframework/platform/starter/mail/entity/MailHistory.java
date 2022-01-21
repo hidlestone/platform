@@ -44,7 +44,7 @@ public class MailHistory extends BaseEntity {
 	/**
 	 * 发送者
 	 */
-	@TableField(value = "from")
+	@TableField(value = "`from`")
 	private String from;
 
 	/**

@@ -34,6 +34,16 @@ public class MailSenderConfigRequest extends BasePageRequest {
 	private String password;
 
 	/**
+	 * 协议
+	 */
+	private String protocol = "smtp";
+
+	/**
+	 * 默认编码
+	 */
+	private String defaultEncoding = "UTF-8";
+
+	/**
 	 * 其他的参数配置(JSON格式)
 	 */
 	private String properties;

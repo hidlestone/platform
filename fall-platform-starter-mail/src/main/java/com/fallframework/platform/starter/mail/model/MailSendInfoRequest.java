@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * 邮件发送请求参数
+ *
  * @author zhuangpf
  */
 @Getter
@@ -24,9 +26,9 @@ public class MailSendInfoRequest extends BaseEntityRequest {
 	private Long mailSenderConfigId;
 
 	/**
-	 * 接收者
+	 * 接收邮件
 	 */
-	private String receiver;
+	private String receiveMail;
 
 	/**
 	 * 抄送者
@@ -43,4 +45,13 @@ public class MailSendInfoRequest extends BaseEntityRequest {
 	 */
 	private Long fileGroupId;
 
+	/**
+	 * 接收用户ID
+	 */
+	private Long receiveUserId;
+
+	/**
+	 * 接收用户名称
+	 */
+	private String receiveUserName;
 }
