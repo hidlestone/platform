@@ -69,7 +69,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			JavaMailSender mailSender = FallMailUtil.constructMailSender(mailSenderConfig);
 			mailSender.send(message);
 		} catch (Exception e) {
-			msg = e.getCause().getMessage();
+			msg = e.toString();
 			sendFlag = (byte) SendFlagEnum.FAIL.ordinal();
 			e.printStackTrace();
 		}
@@ -101,7 +101,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			JavaMailSender mailSender = FallMailUtil.constructMailSender(mailSenderConfig);
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
-			helper.setFrom(mailTemplate.getFrom());
+			helper.setFrom(mailSenderConfig.getUsername());
 			helper.setTo(request.getReceiveMail());
 			helper.setSubject(mailTemplate.getTitle());
 			// 带HTML格式的内容
@@ -113,7 +113,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			}
 			mailSender.send(message);
 		} catch (Exception e) {
-			msg = e.getCause().getMessage();
+			msg = e.toString();
 			sendFlag = (byte) SendFlagEnum.FAIL.ordinal();
 			e.printStackTrace();
 		}
@@ -145,12 +145,12 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			JavaMailSender mailSender = FallMailUtil.constructMailSender(mailSenderConfig);
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
-			helper.setFrom(mailTemplate.getFrom());
+			helper.setFrom(mailSenderConfig.getUsername());
 			helper.setTo(request.getReceiveMail());
 			helper.setSubject(mailTemplate.getTitle());
 //			helper.setText("<html><body>博客图：<img src='cid:img'/></body></html>", true);
 			helper.setText(mailTemplate.getContent(), true);
-			// 传入附件
+			// 传入附件 TODO
 			FileSystemResource file = new FileSystemResource(new File("src/main/resources/static/img/sunshine.png"));
 			if (null != mailTemplate.getFileGroupId()) {
 				// TODO 添加附件
@@ -159,7 +159,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			helper.addInline("img", file);
 			mailSender.send(message);
 		} catch (Exception e) {
-			msg = e.getCause().getMessage();
+			msg = e.toString();
 			sendFlag = (byte) SendFlagEnum.FAIL.ordinal();
 			e.printStackTrace();
 		}
@@ -193,9 +193,9 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			JavaMailSender mailSender = FallMailUtil.constructMailSender(mailSenderConfig);
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
-			helper.setFrom(mailTemplate.getFrom());
-			helper.setTo(request.getReceiveMail()); // 接收地址
-			helper.setSubject(mailTemplate.getTitle()); // 标题
+			helper.setFrom(mailSenderConfig.getUsername());
+			helper.setTo(request.getReceiveMail());
+			helper.setSubject(mailTemplate.getTitle());
 			// 处理邮件模板
 			Context context = new Context();
 			context.setVariable("code", "");
@@ -203,7 +203,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			helper.setText(template, true);
 			mailSender.send(message);
 		} catch (Exception e) {
-			msg = e.getCause().getMessage();
+			msg = e.toString();
 			sendFlag = (byte) SendFlagEnum.FAIL.ordinal();
 			e.printStackTrace();
 		}
