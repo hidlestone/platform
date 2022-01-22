@@ -18,6 +18,8 @@ import org.springframework.context.annotation.Configuration;
  * 在有些业务场景下，我们需要保证消息一定要投递到目标 queue 里，此时就需要用到 return 退回模式。<br>
  * <p>
  * 利用这两个callback 控制消息的最终一致性和部分纠错能力 <br>
+ * <p>
+ * 配置项目中使用的：RabbitTemplate，一些使用参数
  *
  * @author zhuangpf
  */

@@ -209,6 +209,16 @@
                 <artifactId>fall-platform-starter-file</artifactId>
                 <version>${platform.starters.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.fallframework.platform</groupId>
+                <artifactId>fall-platform-starter-mq</artifactId>
+                <version>${platform.starters.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fallframework.platform</groupId>
+                <artifactId>fall-platform-starter-mq-rabbit</artifactId>
+                <version>${platform.starters.version}</version>
+            </dependency>
 
             
             
