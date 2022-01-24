@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.config.model;
 
-import com.fallframework.platform.starter.api.request.BaseEntityRequest;
+import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.api.request.BasePageRequest;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +20,7 @@ public class SysParamGroupRequest extends BasePageRequest {
 
 	private String desc;
 
-	private Byte status;
+	private StatusEnum status;
 
 	private List<SysParamItemRequest> sysParamItemList;
 

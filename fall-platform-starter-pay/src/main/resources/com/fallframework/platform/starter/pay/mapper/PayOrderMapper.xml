@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fallframework.platform.starter.pay.mapper.PayOrderMapper">
+  <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.pay.entity.PayOrder">
+    <!--@mbg.generated-->
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="pay_type_code" jdbcType="VARCHAR" property="payTypeCode" />
+    <result column="pay_order_no" jdbcType="VARCHAR" property="payOrderNo" />
+    <result column="trade_pay_no" jdbcType="VARCHAR" property="tradePayNo" />
+    <result column="pre_pay_id" jdbcType="VARCHAR" property="prePayId" />
+    <result column="pay_id" jdbcType="VARCHAR" property="payId" />
+    <result column="user_ip" jdbcType="VARCHAR" property="userIp" />
+    <result column="pay_amount" jdbcType="INTEGER" property="payAmount" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="error_code" jdbcType="VARCHAR" property="errorCode" />
+    <result column="error_msg" jdbcType="VARCHAR" property="errorMsg" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="buyer_logon_id" jdbcType="VARCHAR" property="buyerLogonId" />
+    <result column="notify_url" jdbcType="VARCHAR" property="notifyUrl" />
+    <result column="extra" jdbcType="VARCHAR" property="extra" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="code_url" jdbcType="VARCHAR" property="codeUrl" />
+    <result column="merchant_id" jdbcType="VARCHAR" property="merchantId" />
+    <result column="trade_type" jdbcType="VARCHAR" property="tradeType" />
+    <result column="return_url" jdbcType="VARCHAR" property="returnUrl" />
+    <result column="refund_amount" jdbcType="INTEGER" property="refundAmount" />
+  </resultMap>
+</mapper>

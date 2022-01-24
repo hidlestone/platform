@@ -16,14 +16,9 @@ public class MqTraceLogRequest extends BasePageRequest {
 	private static final long serialVersionUID = -5439688402841283381L;
 
 	/**
-	 * 消息唯一标识
-	 */
-	private Long messageId;
-
-	/**
 	 * 阶段
 	 */
-	private String stage;
+	private StageEnum stage;
 
 	/**
 	 * 消息体JSON

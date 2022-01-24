@@ -53,16 +53,15 @@
         <module>../fall-platform-starter-config</module>
         <module>../fall-platform-starter-cache-parent</module>
         <module>../fall-platform-starter-i18n</module>
-        <module>../fall-platform-starter-mq-parent</module>
         <module>../fall-platform-starter-mvc</module>
         <module>../fall-platform-starter-sms-parent</module>
-        <module>../fall-platform-starter-file-parent</module>
+        <module>../fall-platform-starter-file</module>
         <module>../fall-platform-starter-mail</module>
         <module>../fall-platform-starter-wechat</module>
         <module>../fall-platform-starter-excel</module>
         <module>../fall-platform-starter-webflux</module>
         <module>../fall-platform-starter-websocket</module>
-        <module>../fall-platform-starter-quartz</module>
+        <module>../fall-platform-starter-task-quartz</module>
         <module>../fall-platform-starter-pay</module>
         <module>../fall-platform-starter-doc</module>
         <module>../fall-platform-starter-ureport</module>
@@ -73,6 +72,7 @@
         <module>../fall-platform-starter-control-dependency</module>
 	    <module>../fall-platform-starter-file</module>
 	    <module>../fall-platform-starter-mq</module>
+        <module>../fall-platform-starter-task</module>
     </modules>
 
 </project>

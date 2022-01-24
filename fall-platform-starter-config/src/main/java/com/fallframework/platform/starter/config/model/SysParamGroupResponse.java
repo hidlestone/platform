@@ -1,5 +1,6 @@
 package com.fallframework.platform.starter.config.model;
 
+import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.api.response.BaseEntityResponse;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,7 @@ public class SysParamGroupResponse extends BaseEntityResponse {
 
 	private String desc;
 
-	private Byte status;
+	private StatusEnum status;
 
 	List<SysParamItemResponse> sysParamItemList;
 }

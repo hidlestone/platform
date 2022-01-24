@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fallframework.platform.starter.task.quartz.mapper.QrtzSimpropTriggersMapper">
+  <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.task.quartz.entity.QrtzSimpropTriggers">
+    <!--@mbg.generated-->
+    <id column="SCHED_NAME" jdbcType="VARCHAR" property="schedName" />
+    <id column="TRIGGER_NAME" jdbcType="VARCHAR" property="triggerName" />
+    <id column="TRIGGER_GROUP" jdbcType="VARCHAR" property="triggerGroup" />
+    <result column="STR_PROP_1" jdbcType="VARCHAR" property="strProp1" />
+    <result column="STR_PROP_2" jdbcType="VARCHAR" property="strProp2" />
+    <result column="STR_PROP_3" jdbcType="VARCHAR" property="strProp3" />
+    <result column="INT_PROP_1" jdbcType="INTEGER" property="intProp1" />
+    <result column="INT_PROP_2" jdbcType="INTEGER" property="intProp2" />
+    <result column="LONG_PROP_1" jdbcType="BIGINT" property="longProp1" />
+    <result column="LONG_PROP_2" jdbcType="BIGINT" property="longProp2" />
+    <result column="DEC_PROP_1" jdbcType="DECIMAL" property="decProp1" />
+    <result column="DEC_PROP_2" jdbcType="DECIMAL" property="decProp2" />
+    <result column="BOOL_PROP_1" jdbcType="VARCHAR" property="boolProp1" />
+    <result column="BOOL_PROP_2" jdbcType="VARCHAR" property="boolProp2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    SCHED_NAME, `TRIGGER_NAME`, TRIGGER_GROUP, STR_PROP_1, STR_PROP_2, STR_PROP_3, INT_PROP_1, 
+    INT_PROP_2, LONG_PROP_1, LONG_PROP_2, DEC_PROP_1, DEC_PROP_2, BOOL_PROP_1, BOOL_PROP_2
+  </sql>
+</mapper>

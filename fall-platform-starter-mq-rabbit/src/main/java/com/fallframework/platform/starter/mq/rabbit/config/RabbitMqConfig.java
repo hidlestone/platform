@@ -45,8 +45,8 @@ public class RabbitMqConfig {
 		rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
 		// 如果exchange根据自身类型和消息routingKey无法找到一个合适的queue存储消息，那么broker会调用basic.return方法将消息返还给生产者
 		rabbitTemplate.setMandatory(true);
-		rabbitTemplate.setConfirmCallback(new DefaultConfirmCallback());
-		rabbitTemplate.setReturnCallback(new DefaultReturnCallback());
+//		rabbitTemplate.setConfirmCallback(new DefaultConfirmCallback());
+//		rabbitTemplate.setReturnCallback(new DefaultReturnCallback());
 		return rabbitTemplate;
 	}
 

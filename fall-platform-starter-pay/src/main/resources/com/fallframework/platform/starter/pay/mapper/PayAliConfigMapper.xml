@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fallframework.platform.starter.pay.mapper.PayAliConfigMapper">
+  <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.pay.entity.PayAliConfig">
+    <!--@mbg.generated-->
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="pay_type_code" jdbcType="VARCHAR" property="payTypeCode" />
+    <result column="encrypt_type" jdbcType="VARCHAR" property="encryptType" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="mch_id" jdbcType="VARCHAR" property="mchId" />
+    <result column="status" jdbcType="BOOLEAN" property="status" />
+    <result column="private_key" jdbcType="VARCHAR" property="privateKey" />
+    <result column="public_key" jdbcType="VARCHAR" property="publicKey" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+</mapper>

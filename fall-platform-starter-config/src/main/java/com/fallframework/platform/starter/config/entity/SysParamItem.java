@@ -1,7 +1,10 @@
 package com.fallframework.platform.starter.config.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.data.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +19,7 @@ public class SysParamItem extends BaseEntity {
 	/**
 	 * 系统参数编码
 	 */
-	@TableField(value = "`code`")
+	@TableId(value = "`code`", type = IdType.INPUT)
 	private String code;
 
 	/**
@@ -41,7 +44,7 @@ public class SysParamItem extends BaseEntity {
 	 * 是否启用：0-停用，1-启用
 	 */
 	@TableField(value = "`status`")
-	private Byte status;
+	private StatusEnum status;
 
 	/**
 	 * 系统参数组编码

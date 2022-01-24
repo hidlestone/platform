@@ -5,11 +5,11 @@
       <ProjectProfile>
         <option name="generateService" value="true" />
         <option name="generateServiceInterface" value="true" />
-        <option name="javaMapperPackage" value="com.fallframework.platform.starter.mq.mapper" />
-        <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mq/src/main/java" />
-        <option name="javaModelPackage" value="com.fallframework.platform.starter.mq.entity" />
-        <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-mq/src/main/java" />
-        <option name="lastDatabaseCrudChooseModuleName" value="fall-platform-starter-mq" />
+        <option name="javaMapperPackage" value="com.fallframework.platform.starter.task.quartz.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-task-quartz/src/main/java" />
+        <option name="javaModelPackage" value="com.fallframework.platform.starter.task.quartz.entity" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-task-quartz/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="fall-platform-starter-task-quartz" />
         <option name="lombokAnnotation" value="@GetterSetter" />
         <option name="modelSuperClass" value="com.fallframework.platform.starter.data.entity.BaseEntity" />
         <option name="moduleNameToPackageAndPathMap">
@@ -138,6 +138,22 @@
                 </UserPackageAndPathInfoByModule>
               </value>
             </entry>
+            <entry key="fall-platform-starter-task-quartz">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.task.quartz.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-task-quartz/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.task.quartz.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-task-quartz/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.fallframework.platform.starter.task.quartz.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-task-quartz/src/main/java" />
+                  <option name="javaServicePackage" value="com.fallframework.platform.starter.task.quartz.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-task-quartz/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.task.quartz.mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-task-quartz/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
           </map>
         </option>
         <option name="tableGenerateConfigs">
@@ -184,6 +200,105 @@
                 <TableGenerateConfig>
                   <option name="javaModelName" value="PayWechatConfig" />
                   <option name="moduleName" value="fall-platform-starter-pay" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:qrtz_blob_triggers">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="QrtzBlobTriggers" />
+                  <option name="moduleName" value="fall-platform-starter-task-quartz" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:qrtz_calendars">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="QrtzCalendars" />
+                  <option name="moduleName" value="fall-platform-starter-task-quartz" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:qrtz_cron_triggers">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="QrtzCronTriggers" />
+                  <option name="moduleName" value="fall-platform-starter-task-quartz" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:qrtz_fired_triggers">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="QrtzFiredTriggers" />
+                  <option name="moduleName" value="fall-platform-starter-task-quartz" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:qrtz_job_details">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="QrtzJobDetails" />
+                  <option name="moduleName" value="fall-platform-starter-task-quartz" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:qrtz_locks">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="QrtzLocks" />
+                  <option name="moduleName" value="fall-platform-starter-task-quartz" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:qrtz_paused_trigger_grps">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="QrtzPausedTriggerGrps" />
+                  <option name="moduleName" value="fall-platform-starter-task-quartz" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:qrtz_scheduler_state">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="QrtzSchedulerState" />
+                  <option name="moduleName" value="fall-platform-starter-task-quartz" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:qrtz_simple_triggers">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="QrtzSimpleTriggers" />
+                  <option name="moduleName" value="fall-platform-starter-task-quartz" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:qrtz_simprop_triggers">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="QrtzSimpropTriggers" />
+                  <option name="moduleName" value="fall-platform-starter-task-quartz" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:qrtz_triggers">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="QrtzTriggers" />
+                  <option name="moduleName" value="fall-platform-starter-task-quartz" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -301,8 +416,8 @@
         </option>
         <option name="useLomBokOnModel" value="true" />
         <option name="userMybatisPlus" value="true" />
-        <option name="xmlMapperPackage" value="com.fallframework.platform.starter.mq.mapper" />
-        <option name="xmlMapperPath" value="$PROJECT_DIR$/fall-platform-starter-mq/src/main/resources" />
+        <option name="xmlMapperPackage" value="com.fallframework.platform.starter.task.quartz.mapper" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/fall-platform-starter-task-quartz/src/main/resources" />
       </ProjectProfile>
     </option>
   </component>

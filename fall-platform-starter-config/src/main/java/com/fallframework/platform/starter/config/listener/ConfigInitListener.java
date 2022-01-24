@@ -7,14 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Component;
 
 /**
  * 系统参数初始化监听器
  *
  * @author zhuangpf
  */
-@Component
+//@Component // 暂时注释
 public class ConfigInitListener implements ApplicationListener<ApplicationStartedEvent> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConfigInitListener.class);

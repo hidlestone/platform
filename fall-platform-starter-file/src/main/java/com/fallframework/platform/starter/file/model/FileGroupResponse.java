@@ -1,5 +1,6 @@
 package com.fallframework.platform.starter.file.model;
 
+import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.api.response.BaseEntityResponse;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +27,6 @@ public class FileGroupResponse extends BaseEntityResponse {
 	/**
 	 * 文件组状态
 	 */
-	private Byte status;
-
-
+	private StatusEnum status;
+	
 }

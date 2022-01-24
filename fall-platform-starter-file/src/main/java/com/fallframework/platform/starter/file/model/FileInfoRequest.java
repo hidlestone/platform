@@ -1,5 +1,6 @@
 package com.fallframework.platform.starter.file.model;
 
+import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.api.request.BasePageRequest;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,7 +42,7 @@ public class FileInfoRequest extends BasePageRequest {
 	/**
 	 * 文件状态
 	 */
-	private Byte status;
+	private StatusEnum status;
 
 	/**
 	 * 文件业务类型
@@ -52,5 +53,5 @@ public class FileInfoRequest extends BasePageRequest {
 	 * 文件组ID
 	 */
 	private Long fileGroupId;
-	
+
 }

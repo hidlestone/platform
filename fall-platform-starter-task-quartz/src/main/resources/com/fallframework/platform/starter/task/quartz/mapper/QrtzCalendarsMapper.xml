@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fallframework.platform.starter.task.quartz.mapper.QrtzCalendarsMapper">
+  <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.task.quartz.entity.QrtzCalendars">
+    <!--@mbg.generated-->
+    <id column="SCHED_NAME" jdbcType="VARCHAR" property="schedName" />
+    <id column="CALENDAR_NAME" jdbcType="VARCHAR" property="calendarName" />
+    <result column="CALENDAR" jdbcType="BLOB" property="calendar" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    SCHED_NAME, CALENDAR_NAME, CALENDAR
+  </sql>
+</mapper>

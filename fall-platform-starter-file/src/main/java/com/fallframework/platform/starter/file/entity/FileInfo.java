@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.data.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -55,7 +56,7 @@ public class FileInfo extends BaseEntity {
 	 * 文件状态
 	 */
 	@TableField(value = "`status`")
-	private Byte status;
+	private StatusEnum status;
 
 	/**
 	 * 文件业务类型
