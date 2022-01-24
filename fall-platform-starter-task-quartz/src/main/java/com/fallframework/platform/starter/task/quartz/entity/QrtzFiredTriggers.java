@@ -1,8 +1,6 @@
 package com.fallframework.platform.starter.task.quartz.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,17 +9,17 @@ import lombok.Setter;
 @Setter
 @TableName(value = "qrtz_fired_triggers")
 public class QrtzFiredTriggers {
-	
+
 	/**
 	 * 调度名称
 	 */
-	@TableId(value = "SCHED_NAME", type = IdType.INPUT)
+	@TableField(value = "SCHED_NAME")
 	private String schedName;
 
 	/**
 	 * 调度器实例id
 	 */
-	@TableId(value = "ENTRY_ID", type = IdType.INPUT)
+	@TableField(value = "ENTRY_ID")
 	private String entryId;
 
 	/**

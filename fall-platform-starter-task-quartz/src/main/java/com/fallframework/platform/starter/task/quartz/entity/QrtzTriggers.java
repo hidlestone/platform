@@ -1,8 +1,6 @@
 package com.fallframework.platform.starter.task.quartz.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,19 +15,19 @@ public class QrtzTriggers {
 	/**
 	 * 调度名称
 	 */
-	@TableId(value = "SCHED_NAME", type = IdType.INPUT)
+	@TableField(value = "SCHED_NAME")
 	private String schedName;
 
 	/**
 	 * 触发器的名字
 	 */
-	@TableId(value = "TRIGGER_NAME", type = IdType.INPUT)
+	@TableField(value = "TRIGGER_NAME")
 	private String triggerName;
 
 	/**
 	 * 触发器所属组的名字
 	 */
-	@TableId(value = "TRIGGER_GROUP", type = IdType.INPUT)
+	@TableField(value = "TRIGGER_GROUP")
 	private String triggerGroup;
 
 	/**
@@ -109,5 +107,5 @@ public class QrtzTriggers {
 	 */
 	@TableField(value = "JOB_DATA")
 	private byte[] jobData;
-	
+
 }

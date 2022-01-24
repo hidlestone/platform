@@ -28,7 +28,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author zhuangpf
@@ -104,8 +103,8 @@ public class JobServiceImpl implements JobService {
 			// 校验该triggerKey是否存在
 			TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroup);
 			boolean existFlag = scheduler.checkExists(triggerKey);
-			if (existFlag) {
-				return ResponseResult.fail("Job is alread exist. jobName:" + jobName + ", jobGroup:" + jobGroup + "");
+			if (!existFlag) {
+				return ResponseResult.fail("Job is not exist. jobName:" + jobName + ", jobGroup:" + jobGroup + "");
 			}
 			scheduler.pauseTrigger(triggerKey);
 			scheduler.unscheduleJob(triggerKey);
@@ -132,13 +131,12 @@ public class JobServiceImpl implements JobService {
 		String jobClass = request.getJobClass();
 		String jobDescription = request.getJobDescription();
 		Map<String, Object> jobDataMapInfo = request.getJobDataMap();
-
 		try {
 			// 校验该triggerKey是否存在
 			TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroup);
 			boolean existFlag = scheduler.checkExists(triggerKey);
-			if (existFlag) {
-				return ResponseResult.fail("Job is alread exist. jobName:" + jobName + ", jobGroup:" + jobGroup + "");
+			if (!existFlag) {
+				return ResponseResult.fail("Job is not exist. jobName:" + jobName + ", jobGroup:" + jobGroup + "");
 			}
 			JobKey jobKey = JobKey.jobKey(jobName, jobGroup);
 			// 先remove job
@@ -202,8 +200,8 @@ public class JobServiceImpl implements JobService {
 			// 校验该triggerKey是否存在
 			TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroup);
 			boolean existFlag = scheduler.checkExists(triggerKey);
-			if (existFlag) {
-				return ResponseResult.fail("Job is alread exist. jobName:" + jobName + ", jobGroup:" + jobGroup + "");
+			if (!existFlag) {
+				return ResponseResult.fail("Job is not exist. jobName:" + jobName + ", jobGroup:" + jobGroup + "");
 			}
 			scheduler.pauseTrigger(triggerKey);
 			String schedulerName = scheduler.getSchedulerName();
@@ -224,8 +222,8 @@ public class JobServiceImpl implements JobService {
 			// 校验该triggerKey是否存在
 			TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroup);
 			boolean existFlag = scheduler.checkExists(triggerKey);
-			if (existFlag) {
-				return ResponseResult.fail("Job is alread exist. jobName:" + jobName + ", jobGroup:" + jobGroup + "");
+			if (!existFlag) {
+				return ResponseResult.fail("Job is not exist. jobName:" + jobName + ", jobGroup:" + jobGroup + "");
 			}
 			scheduler.resumeTrigger(triggerKey);
 			String schedulerName = scheduler.getSchedulerName();
@@ -288,5 +286,5 @@ public class JobServiceImpl implements JobService {
 		}
 		return resultList;
 	}
-	
+
 }

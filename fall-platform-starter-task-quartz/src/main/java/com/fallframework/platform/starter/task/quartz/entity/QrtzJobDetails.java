@@ -1,10 +1,7 @@
 package com.fallframework.platform.starter.task.quartz.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fallframework.platform.starter.data.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,23 +9,23 @@ import lombok.Setter;
 @Setter
 @TableName(value = "qrtz_job_details")
 public class QrtzJobDetails {
-	
+
 	/**
 	 * 调度名称
 	 */
-	@TableId(value = "SCHED_NAME", type = IdType.INPUT)
+	@TableField(value = "SCHED_NAME")
 	private String schedName;
 
 	/**
 	 * 集群中job的名字
 	 */
-	@TableId(value = "JOB_NAME", type = IdType.INPUT)
+	@TableField(value = "JOB_NAME")
 	private String jobName;
 
 	/**
 	 * 集群中job的所属组的名字
 	 */
-	@TableId(value = "JOB_GROUP", type = IdType.INPUT)
+	@TableField(value = "JOB_GROUP")
 	private String jobGroup;
 
 	/**

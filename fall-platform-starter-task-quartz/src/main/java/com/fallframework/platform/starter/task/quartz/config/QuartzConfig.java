@@ -41,6 +41,7 @@ public class QuartzConfig {
 	 */
 	@Bean
 	public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource, JobFactory jobFactory) throws IOException {
+		// qrtz_scheduler_state 表中的调度名称 SCHED_NAME
 		SchedulerFactoryBean factory = new SchedulerFactoryBean();
 		// 可选，QuartzScheduler启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录
 		factory.setOverwriteExistingJobs(true);

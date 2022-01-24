@@ -1,8 +1,6 @@
 package com.fallframework.platform.starter.task.quartz.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,13 +13,13 @@ public class QrtzSchedulerState {
 	/**
 	 * 调度名称
 	 */
-	@TableId(value = "SCHED_NAME", type = IdType.INPUT)
+	@TableField(value = "SCHED_NAME")
 	private String schedName;
 
 	/**
 	 * 之前配置文件中org.quartz.scheduler.instanceId配置的名字，就会写入该字段
 	 */
-	@TableId(value = "INSTANCE_NAME", type = IdType.INPUT)
+	@TableField(value = "INSTANCE_NAME")
 	private String instanceName;
 
 	/**
