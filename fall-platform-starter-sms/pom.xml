@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>fall-platform-starters</artifactId>
+		<groupId>com.fallframework.platform</groupId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../fall-platform-starters/pom.xml</relativePath>
+	</parent>
+	<groupId>com.fallframework.platform</groupId>
+	<artifactId>fall-platform-starter-sms</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>Fall Platform SMS Starter</name>
+	<description>starter of sms</description>
+	<url>http://www.wordplay.work/#/fall-platform-starters/fall-platform-starter-sms</url>
+	<organization>
+		<name>Wordplay Software, Inc.</name>
+		<url>https://wordplay.work</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Wordplay</name>
+			<email>info@wordplay.work</email>
+			<organization>Wordplay Software, Inc.</organization>
+			<organizationUrl>https://www.wordplay.work</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git://github.com/hidlestone/platform.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/hidlestone/platform.git</developerConnection>
+		<url>https://github.com/hidlestone/platform</url>
+	</scm>
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/hidlestone/platform/issues</url>
+	</issueManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.fallframework.platform</groupId>
+			<artifactId>fall-platform-starter-data</artifactId>
+		</dependency>
+	</dependencies>
+	
+</project>

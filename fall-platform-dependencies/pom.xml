@@ -241,6 +241,16 @@
 				<artifactId>fall-platform-starter-task-xxljob</artifactId>
 				<version>${platform.starters.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.fallframework.platform</groupId>
+				<artifactId>fall-platform-starter-sms</artifactId>
+				<version>${platform.starters.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fallframework.platform</groupId>
+				<artifactId>fall-platform-starter-sms-aliyun</artifactId>
+				<version>${platform.starters.version}</version>
+			</dependency>
 
 			<!-- Spring Cloud -->
 			<dependency>

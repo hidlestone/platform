@@ -14,3 +14,6 @@ mp 使用雪花id
 参考资料：
 
 
+xxl-job-admin 改造，注册到nacos上
+
+
