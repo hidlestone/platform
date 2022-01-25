@@ -145,6 +145,7 @@
 		<junit.version>4.12</junit.version>
 
 		<easyexcel.version>3.0.2</easyexcel.version>
+		<xxl-job.version>2.3.0</xxl-job.version>
 	</properties>
 
 	<dependencyManagement>
@@ -233,6 +234,11 @@
 			<dependency>
 				<groupId>com.fallframework.platform</groupId>
 				<artifactId>fall-platform-starter-task-quartz</artifactId>
+				<version>${platform.starters.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fallframework.platform</groupId>
+				<artifactId>fall-platform-starter-task-xxljob</artifactId>
 				<version>${platform.starters.version}</version>
 			</dependency>
 
@@ -753,6 +759,12 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>easyexcel</artifactId>
 				<version>${easyexcel.version}</version>
+			</dependency>
+			<!-- xxl-job-core -->
+			<dependency>
+				<groupId>com.xuxueli</groupId>
+				<artifactId>xxl-job-core</artifactId>
+				<version>${xxl-job.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

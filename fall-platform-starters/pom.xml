@@ -54,7 +54,6 @@
         <module>../fall-platform-starter-cache-parent</module>
         <module>../fall-platform-starter-i18n</module>
         <module>../fall-platform-starter-mvc</module>
-        <module>../fall-platform-starter-sms-parent</module>
         <module>../fall-platform-starter-file</module>
         <module>../fall-platform-starter-mail</module>
         <module>../fall-platform-starter-wechat</module>
@@ -73,6 +72,11 @@
 	    <module>../fall-platform-starter-file</module>
 	    <module>../fall-platform-starter-mq</module>
         <module>../fall-platform-starter-task</module>
+	    <module>../fall-platform-starter-task-xxljob</module>
+	    <module>../fall-platform-starter-sms-aliyun</module>
+	    <module>../fall-platform-starter-elasticsearch</module>
+        <module>../fall-platform-starter-flyway</module>
+        <module>../fall-platform-starter-graylog</module>
     </modules>
 
 </project>
