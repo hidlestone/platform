@@ -17,8 +17,8 @@ import java.util.Map;
  */
 public class EHCacheUtil {
 
-	public static CacheManager manager = null;
-	public static String configfile = "ehcache.xml";
+	public static CacheManager manager;
+	public static String configfile;
 
 	// EHCache初始化
 	/*static {
@@ -32,10 +32,10 @@ public class EHCacheUtil {
 	/**
 	 * 根据入参的ehcache配置文件进行构建
 	 *
-	 * @param configfile 传入的ehcache配置文件
+	 * @param filename 传入的ehcache配置文件
 	 */
-	public EHCacheUtil(String configfile) {
-		configfile = StringUtils.isEmpty(configfile) ? "ehcache.xml" : configfile;
+	public EHCacheUtil(String filename) {
+		this.configfile = StringUtils.isEmpty(filename) ? "ehcache.xml" : filename;
 		manager = CacheManager.create(EHCacheUtil.class.getClassLoader().getResourceAsStream(configfile));
 	}
 
@@ -109,6 +109,14 @@ public class EHCacheUtil {
 	 */
 	public void remove(String cachename, Serializable key) {
 		manager.getCache(cachename).remove(key);
+	}
+
+	public static CacheManager getManager() {
+		return manager;
+	}
+
+	public static String getConfigfile() {
+		return configfile;
 	}
 
 }
