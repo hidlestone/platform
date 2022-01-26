@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fallframework.platform.starter.task.xxljob.mapper.XxlJobGroupMapper">
+  <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.task.xxljob.entity.XxlJobGroup">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="address_type" jdbcType="TINYINT" property="addressType" />
+    <result column="address_list" jdbcType="LONGVARCHAR" property="addressList" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, app_name, title, address_type, address_list, update_time
+  </sql>
+</mapper>

@@ -1,58 +1,75 @@
 <!-- ehcache配置 -->
 <ehcache
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
-        updateCheck="false">
-    <!--缓存路径，用户目录下的base_ehcache目录-->
-    <diskStore path="user.home/base_ehcache"/>
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+		updateCheck="false">
 
-    <defaultCache
-            maxElementsInMemory="20000"
-            eternal="false"
-            timeToIdleSeconds="120"
-            timeToLiveSeconds="120"
-            overflowToDisk="true"
-            maxElementsOnDisk="10000000"
-            diskPersistent="false"
-            diskExpiryThreadIntervalSeconds="120"
-            memoryStoreEvictionPolicy="LRU"/>
+	<!-- 磁盘缓存位置 -->
+	<!--缓存路径，用户目录下的base_ehcache目录-->
+	<diskStore path="user.home/base_ehcache"/>
 
-    <!--
-    缓存文件名：inkblogcache，同样的可以配置多个缓存
-    maxElementsInMemory：内存中最多存储
-    eternal：外部存储
-    overflowToDisk：超出缓存到磁盘
-    diskPersistent：磁盘持久化
-    timeToLiveSeconds：缓存时间
-    diskExpiryThreadIntervalSeconds：磁盘过期时间
-    -->
-    <!--发布间隔-->
-    <cache name="comments:frequency"
-           maxElementsInMemory="20000"
-           eternal="false"
-           overflowToDisk="true"
-           diskPersistent="false"
-           timeToLiveSeconds="30"
-           diskExpiryThreadIntervalSeconds="120"/>
+	<!--
+	 缓存配置
+	   name:                            缓存名称。
+	   maxElementsInMemory：            缓存最大个数。
+	   eternal:                         对象是否永久有效，一但设置了，timeout将不起作用。
+	   timeToIdleSeconds：              设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。
+	   timeToLiveSeconds：              设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。
+	   overflowToDisk：                 当内存中对象数量达到maxElementsInMemory时，Ehcache将会对象写到磁盘中。
+	   diskSpoolBufferSizeMB：          这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。
+	   maxElementsOnDisk：              硬盘最大缓存个数。
+	   diskPersistent：                 是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.
+	   diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。
+	   memoryStoreEvictionPolicy：      当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。
+	   clearOnFlush：                   内存数量最大时是否清除。
+	 -->
+	<defaultCache
+			maxElementsInMemory="20000"
+			eternal="false"
+			timeToIdleSeconds="120"
+			timeToLiveSeconds="120"
+			overflowToDisk="true"
+			maxElementsOnDisk="10000000"
+			diskPersistent="false"
+			diskExpiryThreadIntervalSeconds="120"
+			memoryStoreEvictionPolicy="LRU"/>
 
-    <!--文章点击量-->
-    <cache name="article:hit"
-           maxElementsInMemory="20000"
-           eternal="true"
-           timeToLiveSeconds="0"
-           overflowToDisk="true"
-           maxElementsOnDisk="10000000"
-           diskPersistent="false"
-           diskExpiryThreadIntervalSeconds="120"
-           memoryStoreEvictionPolicy="LRU"/>
+	<!--
+	缓存文件名：inkblogcache，同样的可以配置多个缓存
+	maxElementsInMemory：内存中最多存储
+	eternal：外部存储
+	overflowToDisk：超出缓存到磁盘
+	diskPersistent：磁盘持久化
+	timeToLiveSeconds：缓存时间
+	diskExpiryThreadIntervalSeconds：磁盘过期时间
+	-->
+	<!--发布间隔-->
+	<cache name="comments:frequency"
+	       maxElementsInMemory="20000"
+	       eternal="false"
+	       overflowToDisk="true"
+	       diskPersistent="false"
+	       timeToLiveSeconds="30"
+	       diskExpiryThreadIntervalSeconds="120"/>
 
-    <!--发布间隔-->
-    <cache name="login_error_count"
-           maxElementsInMemory="100"
-           eternal="false"
-           overflowToDisk="true"
-           diskPersistent="false"
-           timeToLiveSeconds="900"
-           diskExpiryThreadIntervalSeconds="120"/>
-    
+	<!--文章点击量-->
+	<cache name="article:hit"
+	       maxElementsInMemory="20000"
+	       eternal="true"
+	       timeToLiveSeconds="0"
+	       overflowToDisk="true"
+	       maxElementsOnDisk="10000000"
+	       diskPersistent="false"
+	       diskExpiryThreadIntervalSeconds="120"
+	       memoryStoreEvictionPolicy="LRU"/>
+
+	<!--发布间隔-->
+	<cache name="login_error_count"
+	       maxElementsInMemory="100"
+	       eternal="false"
+	       overflowToDisk="true"
+	       diskPersistent="false"
+	       timeToLiveSeconds="900"
+	       diskExpiryThreadIntervalSeconds="120"/>
+
 </ehcache>

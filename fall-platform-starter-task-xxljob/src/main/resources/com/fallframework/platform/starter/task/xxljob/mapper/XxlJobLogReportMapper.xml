@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fallframework.platform.starter.task.xxljob.mapper.XxlJobLogReportMapper">
+  <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.task.xxljob.entity.XxlJobLogReport">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="trigger_day" jdbcType="TIMESTAMP" property="triggerDay" />
+    <result column="running_count" jdbcType="INTEGER" property="runningCount" />
+    <result column="suc_count" jdbcType="INTEGER" property="sucCount" />
+    <result column="fail_count" jdbcType="INTEGER" property="failCount" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, trigger_day, running_count, suc_count, fail_count, update_time
+  </sql>
+</mapper>

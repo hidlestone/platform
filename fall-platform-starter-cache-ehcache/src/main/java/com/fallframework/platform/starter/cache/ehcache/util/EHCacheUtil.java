@@ -1,10 +1,14 @@
 package com.fallframework.platform.starter.cache.ehcache.util;
 
+import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheException;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
+import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * EHCache 缓存工具类
@@ -13,16 +17,26 @@ import java.io.Serializable;
  */
 public class EHCacheUtil {
 
-	static CacheManager manager = null;
-	static String configfile = "ehcache.xml";
+	public static CacheManager manager = null;
+	public static String configfile = "ehcache.xml";
 
-	//EHCache初始化
-	static {
+	// EHCache初始化
+	/*static {
 		try {
 			manager = CacheManager.create(EHCacheUtil.class.getClassLoader().getResourceAsStream(configfile));
 		} catch (CacheException e) {
 			e.printStackTrace();
 		}
+	}*/
+
+	/**
+	 * 根据入参的ehcache配置文件进行构建
+	 *
+	 * @param configfile 传入的ehcache配置文件
+	 */
+	public EHCacheUtil(String configfile) {
+		configfile = StringUtils.isEmpty(configfile) ? "ehcache.xml" : configfile;
+		manager = CacheManager.create(EHCacheUtil.class.getClassLoader().getResourceAsStream(configfile));
 	}
 
 	/**
@@ -32,24 +46,40 @@ public class EHCacheUtil {
 	 * @param key       类似redis的Key
 	 * @param value     类似redis的value，value可以是任何对象、数据类型，比如person,map,list等
 	 */
-	public static void put(String cachename, Serializable key, Serializable value) {
+	public void put(String cachename, Serializable key, Serializable value) {
 		manager.getCache(cachename).put(new Element(key, value));
+	}
+
+	/**
+	 * 获取该cachename下的所有缓存数据
+	 *
+	 * @param cachename Cache名称
+	 * @return 该cachename下的所有缓存数据
+	 */
+	public Map<Object, Object> get(String cachename) {
+		Map<Object, Object> resultMap = new HashMap();
+		Cache cache = manager.getCache(cachename);
+		Map<Object, Element> elementMap = cache.getAll(cache.getKeys());
+		for (Map.Entry<Object, Element> entry : elementMap.entrySet()) {
+			resultMap.put(entry.getKey(), entry.getValue().getObjectValue());
+		}
+		return resultMap;
 	}
 
 	/**
 	 * 获取缓存cachename中key对应的value
 	 *
-	 * @param cachename
-	 * @param key
-	 * @return
+	 * @param cachename Cache名称
+	 * @param key       key
+	 * @return 缓存数据
 	 */
-	public static Serializable get(String cachename, Serializable key) {
+	public Object get(String cachename, Serializable key) {
 		try {
 			Element e = manager.getCache(cachename).get(key);
 			if (e == null) {
 				return null;
 			}
-			return e.getValue();
+			return e.getObjectValue();
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (CacheException e) {
@@ -61,9 +91,9 @@ public class EHCacheUtil {
 	/**
 	 * 清除缓存名称为cachename的缓存
 	 *
-	 * @param cachename
+	 * @param cachename Cache名称
 	 */
-	public static void clearCache(String cachename) {
+	public void clearCache(String cachename) {
 		try {
 			manager.getCache(cachename).removeAll();
 		} catch (IllegalStateException e) {
@@ -74,10 +104,11 @@ public class EHCacheUtil {
 	/**
 	 * 移除缓存cachename中key对应的value
 	 *
-	 * @param cachename
-	 * @param key
+	 * @param cachename Cache名称
+	 * @param key       key
 	 */
-	public static void remove(String cachename, Serializable key) {
+	public void remove(String cachename, Serializable key) {
 		manager.getCache(cachename).remove(key);
 	}
+
 }

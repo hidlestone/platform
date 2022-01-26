@@ -51,7 +51,6 @@
         <module>../fall-platform-starter-cache-redis</module>
         <module>../fall-platform-starter-cache-mongodb</module>
         <module>../fall-platform-starter-config</module>
-        <module>../fall-platform-starter-cache-parent</module>
         <module>../fall-platform-starter-i18n</module>
         <module>../fall-platform-starter-mvc</module>
         <module>../fall-platform-starter-file</module>
