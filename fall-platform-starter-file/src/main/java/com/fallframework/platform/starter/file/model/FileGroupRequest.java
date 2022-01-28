@@ -17,6 +17,11 @@ public class FileGroupRequest extends BasePageRequest {
 	private static final long serialVersionUID = -3589552693660387478L;
 
 	/**
+	 * 主键
+	 */
+	private Long id;
+
+	/**
 	 * 描述
 	 */
 	private String desc;

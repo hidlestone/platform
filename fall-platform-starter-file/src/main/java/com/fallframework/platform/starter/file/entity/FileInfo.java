@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.data.entity.BaseEntity;
+import com.fallframework.platform.starter.file.model.FileTypeEnum;
+import com.fallframework.platform.starter.file.model.StorageTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,10 +25,22 @@ public class FileInfo extends BaseEntity {
 	private Long id;
 
 	/**
+	 * 文件组ID
+	 */
+	@TableField(value = "file_group_id")
+	private Long fileGroupId;
+
+	/**
 	 * 文件名
 	 */
 	@TableField(value = "`name`")
 	private String name;
+
+	/**
+	 * 无意义名称
+	 */
+	@TableField(value = "`nonsense_name`")
+	private String nonsenseName;
 
 	/**
 	 * 文件扩展名
@@ -38,7 +52,19 @@ public class FileInfo extends BaseEntity {
 	 * 存储类型
 	 */
 	@TableField(value = "storage_type")
-	private String storageType;
+	private StorageTypeEnum storageType;
+
+	/**
+	 * 文件类型
+	 */
+	@TableField(value = "file_type")
+	private FileTypeEnum fileType;
+
+	/**
+	 * contentType
+	 */
+	@TableField(value = "content_type")
+	private String contentType;
 
 	/**
 	 * 备注
@@ -53,21 +79,15 @@ public class FileInfo extends BaseEntity {
 	private String url;
 
 	/**
-	 * 文件状态
-	 */
-	@TableField(value = "`status`")
-	private StatusEnum status;
-
-	/**
 	 * 文件业务类型
 	 */
 	@TableField(value = "category")
 	private String category;
 
 	/**
-	 * 文件组ID
+	 * 文件状态
 	 */
-	@TableField(value = "file_group_id")
-	private Long fileGroupId;
+	@TableField(value = "`status`")
+	private StatusEnum status;
 
 }

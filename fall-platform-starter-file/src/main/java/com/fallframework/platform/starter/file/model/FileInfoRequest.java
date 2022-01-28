@@ -15,9 +15,24 @@ public class FileInfoRequest extends BasePageRequest {
 	private static final long serialVersionUID = 6662274574728973226L;
 
 	/**
+	 * 主键
+	 */
+	private Long id;
+
+	/**
+	 * 文件组ID
+	 */
+	private Long fileGroupId;
+
+	/**
 	 * 文件名
 	 */
 	private String name;
+
+	/**
+	 * 无意义名称
+	 */
+	private String nonsenseName;
 
 	/**
 	 * 文件扩展名
@@ -27,7 +42,17 @@ public class FileInfoRequest extends BasePageRequest {
 	/**
 	 * 存储类型
 	 */
-	private String storageType;
+	private Byte storageType;
+
+	/**
+	 * 文件类型
+	 */
+	private FileTypeEnum fileType;
+
+	/**
+	 * contentType;
+	 */
+	private String contentType;
 
 	/**
 	 * 备注
@@ -40,18 +65,13 @@ public class FileInfoRequest extends BasePageRequest {
 	private String url;
 
 	/**
-	 * 文件状态
-	 */
-	private StatusEnum status;
-
-	/**
 	 * 文件业务类型
 	 */
 	private String category;
 
 	/**
-	 * 文件组ID
+	 * 文件状态
 	 */
-	private Long fileGroupId;
+	private StatusEnum status;
 
 }

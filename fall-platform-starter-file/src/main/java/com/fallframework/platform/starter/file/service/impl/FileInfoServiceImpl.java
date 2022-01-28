@@ -36,7 +36,7 @@ public class FileInfoServiceImpl extends ServiceImpl<FileInfoMapper, FileInfo> i
 	}
 
 	@Override
-	public ResponseResult select(Long id) {
+	public ResponseResult<FileInfo> select(Long id) {
 		FileInfo fileInfo = fileInfoMapper.selectById(id);
 		return ResponseResult.success(fileInfo);
 	}
