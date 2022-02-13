@@ -210,6 +210,12 @@ public class EncryptionUtilTest {
 //		String plainText = EncryptionUtil.decryptRSA(encry02, DEFAULT_PUBLIC_KEY);
 //		System.out.println("明文：" + plainText);
 	}
-
+	
+	@Test
+	public void test06(){
+		String admin = EncryptionUtil.encryptMD5("admin");
+		System.out.println(admin);
+	}
+	
 }
 

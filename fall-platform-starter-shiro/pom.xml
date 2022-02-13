@@ -10,7 +10,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fall-platform-starter-xxlsso</artifactId>
+	<artifactId>fall-platform-starter-shiro</artifactId>
 
 
 </project>

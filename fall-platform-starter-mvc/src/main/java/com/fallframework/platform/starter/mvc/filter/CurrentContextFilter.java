@@ -6,7 +6,6 @@ import com.fallframework.platform.starter.core.context.CurrentContextHelper;
 import com.fallframework.platform.starter.core.context.ReadableResponseWrapper;
 import com.fallframework.platform.starter.core.context.UserAuthInfo;
 import com.fallframework.platform.starter.core.util.ApplicationInstanceManager;
-import com.fallframework.platform.starter.core.util.EncryptionUtil;
 import com.fallframework.platform.starter.mvc.constant.MvcStarterConstant;
 import com.fallframework.platform.starter.mvc.util.PermissionUtil;
 import com.fallframework.platform.starter.mvc.util.PlatformRequestUtil;
@@ -196,9 +195,9 @@ public class CurrentContextFilter implements Filter {
 	 * 获取请求头(请求参数)中的token
 	 */
 	private String getToken(HttpServletRequest request) {
-		String token = request.getHeader(CoreContextConstant.AUTHORIZATION);
+		String token = request.getHeader(CoreContextConstant.TOKEN);
 		if (StringUtils.isEmpty(token)) {
-			token = request.getParameter(CoreContextConstant.AUTHORIZATION);
+			token = request.getParameter(CoreContextConstant.TOKEN);
 			if (StringUtils.isEmpty(token)) {
 				token = null;
 			}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fallframework.platform.starter.rbac.mapper.PermissionMapper">
+	<resultMap id="BaseResultMap" type="com.fallframework.platform.starter.rbac.entity.Permission">
+		<!--@mbg.generated-->
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="permission_code" jdbcType="VARCHAR" property="permissionCode"/>
+		<result column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
+		<result column="resource_value" jdbcType="VARCHAR" property="resourceValue"/>
+		<result column="order_num" jdbcType="INTEGER" property="orderNum"/>
+		<result column="authc_type" jdbcType="TINYINT" property="authcType"/>
+		<result column="create_user_id" jdbcType="BIGINT" property="createUserId"/>
+		<result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId"/>
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		id, permission_code, permission_name, resource_value, order_num, authc_type, create_user_id,
+		modify_user_id, gmt_create, gmt_modified
+	</sql>
+
+	<select id="selectAllRolePermission" resultType="com.fallframework.platform.starter.rbac.model.RolePermissionResponse">
+		SELECT
+			r.id AS id,
+			r.role_code AS roleCode,
+			p.resource_value AS resourceValue,
+			p.authc_type AS authcType
+		FROM
+			s_role_permission rp
+		LEFT JOIN s_role r ON r.id = rp.role_id
+		LEFT JOIN s_permission p ON p.id = rp.permission_id
+		WHERE
+			r.role_code IS NOT NULL	
+	</select>
+
+</mapper>

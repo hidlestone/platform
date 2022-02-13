@@ -69,6 +69,7 @@
         <module>../fall-platform-starter-api-dependency</module>
         <module>../fall-platform-starter-control-dependency</module>
 	    <module>../fall-platform-starter-file</module>
+	    <module>../fall-platform-starter-file-qiniu</module>
 	    <module>../fall-platform-starter-mq</module>
         <module>../fall-platform-starter-task</module>
 	    <module>../fall-platform-starter-task-xxljob</module>
@@ -76,8 +77,10 @@
 	    <module>../fall-platform-starter-elasticsearch</module>
         <module>../fall-platform-starter-flyway</module>
         <module>../fall-platform-starter-graylog</module>
-        <module>../fall-platform-starter-xxlsso</module>
         <module>../fall-platform-starter-sms</module>
+	    <module>../fall-platform-starter-security</module>
+	    <module>../fall-platform-starter-shiro</module>
+        <module>../fall-platform-starter-rbac</module>
     </modules>
 
 </project>

@@ -97,8 +97,8 @@ public class FileProcessServiceImpl implements FileProcessService {
 		if (!file.exists()) {
 			return ResponseResult.fail("file is not exist.");
 		}
-		response.setContentType("application/octet-stream");
 		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/octet-stream");
 		response.setContentLength((int) file.length());
 		// 设置强制下载不打开
 		response.setContentType("application/force-download");

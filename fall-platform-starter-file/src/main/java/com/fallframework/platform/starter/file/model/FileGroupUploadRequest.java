@@ -25,11 +25,6 @@ public class FileGroupUploadRequest extends BasePageRequest {
 	 * 存储类型
 	 */
 	private Byte storageType;
-	
-	/**
-	 * 文件列表
-	 */
-	private List<FileInfoUploadRequest> fileInfoList;
 
 	/**
 	 * 请求上传的文件

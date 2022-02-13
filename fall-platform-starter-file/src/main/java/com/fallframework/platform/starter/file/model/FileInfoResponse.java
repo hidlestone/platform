@@ -42,12 +42,17 @@ public class FileInfoResponse extends BaseEntityResponse {
 	/**
 	 * 存储类型
 	 */
-	private Byte storageType;
+	private StorageTypeEnum storageType;
 
 	/**
 	 * 文件类型
 	 */
-	private Byte fileType;
+	private FileTypeEnum fileType;
+
+	/**
+	 * contentType
+	 */
+	private String contentType;
 
 	/**
 	 * 备注

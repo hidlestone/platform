@@ -5,11 +5,11 @@
       <ProjectProfile>
         <option name="generateService" value="true" />
         <option name="generateServiceInterface" value="true" />
-        <option name="javaMapperPackage" value="com.fallframework.platform.starter.sms.mapper" />
-        <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-sms/src/main/java" />
-        <option name="javaModelPackage" value="com.fallframework.platform.starter.sms.entity" />
-        <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-sms/src/main/java" />
-        <option name="lastDatabaseCrudChooseModuleName" value="fall-platform-starter-sms" />
+        <option name="javaMapperPackage" value="com.fallframework.platform.starter.oauth2.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-oauth2/src/main/java" />
+        <option name="javaModelPackage" value="com.fallframework.platform.starter.oauth2.entity" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-oauth2/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="fall-platform-starter-oauth2" />
         <option name="lombokAnnotation" value="@GetterSetter" />
         <option name="moduleNameToPackageAndPathMap">
           <map>
@@ -118,6 +118,22 @@
                   <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/java" />
                   <option name="xmlPackage" value="com.fallframework.platform.starter.mvc.mapper" />
                   <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-mvc/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+            <entry key="fall-platform-starter-oauth2">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.oauth2.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-oauth2/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.oauth2.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-oauth2/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.fallframework.platform.starter.oauth2.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-oauth2/src/main/java" />
+                  <option name="javaServicePackage" value="com.fallframework.platform.starter.oauth2.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-oauth2/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.oauth2.mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-oauth2/src/main/resources" />
                 </UserPackageAndPathInfoByModule>
               </value>
             </entry>
@@ -394,6 +410,15 @@
                 </TableGenerateConfig>
               </value>
             </entry>
+            <entry key="fallplatform:s_menu">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="Menu" />
+                  <option name="moduleName" value="fall-platform-starter-oauth2" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="fallplatform:s_mq_trace_log">
               <value>
                 <TableGenerateConfig>
@@ -415,10 +440,37 @@
             <entry key="fallplatform:s_permission">
               <value>
                 <TableGenerateConfig>
-                  <option name="batchInsert" value="true" />
                   <option name="generatedKey" value="id" />
                   <option name="javaModelName" value="Permission" />
-                  <option name="moduleName" value="fall-platform-starter-mvc" />
+                  <option name="moduleName" value="fall-platform-starter-oauth2" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_role">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="Role" />
+                  <option name="moduleName" value="fall-platform-starter-oauth2" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_role_menu">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="RoleMenu" />
+                  <option name="moduleName" value="fall-platform-starter-oauth2" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_role_permission">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="RolePermission" />
+                  <option name="moduleName" value="fall-platform-starter-oauth2" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -466,6 +518,24 @@
                   <option name="generatedKey" value="" />
                   <option name="javaModelName" value="SysParamItem" />
                   <option name="moduleName" value="fall-platform-starter-i18n" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="User" />
+                  <option name="moduleName" value="fall-platform-starter-oauth2" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_user_role">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="UserRole" />
+                  <option name="moduleName" value="fall-platform-starter-oauth2" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -553,8 +623,8 @@
         </option>
         <option name="useLomBokOnModel" value="true" />
         <option name="userMybatisPlus" value="true" />
-        <option name="xmlMapperPackage" value="com.fallframework.platform.starter.sms.mapper" />
-        <option name="xmlMapperPath" value="$PROJECT_DIR$/fall-platform-starter-sms/src/main/resources" />
+        <option name="xmlMapperPackage" value="com.fallframework.platform.starter.oauth2.mapper" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/fall-platform-starter-oauth2/src/main/resources" />
       </ProjectProfile>
     </option>
   </component>

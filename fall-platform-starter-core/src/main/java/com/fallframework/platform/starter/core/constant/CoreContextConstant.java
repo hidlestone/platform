@@ -11,7 +11,7 @@ public class CoreContextConstant {
 	// Request Headers:module-code
 	public static final String MODULE_CODE = "module-code";
 	// Request Headers:Authorization 即token
-	public static final String AUTHORIZATION = "authorization";
+	public static final String TOKEN = "token";
 	// Request Headers:client-id
 	public static final String CLIENT_ID = "client-id";
 	// Request Headers:client-code 可能取值为：app/web/wx/...

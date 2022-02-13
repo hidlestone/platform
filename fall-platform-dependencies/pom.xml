@@ -143,6 +143,7 @@
 		<gson.version>2.8.5</gson.version>
 		<happy-dns.version>0.1.6</happy-dns.version>
 		<junit.version>4.12</junit.version>
+		<qiniu.sdk.version>[7.7.0, 7.7.99]</qiniu.sdk.version>
 
 		<easyexcel.version>3.0.2</easyexcel.version>
 		<xxl-job.version>2.3.0</xxl-job.version>
@@ -213,6 +214,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.fallframework.platform</groupId>
+				<artifactId>fall-platform-starter-file-qiniu</artifactId>
+				<version>${platform.starters.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fallframework.platform</groupId>
 				<artifactId>fall-platform-starter-mq</artifactId>
 				<version>${platform.starters.version}</version>
 			</dependency>
@@ -251,6 +257,17 @@
 				<artifactId>fall-platform-starter-sms-aliyun</artifactId>
 				<version>${platform.starters.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.fallframework.platform</groupId>
+				<artifactId>fall-platform-starter-security</artifactId>
+				<version>${platform.starters.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fallframework.platform</groupId>
+				<artifactId>fall-platform-starter-rbac</artifactId>
+				<version>${platform.starters.version}</version>
+			</dependency>
+			
 
 			<!-- Spring Cloud -->
 			<dependency>
@@ -775,6 +792,11 @@
 				<groupId>com.xuxueli</groupId>
 				<artifactId>xxl-job-core</artifactId>
 				<version>${xxl-job.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.qiniu</groupId>
+				<artifactId>qiniu-java-sdk</artifactId>
+				<version>${qiniu.sdk.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
