@@ -9,5 +9,7 @@ import java.util.List;
 public interface PermissionMapper extends BaseMapper<Permission> {
 	
 	List<RolePermissionResponse> selectAllRolePermission();
+
+	List<RolePermissionResponse> getPermissionListByUserId(Long id);
 	
 }

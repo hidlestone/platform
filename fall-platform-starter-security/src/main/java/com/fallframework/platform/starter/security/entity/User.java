@@ -2,15 +2,12 @@ package com.fallframework.platform.starter.security.entity;
 
 import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.data.entity.BaseEntity;
-import com.fallframework.platform.starter.rbac.entity.Role;
 import com.fallframework.platform.starter.rbac.model.SexEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -107,19 +104,15 @@ public class User extends BaseEntity implements UserDetails {
 	private Date lastLoginTime;
 
 	/**
-	 * 角色信息
+	 * 资源权限
 	 */
-	private List<Role> roles;
+	private List<GrantedAuthority> authorities;
 
 	/**
 	 * @return 当前账户所具有的所有角色编码信息
 	 */
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		for (Role role : roles) {
-			authorities.add(new SimpleGrantedAuthority(role.getRoleCode()));
-		}
 		return authorities;
 	}
 

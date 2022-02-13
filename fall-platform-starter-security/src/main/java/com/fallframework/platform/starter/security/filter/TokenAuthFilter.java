@@ -5,6 +5,7 @@ import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.core.constant.CoreContextConstant;
 import com.fallframework.platform.starter.rbac.model.RolePermissionResponse;
+import com.fallframework.platform.starter.rbac.service.PermissionService;
 import com.fallframework.platform.starter.security.constant.SecurityStarterConstant;
 import com.fallframework.platform.starter.security.entity.User;
 import com.fallframework.platform.starter.security.util.JWTUtil;
@@ -32,10 +33,12 @@ import java.util.List;
 public class TokenAuthFilter extends BasicAuthenticationFilter {
 
 	private RedisUtil redisUtil;
+	private PermissionService permissionService;
 
-	public TokenAuthFilter(AuthenticationManager authenticationManager, RedisUtil redisUtil) {
+	public TokenAuthFilter(AuthenticationManager authenticationManager, RedisUtil redisUtil, PermissionService permissionService) {
 		super(authenticationManager);
 		this.redisUtil = redisUtil;
+		this.permissionService = permissionService;
 	}
 
 	@Override
@@ -69,18 +72,18 @@ public class TokenAuthFilter extends BasicAuthenticationFilter {
 	}
 
 	/**
-	 * 从token获取用户名,从redis获取对应权限列表,
+	 * 从token获取用户名，从redis获取对应权限列表,
 	 */
 	private UsernamePasswordAuthenticationToken getAuthentication(String token, String idStr) {
-		// 权限
-		List<RolePermissionResponse> permissionList = (List<RolePermissionResponse>) redisUtil.hget(SecurityStarterConstant.CACHE_KEY_ROLE_PERMISSION, idStr);
+		// 获取用户资源权限
+		List<RolePermissionResponse> permissionList = permissionService.getPermissionListByUserId(Long.valueOf(idStr));
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		for (RolePermissionResponse item : permissionList) {
 			authorities.add(new SimpleGrantedAuthority(item.getResourceValue()));
 		}
-		String account = JWTUtil.getClaim(token, "account");
 		User user = JWTUtil.parseToken(token);
-		return new UsernamePasswordAuthenticationToken(account, token, authorities);
+		user.setAuthorities(authorities);
+		return new UsernamePasswordAuthenticationToken(user, token, authorities);
 	}
 
 }

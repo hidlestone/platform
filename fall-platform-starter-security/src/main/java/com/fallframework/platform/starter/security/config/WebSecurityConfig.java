@@ -1,6 +1,7 @@
 package com.fallframework.platform.starter.security.config;
 
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
+import com.fallframework.platform.starter.rbac.service.PermissionService;
 import com.fallframework.platform.starter.security.filter.TokenAuthFilter;
 import com.fallframework.platform.starter.security.filter.UsernamePasswordAuthFilter;
 import com.fallframework.platform.starter.security.handle.AuthenticationEntryPointImpl;
@@ -55,6 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private DefaultPasswordEncoder defaultPasswordEncoder;
 	@Autowired
 	private RedisUtil redisUtil;
+	@Autowired
+	private PermissionService permissionService;
 
 	/**
 	 * anyRequest          |   匹配所有请求路径
@@ -109,7 +112,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// 认证过滤器
 				.addFilter(new UsernamePasswordAuthFilter(authenticationManager(), redisUtil))
 				// 授权过滤器
-				.addFilter(new TokenAuthFilter(authenticationManager(), redisUtil))
+				.addFilter(new TokenAuthFilter(authenticationManager(), redisUtil, permissionService))
 				// 访问被拒绝处理器
 				.exceptionHandling().accessDeniedHandler(new AccessDeniedHandlerImpl());
 		// 成功退出的处理

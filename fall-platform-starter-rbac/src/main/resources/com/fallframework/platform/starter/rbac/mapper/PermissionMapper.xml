@@ -33,5 +33,29 @@
 		WHERE
 			r.role_code IS NOT NULL	
 	</select>
+	
+	<select id="getPermissionListByUserId" resultType="com.fallframework.platform.starter.rbac.model.RolePermissionResponse" parameterType="long">
+		SELECT
+			resource_value AS resourceValue,
+			authc_type AS authcType
+		FROM
+			s_permission
+		WHERE
+			id IN (
+				SELECT DISTINCT
+					(permission_id)
+				FROM
+					s_role_permission
+				WHERE
+					role_id IN (
+						SELECT
+							role_id
+						FROM
+							s_user_role
+						WHERE
+							user_id = #{id,jdbcType=BIGINT} 
+					)
+			)
+	</select>
 
 </mapper>

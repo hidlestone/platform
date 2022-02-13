@@ -1,18 +1,20 @@
 package com.fallframework.platform.starter.security.config;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.fallframework.platform.starter.rbac.entity.Role;
-import com.fallframework.platform.starter.rbac.service.RoleService;
+import com.fallframework.platform.starter.rbac.model.RolePermissionResponse;
+import com.fallframework.platform.starter.rbac.service.PermissionService;
 import com.fallframework.platform.starter.rbac.service.UserService;
 import com.fallframework.platform.starter.security.entity.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private RoleService roleService;
+	private PermissionService permissionService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -37,9 +39,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 		User user = new User();
 		BeanUtils.copyProperties(one, user);
-		// 角色
-		List<Role> roleList = roleService.getRolesByUserId(Long.valueOf(user.getId()));
-		user.setRoles(roleList);
+		// 根据用户ID查询资源权限
+		List<RolePermissionResponse> permissionList = permissionService.getPermissionListByUserId(user.getId());
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		for (RolePermissionResponse item : permissionList) {
+			authorities.add(new SimpleGrantedAuthority(item.getResourceValue()));
+		}
+		user.setAuthorities(authorities);
 		return user;
 	}
 
