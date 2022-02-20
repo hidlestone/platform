@@ -151,7 +151,7 @@ public class RedisUtil {
 	/**
 	 * 获取值
 	 */
-	public List<Object> getValues(List<String> keys) {
+	public List<Object> getValues(Collection<String> keys) {
 		return this.redisTemplate.opsForValue().multiGet(keys);
 	}
 
@@ -575,4 +575,12 @@ public class RedisUtil {
 			return 0L;
 		}
 	}
+
+	/**
+	 * 获取所有的key
+	 */
+	public Set<String> keys(String pattern) {
+		return redisTemplate.keys(pattern);
+	}
+
 }

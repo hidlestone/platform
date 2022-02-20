@@ -41,7 +41,7 @@ public class User extends BaseEntity implements UserDetails {
 	/**
 	 * 用户昵称
 	 */
-	private String userName;
+	private String username;
 
 	/**
 	 * 头像URL
@@ -121,7 +121,7 @@ public class User extends BaseEntity implements UserDetails {
 	 */
 	@Override
 	public String getUsername() {
-		return userName;
+		return username;
 	}
 
 	/**

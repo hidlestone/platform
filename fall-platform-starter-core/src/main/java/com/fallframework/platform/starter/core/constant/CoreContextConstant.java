@@ -59,4 +59,13 @@ public class CoreContextConstant {
 	// 默认字符集
 	public static final String DEFAULT_CHARSET = "UTF-8";
 
+	public static final String REMEMBER_ME = "remember-me";
+
+	// Request Headers:accesstoken 访问token
+	public static final String ACCESSTOKEN = "accesstoken";
+
+	// Request Headers:refreshtoken 访问token
+	public static final String REFRESHTOKEN = "refreshtoken";
+
+
 }

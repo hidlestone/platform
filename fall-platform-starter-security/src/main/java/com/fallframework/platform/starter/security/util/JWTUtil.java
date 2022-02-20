@@ -45,7 +45,7 @@ public class JWTUtil {
 				// 构建claim信息
 				.withClaim("id", String.valueOf(user.getId()))
 				.withClaim("account", user.getAccount())
-				.withClaim("userName", user.getUsername())
+				.withClaim("username", user.getUsername())
 //				.withClaim("clientCode", clientCode).withClaim("extraInfo", extraInfo)
 				// 设置过期时间
 				.withExpiresAt(expireDate).sign(algo);
@@ -54,10 +54,11 @@ public class JWTUtil {
 
 	/**
 	 * 解析token为用户
+	 *
 	 * @param token token
 	 * @return 用户
 	 */
-	public static User parseToken(String token){
+	public static User parseToken(String token) {
 		Algorithm algorithm = Algorithm.HMAC256(JWT_SECRET_KEY);
 		JWTVerifier verifier = JWT.require(algorithm).withIssuer(DEFAULT_ISSUER).build();
 		DecodedJWT jwt = verifier.verify(token);
@@ -66,7 +67,7 @@ public class JWTUtil {
 		User user = new User();
 		user.setId(Long.valueOf(claimMap.get("id").asString()));
 		user.setAccount(claimMap.get("account").asString());
-		user.setUserName(claimMap.get("userName").asString());
+		user.setUsername(claimMap.get("username").asString());
 		return user;
 	}
 

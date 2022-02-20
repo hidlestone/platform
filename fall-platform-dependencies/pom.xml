@@ -64,6 +64,7 @@
 		<apache-httpclient.version>4.5</apache-httpclient.version>
 		<apache-poi.version>3.17</apache-poi.version>
 		<apache-shiro.version>1.4.0</apache-shiro.version>
+		<shiro-spring.version>1.4.0</shiro-spring.version>
 		<apache-xerces.version>2.7.0</apache-xerces.version>
 		<asm.version>5.0.3</asm.version>
 		<dozer.version>5.5.1</dozer.version>
@@ -204,6 +205,11 @@
 			<dependency>
 				<groupId>com.fallframework.platform</groupId>
 				<artifactId>fall-platform-starter-mq-api</artifactId>
+				<version>${platform.starters.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fallframework.platform</groupId>
+				<artifactId>fall-platform-starter-shiro</artifactId>
 				<version>${platform.starters.version}</version>
 			</dependency>
 
@@ -349,7 +355,12 @@
 				<groupId>org.apache.shiro</groupId>
 				<artifactId>shiro-spring-boot</artifactId>
 				<version>${apache-shiro.version}</version>
-				<type>pom</type>
+				<!--<type>pom</type>-->
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-spring</artifactId>
+				<version>${shiro-spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.ow2.asm</groupId>

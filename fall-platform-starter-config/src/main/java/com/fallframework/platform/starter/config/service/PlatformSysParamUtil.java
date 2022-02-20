@@ -9,6 +9,7 @@ import com.fallframework.platform.starter.config.mapper.SysParamGroupMapper;
 import com.fallframework.platform.starter.config.mapper.SysParamItemMapper;
 import com.fallframework.platform.starter.config.model.SysParamGroupResponse;
 import com.fallframework.platform.starter.config.model.SysParamItemResponse;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -37,6 +38,18 @@ public class PlatformSysParamUtil {
 	private SysParamItemMapper sysParamItemMapper;
 	@Autowired
 	private SysParamGroupMapper sysParamGroupMapper;
+
+	/**
+	 * 初始化该实例的时候就去更新系统参数缓存<br/>
+	 * 以便其他配置类在后续步骤可以获取到相关参数。
+	 */
+	public PlatformSysParamUtil(RedisUtil redisUtil, SysParamGroupService sysParamGroupService, SysParamItemMapper sysParamItemMapper, SysParamGroupMapper sysParamGroupMapper) {
+		this.redisUtil = redisUtil;
+		this.sysParamGroupService = sysParamGroupService;
+		this.sysParamItemMapper = sysParamItemMapper;
+		this.sysParamGroupMapper = sysParamGroupMapper;
+		this.refreshSysParamCache();
+	}
 
 	/**
 	 * @param groupCode 参数组编码
@@ -87,4 +100,16 @@ public class PlatformSysParamUtil {
 		return ResponseResult.success();
 	}
 
+	/**
+	 * @param sysItemMap   参数组
+	 * @param sysParamItem 参数项
+	 * @return 参数项中的值
+	 */
+	public String mapGet(Map<String, String> sysItemMap, String sysParamItem) {
+		String value = sysItemMap.get(sysParamItem);
+		if (StringUtils.isEmpty(value)) {
+			throw new RuntimeException("system param item " + sysParamItem + " is no exist.");
+		}
+		return value;
+	}
 }
