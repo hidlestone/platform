@@ -11,13 +11,16 @@ import com.fallframework.platform.starter.shiro.filter.JWTFilter;
 import com.fallframework.platform.starter.shiro.model.ShiroRealm;
 import com.fallframework.platform.starter.shiro.util.JWTUtil;
 import org.apache.shiro.authc.Authenticator;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authc.pam.AllSuccessfulStrategy;
 import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
 import org.apache.shiro.authc.pam.AuthenticationStrategy;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
+import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
+import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
+import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -26,6 +29,7 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -97,14 +101,14 @@ public class ShiroConfig {
 	public ShiroRealm shiroRealm() {
 		ShiroRealm shiroRealm = new ShiroRealm();
 		// 修改默认的凭证匹配器
-		HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+//		HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
 		// 设置加密算法为md5
-		credentialsMatcher.setHashAlgorithmName("md5");
+//		credentialsMatcher.setHashAlgorithmName("md5");
 		// 设置散列次数
 //		credentialsMatcher.setHashIterations(1024);
-		shiroRealm.setCredentialsMatcher(credentialsMatcher);
+//		shiroRealm.setCredentialsMatcher(credentialsMatcher);
 		// 开启缓存管理
-		shiroRealm.setCacheManager(new RedisCacheManager(platformSysParamUtil,redisUtil));
+		shiroRealm.setCacheManager(new RedisCacheManager(platformSysParamUtil, redisUtil));
 		// 开启全局缓存管理
 		shiroRealm.setCachingEnabled(true);
 		// 开启认证缓存
@@ -162,6 +166,12 @@ public class ShiroConfig {
 		List<Realm> realms = new ArrayList<>();
 		realms.add(shiroRealm());
 		securityManager.setRealms(realms);
+		// 【关闭Shiro自带的session】
+		/*DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
+		DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
+		defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
+		subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
+		securityManager.setSubjectDAO(subjectDAO);*/
 		// 自定义缓存实现
 		securityManager.setCacheManager(new RedisCacheManager(platformSysParamUtil, redisUtil));
 		// rememberMe
@@ -193,6 +203,7 @@ public class ShiroConfig {
 		shiroFilterFactoryBean.setFilters(filterMap);
 		// 配置管理器
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
+		// 即跳转登录的页面
 		shiroFilterFactoryBean.setLoginUrl(LOGIN_URL);
 		shiroFilterFactoryBean.setSuccessUrl(SUCCESS_URL);
 		shiroFilterFactoryBean.setUnauthorizedUrl(UNAUTHORIZED_URL);
@@ -203,10 +214,23 @@ public class ShiroConfig {
 		for (Map.Entry<String, Object> entry : configMap.entrySet()) {
 			filterChainDefinitionMap.put(entry.getKey(), String.valueOf(entry.getValue()));
 		}
-		filterChainDefinitionMap.put("/**", "jwt");
+//		filterChainDefinitionMap.put("/**", "jwt");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
+
+	/**
+	 * 下面的代码是添加注解支持
+	 */
+	@Bean
+//	@DependsOn("lifecycleBeanPostProcessor")
+	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+		DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+		// 强制使用cglib，防止重复代理和可能引起代理出错的问题，https://zhuanlan.zhihu.com/p/29161098
+		defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
+		return defaultAdvisorAutoProxyCreator;
+	}
+
 
 	/**
 	 * 配置 rememberMeCookie
@@ -241,5 +265,21 @@ public class ShiroConfig {
 		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
 		return authorizationAttributeSourceAdvisor;
 	}
+
+	/**
+	 * 自定义的 shiro session 缓存管理器，用于跨域等情况下使用 token 进行验证，不依赖于sessionId
+	 *
+	 * @return
+	 */
+	/*@Bean
+	public SessionManager sessionManager() {
+		// 将我们继承后重写的shiro session 注册
+		ShiroSession shiroSession = new ShiroSession(jwtUtil);
+		// 如果后续考虑多tomcat部署应用，可以使用shiro-redis开源插件来做session 的控制，或者nginx 的负载均衡
+		EnterpriseCacheSessionDAO enterpriseCacheSessionDAO = new EnterpriseCacheSessionDAO();
+		enterpriseCacheSessionDAO.setSessionIdGenerator(new JWTIdGenerator());
+		shiroSession.setSessionDAO(enterpriseCacheSessionDAO);
+		return shiroSession;
+	}*/
 
 }

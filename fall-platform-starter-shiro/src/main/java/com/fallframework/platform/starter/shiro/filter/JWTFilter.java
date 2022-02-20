@@ -1,6 +1,5 @@
 package com.fallframework.platform.starter.shiro.filter;
 
-import com.alibaba.fastjson.JSON;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.fallframework.platform.starter.api.response.ResponseResult;
@@ -13,19 +12,17 @@ import com.fallframework.platform.starter.rbac.model.TokenTypeEnum;
 import com.fallframework.platform.starter.shiro.config.JWTToken;
 import com.fallframework.platform.starter.shiro.constant.ShiroStarterConstant;
 import com.fallframework.platform.starter.shiro.util.JWTUtil;
+import com.fallframework.platform.starter.shiro.util.ShiroUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Map;
 
@@ -45,16 +42,21 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 
 	private RedisUtil redisUtil;
 	private JWTUtil jwtUtil;
-	private PlatformSysParamUtil platformSysParamUtil;
 
+	/**
+	 * 构造函数
+	 */
 	public JWTFilter(PlatformSysParamUtil platformSysParamUtil, RedisUtil redisUtil, JWTUtil jwtUtil) {
-		this.platformSysParamUtil = platformSysParamUtil;
 		this.redisUtil = redisUtil;
 		this.jwtUtil = jwtUtil;
 		Map<String, String> sysItemMap = platformSysParamUtil.getSysParamGroupItemMap(SysParamGroupEnum.SHIRO.toString()).getData();
 		SHIRO_REFRESH_TOKEN_TIME_INTERVAL = Long.valueOf(platformSysParamUtil.mapGet(sysItemMap, "SHIRO_REFRESH_TOKEN_TIME_INTERVAL"));
 	}
 
+	/**
+	 * 是否允许访问
+	 * 1、校验accesstoken和refreshtoken的请求头是否存在。且不是登录的url或者可匿名访问，返回false。
+	 */
 	@Override
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
 		// 查看当前Header中是否携带Authorization属性(Token)，有的话就进行登录认证授权
@@ -85,11 +87,11 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 						responseResult = ResponseResult.fail(msg);
 					}
 				}
-				this.resetResponse(response, responseResult);
+				ShiroUtil.resetResponse(response, responseResult);
 				return false;
 			}
 		} else {
-			this.resetResponse(response, ResponseResult.fail("request header accesstoken or refreshtoken is not exist."));
+			ShiroUtil.resetResponse(response, ResponseResult.fail("request header accesstoken or refreshtoken is not exist."));
 			return false;
 		}
 		return true;
@@ -144,8 +146,9 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 	 */
 	@Override
 	protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
-		// 获取当前Header中Authorization的AccessToken(Shiro中getAuthzHeader方法已经实现)
-		JWTToken jwtToken = new JWTToken(this.getAuthzHeader(request));
+		HttpServletRequest httpRequest = WebUtils.toHttp(request);
+		String accessToken = httpRequest.getHeader(CoreContextConstant.ACCESSTOKEN);
+		JWTToken jwtToken = new JWTToken(accessToken);
 		// 提交给UserRealm进行认证，如果错误他会抛出异常并被捕获
 		this.getSubject(request, response).login(jwtToken);
 		// 如果没有抛出异常则代表登入成功，返回true
@@ -153,7 +156,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 	}
 
 	/**
-	 * 检测Header里面是否包含Authorization字段，有则进行Token登录认证授权
+	 * 检测header里面是否包含accesstoken、refreshtoken字段，有则进行Token登录认证授权
 	 */
 	@Override
 	protected boolean isLoginAttempt(ServletRequest request, ServletResponse response) {
@@ -163,27 +166,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 		HttpServletRequest httpRequest = WebUtils.toHttp(request);
 		String accessToken = httpRequest.getHeader(CoreContextConstant.ACCESSTOKEN);
 		String refreshToken = httpRequest.getHeader(CoreContextConstant.REFRESHTOKEN);
-		if (StringUtils.isBlank(accessToken) || StringUtils.isBlank(refreshToken)) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * 重新设置response响应信息
-	 */
-	private void resetResponse(ServletResponse response, ResponseResult responseResult) {
-		HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
-		httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
-		httpServletResponse.setCharacterEncoding("UTF-8");
-		httpServletResponse.setContentType("application/json; charset=utf-8");
-		try {
-			PrintWriter out = httpServletResponse.getWriter();
-			String resp = JSON.toJSONString(responseResult);
-			out.append(resp);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		return !StringUtils.isBlank(accessToken) && !StringUtils.isBlank(refreshToken);
 	}
 
 }

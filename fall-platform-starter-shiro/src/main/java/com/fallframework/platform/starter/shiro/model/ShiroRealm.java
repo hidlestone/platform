@@ -8,6 +8,7 @@ import com.fallframework.platform.starter.rbac.model.RolePermissionResponse;
 import com.fallframework.platform.starter.rbac.service.PermissionService;
 import com.fallframework.platform.starter.rbac.service.RoleService;
 import com.fallframework.platform.starter.rbac.service.UserService;
+import com.fallframework.platform.starter.shiro.config.JWTToken;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -19,7 +20,9 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;
@@ -37,6 +40,14 @@ public class ShiroRealm extends AuthorizingRealm {
 	@Autowired
 	private PermissionService permissionService;
 
+	/**
+	 * 大坑，必须重写此方法，不然Shiro会报错
+	 */
+	/*@Override
+	public boolean supports(AuthenticationToken authenticationToken) {
+		return authenticationToken instanceof JWTToken;
+	}*/
+	
 	/**
 	 * 获取角色和权限
 	 */
@@ -89,4 +100,14 @@ public class ShiroRealm extends AuthorizingRealm {
 	protected void clearCachedAuthenticationInfo(PrincipalCollection principals) {
 		super.clearCachedAuthenticationInfo(principals);
 	}
+
+	/**
+	 * 清除缓存
+	 */
+	/*public void clearCache() {
+		System.out.println("清除缓存数据");
+		Subject subject=SecurityUtils.getSubject();
+		// 调用子类去清理缓存
+		super.clearCache(subject.getPrincipals());
+	}*/
 }

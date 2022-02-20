@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
  *
  * @author zhuangpf
  */
+@Deprecated
 @Getter
 @Setter
 @Component
