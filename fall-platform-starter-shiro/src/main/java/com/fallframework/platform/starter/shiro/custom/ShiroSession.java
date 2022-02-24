@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.shiro.config;
+package com.fallframework.platform.starter.shiro.custom;
 
 import com.alibaba.fastjson.JSON;
 import com.fallframework.platform.starter.api.response.ResponseResult;

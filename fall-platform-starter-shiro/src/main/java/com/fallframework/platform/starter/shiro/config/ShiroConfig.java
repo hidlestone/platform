@@ -7,6 +7,8 @@ import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
 import com.fallframework.platform.starter.core.constant.CoreContextConstant;
 import com.fallframework.platform.starter.shiro.cache.RedisCacheManager;
 import com.fallframework.platform.starter.shiro.constant.ShiroStarterConstant;
+import com.fallframework.platform.starter.shiro.custom.JWTIdGenerator;
+import com.fallframework.platform.starter.shiro.custom.RedisSessionDAO;
 import com.fallframework.platform.starter.shiro.filter.JWTFilter;
 import com.fallframework.platform.starter.shiro.model.ShiroRealm;
 import com.fallframework.platform.starter.shiro.util.JWTUtil;
@@ -15,23 +17,22 @@ import org.apache.shiro.authc.pam.AllSuccessfulStrategy;
 import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
 import org.apache.shiro.authc.pam.AuthenticationStrategy;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
-import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
-import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.session.mgt.SessionManager;
-import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import javax.servlet.Filter;
 import java.util.ArrayList;
@@ -172,6 +173,8 @@ public class ShiroConfig {
 		defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
 		subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
 		securityManager.setSubjectDAO(subjectDAO);*/
+//		securityManager.setSubjectFactory();
+		securityManager.setSessionManager(sessionManager());
 		// 自定义缓存实现
 		securityManager.setCacheManager(new RedisCacheManager(platformSysParamUtil, redisUtil));
 		// rememberMe
@@ -218,6 +221,11 @@ public class ShiroConfig {
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
+
+	/*@Bean(name = "lifecycleBeanPostProcessor")
+	public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+		return new LifecycleBeanPostProcessor();
+	}*/
 
 	/**
 	 * 下面的代码是添加注解支持
@@ -268,18 +276,16 @@ public class ShiroConfig {
 
 	/**
 	 * 自定义的 shiro session 缓存管理器，用于跨域等情况下使用 token 进行验证，不依赖于sessionId
-	 *
-	 * @return
 	 */
-	/*@Bean
+	@Bean
 	public SessionManager sessionManager() {
 		// 将我们继承后重写的shiro session 注册
-		ShiroSession shiroSession = new ShiroSession(jwtUtil);
+		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+		RedisSessionDAO redisSessionDAO = new RedisSessionDAO(platformSysParamUtil, redisUtil, jwtUtil);
 		// 如果后续考虑多tomcat部署应用，可以使用shiro-redis开源插件来做session 的控制，或者nginx 的负载均衡
-		EnterpriseCacheSessionDAO enterpriseCacheSessionDAO = new EnterpriseCacheSessionDAO();
-		enterpriseCacheSessionDAO.setSessionIdGenerator(new JWTIdGenerator());
-		shiroSession.setSessionDAO(enterpriseCacheSessionDAO);
-		return shiroSession;
-	}*/
+		redisSessionDAO.setSessionIdGenerator(new JWTIdGenerator());
+		sessionManager.setSessionDAO(redisSessionDAO);
+		return sessionManager;
+	}
 
 }
