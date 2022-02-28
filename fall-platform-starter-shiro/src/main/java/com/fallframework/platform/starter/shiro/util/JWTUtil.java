@@ -54,6 +54,7 @@ public class JWTUtil {
 
 	/**
 	 * 为用户构建token
+	 * 只包含：id、account、、username 三个字段
 	 *
 	 * @param user 登录用户
 	 * @return token

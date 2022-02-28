@@ -5,11 +5,9 @@ import com.alibaba.fastjson.JSON;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
 import com.fallframework.platform.starter.core.constant.CoreContextConstant;
-import com.fallframework.platform.starter.shiro.cache.RedisCacheManager;
 import com.fallframework.platform.starter.shiro.constant.ShiroStarterConstant;
-import com.fallframework.platform.starter.shiro.custom.JWTIdGenerator;
-import com.fallframework.platform.starter.shiro.custom.RedisSessionDAO;
-import com.fallframework.platform.starter.shiro.filter.JWTFilter;
+import com.fallframework.platform.starter.shiro.custom.JWTSubjectFactory;
+import com.fallframework.platform.starter.shiro.filter.JWTShiroFilter;
 import com.fallframework.platform.starter.shiro.model.ShiroRealm;
 import com.fallframework.platform.starter.shiro.util.JWTUtil;
 import org.apache.shiro.authc.Authenticator;
@@ -17,16 +15,17 @@ import org.apache.shiro.authc.pam.AllSuccessfulStrategy;
 import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
 import org.apache.shiro.authc.pam.AuthenticationStrategy;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
+import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
@@ -89,37 +88,14 @@ public class ShiroConfig {
 		return new LifecycleBeanPostProcessor();
 	}
 
-	// ShiroDialect，为了在thymeleaf里使用shiro的标签的bean
-	/*@Bean
-	public ShiroDialect shiroDialect() {
-		return new ShiroDialect();
-	}*/
-
 	/**
 	 * 配置 realm
 	 */
 	@Bean
 	public ShiroRealm shiroRealm() {
 		ShiroRealm shiroRealm = new ShiroRealm();
-		// 修改默认的凭证匹配器
-//		HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
-		// 设置加密算法为md5
-//		credentialsMatcher.setHashAlgorithmName("md5");
-		// 设置散列次数
-//		credentialsMatcher.setHashIterations(1024);
-//		shiroRealm.setCredentialsMatcher(credentialsMatcher);
-		// 开启缓存管理
-		shiroRealm.setCacheManager(new RedisCacheManager(platformSysParamUtil, redisUtil));
-		// 开启全局缓存管理
-		shiroRealm.setCachingEnabled(true);
-		// 开启认证缓存
-		shiroRealm.setAuthorizationCachingEnabled(true);
-		// 认证缓存名称
-		shiroRealm.setAuthenticationCacheName("authenticationCache");
-		// 开启授权缓存
-		shiroRealm.setAuthenticationCachingEnabled(true);
-		// 授权缓存名称
-		shiroRealm.setAuthorizationCacheName("authorizationCache");
+		// 开启/关闭全局缓存管理，每次都去走ShiroRealm的认证方法
+		shiroRealm.setCachingEnabled(false);
 		return shiroRealm;
 	}
 
@@ -153,30 +129,49 @@ public class ShiroConfig {
 
 	}
 
+	@Bean
+	public DefaultSessionStorageEvaluator defaultSessionStorageEvaluator() {
+		DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
+		defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
+		return defaultSessionStorageEvaluator;
+	}
+
+	@Bean
+	public DefaultSubjectDAO defaultSubjectDAO(DefaultSessionStorageEvaluator defaultSessionStorageEvaluator) {
+		DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
+		subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
+		return subjectDAO;
+	}
+
+	@Bean
+	public JWTSubjectFactory jwtSubjectFactory() {
+		JWTSubjectFactory jwtSubjectFactory = new JWTSubjectFactory();
+		return jwtSubjectFactory;
+	}
+
 	/**
 	 * 配置 securityManager
 	 */
 	@Bean
-	public SecurityManager securityManager() {
+	public SecurityManager securityManager(
+			ShiroRealm shiroRealm,
+			EhCacheManager cacheManager,
+			JWTSubjectFactory jwtSubjectFactory,
+			DefaultSubjectDAO subjectDAO) {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		// 多Reaml的认证策略
 		securityManager.setAuthenticator(authenticator());
 		// 设置单个realm
-		securityManager.setRealm(shiroRealm());
+		securityManager.setRealm(shiroRealm);
 		// 设置多个realm授权验证时，只要一个通过即可
 		List<Realm> realms = new ArrayList<>();
-		realms.add(shiroRealm());
+		realms.add(shiroRealm);
 		securityManager.setRealms(realms);
-		// 【关闭Shiro自带的session】
-		/*DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
-		DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
-		defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
-		subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
-		securityManager.setSubjectDAO(subjectDAO);*/
-//		securityManager.setSubjectFactory();
-		securityManager.setSessionManager(sessionManager());
-		// 自定义缓存实现
-		securityManager.setCacheManager(new RedisCacheManager(platformSysParamUtil, redisUtil));
+		// close session
+		securityManager.setSubjectFactory(jwtSubjectFactory);
+		securityManager.setSubjectDAO(subjectDAO);
+		// 缓存
+		securityManager.setCacheManager(cacheManager);
 		// rememberMe
 		securityManager.setRememberMeManager(rememberMeManager());
 		return securityManager;
@@ -197,12 +192,12 @@ public class ShiroConfig {
 	 * 配置shiroFilterFactoryBean
 	 * 配置基本的过滤规则
 	 */
-	@Bean("shiroFilter")
+	@Bean
 	public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		// 添加自己的过滤器取名为jwt
 		Map<String, Filter> filterMap = new HashMap<>(16);
-		filterMap.put("jwt", new JWTFilter(platformSysParamUtil, redisUtil, jwtUtil));
+		filterMap.put("jwt", new JWTShiroFilter(platformSysParamUtil, redisUtil, jwtUtil));
 		shiroFilterFactoryBean.setFilters(filterMap);
 		// 配置管理器
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -217,28 +212,26 @@ public class ShiroConfig {
 		for (Map.Entry<String, Object> entry : configMap.entrySet()) {
 			filterChainDefinitionMap.put(entry.getKey(), String.valueOf(entry.getValue()));
 		}
-//		filterChainDefinitionMap.put("/**", "jwt");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
 
-	/*@Bean(name = "lifecycleBeanPostProcessor")
+	@Bean(name = "lifecycleBeanPostProcessor")
 	public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
 		return new LifecycleBeanPostProcessor();
-	}*/
+	}
 
 	/**
 	 * 下面的代码是添加注解支持
 	 */
 	@Bean
-//	@DependsOn("lifecycleBeanPostProcessor")
+	@DependsOn("lifecycleBeanPostProcessor")
 	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
 		DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
 		// 强制使用cglib，防止重复代理和可能引起代理出错的问题，https://zhuanlan.zhihu.com/p/29161098
 		defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
 		return defaultAdvisorAutoProxyCreator;
 	}
-
 
 	/**
 	 * 配置 rememberMeCookie
@@ -272,20 +265,6 @@ public class ShiroConfig {
 		AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
 		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
 		return authorizationAttributeSourceAdvisor;
-	}
-
-	/**
-	 * 自定义的 shiro session 缓存管理器，用于跨域等情况下使用 token 进行验证，不依赖于sessionId
-	 */
-	@Bean
-	public SessionManager sessionManager() {
-		// 将我们继承后重写的shiro session 注册
-		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-		RedisSessionDAO redisSessionDAO = new RedisSessionDAO(platformSysParamUtil, redisUtil, jwtUtil);
-		// 如果后续考虑多tomcat部署应用，可以使用shiro-redis开源插件来做session 的控制，或者nginx 的负载均衡
-		redisSessionDAO.setSessionIdGenerator(new JWTIdGenerator());
-		sessionManager.setSessionDAO(redisSessionDAO);
-		return sessionManager;
 	}
 
 }
