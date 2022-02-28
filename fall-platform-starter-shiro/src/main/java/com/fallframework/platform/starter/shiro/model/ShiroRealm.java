@@ -53,7 +53,8 @@ public class ShiroRealm extends AuthorizingRealm {
 	 */
 	@Override
 	public boolean supports(AuthenticationToken authenticationToken) {
-		return authenticationToken instanceof JWTToken;
+		return authenticationToken instanceof JWTToken
+				|| authenticationToken instanceof UsernamePasswordToken;
 	}
 
 	/**
@@ -80,8 +81,8 @@ public class ShiroRealm extends AuthorizingRealm {
 				throw new LockedAccountException("account is disable, contact the admin.");
 			}
 			// 生成accesstoken
-			info = new SimpleAuthenticationInfo(user.getUsername(), password, getName());
-		} else {
+			info = new SimpleAuthenticationInfo(user, password, getName());
+		} else if (token instanceof JWTToken) {
 			// JWTToken
 			String username = ((JWTToken) token).getPrincipal();
 			String accesstoken = ((JWTToken) token).getCredentials();
@@ -92,6 +93,8 @@ public class ShiroRealm extends AuthorizingRealm {
 				throw new UnknownAccountException("invalid accesstoken");
 			}
 			info = new SimpleAuthenticationInfo(idStr + "#" + username, accesstoken, getName());
+		} else {
+			throw new RuntimeException("authenticationToken is not support");
 		}
 		return info;
 	}
@@ -106,7 +109,7 @@ public class ShiroRealm extends AuthorizingRealm {
 			throw new AuthorizationException("PrincipalCollection method argument cannot be null.");
 		}
 		String idUsername = (String) getAvailablePrincipal(principalCollection);
-		Long id = Long.valueOf(idUsername.split("#")[1]);
+		Long id = Long.valueOf(idUsername.split("#")[0]);
 		// 用户角色集
 		List<Role> roleList = roleService.getRolesByUserId(id);
 		Set<String> roleSet = new HashSet<String>();
@@ -119,7 +122,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		List<RolePermissionResponse> permissionResponseList = permissionService.getPermissionListByUserId(id);
 		Set<String> permissionSet = new HashSet<>();
 		for (RolePermissionResponse permission : permissionResponseList) {
-			permissionSet.add(permission.getResourceValue());
+			permissionSet.add(permission.getPermissionCode());
 		}
 		simpleAuthorizationInfo.setStringPermissions(permissionSet);
 		return simpleAuthorizationInfo;

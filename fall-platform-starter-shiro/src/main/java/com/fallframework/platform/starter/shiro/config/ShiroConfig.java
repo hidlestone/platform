@@ -25,6 +25,7 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.mgt.DefaultWebSubjectFactory;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -129,6 +130,23 @@ public class ShiroConfig {
 
 	}
 
+	/*@Bean(name = "lifecycleBeanPostProcessor")
+	public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+		return new LifecycleBeanPostProcessor();
+	}*/
+
+	/**
+	 * 下面的代码是添加注解支持
+	 */
+	@Bean
+//	@DependsOn("lifecycleBeanPostProcessor")
+	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+		DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+		// 强制使用cglib，防止重复代理和可能引起代理出错的问题，https://zhuanlan.zhihu.com/p/29161098
+		defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
+		return defaultAdvisorAutoProxyCreator;
+	}
+
 	@Bean
 	public DefaultSessionStorageEvaluator defaultSessionStorageEvaluator() {
 		DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
@@ -155,25 +173,34 @@ public class ShiroConfig {
 	@Bean
 	public SecurityManager securityManager(
 			ShiroRealm shiroRealm,
-			EhCacheManager cacheManager,
+//			EhCacheManager cacheManager,
 			JWTSubjectFactory jwtSubjectFactory,
 			DefaultSubjectDAO subjectDAO) {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		// 多Reaml的认证策略
 		securityManager.setAuthenticator(authenticator());
-		// 设置单个realm
-		securityManager.setRealm(shiroRealm);
 		// 设置多个realm授权验证时，只要一个通过即可
 		List<Realm> realms = new ArrayList<>();
 		realms.add(shiroRealm);
-		securityManager.setRealms(realms);
 		// close session
+		/*securityManager.setSubjectFactory(jwtSubjectFactory);
+		securityManager.setSubjectDAO(subjectDAO);*/
+		// 关闭 ShiroDAO 功能
+		DefaultSubjectDAO subjectDAO2 = new DefaultSubjectDAO();
+		DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
+		// 不需要将 Shiro Session 中的东西存到任何地方（包括 Http Session 中）
+		defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
+		subjectDAO2.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
+		securityManager.setSubjectDAO(subjectDAO2);
+		// 禁止Subject的getSession方法
 		securityManager.setSubjectFactory(jwtSubjectFactory);
-		securityManager.setSubjectDAO(subjectDAO);
 		// 缓存
-		securityManager.setCacheManager(cacheManager);
+//		securityManager.setCacheManager(cacheManager);
 		// rememberMe
 		securityManager.setRememberMeManager(rememberMeManager());
+		// 设置单个realm
+		securityManager.setRealm(shiroRealm);
+		securityManager.setRealms(realms);
 		return securityManager;
 	}
 
@@ -214,23 +241,6 @@ public class ShiroConfig {
 		}
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
-	}
-
-	@Bean(name = "lifecycleBeanPostProcessor")
-	public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
-		return new LifecycleBeanPostProcessor();
-	}
-
-	/**
-	 * 下面的代码是添加注解支持
-	 */
-	@Bean
-	@DependsOn("lifecycleBeanPostProcessor")
-	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
-		DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
-		// 强制使用cglib，防止重复代理和可能引起代理出错的问题，https://zhuanlan.zhihu.com/p/29161098
-		defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
-		return defaultAdvisorAutoProxyCreator;
 	}
 
 	/**

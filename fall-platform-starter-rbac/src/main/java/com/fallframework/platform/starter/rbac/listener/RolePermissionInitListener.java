@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.security.listener;
+package com.fallframework.platform.starter.rbac.listener;
 
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.rbac.service.PermissionService;
@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
  * @author zhuangpf
  */
 @Component
-public class SecurityInitListener implements ApplicationListener<ApplicationStartedEvent> {
+public class RolePermissionInitListener implements ApplicationListener<ApplicationStartedEvent> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityInitListener.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RolePermissionInitListener.class);
 
 	@Autowired
 	private PermissionService permissionService;

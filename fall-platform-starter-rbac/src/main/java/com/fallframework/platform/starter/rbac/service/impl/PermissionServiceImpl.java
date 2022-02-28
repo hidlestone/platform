@@ -46,8 +46,8 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 			return ResponseResult.success();
 		}
 		// 按照角色分组
-		Map<Long, List<RolePermissionResponse>> rolePermMap = new HashMap<>();
-		rolePermMap = rolePermissionResponseList.stream().collect(Collectors.groupingBy(RolePermissionResponse::getId));
+		Map<Long, List<RolePermissionResponse>> rolePermMap = 
+				rolePermissionResponseList.stream().collect(Collectors.groupingBy(RolePermissionResponse::getId));
 		for (Map.Entry<Long, List<RolePermissionResponse>> entry : rolePermMap.entrySet()) {
 			redisUtil.hset(RbacStarterConstant.CACHE_KEY_ROLE_PERMISSION, String.valueOf(entry.getKey()), entry.getValue());
 		}
@@ -71,7 +71,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 		if (CollectionUtil.isNotEmpty(allRolePermList)) {
 			// 权限去重
 			allRolePermList = allRolePermList.stream().collect(Collectors.collectingAndThen(
-					Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RolePermissionResponse::getResourceValue))), ArrayList::new));
+					Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RolePermissionResponse::getPermissionCode))), ArrayList::new));
 			return allRolePermList;
 		}
 		// 2、从数据库获取

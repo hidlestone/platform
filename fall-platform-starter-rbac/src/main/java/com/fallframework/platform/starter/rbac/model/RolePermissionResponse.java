@@ -17,6 +17,8 @@ public class RolePermissionResponse extends BaseEntityResponse {
 
 	private String roleCode;
 
+	private String permissionCode;
+	
 	private String resourceValue;
 
 	private AuthcTypeEnum authcType;

@@ -24,6 +24,7 @@
 		SELECT
 			r.id AS id,
 			r.role_code AS roleCode,
+			p.permission_code AS permissionCode,
 			p.resource_value AS resourceValue,
 			p.authc_type AS authcType
 		FROM

@@ -14,6 +14,8 @@ import com.fallframework.platform.starter.shiro.custom.JWTToken;
 import com.fallframework.platform.starter.shiro.util.JWTUtil;
 import com.fallframework.platform.starter.shiro.util.ShiroUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
@@ -106,12 +108,11 @@ public class JWTShiroFilter extends BasicHttpAuthenticationFilter {
 			// 认证出现错误，获取错误信息
 			ResponseResult responseResult = ResponseResult.success();
 			// 获取应用异常(该Cause是导致抛出此throwable(异常)的throwable(异常))
-			Throwable throwable = e.getCause();
-			if (throwable instanceof SignatureVerificationException) {
+			if (e instanceof SignatureVerificationException) {
 				// 该异常为JWT的AccessToken认证失败(Token或者密钥不正确)
-				String msg = "token or cipher is not correct. (" + throwable.getMessage() + ")";
+				String msg = "token or cipher is not correct. (" + e.getMessage() + ")";
 				responseResult = ResponseResult.fail(msg);
-			} else if (throwable instanceof TokenExpiredException) {
+			} else if (e instanceof TokenExpiredException) {
 				// 该异常为JWT的AccessToken已过期，判断RefreshToken未过期就进行AccessToken刷新
 				// 动态刷新双token
 				responseResult = this.doRefreshToken(request, response);
@@ -120,9 +121,9 @@ public class JWTShiroFilter extends BasicHttpAuthenticationFilter {
 				}
 			} else {
 				// 应用异常不为空
-				if (null != throwable) {
+				if (null != e) {
 					// 获取应用异常msg
-					String msg = throwable.getMessage();
+					String msg = e.getMessage();
 					responseResult = ResponseResult.fail(msg);
 				}
 			}
@@ -139,10 +140,10 @@ public class JWTShiroFilter extends BasicHttpAuthenticationFilter {
 		HttpServletRequest httpRequest = WebUtils.toHttp(request);
 		String accesstoken = httpRequest.getHeader(CoreContextConstant.ACCESSTOKEN);
 		String refreshtoken = httpRequest.getHeader(CoreContextConstant.REFRESHTOKEN);
-		ResponseResult responseResult = jwtUtil.accessRefreshTokeValidate(accesstoken, refreshtoken);
+		/*ResponseResult responseResult = jwtUtil.accessRefreshTokeValidate(accesstoken, refreshtoken);
 		if (!responseResult.isSuccess()) {
 			return responseResult;
-		}
+		}*/
 		String idStr = jwtUtil.getClaim(refreshtoken, "id");
 		// 缓存中的refreshToken
 		String refreshTokenCache = (String) redisUtil.get(ShiroStarterConstant.CACHE_KEY_SHIRO_REFRESHTOKEN + idStr);
@@ -194,7 +195,9 @@ public class JWTShiroFilter extends BasicHttpAuthenticationFilter {
 		String username = jwtUtil.getClaim(accessToken, "username");
 		JWTToken jwtToken = new JWTToken(username, accessToken);
 		// 提交给UserRealm进行认证，如果错误会抛出异常并被捕获
-		this.getSubject(request, response).login(jwtToken);
+//		this.getSubject(request, response).login(jwtToken); // 这个方法会执行验证和授权
+		Subject currentUser = SecurityUtils.getSubject();
+		currentUser.login(jwtToken);
 		// 如果没有抛出异常则代表登入成功，返回true
 		return true;
 	}
