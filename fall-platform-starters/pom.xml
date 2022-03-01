@@ -81,6 +81,7 @@
 	    <module>../fall-platform-starter-security</module>
 	    <module>../fall-platform-starter-shiro</module>
         <module>../fall-platform-starter-rbac</module>
+	    <module>../fall-platform-starter-webservice</module>
     </modules>
 
 </project>

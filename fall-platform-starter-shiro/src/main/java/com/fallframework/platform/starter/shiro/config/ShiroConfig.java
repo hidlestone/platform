@@ -15,7 +15,6 @@ import org.apache.shiro.authc.pam.AllSuccessfulStrategy;
 import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
 import org.apache.shiro.authc.pam.AuthenticationStrategy;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
@@ -25,14 +24,12 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.mgt.DefaultWebSubjectFactory;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 
 import javax.servlet.Filter;
 import java.util.ArrayList;
@@ -183,19 +180,17 @@ public class ShiroConfig {
 		List<Realm> realms = new ArrayList<>();
 		realms.add(shiroRealm);
 		// close session
-		/*securityManager.setSubjectFactory(jwtSubjectFactory);
-		securityManager.setSubjectDAO(subjectDAO);*/
-		// 关闭 ShiroDAO 功能
+		securityManager.setSubjectFactory(jwtSubjectFactory);
+		securityManager.setSubjectDAO(subjectDAO);
+	    /*// 关闭 ShiroDAO 功能
 		DefaultSubjectDAO subjectDAO2 = new DefaultSubjectDAO();
 		DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
 		// 不需要将 Shiro Session 中的东西存到任何地方（包括 Http Session 中）
 		defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
 		subjectDAO2.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
-		securityManager.setSubjectDAO(subjectDAO2);
-		// 禁止Subject的getSession方法
-		securityManager.setSubjectFactory(jwtSubjectFactory);
+		securityManager.setSubjectDAO(subjectDAO2);*/
 		// 缓存
-//		securityManager.setCacheManager(cacheManager);
+		/*securityManager.setCacheManager(cacheManager);*/
 		// rememberMe
 		securityManager.setRememberMeManager(rememberMeManager());
 		// 设置单个realm
