@@ -135,7 +135,7 @@ spring-boot-starters
 ## 二、功能
 ```
 fall-platform-dependencies              【DONE】全局依赖管理
-fall-platform-parent                    【DONE】父工程：dependencies->parent
+fall-platform-parent                    【DONE】父工程：dependencies->parent->staters->xxxstarter
 fall-platform-starter-api-dependency    【DONE】后续应用工程API包的依赖管理
 fall-platform-starter-cache-ehcache     【DONE】EhCache应用
 fall-platform-starter-cache-mongodb
