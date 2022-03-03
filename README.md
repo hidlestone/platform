@@ -184,7 +184,7 @@ fall-platform-starters                   【DONE】所有starter的父工程
 ```
 
 ## 三、起步
-选中 fall-platform-dependencies 右键
+选中 fall-platform-starters 右键
 run maven -> install 将所有模块install到maven仓库，便于后续引入。
 或者用到哪个模块直接install。【注意模块之间的层级关系，从最底层开始install】
 
