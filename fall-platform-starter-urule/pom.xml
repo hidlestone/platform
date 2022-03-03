@@ -10,13 +10,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fall-platform-starter-elasticsearch</artifactId>
+	<artifactId>fall-platform-starter-urule</artifactId>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-		</dependency>
-	</dependencies>
 
 </project>

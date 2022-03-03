@@ -52,7 +52,7 @@
         <module>../fall-platform-starter-cache-mongodb</module>
         <module>../fall-platform-starter-config</module>
         <module>../fall-platform-starter-i18n</module>
-        <module>../fall-platform-starter-mvc</module>
+        <module>../fall-platform-starter-guard</module>
         <module>../fall-platform-starter-file</module>
         <module>../fall-platform-starter-mail</module>
         <module>../fall-platform-starter-wechat</module>
@@ -82,6 +82,9 @@
 	    <module>../fall-platform-starter-shiro</module>
         <module>../fall-platform-starter-rbac</module>
 	    <module>../fall-platform-starter-webservice</module>
+	    <module>../fall-platform-starter-social</module>
+        <module>../fall-platform-starter-urule</module>
+        <module>../fall-platform-starter-uflo</module>
     </modules>
 
 </project>

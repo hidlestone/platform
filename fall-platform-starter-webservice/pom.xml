@@ -10,13 +10,26 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fall-platform-starter-elasticsearch</artifactId>
+	<artifactId>fall-platform-starter-webservice</artifactId>
 
 	<dependencies>
+		<!-- webService-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+
+		<!-- CXF webservice -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>3.2.1</version>
 		</dependency>
 	</dependencies>
-
+	
 </project>
