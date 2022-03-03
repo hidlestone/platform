@@ -85,6 +85,7 @@
 	    <module>../fall-platform-starter-social</module>
         <module>../fall-platform-starter-urule</module>
         <module>../fall-platform-starter-uflo</module>
+	    <module>../fall-platform-starter-drools</module>
     </modules>
 
 </project>
