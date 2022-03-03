@@ -189,8 +189,9 @@ run maven -> install 将所有模块install到maven仓库，便于后续引入�
 或者用到哪个模块直接install。【注意模块之间的层级关系，从最底层开始install】
 
 ## 四、开发
-初始化脚本：
-doc/db/init.sql
+- 初始化脚本：doc/db/init.sql
+- 启动rabbitmq服务端
+- 启动redis
 
 开发过程中，可以在项目 platform-demo 中进行功能测试。
 
