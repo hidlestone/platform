@@ -144,7 +144,7 @@ fall-platform-starter-cache-simple      【DONE】java缓存实现
 fall-platform-starter-config            【DONE】系统全局配置
 fall-platform-starter-control-dependency【DONE】后续应用工程CONTROL包的依赖管理
 fall-platform-starter-core              【优化】核心包
-fall-platform-starter-data              【优化】数据访问层，ORM，mybatisplus风爪昂
+fall-platform-starter-data              【优化】数据访问层，ORM，mybatisplus封装
 fall-platform-starter-doc                文件转换等
 fall-platform-starter-elasticjob         elasticjob分布式任务调度
 fall-platform-starter-elasticsearch      elasticsearch搜索引擎
