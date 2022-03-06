@@ -86,6 +86,9 @@
         <module>../fall-platform-starter-urule</module>
         <module>../fall-platform-starter-uflo</module>
 	    <module>../fall-platform-starter-drools</module>
+	    <module>../fall-platform-starter-sharding-jdbc</module>
+	    <module>../fall-platform-starter-mycat</module>
+        <module>../fall-platform-starter-activiti</module>
     </modules>
 
 </project>
