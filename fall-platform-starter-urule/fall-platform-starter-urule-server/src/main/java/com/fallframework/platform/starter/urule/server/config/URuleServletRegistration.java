@@ -5,7 +5,10 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
 /**
- * 后台规则注册URL
+ * 配置Urule Servlet，后台规则注册URL<br/>
+ * urule后台地址：<br/>
+ * http://localhost:[port]/[contextPath]/urule/frame<br/>
+ * http://localhost:8787/urule/frame<br/>
  *
  * @author zhuangpf
  */

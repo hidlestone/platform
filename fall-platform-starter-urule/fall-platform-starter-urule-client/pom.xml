@@ -4,16 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>fall-platform-starters</artifactId>
+		<artifactId>fall-platform-starter-urule</artifactId>
 		<groupId>com.fallframework.platform</groupId>
 		<version>1.0-SNAPSHOT</version>
-		<relativePath>../fall-platform-starters/pom.xml</relativePath>
 	</parent>
-	<artifactId>fall-platform-starter-urule</artifactId>
+	<artifactId>fall-platform-starter-urule-client</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>Fall Platform Urule Starter</name>
-	<description>starter of urule</description>
-	<url>http://www.wordplay.work/#/fall-platform-starters/fall-platform-starter-urule</url>
+	<name>Fall Platform Urule Client Starter</name>
+	<description>starter of urule client</description>
+	<url>http://www.wordplay.work/#/fall-platform-starters/fall-platform-starter-urule-client</url>
 	<organization>
 		<name>Wordplay Software, Inc.</name>
 		<url>https://wordplay.work</url>
@@ -42,9 +41,26 @@
 		<url>https://github.com/hidlestone/platform/issues</url>
 	</issueManagement>
 
-	<modules>
-		<module>fall-platform-starter-urule-server</module>
-		<module>fall-platform-starter-urule-client</module>
-	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.bstek.urule</groupId>
+			<artifactId>urule-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
 
 </project>

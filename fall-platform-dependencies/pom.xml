@@ -148,6 +148,8 @@
 
 		<easyexcel.version>3.0.2</easyexcel.version>
 		<xxl-job.version>2.3.0</xxl-job.version>
+		
+		<urule.version>2.1.3</urule.version>
 	</properties>
 
 	<dependencyManagement>
@@ -809,7 +811,26 @@
 				<artifactId>qiniu-java-sdk</artifactId>
 				<version>${qiniu.sdk.version}</version>
 			</dependency>
+
+			<!-- urule -->
+			<dependency>
+				<groupId>com.bstek.urule</groupId>
+				<artifactId>urule-console</artifactId>
+				<version>${urule.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.bstek.urule</groupId>
+				<artifactId>urule-core</artifactId>
+				<version>${urule.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${servlet-api.version}</version>
+			</dependency>
 		</dependencies>
+		
+		
 	</dependencyManagement>
 
 </project>
