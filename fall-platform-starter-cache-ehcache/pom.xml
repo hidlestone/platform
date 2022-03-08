@@ -9,10 +9,9 @@
 		<version>1.0-SNAPSHOT</version>
 		<relativePath>../fall-platform-starters/pom.xml</relativePath>
 	</parent>
-	<groupId>com.fallframework.platform</groupId>
 	<artifactId>fall-platform-starter-cache-ehcache</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>Fall Platform i18n Starter</name>
+	<name>Fall Platform Cache Ehcache Starter</name>
 	<description>starter of Cache Ehcache</description>
 	<url>http://www.wordplay.work/#/fall-platform-starters/fall-platform-starter-cache-ehcache</url>
 	<organization>

@@ -140,7 +140,7 @@ public class SimpleMemoryCacheImpl {
 			return new ArrayList();
 		}
 	}
-	
+
 	public List<Object> get(List<String> keys) {
 		List<Object> list = new ArrayList();
 		lazyDelete(new HashSet<String>(keys));
