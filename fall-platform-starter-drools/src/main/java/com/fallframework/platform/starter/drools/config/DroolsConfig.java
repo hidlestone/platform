@@ -69,7 +69,7 @@ public class DroolsConfig {
 		Results results = kieBuilder.getResults();
 		if (results.hasMessages(Message.Level.ERROR)) {
 			System.out.println(results.getMessages());
-			throw new IllegalStateException("### errors ###");
+			throw new IllegalStateException("kieContainer error");
 		}
 		kieBuilder.buildAll();
 		KieContainer kieContainer = kieServices.newKieContainer(kieRepository.getDefaultReleaseId());
