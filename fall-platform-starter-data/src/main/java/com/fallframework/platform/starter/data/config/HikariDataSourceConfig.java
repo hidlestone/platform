@@ -1,7 +1,5 @@
 package com.fallframework.platform.starter.data.config;
 
-import com.fallframework.platform.starter.core.util.EncryptionUtil;
-import com.fallframework.platform.starter.data.constant.DataStarterConstant;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
