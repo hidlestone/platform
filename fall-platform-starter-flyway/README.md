@@ -155,3 +155,5 @@ pom.xml
     </plugins>
 </build>
 ```
+
+maven package 就会执行flywayd的迁移migrate。
