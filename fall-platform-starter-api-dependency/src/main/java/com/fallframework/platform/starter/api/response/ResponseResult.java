@@ -15,7 +15,7 @@ import java.util.Map;
  * code：公共的使用 CommonCode.FAIL.code() <br>
  * 其他特定模块或子系统可以定义自己的响应码及响应信息，参照：CommonCode
  *
- * @author payn
+ * @author zhuangpf
  */
 @Data
 public class ResponseResult<T> implements Serializable {
@@ -30,10 +30,10 @@ public class ResponseResult<T> implements Serializable {
 	private String message;
 	// 响应结果，使用泛型，便于生成Swagger文档
 	private T data;
-	// 其他信息
-	private Map<String, Object> extra;
+	// 其他额外信息
+	private Map<Object, Object> extra;
 
-	public ResponseResult(boolean success, String code, String message, T data, Map<String, Object> extra) {
+	public ResponseResult(boolean success, String code, String message, T data, Map<Object, Object> extra) {
 		this.success = success;
 		this.code = code;
 		this.message = message;
@@ -77,7 +77,7 @@ public class ResponseResult<T> implements Serializable {
 		return new ResponseResult<T>(CommonCode.FAIL.success, code, message, result, null);
 	}
 
-	public static <T> ResponseResult<T> fail(String code, String message, T result, Map<String, Object> extra) {
+	public static <T> ResponseResult<T> fail(String code, String message, T result, Map<Object, Object> extra) {
 		return new ResponseResult<T>(CommonCode.FAIL.success, code, message, result, extra);
 	}
 
@@ -85,6 +85,9 @@ public class ResponseResult<T> implements Serializable {
 		return new ResponseResult<T>(resultCode.success(), resultCode.code(), resultCode.message(), null, null);
 	}
 
+	/**
+	 * 是否成功
+	 */
 	public boolean isSuccess() {
 		return ((true == this.success) || (CommonCode.SUCCESS.code.equals(this.code))) ? true : false;
 	}
