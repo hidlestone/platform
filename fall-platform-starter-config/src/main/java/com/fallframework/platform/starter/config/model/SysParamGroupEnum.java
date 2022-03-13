@@ -1,5 +1,8 @@
 package com.fallframework.platform.starter.config.model;
 
+/**
+ * 系统参数组枚举
+ */
 public enum SysParamGroupEnum {
 
 	APPLICATION_SIGNATURE,
@@ -18,5 +21,5 @@ public enum SysParamGroupEnum {
 	SPRING_SECURITY,
 	THREADPOOL_CONFIG,
 	XSS_CONFIG;
-	
+
 }

@@ -5,7 +5,9 @@ package com.fallframework.platform.starter.config.constant;
  */
 public class ConfigStarterConstant {
 
-	// 缓存key：系统参数
-	public static final String SYS_PARAM_CACHE_KEY = "system:param";
-	
+	/**
+	 * 缓存key：系统参数
+	 */
+	public static final String CACHE_KEY_SYS_PARAM = "system:param";
+
 }

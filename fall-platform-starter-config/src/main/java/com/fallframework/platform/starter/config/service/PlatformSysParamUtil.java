@@ -48,6 +48,7 @@ public class PlatformSysParamUtil {
 		this.sysParamGroupService = sysParamGroupService;
 		this.sysParamItemMapper = sysParamItemMapper;
 		this.sysParamGroupMapper = sysParamGroupMapper;
+		// 刷新系统参数缓存
 		this.refreshSysParamCache();
 	}
 
@@ -56,7 +57,7 @@ public class PlatformSysParamUtil {
 	 * @return 系统参数明细的map形式
 	 */
 	public ResponseResult<Map<String, String>> getSysParamGroupItemMap(String groupCode) {
-		List<SysParamItemResponse> sysParamItemList = (List<SysParamItemResponse>) redisUtil.hget(ConfigStarterConstant.SYS_PARAM_CACHE_KEY, groupCode);
+		List<SysParamItemResponse> sysParamItemList = (List<SysParamItemResponse>) redisUtil.hget(ConfigStarterConstant.CACHE_KEY_SYS_PARAM, groupCode);
 		if (CollectionUtil.isEmpty(sysParamItemList)) {
 			SysParamGroupResponse sysParamGroupResponse = sysParamGroupService.select(groupCode).getData();
 			sysParamItemList = sysParamGroupResponse.getSysParamItemList();
@@ -76,7 +77,7 @@ public class PlatformSysParamUtil {
 	 * @return 系统参数明细项信息
 	 */
 	public ResponseResult<SysParamItemResponse> getSysParamItem(String groupCode, String itemCode) {
-		List<SysParamItemResponse> sysParamItemList = (List<SysParamItemResponse>) redisUtil.hget(ConfigStarterConstant.SYS_PARAM_CACHE_KEY, groupCode);
+		List<SysParamItemResponse> sysParamItemList = (List<SysParamItemResponse>) redisUtil.hget(ConfigStarterConstant.CACHE_KEY_SYS_PARAM, groupCode);
 		SysParamItemResponse sysParamItemResponse = sysParamItemList.stream().filter(it -> itemCode.equals(it.getCode())).findFirst().get();
 		if (null == sysParamItemResponse) {
 			SysParamItem sysParamItem = sysParamItemMapper.selectById(itemCode);
@@ -92,9 +93,9 @@ public class PlatformSysParamUtil {
 	 */
 	public ResponseResult refreshSysParamCache() {
 		List<SysParamGroupResponse> sysParamGroupResponseList = sysParamGroupMapper.findAllSysParamGroup();
-		redisUtil.del(ConfigStarterConstant.SYS_PARAM_CACHE_KEY);
+		redisUtil.del(ConfigStarterConstant.CACHE_KEY_SYS_PARAM);
 		for (SysParamGroupResponse sysParamGroup : sysParamGroupResponseList) {
-			redisUtil.hset(ConfigStarterConstant.SYS_PARAM_CACHE_KEY, sysParamGroup.getCode(), sysParamGroup.getSysParamItemList());
+			redisUtil.hset(ConfigStarterConstant.CACHE_KEY_SYS_PARAM, sysParamGroup.getCode(), sysParamGroup.getSysParamItemList());
 		}
 		LOGGER.info("system global parameters cache has refreshed.");
 		return ResponseResult.success();
