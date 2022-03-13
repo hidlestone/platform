@@ -63,7 +63,7 @@ public class PlatformSysParamUtil {
 			sysParamItemList = sysParamGroupResponse.getSysParamItemList();
 		}
 		if (CollectionUtil.isEmpty(sysParamItemList)) {
-			throw new RuntimeException("system param " + groupCode + " has not inited.");
+			throw new RuntimeException("system param " + groupCode + " had not inited.");
 		}
 		Map<String, String> sysItemMap = sysParamItemList.stream().collect(Collectors.toMap(it -> it.getCode(), it -> it.getValue()));
 		return ResponseResult.success(sysItemMap);
