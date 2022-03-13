@@ -20,6 +20,7 @@ public enum SysParamGroupEnum {
 	SHIRO,
 	SPRING_SECURITY,
 	THREADPOOL_CONFIG,
-	XSS_CONFIG;
+	XSS_CONFIG,
+	YOUDAO;
 
 }

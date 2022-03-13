@@ -35,7 +35,7 @@ import java.util.Map;
  */
 public class YouDaoTranslateV3Util {
 
-	private static Logger logger = LoggerFactory.getLogger(YouDaoTranslateV3Util.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(YouDaoTranslateV3Util.class);
 
 	private static final String YOUDAO_URL = "https://openapi.youdao.com/api";
 
@@ -98,7 +98,7 @@ public class YouDaoTranslateV3Util {
 		CloseableHttpResponse httpResponse = httpClient.execute(httpPost);
 		try {
 			Header[] contentType = httpResponse.getHeaders("Content-Type");
-			logger.info("Content-Type:" + contentType[0].getValue());
+			LOGGER.info("Content-Type:" + contentType[0].getValue());
 			if ("audio/mp3".equals(contentType[0].getValue())) {
 				//如果响应是wav
 				HttpEntity httpEntity = httpResponse.getEntity();
@@ -115,7 +115,7 @@ public class YouDaoTranslateV3Util {
 				HttpEntity httpEntity = httpResponse.getEntity();
 				String json = EntityUtils.toString(httpEntity, "UTF-8");
 				EntityUtils.consume(httpEntity);
-				logger.info(json);
+				LOGGER.info(json);
 				System.out.println(json);
 				JSONObject jsonObject = JSON.parseObject(json);
 				List<String> translationList = JSON.parseArray(JSON.toJSONString(jsonObject.get("translation")), String.class);
@@ -128,7 +128,7 @@ public class YouDaoTranslateV3Util {
 					httpResponse.close();
 				}
 			} catch (IOException e) {
-				logger.info("## release resouce error ##" + e);
+				LOGGER.info("## release resouce error ##" + e);
 			}
 		}
 		return "";
@@ -152,7 +152,7 @@ public class YouDaoTranslateV3Util {
 		CloseableHttpResponse httpResponse = httpClient.execute(httpPost);
 		try {
 			Header[] contentType = httpResponse.getHeaders("Content-Type");
-			logger.info("Content-Type:" + contentType[0].getValue());
+			LOGGER.info("Content-Type:" + contentType[0].getValue());
 			if ("audio/mp3".equals(contentType[0].getValue())) {
 				//如果响应是wav
 				HttpEntity httpEntity = httpResponse.getEntity();
@@ -169,7 +169,7 @@ public class YouDaoTranslateV3Util {
 				HttpEntity httpEntity = httpResponse.getEntity();
 				String json = EntityUtils.toString(httpEntity, "UTF-8");
 				EntityUtils.consume(httpEntity);
-				logger.info(json);
+				LOGGER.info(json);
 				System.out.println(json);
 				JSONObject jsonObject = JSON.parseObject(json);
 				List<String> translationList = JSON.parseArray(JSON.toJSONString(jsonObject.get("translation")), String.class);
@@ -181,7 +181,7 @@ public class YouDaoTranslateV3Util {
 					httpResponse.close();
 				}
 			} catch (IOException e) {
-				logger.info("## release resouce error ##" + e);
+				LOGGER.info("## release resouce error ##" + e);
 			}
 		}
 	}
@@ -224,7 +224,7 @@ public class YouDaoTranslateV3Util {
 			fos.write(result);
 
 		} catch (Exception e) {
-			logger.info(e.toString());
+			LOGGER.info(e.toString());
 		} finally {
 			if (fos != null) {
 				try {
