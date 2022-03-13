@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.i18n.service;
+package com.fallframework.platform.starter.i18n.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
  * @author zhuangpf
  */
 @Service
-public class MessageBundleUtil {
+public class I18nBundleUtil {
 
 	@Autowired
 	private RedisUtil redisUtil;

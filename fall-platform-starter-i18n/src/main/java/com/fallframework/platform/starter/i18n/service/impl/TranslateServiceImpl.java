@@ -8,6 +8,8 @@ import com.fallframework.platform.starter.i18n.service.TranslateService;
 import com.fallframework.platform.starter.i18n.util.TraditionalSimplifyConverter;
 
 /**
+ * 词条翻译工具类
+ *
  * @author zhuangpf
  */
 public class TranslateServiceImpl implements TranslateService {
