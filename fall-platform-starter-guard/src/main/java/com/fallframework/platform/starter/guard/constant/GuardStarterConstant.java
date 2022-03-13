@@ -7,11 +7,6 @@ package com.fallframework.platform.starter.guard.constant;
  */
 public class GuardStarterConstant {
 
-	/**
-	 * XSS 配置参数组
-	 */
-	public static final String SYS_PARAM_GROUP = "XSS_CONFIG";
-
 	public static final String GET_UAER_AUTH_INFO_URL = "/getuserauthinfo";
 	public static final String HAS_PERMISSION_URL = "/haspermission";
 
