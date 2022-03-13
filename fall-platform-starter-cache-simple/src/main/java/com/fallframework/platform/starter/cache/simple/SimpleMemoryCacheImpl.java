@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * 使用 ConcurrentHashMap 实现简单的缓存
  *
- * @author payn
+ * @author zhuangpf
  */
 public class SimpleMemoryCacheImpl {
 

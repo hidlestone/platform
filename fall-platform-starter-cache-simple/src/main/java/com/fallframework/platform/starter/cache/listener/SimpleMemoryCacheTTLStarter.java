@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 /**
  * 监听器，系统启动后执行主动清理策略
  *
- * @author payn
+ * @author zhuangpf
  */
 @Component
 public class SimpleMemoryCacheTTLStarter implements ApplicationListener<ApplicationStartedEvent> {
