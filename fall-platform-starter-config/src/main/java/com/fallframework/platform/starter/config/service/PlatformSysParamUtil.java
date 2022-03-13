@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 系统参数服务
+ * 系统参数服务工具类
  *
  * @author zhuangpf
  */
