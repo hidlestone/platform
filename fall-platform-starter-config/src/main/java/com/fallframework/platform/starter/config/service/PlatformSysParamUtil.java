@@ -53,6 +53,8 @@ public class PlatformSysParamUtil {
 	}
 
 	/**
+	 * 根据系统参数组编码，获取对应的系统参数
+	 *
 	 * @param groupCode 参数组编码
 	 * @return 系统参数明细的map形式
 	 */
