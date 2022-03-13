@@ -37,10 +37,17 @@ public class YouDaoTranslateV3Util {
 
 	private static Logger LOGGER = LoggerFactory.getLogger(YouDaoTranslateV3Util.class);
 
+	/**
+	 * 请求URL
+	 */
 	private static final String YOUDAO_URL = "https://openapi.youdao.com/api";
-
+	/**
+	 * APP_KEY 有道后台配置
+	 */
 	private static final String APP_KEY = "42e6b3ecaf251d1c";
-
+	/**
+	 * APP_SECRET 有道后台配置
+	 */
 	private static final String APP_SECRET = "Me52SvCnhArzVsR06PmN9eRyLqDPiImP";
 
 	public static void main(String[] args) throws IOException {
