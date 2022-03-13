@@ -78,9 +78,9 @@ public class I18nResourceServiceImpl extends ServiceImpl<I18nResourceMapper, I18
 			if (CollectionUtil.isNotEmpty(langCodeResMap)) {
 				for (Map.Entry<String, List<I18nResource>> entry : langCodeResMap.entrySet()) {
 					// 删除语言词条缓存：i18n:resource:en
-					redisUtil.del(I18nStarterConstant.I18N_CACHE_KEY + entry.getKey());
+					redisUtil.del(I18nStarterConstant.CACHE_KEY_I18N + entry.getKey());
 					for (I18nResource i18nResource : entry.getValue()) {
-						redisUtil.hset(I18nStarterConstant.I18N_CACHE_KEY + entry.getKey(), i18nResource.getResourceKey(), i18nResource.getResourceValue());
+						redisUtil.hset(I18nStarterConstant.CACHE_KEY_I18N + entry.getKey(), i18nResource.getResourceKey(), i18nResource.getResourceValue());
 					}
 				}
 			}

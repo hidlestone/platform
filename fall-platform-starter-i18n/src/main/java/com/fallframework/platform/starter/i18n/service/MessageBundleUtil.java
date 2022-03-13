@@ -30,7 +30,7 @@ public class MessageBundleUtil {
 	 * 获取支持的国际化类型
 	 */
 	public Set<Locale> getSupportedLoacle() {
-		Set<String> langTypes = (Set) redisUtil.get(I18nStarterConstant.I18N_SUPPORTED);
+		Set<String> langTypes = (Set) redisUtil.get(I18nStarterConstant.CACHE_KEY_I18N_SUPPORTED);
 		Set<Locale> locales = new HashSet();
 		for (String langType : langTypes) {
 			locales.add(this.toLocale(langType));
@@ -43,14 +43,14 @@ public class MessageBundleUtil {
 	 */
 	public String getI18nResourceValue(String key) {
 		Locale locale = CurrentContextHelper.getLocale();
-		String resourcevalue = (String) redisUtil.hget(I18nStarterConstant.I18N_CACHE_KEY + locale.toString(), key);
+		String resourcevalue = (String) redisUtil.hget(I18nStarterConstant.CACHE_KEY_I18N + locale.toString(), key);
 		if (StringUtils.isEmpty(resourcevalue)) {
 			QueryWrapper<I18nResource> wrapper = new QueryWrapper();
 			wrapper.eq("lang_code", locale.toString()).eq("resource_key", key);
 			I18nResource i18nResource = i18nResourceMapper.selectOne(wrapper);
 			// 添加到缓存
 			if (null != i18nResource) {
-				redisUtil.hset(I18nStarterConstant.I18N_CACHE_KEY + locale.toString(), i18nResource.getResourceKey(), i18nResource.getResourceValue());
+				redisUtil.hset(I18nStarterConstant.CACHE_KEY_I18N + locale.toString(), i18nResource.getResourceKey(), i18nResource.getResourceValue());
 				resourcevalue = i18nResource.getResourceValue();
 			}
 		}
@@ -73,4 +73,5 @@ public class MessageBundleUtil {
 			return null;
 		}
 	}
+	
 }

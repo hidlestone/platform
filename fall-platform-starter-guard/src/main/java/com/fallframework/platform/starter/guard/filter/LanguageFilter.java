@@ -19,13 +19,13 @@ import java.io.IOException;
  */
 public class LanguageFilter implements Filter {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(LanguageFilter.class);
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		LOGGER.debug("LanguageFilter init.");
 	}
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(LanguageFilter.class);
-
+	
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 		ServletRequest request = new LanguageRequestWrapper((HttpServletRequest) servletRequest);
