@@ -102,6 +102,8 @@ public class PlatformSysParamUtil {
 	}
 
 	/**
+	 * 获取系统参数，不存在则抛出异常
+	 *
 	 * @param sysItemMap   参数组
 	 * @param sysParamItem 参数项
 	 * @return 参数项中的值
