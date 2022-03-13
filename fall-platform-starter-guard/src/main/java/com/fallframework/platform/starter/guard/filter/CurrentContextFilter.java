@@ -6,7 +6,7 @@ import com.fallframework.platform.starter.core.context.CurrentContextHelper;
 import com.fallframework.platform.starter.core.context.ReadableResponseWrapper;
 import com.fallframework.platform.starter.core.context.UserAuthInfo;
 import com.fallframework.platform.starter.core.util.ApplicationInstanceManager;
-import com.fallframework.platform.starter.guard.constant.MvcStarterConstant;
+import com.fallframework.platform.starter.guard.constant.GuardStarterConstant;
 import com.fallframework.platform.starter.guard.util.PermissionUtil;
 import com.fallframework.platform.starter.guard.util.PlatformRequestUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -105,7 +105,7 @@ public class CurrentContextFilter implements Filter {
 	 */
 	private UserAuthInfo getUserAuthInfo(HttpServletRequest request) {
 		String uri = request.getRequestURI();
-		if (uri.endsWith(MvcStarterConstant.GET_UAER_AUTH_INFO_URL) || uri.endsWith(MvcStarterConstant.HAS_PERMISSION_URL)) {
+		if (uri.endsWith(GuardStarterConstant.GET_UAER_AUTH_INFO_URL) || uri.endsWith(GuardStarterConstant.HAS_PERMISSION_URL)) {
 			return null;
 		}
 		// 获取请求的 token
@@ -155,7 +155,7 @@ public class CurrentContextFilter implements Filter {
 	private boolean checkPermission(HttpServletRequest request) {
 		String token = this.getToken(request);
 		String uri = request.getRequestURI();
-		String checkUrl = MvcStarterConstant.SLASH + ApplicationInstanceManager.getApplicationName() + uri.replace(this.getTarget(request), "");
+		String checkUrl = GuardStarterConstant.SLASH + ApplicationInstanceManager.getApplicationName() + uri.replace(this.getTarget(request), "");
 		return PermissionUtil.checkPermission(token, checkUrl).isSuccess();
 	}
 
@@ -164,7 +164,7 @@ public class CurrentContextFilter implements Filter {
 	 */
 	private boolean isAnonPermission(HttpServletRequest request) {
 		String uri = request.getRequestURI();
-		String checkUrl = MvcStarterConstant.SLASH + ApplicationInstanceManager.getApplicationName() + uri.replace(this.getTarget(request), "");
+		String checkUrl = GuardStarterConstant.SLASH + ApplicationInstanceManager.getApplicationName() + uri.replace(this.getTarget(request), "");
 		return PermissionUtil.isAnonResource(checkUrl);
 	}
 

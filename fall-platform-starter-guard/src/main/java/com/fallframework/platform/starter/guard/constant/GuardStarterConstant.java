@@ -1,9 +1,11 @@
 package com.fallframework.platform.starter.guard.constant;
 
 /**
+ * 模块常量
+ *
  * @author zhuangpf
  */
-public class MvcStarterConstant {
+public class GuardStarterConstant {
 
 	public static final String GET_UAER_AUTH_INFO_URL = "/getuserauthinfo";
 	public static final String HAS_PERMISSION_URL = "/haspermission";

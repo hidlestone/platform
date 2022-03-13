@@ -7,7 +7,7 @@ import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
 import com.fallframework.platform.starter.core.constant.CoreContextConstant;
 import com.fallframework.platform.starter.core.context.ApplicationContextFallPlatform;
 import com.fallframework.platform.starter.core.util.EncryptionUtil;
-import com.fallframework.platform.starter.guard.constant.MvcStarterConstant;
+import com.fallframework.platform.starter.guard.constant.GuardStarterConstant;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -288,13 +288,13 @@ public class RepeatSubmitFilter implements Filter {
 		if (StringUtils.isBlank(nonce)) {
 			throw new RuntimeException("nonce can not be empty");
 		}
-		String nonceKey = MvcStarterConstant.SIGN_NONCE + nonce;
+		String nonceKey = GuardStarterConstant.SIGN_NONCE + nonce;
 		if (null != this.redisUtil.get(nonceKey)) {
 			LOGGER.error("nonce:{},url:{} can not repeate commit.", nonce, request.getRequestURI());
 			throw new RuntimeException("nonce:" + nonce + ",url:" + request.getRequestURI() + " can not repeate commit.");
 		} else {
 			// nonceKey存入缓存，ttl默认：60s
-			Integer signNonceTimeout = null != APPLICATION_SIGNATURE_NONCE_TIMEOUT ? APPLICATION_SIGNATURE_NONCE_TIMEOUT : MvcStarterConstant.INIT_NONCE_TIMEOUT;
+			Integer signNonceTimeout = null != APPLICATION_SIGNATURE_NONCE_TIMEOUT ? APPLICATION_SIGNATURE_NONCE_TIMEOUT : GuardStarterConstant.INIT_NONCE_TIMEOUT;
 			this.redisUtil.set(nonceKey, 1, signNonceTimeout / 1000);
 		}
 	}
