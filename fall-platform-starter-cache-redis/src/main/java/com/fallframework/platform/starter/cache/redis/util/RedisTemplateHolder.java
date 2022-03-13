@@ -5,6 +5,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 /**
+ * 用于获取redisTemplate
+ *
  * @author zhuangpf
  */
 @Component
