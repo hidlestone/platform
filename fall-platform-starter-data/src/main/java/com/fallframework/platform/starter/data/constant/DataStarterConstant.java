@@ -3,7 +3,7 @@ package com.fallframework.platform.starter.data.constant;
 /**
  * 常量
  *
- * @author payn
+ * @author zhuangpf
  */
 public class DataStarterConstant {
 

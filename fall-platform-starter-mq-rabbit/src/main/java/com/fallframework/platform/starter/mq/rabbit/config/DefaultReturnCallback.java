@@ -19,7 +19,7 @@ import javax.annotation.PostConstruct;
  * 默认的消息投递到queue失败回退模式<br/>
  * 当消息不能被正确路由到某个queue时，会回调如下方法
  *
- * @author payn
+ * @author zhuangpf
  */
 @Component
 public class DefaultReturnCallback implements RabbitTemplate.ReturnCallback {

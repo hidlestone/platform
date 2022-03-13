@@ -15,7 +15,7 @@ import java.util.Optional;
 /**
  * 装饰者模式，多语言增强
  *
- * @author payn
+ * @author zhuangpf
  */
 public class LanguageRequestWrapper extends HttpServletRequestWrapper {
 

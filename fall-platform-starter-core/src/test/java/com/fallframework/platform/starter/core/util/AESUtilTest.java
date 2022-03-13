@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 /**
  * 配置文件中密码AES加密测试
  *
- * @author payn
+ * @author zhuangpf
  */
 public class AESUtilTest {
 

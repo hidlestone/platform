@@ -18,7 +18,7 @@ import java.util.StringTokenizer;
 /**
  * 当前上下文环境工具类
  *
- * @author payn
+ * @author zhuangpf
  */
 public class CurrentContextHelper {
 

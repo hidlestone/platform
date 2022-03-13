@@ -8,7 +8,7 @@ import java.security.spec.InvalidKeySpecException;
 /**
  * 生成加密的用户信息测试
  *
- * @author payn
+ * @author zhuangpf
  */
 public class GenUserEncyTest {
 

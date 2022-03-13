@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * 装饰者模式，对响应信息进行增强：响应内容转换为字符串 contentToString
  *
- * @author payn
+ * @author zhuangpf
  */
 public class ReadableResponseWrapper extends HttpServletResponseWrapper {
 

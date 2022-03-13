@@ -35,7 +35,7 @@ import java.security.spec.X509EncodedKeySpec;
 /**
  * 常用加密算法
  *
- * @author payn
+ * @author zhuangpf
  */
 public class EncryptionUtil {
 

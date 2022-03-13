@@ -6,7 +6,7 @@ import java.util.BitSet;
  * 布隆过滤器<br>
  * 查看一个东西是否在有大量数据的池子里面
  *
- * @author payn
+ * @author zhuangpf
  */
 public class BloomFileter {
 

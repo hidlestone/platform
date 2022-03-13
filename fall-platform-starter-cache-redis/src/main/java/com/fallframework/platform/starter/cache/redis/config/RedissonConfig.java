@@ -8,7 +8,7 @@ package com.fallframework.platform.starter.cache.redis.config;
 //import org.springframework.core.io.ClassPathResource;
 
 /**
- * @author payn
+ * @author zhuangpf
  */
 //@Configuration
 public class RedissonConfig {

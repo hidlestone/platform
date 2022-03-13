@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * AES 对称加密算法
  *
- * @author payn
+ * @author zhuangpf
  */
 public class AESUtil {
 

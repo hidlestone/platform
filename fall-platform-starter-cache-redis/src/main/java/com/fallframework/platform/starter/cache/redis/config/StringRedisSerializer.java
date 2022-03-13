@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
  * 使用StringRedisSerializer做key的序列化时，StringRedisSerializer的泛型指定的是String，传其他对象就会报类型转换错误，<br>
  * 在使用@Cacheable注解是key属性就只能传String进来。把这个序列化方式重写了，将泛型改成Object。
  *
- * @author payn
+ * @author zhuangpf
  */
 public class StringRedisSerializer implements RedisSerializer<Object> {
 

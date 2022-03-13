@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 /**
- * @author payn
+ * @author zhuangpf
  * @date 2021/6/3 17:46
  */
 public class PasswordUtils {

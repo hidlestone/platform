@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 基础分页请求参数
  *
- * @author payn
+ * @author zhuangpf
  */
 @Getter
 @Setter

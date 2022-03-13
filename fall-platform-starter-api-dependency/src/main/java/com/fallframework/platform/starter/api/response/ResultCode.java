@@ -1,7 +1,7 @@
 package com.fallframework.platform.starter.api.response;
 
 /**
- * @author payn
+ * @author zhuangpf
  */
 public interface ResultCode {
 	

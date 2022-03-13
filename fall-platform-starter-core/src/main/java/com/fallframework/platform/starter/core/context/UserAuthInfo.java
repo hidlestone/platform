@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * 用户认证信息
  *
- * @author payn
+ * @author zhuangpf
  * @date 2021/5/14 20:35
  */
 @Getter

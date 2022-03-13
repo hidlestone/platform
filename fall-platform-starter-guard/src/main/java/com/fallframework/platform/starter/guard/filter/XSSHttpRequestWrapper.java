@@ -1,7 +1,7 @@
 package com.fallframework.platform.starter.guard.filter;
 
 /**
- * @author payn
+ * @author zhuangpf
  */
 public class XSSHttpRequestWrapper /*extends BodyReaderHttpServletRequestWrapper*/ {
 

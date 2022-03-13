@@ -14,7 +14,7 @@ import java.util.Map;
  * 应用上下文环境、基础配置<br>
  * 对 ApplicationContext 做一层封装
  *
- * @author payn
+ * @author zhuangpf
  */
 public class ApplicationContextFallPlatform {
 

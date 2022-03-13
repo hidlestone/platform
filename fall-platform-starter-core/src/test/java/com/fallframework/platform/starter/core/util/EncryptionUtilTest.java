@@ -13,7 +13,7 @@ import java.security.spec.InvalidKeySpecException;
 /**
  * 加密工具类测试
  *
- * @author payn
+ * @author zhuangpf
  */
 public class EncryptionUtilTest {
 

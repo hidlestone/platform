@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 /**
  * Hikari数据源配置
  *
- * @author payn
+ * @author zhuangpf
  */
 @Configuration
 @ConditionalOnClass(HikariDataSource.class)

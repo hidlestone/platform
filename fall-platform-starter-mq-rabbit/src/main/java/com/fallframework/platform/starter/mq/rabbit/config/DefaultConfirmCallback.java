@@ -19,7 +19,7 @@ import javax.annotation.PostConstruct;
  * 默认的消息投递到broker确认模式<br/>
  * 用来判断消息是否被ACK
  *
- * @author payn
+ * @author zhuangpf
  */
 @Component
 public class DefaultConfirmCallback implements RabbitTemplate.ConfirmCallback {

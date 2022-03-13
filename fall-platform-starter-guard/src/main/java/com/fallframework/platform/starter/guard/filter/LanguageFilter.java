@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * 语言过滤器
  *
- * @author payn
+ * @author zhuangpf
  */
 public class LanguageFilter implements Filter {
 

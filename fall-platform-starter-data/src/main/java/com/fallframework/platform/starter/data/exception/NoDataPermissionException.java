@@ -3,7 +3,7 @@ package com.fallframework.platform.starter.data.exception;
 /**
  * 无数据权限异常
  *
- * @author payn
+ * @author zhuangpf
  */
 public class NoDataPermissionException extends RuntimeException {
 

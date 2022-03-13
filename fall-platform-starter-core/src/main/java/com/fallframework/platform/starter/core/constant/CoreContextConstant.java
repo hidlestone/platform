@@ -3,7 +3,7 @@ package com.fallframework.platform.starter.core.constant;
 /**
  * 上下文环境相关常量
  *
- * @author payn
+ * @author zhuangpf
  */
 public class CoreContextConstant {
 

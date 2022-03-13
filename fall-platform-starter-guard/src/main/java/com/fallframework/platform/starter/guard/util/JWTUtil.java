@@ -16,7 +16,7 @@ import java.util.Map;
  * JWT工具类
  * TODO token自动刷新问题
  *
- * @author payn
+ * @author zhuangpf
  */
 public class JWTUtil {
 

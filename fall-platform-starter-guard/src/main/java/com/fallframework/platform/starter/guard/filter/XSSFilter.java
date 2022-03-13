@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * 过滤XSS跨站脚本攻击
  *
- * @author payn
+ * @author zhuangpf
  */
 public class XSSFilter implements Filter {
 

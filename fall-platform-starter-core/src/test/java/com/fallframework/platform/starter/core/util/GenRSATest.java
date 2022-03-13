@@ -15,7 +15,7 @@ import java.security.KeyPairGenerator;
 /**
  * 生成 RSA 密钥对测试
  *
- * @author payn
+ * @author zhuangpf
  */
 public class GenRSATest {
 
