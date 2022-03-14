@@ -6,9 +6,14 @@ package com.fallframework.platform.starter.rbac.constant;
 public class RbacStarterConstant {
 
 	/**
-	 * redis中用户token缓存key：user:token:{id}
+	 * 访问token缓存key
 	 */
-	public static final String CACHE_KEY_USER_TOKEN = "user:token";
+	public static final String CACHE_KEY_ACCESSTOKEN = "user:accesstoken:";
+
+	/**
+	 * 刷新token缓存key
+	 */
+	public static final String CACHE_KEY_REFRESHTOKEN = "user:refreshtoken:";
 
 	/**
 	 * 权限缓存key：role:permission:{id}

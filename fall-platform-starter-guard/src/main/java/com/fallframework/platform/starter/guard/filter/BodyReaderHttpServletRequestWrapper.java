@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 /**
- * 装饰着模式，对请求对象 request 中的参数进行处理
+ * 装饰者模式，对请求对象 request 中的参数进行处理
  *
  * @author zhuangpf
  */

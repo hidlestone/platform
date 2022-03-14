@@ -12,6 +12,8 @@ import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
 import com.fallframework.platform.starter.rbac.entity.User;
 import com.fallframework.platform.starter.rbac.model.TokenTypeEnum;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -25,6 +27,8 @@ import java.util.Map;
 @Component
 public class JWTUtil {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(JWTUtil.class);
+	
 	/**
 	 * 默认token发布者
 	 */
@@ -50,6 +54,7 @@ public class JWTUtil {
 		sysItemMap = platformSysParamUtil.getSysParamGroupItemMap(SysParamGroupEnum.SHIRO.toString()).getData();
 		SHIRO_REFRESHTOKEN_TTL = Long.valueOf(platformSysParamUtil.mapGet(sysItemMap, "SHIRO_REFRESHTOKEN_TTL"));
 		SHIRO_ACCESSTOKEN_TTL = Long.valueOf(platformSysParamUtil.mapGet(sysItemMap, "SHIRO_ACCESSTOKEN_TTL"));
+		LOGGER.info("JWT CONFIG : " + JSON.toJSONString(sysItemMap));
 	}
 
 	/**

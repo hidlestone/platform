@@ -2,6 +2,7 @@ package com.fallframework.platform.starter.guard.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
+import com.fallframework.platform.starter.config.model.SysParamGroupEnum;
 import com.fallframework.platform.starter.config.model.SysParamItemResponse;
 import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
 import com.fallframework.platform.starter.core.constant.CoreContextConstant;
@@ -41,37 +42,38 @@ public class RepeatSubmitFilter implements Filter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(RepeatSubmitFilter.class);
 
-	@Autowired
-	private static PlatformSysParamUtil platformSysParamUtil;
+	private PlatformSysParamUtil platformSysParamUtil;
+
+
 	@Autowired
 	private RedisUtil redisUtil;
 
 	// 是否开启表单重复提交检查
-	private static final Boolean APPLICATION_SIGNATURE_REPEAT_CHECK_ENABLE;
+	private static Boolean APPLICATION_SIGNATURE_REPEAT_CHECK_ENABLE;
 	// 是否开启签名
-	private static final Boolean APPLICATION_SIGNATURE_ENABLE;
+	private static Boolean APPLICATION_SIGNATURE_ENABLE;
 	// 不需要签名的服务名称
-	private static final String APPLICATION_SIGNATURE_EXCLUDE_SERVICE_NAMES;
+	private static String APPLICATION_SIGNATURE_EXCLUDE_SERVICE_NAMES;
 	// 签名的 content-type
-	private static final String APPLICATION_SIGNATURE_CONTENT_TYPES;
+	private static String APPLICATION_SIGNATURE_CONTENT_TYPES;
 	// 不需要签名的url	
-	private static final String APPLICATION_SIGNATURE_EXCLUDE_URLS;
+	private static String APPLICATION_SIGNATURE_EXCLUDE_URLS;
 	// 带签名的请求方法
-	private static final String APPLICATION_SIGNATURE_METHOD_NAME;
+	private static String APPLICATION_SIGNATURE_METHOD_NAME;
 	// 带签名的请求超时时间
-	private static final Integer APPLICATION_SIGNATURE_STIME_TIMEOUT;
+	private static Integer APPLICATION_SIGNATURE_STIME_TIMEOUT;
 	// 带签名的请求默认超时时间
-	private static final Integer APPLICATION_DEFAULT_STIME_TIMEOUT;
+	private static Integer APPLICATION_DEFAULT_STIME_TIMEOUT;
 	// nonce超时时间
-	private static final Integer APPLICATION_SIGNATURE_NONCE_TIMEOUT;
+	private static Integer APPLICATION_SIGNATURE_NONCE_TIMEOUT;
 	// 签名无需加密的参数
-	private static final String APPLICATION_SIGNATURE_EXCLUDE_PARAM_NAMES;
+	private static String APPLICATION_SIGNATURE_EXCLUDE_PARAM_NAMES;
 	// 默认需要检查的提交/保存方法
-	private static final String DEFAULT_NEED_CHECK_METHOD_NAMES;
+	private static String DEFAULT_NEED_CHECK_METHOD_NAMES;
 	// 默认签名无需加密的参数
-	private static final String DEFAULT_EXCLUDE_PARAM_NAMES;
+	private static String DEFAULT_EXCLUDE_PARAM_NAMES;
 	// RSA 私钥
-	private static final String RSA_PRIVATE_KEY;
+	private static String RSA_PRIVATE_KEY;
 
 	// 不需要签名的服务名称
 	private static final List<String> excludeServiceNameList;
@@ -84,6 +86,28 @@ public class RepeatSubmitFilter implements Filter {
 	// 签名无需加密的参数+默认签名无需加密的参数
 	private static final List<String> excludeParamNamelist;
 
+	/**
+	 * 构造函数
+	 */
+	public RepeatSubmitFilter(PlatformSysParamUtil platformSysParamUtil) {
+		this.platformSysParamUtil = platformSysParamUtil;
+		// 从缓存中获取配置参数：APPLICATION_SIGNATURE
+		Map<String, String> sysItemMap = platformSysParamUtil.getSysParamGroupItemMap(SysParamGroupEnum.APPLICATION_SIGNATURE.toString()).getData();
+		APPLICATION_SIGNATURE_REPEAT_CHECK_ENABLE = Boolean.valueOf(platformSysParamUtil.mapGet(sysItemMap, "APPLICATION_SIGNATURE_REPEAT_CHECK_ENABLE"));
+		APPLICATION_SIGNATURE_ENABLE = Boolean.valueOf(platformSysParamUtil.mapGet(sysItemMap, "APPLICATION_SIGNATURE_ENABLE"));
+		APPLICATION_SIGNATURE_EXCLUDE_SERVICE_NAMES = platformSysParamUtil.mapGet(sysItemMap, "APPLICATION_SIGNATURE_EXCLUDE_SERVICE_NAMES");
+		APPLICATION_SIGNATURE_CONTENT_TYPES = platformSysParamUtil.mapGet(sysItemMap, "APPLICATION_SIGNATURE_CONTENT_TYPES");
+		APPLICATION_SIGNATURE_EXCLUDE_URLS = platformSysParamUtil.mapGet(sysItemMap, "APPLICATION_SIGNATURE_EXCLUDE_URLS");
+		APPLICATION_SIGNATURE_METHOD_NAME = platformSysParamUtil.mapGet(sysItemMap, "APPLICATION_SIGNATURE_METHOD_NAME");
+		APPLICATION_SIGNATURE_STIME_TIMEOUT = Integer.valueOf(platformSysParamUtil.mapGet(sysItemMap, "APPLICATION_SIGNATURE_STIME_TIMEOUT"));
+		APPLICATION_DEFAULT_STIME_TIMEOUT = Integer.valueOf(platformSysParamUtil.mapGet(sysItemMap, "APPLICATION_DEFAULT_STIME_TIMEOUT"));
+		APPLICATION_SIGNATURE_NONCE_TIMEOUT = Integer.valueOf(platformSysParamUtil.mapGet(sysItemMap, "APPLICATION_SIGNATURE_NONCE_TIMEOUT"));
+		APPLICATION_SIGNATURE_EXCLUDE_PARAM_NAMES = platformSysParamUtil.mapGet(sysItemMap, "APPLICATION_SIGNATURE_EXCLUDE_PARAM_NAMES");
+		DEFAULT_NEED_CHECK_METHOD_NAMES = platformSysParamUtil.mapGet(sysItemMap, "DEFAULT_NEED_CHECK_METHOD_NAMES");
+		DEFAULT_EXCLUDE_PARAM_NAMES = platformSysParamUtil.mapGet(sysItemMap, "DEFAULT_EXCLUDE_PARAM_NAMES");
+		RSA_PRIVATE_KEY = platformSysParamUtil.mapGet(sysItemMap, "RSA_PRIVATE_KEY");
+
+	}
 
 	static {
 		Map<String, String> sysItemMap = platformSysParamUtil.getSysParamGroupItemMap("APPLICATION_SIGNATURE").getData();

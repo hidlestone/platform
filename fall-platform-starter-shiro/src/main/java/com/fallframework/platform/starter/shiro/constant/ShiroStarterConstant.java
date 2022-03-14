@@ -27,14 +27,4 @@ public class ShiroStarterConstant {
 	 */
 	public static final String CACHE_KEY_CACHE_EXPIRE_TIME = "CACHE_EXPIRE_TIME";
 
-	/**
-	 * shiro访问token缓存key
-	 */
-	public static final String CACHE_KEY_SHIRO_ACCESSTOKEN = "shiro:accesstoken:";
-
-	/**
-	 * shiro刷新token缓存key
-	 */
-	public static final String CACHE_KEY_SHIRO_REFRESHTOKEN = "shiro:refreshtoken:";
-
 }

@@ -3,13 +3,13 @@ package com.fallframework.platform.starter.shiro.model;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
+import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;
 import com.fallframework.platform.starter.rbac.entity.Role;
 import com.fallframework.platform.starter.rbac.entity.User;
 import com.fallframework.platform.starter.rbac.model.RolePermissionResponse;
 import com.fallframework.platform.starter.rbac.service.PermissionService;
 import com.fallframework.platform.starter.rbac.service.RoleService;
 import com.fallframework.platform.starter.rbac.service.UserService;
-import com.fallframework.platform.starter.shiro.constant.ShiroStarterConstant;
 import com.fallframework.platform.starter.shiro.custom.JWTToken;
 import com.fallframework.platform.starter.shiro.util.JWTUtil;
 import org.apache.shiro.authc.AuthenticationException;
@@ -88,7 +88,7 @@ public class ShiroRealm extends AuthorizingRealm {
 			String accesstoken = ((JWTToken) token).getCredentials();
 			// 用户id
 			String idStr = jwtUtil.getClaim(accesstoken, "id");
-			String accesstokenCache = (String) redisUtil.get(ShiroStarterConstant.CACHE_KEY_SHIRO_ACCESSTOKEN + idStr);
+			String accesstokenCache = (String) redisUtil.get(RbacStarterConstant.CACHE_KEY_ACCESSTOKEN + idStr);
 			if (!accesstoken.equals(accesstokenCache)) {
 				throw new UnknownAccountException("invalid accesstoken");
 			}

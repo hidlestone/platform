@@ -12,6 +12,7 @@ import org.springframework.util.AntPathMatcher;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -34,7 +35,7 @@ public class XSSFilter implements Filter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(XSSFilter.class);
 
 	// 系统参数工具
-	private static PlatformSysParamUtil platformSysParamUtil;
+	private final PlatformSysParamUtil platformSysParamUtil;
 	// antPathMatcher路径匹配
 	private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
@@ -72,9 +73,18 @@ public class XSSFilter implements Filter {
 		excludePatternList = new ArrayList<>(excludePatternArr.length);
 		String[] includePatternArr = INCLUDE_PATTERN.split(",");
 		includePatternlist = new ArrayList<>(includePatternArr.length);
+		// 存入列表
 		Collections.addAll(excludePatternList, excludePatternArr);
 		Collections.addAll(includePatternlist, includePatternArr);
 		LOGGER.info("XSS CONFIG : " + JSON.toJSONString(sysItemMap));
+	}
+
+	/**
+	 * 初始化
+	 */
+	@Override
+	public void init(FilterConfig filterConfig) {
+		LOGGER.debug("XSSFilter init.");
 	}
 
 	/**

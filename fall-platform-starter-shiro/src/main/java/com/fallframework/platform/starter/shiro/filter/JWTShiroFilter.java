@@ -7,6 +7,7 @@ import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.config.model.SysParamGroupEnum;
 import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
 import com.fallframework.platform.starter.core.constant.CoreContextConstant;
+import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;
 import com.fallframework.platform.starter.rbac.entity.User;
 import com.fallframework.platform.starter.rbac.model.TokenTypeEnum;
 import com.fallframework.platform.starter.shiro.constant.ShiroStarterConstant;
@@ -146,7 +147,7 @@ public class JWTShiroFilter extends BasicHttpAuthenticationFilter {
 		}*/
 		String idStr = jwtUtil.getClaim(refreshtoken, "id");
 		// 缓存中的refreshToken
-		String refreshTokenCache = (String) redisUtil.get(ShiroStarterConstant.CACHE_KEY_SHIRO_REFRESHTOKEN + idStr);
+		String refreshTokenCache = (String) redisUtil.get(RbacStarterConstant.CACHE_KEY_REFRESHTOKEN + idStr);
 		// accessToken & refreshtoken 都已经过期了
 		if (StringUtils.isBlank(refreshTokenCache)) {
 			return ResponseResult.fail("token has expired");
@@ -165,11 +166,11 @@ public class JWTShiroFilter extends BasicHttpAuthenticationFilter {
 		if (expireDate.getTime() - currentTimeMillis <= SHIRO_REFRESH_TOKEN_TIME_INTERVAL * 1000) {
 			// 生成新的refreshtoken
 			refreshtokenNew = jwtUtil.createToken(user, TokenTypeEnum.REFRESHTOKEN);
-			redisUtil.set(ShiroStarterConstant.CACHE_KEY_SHIRO_REFRESHTOKEN + idStr, refreshtokenNew);
+			redisUtil.set(RbacStarterConstant.CACHE_KEY_REFRESHTOKEN + idStr, refreshtokenNew);
 		}
 		// 生成新的accesstoken
 		String accesstokenNew = jwtUtil.createToken(user, TokenTypeEnum.ACCESSTOKEN);
-		redisUtil.set(ShiroStarterConstant.CACHE_KEY_SHIRO_ACCESSTOKEN + idStr, accesstokenNew);
+		redisUtil.set(RbacStarterConstant.CACHE_KEY_ACCESSTOKEN + idStr, accesstokenNew);
 		// 提交给UserRealm进行认证，如果错误他会抛出异常并被捕获，如果没有抛出异常则代表登入成功，返回true
 		JWTToken jwtToken = new JWTToken(user.getUsername(), accesstokenNew);
 		// 重新在进行登录
