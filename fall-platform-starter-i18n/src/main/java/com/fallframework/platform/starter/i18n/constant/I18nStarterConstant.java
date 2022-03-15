@@ -15,6 +15,6 @@ public class I18nStarterConstant {
 	/**
 	 * 缓存key：支持的语言类型编码
 	 */
-	public static final String CACHE_KEY_I18N_SUPPORTED = "i18n:supported";
+	public static final String CACHE_KEY_I18N_SUPPORTED = "i18n:supported:";
 
 }

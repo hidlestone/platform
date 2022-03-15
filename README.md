@@ -200,3 +200,6 @@ fall-platform-starter-data
 
 开发过程中，可以在项目 platform-demo 中进行功能测试。
 
+
+遵循相关的开发规范，见【阿里巴巴Java开发手册】。
+尽量考虑其 高内聚/低耦合 ，尽量做到 最佳实践(Best Practice) 。
