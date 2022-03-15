@@ -146,7 +146,7 @@ public class JWTUtil {
 		String refreshuser = JSON.toJSONString(parseToken(refreshToken));
 		// 两个token不匹配
 		if (!accessuser.equals(refreshuser)) {
-			return ResponseResult.fail("accesstoken and refreshtoken do not match.");
+			return ResponseResult.fail("accesstoken and refreshtoken not match.");
 		}
 		return ResponseResult.success();
 	}

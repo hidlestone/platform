@@ -6,12 +6,13 @@ package com.fallframework.platform.starter.rbac.constant;
 public class RbacStarterConstant {
 
 	/**
-	 * 访问token缓存key
+	 * 双token动态刷新策略<br/>
+	 * 缓存key：访问token，user:accesstoken:{id}
 	 */
 	public static final String CACHE_KEY_ACCESSTOKEN = "user:accesstoken:";
 
 	/**
-	 * 刷新token缓存key
+	 * 缓存key：刷新token，user:refreshtoken::{id}
 	 */
 	public static final String CACHE_KEY_REFRESHTOKEN = "user:refreshtoken:";
 

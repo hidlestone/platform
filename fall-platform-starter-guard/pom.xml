@@ -18,6 +18,10 @@
             <artifactId>fall-platform-starter-config</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.fallframework.platform</groupId>
+            <artifactId>fall-platform-starter-rbac</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
@@ -55,7 +59,6 @@
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
         </dependency>
-
     </dependencies>
 
 

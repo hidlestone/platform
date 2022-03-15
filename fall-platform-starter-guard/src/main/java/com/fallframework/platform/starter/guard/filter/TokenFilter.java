@@ -4,7 +4,9 @@ import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.config.model.SysParamGroupEnum;
 import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
 import com.fallframework.platform.starter.core.constant.CoreContextConstant;
+import com.fallframework.platform.starter.guard.exception.UnknownAccountException;
 import com.fallframework.platform.starter.guard.util.JWTUtil;
+import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,11 +96,16 @@ public class TokenFilter implements Filter {
 	 */
 	private boolean executeLogin(ServletRequest request, ServletResponse response) {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		String accessToken = httpRequest.getHeader(CoreContextConstant.ACCESSTOKEN);
+		String accesstoken = httpRequest.getHeader(CoreContextConstant.ACCESSTOKEN);
 		// 用户id
-		String idStr = jwtUtil.getClaim(accessToken, "id");
-		String accesstokenCache = (String) redisUtil.get(ShiroStarterConstant.CACHE_KEY_SHIRO_ACCESSTOKEN + idStr);
-
+		String idStr = jwtUtil.getClaim(accesstoken, "id");
+		String accesstokenCache = (String) redisUtil.get(RbacStarterConstant.CACHE_KEY_ACCESSTOKEN + idStr);
+		if (!accesstoken.equals(accesstokenCache)) {
+			throw new UnknownAccountException("invalid accesstoken");
+		}
+		// 将用户信息存入到当前上下文环境中，便于在业务代码中取出相关的信息
+		// TODO
+		return true;
 	}
 
 	@Override
