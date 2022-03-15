@@ -10,6 +10,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 /**
+ * 启动时初始化系统角色权限到缓存中
+ *
  * @author zhuangpf
  */
 @Component
@@ -23,7 +25,6 @@ public class RolePermissionInitListener implements ApplicationListener<Applicati
 	@Override
 	public void onApplicationEvent(ApplicationStartedEvent event) {
 		ResponseResult responseResult = permissionService.refreshPermissionCache();
-		LOGGER.info(responseResult.toString());
 		LOGGER.info("init role permission to cache.");
 	}
 }

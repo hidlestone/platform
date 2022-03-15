@@ -25,7 +25,7 @@ public class LanguageFilter implements Filter {
 	public void init(FilterConfig filterConfig) throws ServletException {
 		LOGGER.debug("LanguageFilter init.");
 	}
-	
+
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 		ServletRequest request = new LanguageRequestWrapper((HttpServletRequest) servletRequest);

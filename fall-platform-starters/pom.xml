@@ -89,6 +89,9 @@
 	    <module>../fall-platform-starter-sharding-jdbc</module>
 	    <module>../fall-platform-starter-mycat</module>
         <module>../fall-platform-starter-activiti</module>
+	    <module>../fall-platform-starter-canal</module>
+        <module>../fall-platform-starter-logstash</module>
+	    <module>../fall-platform-starter-datax</module>
     </modules>
 
 </project>

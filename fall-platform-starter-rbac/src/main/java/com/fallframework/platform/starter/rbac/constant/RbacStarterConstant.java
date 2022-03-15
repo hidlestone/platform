@@ -12,7 +12,7 @@ public class RbacStarterConstant {
 	public static final String CACHE_KEY_ACCESSTOKEN = "user:accesstoken:";
 
 	/**
-	 * 缓存key：刷新token，user:refreshtoken::{id}
+	 * 缓存key：刷新token，user:refreshtoken:{id}
 	 */
 	public static final String CACHE_KEY_REFRESHTOKEN = "user:refreshtoken:";
 
