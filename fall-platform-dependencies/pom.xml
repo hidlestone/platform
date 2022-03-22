@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.5.RELEASE</version>
+		<version>2.3.5.RELEASE</version>
 		<relativePath/>
 	</parent>
 	<!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.companyname.project-group，maven会将该项目打成的jar包放本地路径：/com/companyname/project-group -->
@@ -47,7 +47,7 @@
 		<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+		<spring-boot.version>2.3.5.RELEASE</spring-boot.version>
 		<spring-cloud.version>Hoxton.SR4</spring-cloud.version>
 		<spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
 		<!-- javaee-api -->
@@ -302,6 +302,16 @@
 			<dependency>
 				<groupId>com.fallframework.platform</groupId>
 				<artifactId>fall-platform-starter-flyway</artifactId>
+				<version>${platform.starters.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fallframework.platform</groupId>
+				<artifactId>fall-platform-starter-elasticjob</artifactId>
+				<version>${platform.starters.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fallframework.platform</groupId>
+				<artifactId>fall-platform-starter-elasticsearch</artifactId>
 				<version>${platform.starters.version}</version>
 			</dependency>
 
