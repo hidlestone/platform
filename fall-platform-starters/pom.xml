@@ -92,6 +92,7 @@
 	    <module>../fall-platform-starter-canal</module>
         <module>../fall-platform-starter-logstash</module>
 	    <module>../fall-platform-starter-datax</module>
+	    <module>../fall-platform-starter-kibana</module>
     </modules>
 
 </project>
