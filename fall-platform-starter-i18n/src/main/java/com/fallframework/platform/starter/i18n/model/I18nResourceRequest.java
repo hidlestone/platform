@@ -14,6 +14,11 @@ public class I18nResourceRequest extends BasePageRequest {
 	private static final long serialVersionUID = 7878442368913931813L;
 
 	/**
+	 * ID
+	 */
+	private Long id;
+
+	/**
 	 * 语言编码
 	 */
 	private String langCode;
@@ -32,5 +37,5 @@ public class I18nResourceRequest extends BasePageRequest {
 	 * 所属module
 	 */
 	private String moduleCode;
-	
+
 }
