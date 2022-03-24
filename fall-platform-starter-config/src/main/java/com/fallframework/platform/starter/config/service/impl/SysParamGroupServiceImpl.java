@@ -37,27 +37,6 @@ public class SysParamGroupServiceImpl extends ServiceImpl<SysParamGroupMapper, S
 	private SysParamItemMapper sysParamItemMapper;
 
 	@Override
-	public ResponseResult insert(SysParamGroup sysParamGroup) {
-		int i = sysParamGroupMapper.insert(sysParamGroup);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult delete(String code) {
-		int i = sysParamGroupMapper.deleteById(code);
-		QueryWrapper<SysParamItem> wrapper = new QueryWrapper<>();
-		wrapper.eq("group_code", code);
-		int i1 = sysParamItemMapper.delete(wrapper);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult update(SysParamGroup sysParamGroup) {
-		int i = sysParamGroupMapper.updateById(sysParamGroup);
-		return ResponseResult.success();
-	}
-
-	@Override
 	public ResponseResult<SysParamGroupResponse> select(String code) {
 		SysParamGroup sysParamGroup = sysParamGroupMapper.selectById(code);
 		if (null == sysParamGroup) {

@@ -21,30 +21,6 @@ public class SysParamItemServiceImpl extends ServiceImpl<SysParamItemMapper, Sys
 	private SysParamItemMapper sysParamItemMapper;
 
 	@Override
-	public ResponseResult insert(SysParamItem sysParamItem) {
-		int i = sysParamItemMapper.insert(sysParamItem);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult delete(String code) {
-		int i = sysParamItemMapper.deleteById(code);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult update(SysParamItem sysParamItem) {
-		int i = sysParamItemMapper.updateById(sysParamItem);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult<SysParamItem> select(String code) {
-		SysParamItem sysParamItem = sysParamItemMapper.selectById(code);
-		return ResponseResult.success(sysParamItem);
-	}
-
-	@Override
 	public ResponseResult<List<SysParamItem>> selectByGroupCode(String groupCode) {
 		QueryWrapper<SysParamItem> wrapper = new QueryWrapper<>();
 		wrapper.eq("group_code", groupCode);

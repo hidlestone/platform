@@ -13,14 +13,6 @@ import java.util.List;
  */
 public interface SysParamItemService extends IService<SysParamItem> {
 
-	ResponseResult insert(SysParamItem sysParamItem);
-
-	ResponseResult delete(String code);
-
-	ResponseResult update(SysParamItem sysParamItem);
-
-	ResponseResult<SysParamItem> select(String code);
-
 	ResponseResult<List<SysParamItem>> selectByGroupCode(String groupCode);
 
 }

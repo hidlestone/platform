@@ -12,12 +12,6 @@ import com.fallframework.platform.starter.config.model.SysParamGroupResponse;
  */
 public interface SysParamGroupService extends IService<SysParamGroup> {
 
-	ResponseResult insert(SysParamGroup sysParamGroup);
-
-	ResponseResult delete(String code);
-
-	ResponseResult update(SysParamGroup sysParamGroup);
-
 	ResponseResult<SysParamGroupResponse> select(String code);
 
 	ResponseResult<Page<SysParamGroupResponse>> list(SysParamGroupRequest request);
