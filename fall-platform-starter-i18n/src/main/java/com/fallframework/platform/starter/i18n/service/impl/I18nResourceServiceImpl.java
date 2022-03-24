@@ -27,30 +27,6 @@ public class I18nResourceServiceImpl extends ServiceImpl<I18nResourceMapper, I18
 	private RedisUtil redisUtil;
 
 	@Override
-	public ResponseResult insert(I18nResource i18nResource) {
-		int i = i18nResourceMapper.insert(i18nResource);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult delete(Long id) {
-		int i = i18nResourceMapper.deleteById(id);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult update(I18nResource i18nResource) {
-		int i = i18nResourceMapper.updateById(i18nResource);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult<I18nResource> select(Long id) {
-		I18nResource i18nResource = i18nResourceMapper.selectById(id);
-		return ResponseResult.success(i18nResource);
-	}
-
-	@Override
 	public ResponseResult<Page<I18nResource>> list(I18nResourceRequest request) {
 		Page<I18nResource> page = new Page<>(request.getPageNum(), request.getPageSize());
 		page = i18nResourceMapper.list(page, request);
