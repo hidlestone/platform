@@ -12,7 +12,7 @@ public interface I18nResourceService extends IService<I18nResource> {
 
 	ResponseResult<Page<I18nResource>> list(I18nResourceRequest request);
 
-	ResponseResult<List<I18nResource>> selectByResourceKey(String resourceKey);
+	ResponseResult<List<I18nResource>> getByResourceKey(String resourceKey);
 
 	ResponseResult refreshI18nResourceCache();
 }

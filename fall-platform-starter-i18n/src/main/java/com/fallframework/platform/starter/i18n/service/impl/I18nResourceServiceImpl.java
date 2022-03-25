@@ -34,7 +34,7 @@ public class I18nResourceServiceImpl extends ServiceImpl<I18nResourceMapper, I18
 	}
 
 	@Override
-	public ResponseResult<List<I18nResource>> selectByResourceKey(String resourceKey) {
+	public ResponseResult<List<I18nResource>> getByResourceKey(String resourceKey) {
 		QueryWrapper<I18nResource> wrapper = new QueryWrapper<>();
 		wrapper.eq("resource_key", resourceKey);
 		List<I18nResource> i18nResourceList = i18nResourceMapper.selectList(wrapper);
