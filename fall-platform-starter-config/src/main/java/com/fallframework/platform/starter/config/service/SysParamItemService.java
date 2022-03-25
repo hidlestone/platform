@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface SysParamItemService extends IService<SysParamItem> {
 
+	ResponseResult deleteByGroupCode(String groupCode);
+	
 	ResponseResult<List<SysParamItem>> selectByGroupCode(String groupCode);
 
 }

@@ -21,6 +21,14 @@ public class SysParamItemServiceImpl extends ServiceImpl<SysParamItemMapper, Sys
 	private SysParamItemMapper sysParamItemMapper;
 
 	@Override
+	public ResponseResult deleteByGroupCode(String groupCode) {
+		QueryWrapper<SysParamItem> wrapper = new QueryWrapper<>();
+		wrapper.eq("group_code", groupCode);
+		sysParamItemMapper.delete(wrapper);
+		return ResponseResult.success();
+	}
+
+	@Override
 	public ResponseResult<List<SysParamItem>> selectByGroupCode(String groupCode) {
 		QueryWrapper<SysParamItem> wrapper = new QueryWrapper<>();
 		wrapper.eq("group_code", groupCode);
