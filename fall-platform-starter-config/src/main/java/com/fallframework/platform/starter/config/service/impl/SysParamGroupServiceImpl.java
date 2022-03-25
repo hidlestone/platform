@@ -37,7 +37,7 @@ public class SysParamGroupServiceImpl extends ServiceImpl<SysParamGroupMapper, S
 	private SysParamItemMapper sysParamItemMapper;
 
 	@Override
-	public ResponseResult<SysParamGroupResponse> select(String code) {
+	public ResponseResult<SysParamGroupResponse> get(String code) {
 		SysParamGroup sysParamGroup = sysParamGroupMapper.selectById(code);
 		if (null == sysParamGroup) {
 			return ResponseResult.success();

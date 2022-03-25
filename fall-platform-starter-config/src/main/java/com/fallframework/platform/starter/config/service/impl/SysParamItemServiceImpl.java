@@ -29,7 +29,7 @@ public class SysParamItemServiceImpl extends ServiceImpl<SysParamItemMapper, Sys
 	}
 
 	@Override
-	public ResponseResult<List<SysParamItem>> selectByGroupCode(String groupCode) {
+	public ResponseResult<List<SysParamItem>> getByGroupCode(String groupCode) {
 		QueryWrapper<SysParamItem> wrapper = new QueryWrapper<>();
 		wrapper.eq("group_code", groupCode);
 		List<SysParamItem> sysParamItemList = sysParamItemMapper.selectList(wrapper);

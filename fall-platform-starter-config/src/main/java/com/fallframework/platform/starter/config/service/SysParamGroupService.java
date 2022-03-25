@@ -12,7 +12,7 @@ import com.fallframework.platform.starter.config.model.SysParamGroupResponse;
  */
 public interface SysParamGroupService extends IService<SysParamGroup> {
 
-	ResponseResult<SysParamGroupResponse> select(String code);
+	ResponseResult<SysParamGroupResponse> get(String code);
 
 	ResponseResult<Page<SysParamGroupResponse>> list(SysParamGroupRequest request);
 

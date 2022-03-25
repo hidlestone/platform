@@ -61,7 +61,7 @@ public class PlatformSysParamUtil {
 	public ResponseResult<Map<String, String>> getSysParamGroupItemMap(String groupCode) {
 		List<SysParamItemResponse> sysParamItemList = (List<SysParamItemResponse>) redisUtil.hget(ConfigStarterConstant.CACHE_KEY_SYS_PARAM, groupCode);
 		if (CollectionUtil.isEmpty(sysParamItemList)) {
-			SysParamGroupResponse sysParamGroupResponse = sysParamGroupService.select(groupCode).getData();
+			SysParamGroupResponse sysParamGroupResponse = sysParamGroupService.get(groupCode).getData();
 			sysParamItemList = sysParamGroupResponse.getSysParamItemList();
 		}
 		if (CollectionUtil.isEmpty(sysParamItemList)) {
