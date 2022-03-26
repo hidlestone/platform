@@ -8,14 +8,6 @@ import com.fallframework.platform.starter.mail.model.MailTemplateRequest;
 
 public interface MailTemplateService extends IService<MailTemplate> {
 
-	ResponseResult insert(MailTemplate mailTemplate);
-
-	ResponseResult delete(Long id);
-
-	ResponseResult update(MailTemplate mailSenderConfig);
-
-	ResponseResult<MailTemplate> select(Long id);
-
 	ResponseResult<Page<MailTemplate>> list(MailTemplateRequest request);
 
 }

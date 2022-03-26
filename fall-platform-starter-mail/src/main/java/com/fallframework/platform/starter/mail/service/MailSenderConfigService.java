@@ -8,14 +8,6 @@ import com.fallframework.platform.starter.mail.model.MailSenderConfigRequest;
 
 public interface MailSenderConfigService extends IService<MailSenderConfig> {
 
-	ResponseResult insert(MailSenderConfig mailSenderConfig);
-
-	ResponseResult delete(Long id);
-
-	ResponseResult update(MailSenderConfig mailSenderConfig);
-
-	ResponseResult<MailSenderConfig> select(Long id);
-
 	ResponseResult<Page<MailSenderConfig>> list(MailSenderConfigRequest request);
 
 }

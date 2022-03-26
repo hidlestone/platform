@@ -8,14 +8,6 @@ import com.fallframework.platform.starter.mail.model.MailHistoryRequest;
 
 public interface MailHistoryService extends IService<MailHistory> {
 
-	ResponseResult insert(MailHistory mailHistory);
-
-	ResponseResult delete(Long id);
-
-	ResponseResult update(MailHistory mailHistory);
-
-	ResponseResult<MailHistory> select(Long id);
-
 	ResponseResult<Page<MailHistory>> list(MailHistoryRequest request);
 
 }

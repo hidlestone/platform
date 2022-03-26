@@ -17,30 +17,6 @@ public class MailSenderConfigServiceImpl extends ServiceImpl<MailSenderConfigMap
 	private MailSenderConfigMapper mailSenderConfigMapper;
 
 	@Override
-	public ResponseResult insert(MailSenderConfig mailSenderConfig) {
-		int i = mailSenderConfigMapper.insert(mailSenderConfig);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult delete(Long id) {
-		int i = mailSenderConfigMapper.deleteById(id);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult update(MailSenderConfig mailSenderConfig) {
-		int i = mailSenderConfigMapper.updateById(mailSenderConfig);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult select(Long id) {
-		MailSenderConfig mailSenderConfig = mailSenderConfigMapper.selectById(id);
-		return ResponseResult.success(mailSenderConfig);
-	}
-
-	@Override
 	public ResponseResult<Page<MailSenderConfig>> list(MailSenderConfigRequest request) {
 		Page<MailSenderConfig> page = new Page<>(request.getPageNum(), request.getPageSize());
 		page = mailSenderConfigMapper.list(page, request);

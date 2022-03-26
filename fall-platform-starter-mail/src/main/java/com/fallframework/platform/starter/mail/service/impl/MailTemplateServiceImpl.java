@@ -17,30 +17,6 @@ public class MailTemplateServiceImpl extends ServiceImpl<MailTemplateMapper, Mai
 	private MailTemplateMapper mailTemplateMapper;
 
 	@Override
-	public ResponseResult insert(MailTemplate mailTemplate) {
-		int i = mailTemplateMapper.insert(mailTemplate);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult delete(Long id) {
-		int i = mailTemplateMapper.deleteById(id);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult update(MailTemplate mailSenderConfig) {
-		int i = mailTemplateMapper.updateById(mailSenderConfig);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult<MailTemplate> select(Long id) {
-		MailTemplate mailTemplate = mailTemplateMapper.selectById(id);
-		return ResponseResult.success(mailTemplate);
-	}
-
-	@Override
 	public ResponseResult<Page<MailTemplate>> list(MailTemplateRequest request) {
 		Page<MailTemplate> page = new Page<>(request.getPageNum(), request.getPageSize());
 		page = mailTemplateMapper.list(page, request);

@@ -17,30 +17,6 @@ public class MailHistoryServiceImpl extends ServiceImpl<MailHistoryMapper, MailH
 	private MailHistoryMapper mailHistoryMapper;
 
 	@Override
-	public ResponseResult insert(MailHistory mailHistory) {
-		int i = mailHistoryMapper.insert(mailHistory);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult delete(Long id) {
-		int i = mailHistoryMapper.deleteById(id);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult update(MailHistory mailHistory) {
-		int i = mailHistoryMapper.updateById(mailHistory);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult<MailHistory> select(Long id) {
-		MailHistory mailHistory = mailHistoryMapper.selectById(id);
-		return ResponseResult.success(mailHistory);
-	}
-
-	@Override
 	public ResponseResult<Page<MailHistory>> list(MailHistoryRequest request) {
 		Page<MailHistory> page = new Page<>(request.getPageNum(), request.getPageSize());
 		page = mailHistoryMapper.list(page, request);
