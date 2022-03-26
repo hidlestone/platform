@@ -24,9 +24,47 @@
 		id, parent_id, menu_code, menu_name, menu_desc, func_link, open_type, icon, `order`,
 		remark, is_show, create_user_id, modify_user_id, gmt_create, gmt_modified
 	</sql>
-	
+
 	<select id="list" resultMap="BaseResultMap">
-		
+		select
+		<include refid="Base_Column_List"/>
+		from s_menu
+		<where>
+			<if test="param2.id != null">
+				id = #{id,jdbcType=BIGINT}
+			</if>
+			<if test="param2.parentId != null">
+				AND parent_id = #{parentId,jdbcType=BIGINT}
+			</if>
+			<if test="param2.menuCode != null">
+				AND menu_code CONCAT('%', #{menuCode,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.menuName != null">
+				AND menu_name CONCAT('%', #{menuName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.menuDesc != null">
+				AND menu_desc CONCAT('%', #{menuDesc,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.funcLink != null">
+				AND func_link CONCAT('%', #{funcLink,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.openType != null">
+				AND open_type = #{openType,jdbcType=TINYINT}
+			</if>
+			<if test="param2.icon != null">
+				AND icon CONCAT('%', #{icon,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.order != null">
+				AND order = #{order,jdbcType=TINYINT},
+			</if>
+			<if test="param2.remark != null">
+				AND remark CONCAT('%', #{remark,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.isShow != null">
+				AND is_show = #{isShow,jdbcType=TINYINT},
+			</if>
+		</where>
+		ORDER BY id DESC
 	</select>
-	
+
 </mapper>

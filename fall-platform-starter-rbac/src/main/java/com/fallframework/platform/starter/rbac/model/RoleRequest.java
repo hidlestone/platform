@@ -1,11 +1,11 @@
 package com.fallframework.platform.starter.rbac.model;
 
-import com.fallframework.platform.starter.api.request.BaseEntityRequest;
+import com.fallframework.platform.starter.api.request.BasePageRequest;
 
 /**
  * @author zhuangpf
  */
-public class RoleRequest extends BaseEntityRequest {
+public class RoleRequest extends BasePageRequest {
 
 	private static final long serialVersionUID = 2426769720974796371L;
 

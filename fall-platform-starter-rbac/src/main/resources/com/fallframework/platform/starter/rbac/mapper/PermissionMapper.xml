@@ -34,7 +34,7 @@
 		WHERE
 			r.role_code IS NOT NULL	
 	</select>
-	
+
 	<select id="getPermissionListByUserId" resultType="com.fallframework.platform.starter.rbac.model.RolePermissionResponse" parameterType="long">
 		SELECT
 			resource_value AS resourceValue,
@@ -57,6 +57,30 @@
 							user_id = #{id,jdbcType=BIGINT} 
 					)
 			)
+	</select>
+
+	<select id="list" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from s_permission
+		<where>
+			<if test="param2.permissionCode != null">
+				permission_code CONCAT('%', #{permissionCode,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.permissionName != null">
+				AND permission_name CONCAT('%', #{permissionName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.resourceValue != null">
+				AND resource_value CONCAT('%', #{resourceValue,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.orderNum != null">
+				AND order_num = #{orderNum,jdbcType=INTEGER},
+			</if>
+			<if test="param2.authcType != null">
+				AND authc_type = #{authcType,jdbcType=BOOLEAN},
+			</if>
+		</where>
+		ORDER BY gmt_create DESC 
 	</select>
 
 </mapper>

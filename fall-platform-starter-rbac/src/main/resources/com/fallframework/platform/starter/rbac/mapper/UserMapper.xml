@@ -30,4 +30,9 @@
 		address, sex, `status`, remark, source_type, last_login_time, create_user_id, modify_user_id,
 		gmt_create, gmt_modified
 	</sql>
+	
+	<select id="list" resultMap="BaseResultMap">
+		
+	</select>
+	
 </mapper>

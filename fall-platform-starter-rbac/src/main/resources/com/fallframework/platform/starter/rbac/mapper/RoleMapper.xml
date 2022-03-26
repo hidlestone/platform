@@ -33,5 +33,27 @@
 					user_id = #{userId,jdbcType=BIGINT}
 			)
 	</select>
+	
+	<select id="list" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from s_role
+		<where>
+			<if test="param2.id != null">
+				id = #{id,jdbcType=BIGINT}
+			</if>
+			<if test="param2.roleCode != null">
+				AND role_code CONCAT('%', #{roleCode,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.roleName != null">
+				AND role_name CONCAT('%', #{roleName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.roleDesc != null">
+				ADN role_desc CONCAT('%', #{roleDesc,jdbcType=VARCHAR}, '%')
+			</if>
+		</where>
+		ORDER BY id DESC 
+	</select>
+
 
 </mapper>

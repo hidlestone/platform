@@ -3,6 +3,7 @@ package com.fallframework.platform.starter.rbac.service.impl;
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
@@ -11,6 +12,7 @@ import com.fallframework.platform.starter.rbac.entity.Permission;
 import com.fallframework.platform.starter.rbac.entity.UserRole;
 import com.fallframework.platform.starter.rbac.mapper.PermissionMapper;
 import com.fallframework.platform.starter.rbac.mapper.UserRoleMapper;
+import com.fallframework.platform.starter.rbac.model.PermissionRequest;
 import com.fallframework.platform.starter.rbac.model.RolePermissionResponse;
 import com.fallframework.platform.starter.rbac.service.PermissionService;
 import org.slf4j.Logger;
@@ -20,7 +22,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
@@ -46,7 +47,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 			return ResponseResult.success();
 		}
 		// 按照角色分组
-		Map<Long, List<RolePermissionResponse>> rolePermMap = 
+		Map<Long, List<RolePermissionResponse>> rolePermMap =
 				rolePermissionResponseList.stream().collect(Collectors.groupingBy(RolePermissionResponse::getId));
 		for (Map.Entry<Long, List<RolePermissionResponse>> entry : rolePermMap.entrySet()) {
 			redisUtil.hset(RbacStarterConstant.CACHE_KEY_ROLE_PERMISSION, String.valueOf(entry.getKey()), entry.getValue());
@@ -77,5 +78,12 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 		// 2、从数据库获取
 		allRolePermList = permissionMapper.getPermissionListByUserId(id);
 		return allRolePermList;
+	}
+
+	@Override
+	public ResponseResult<Page<Permission>> list(PermissionRequest request) {
+		Page<Permission> page = new Page<>(request.getPageNum(), request.getPageSize());
+		page = permissionMapper.list(page, request);
+		return ResponseResult.success(page);
 	}
 }
