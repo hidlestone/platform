@@ -8,14 +8,6 @@ import com.fallframework.platform.starter.mq.model.MqTraceLogRequest;
 
 public interface MqTraceLogService extends IService<MqTraceLog> {
 
-	ResponseResult insert(MqTraceLog mqTraceLog);
-
-	ResponseResult delete(Long id);
-
-	ResponseResult update(MqTraceLog mqTraceLog);
-
-	ResponseResult<MqTraceLog> select(Long id);
-
 	ResponseResult<Page<MqTraceLog>> list(MqTraceLogRequest request);
 
 }

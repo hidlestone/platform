@@ -17,30 +17,6 @@ public class MqTraceLogServiceImpl extends ServiceImpl<MqTraceLogMapper, MqTrace
 	private MqTraceLogMapper mqTraceLogMapper;
 
 	@Override
-	public ResponseResult insert(MqTraceLog mqTraceLog) {
-		int i = mqTraceLogMapper.insert(mqTraceLog);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult delete(Long id) {
-		int i = mqTraceLogMapper.deleteById(id);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult update(MqTraceLog mqTraceLog) {
-		int i = mqTraceLogMapper.updateById(mqTraceLog);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult<MqTraceLog> select(Long id) {
-		MqTraceLog mqTraceLog = mqTraceLogMapper.selectById(id);
-		return ResponseResult.success(mqTraceLog);
-	}
-
-	@Override
 	public ResponseResult<Page<MqTraceLog>> list(MqTraceLogRequest request) {
 		Page<MqTraceLog> page = new Page<>(request.getPageNum(), request.getPageSize());
 		page = mqTraceLogMapper.list(page, request);

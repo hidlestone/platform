@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fallframework.platform.starter.rbac.mapper.MenuMapper">
-  <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.rbac.entity.Menu">
-    <!--@mbg.generated-->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
-    <result column="menu_code" jdbcType="VARCHAR" property="menuCode" />
-    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
-    <result column="menu_desc" jdbcType="VARCHAR" property="menuDesc" />
-    <result column="func_link" jdbcType="VARCHAR" property="funcLink" />
-    <result column="open_type" jdbcType="TINYINT" property="openType" />
-    <result column="icon" jdbcType="VARCHAR" property="icon" />
-    <result column="order" jdbcType="TINYINT" property="order" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
-    <result column="is_show" jdbcType="TINYINT" property="isShow" />
-    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
-    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
-    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
-    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, parent_id, menu_code, menu_name, menu_desc, func_link, open_type, icon, `order`, 
-    remark, is_show, create_user_id, modify_user_id, gmt_create, gmt_modified
-  </sql>
+	<resultMap id="BaseResultMap" type="com.fallframework.platform.starter.rbac.entity.Menu">
+		<!--@mbg.generated-->
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+		<result column="menu_code" jdbcType="VARCHAR" property="menuCode"/>
+		<result column="menu_name" jdbcType="VARCHAR" property="menuName"/>
+		<result column="menu_desc" jdbcType="VARCHAR" property="menuDesc"/>
+		<result column="func_link" jdbcType="VARCHAR" property="funcLink"/>
+		<result column="open_type" jdbcType="TINYINT" property="openType"/>
+		<result column="icon" jdbcType="VARCHAR" property="icon"/>
+		<result column="order" jdbcType="TINYINT" property="order"/>
+		<result column="remark" jdbcType="VARCHAR" property="remark"/>
+		<result column="is_show" jdbcType="TINYINT" property="isShow"/>
+		<result column="create_user_id" jdbcType="BIGINT" property="createUserId"/>
+		<result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId"/>
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		id, parent_id, menu_code, menu_name, menu_desc, func_link, open_type, icon, `order`,
+		remark, is_show, create_user_id, modify_user_id, gmt_create, gmt_modified
+	</sql>
+	
+	<select id="list" resultMap="BaseResultMap">
+		
+	</select>
+	
 </mapper>
