@@ -74,10 +74,10 @@
 				AND resource_value CONCAT('%', #{resourceValue,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.orderNum != null">
-				AND order_num = #{orderNum,jdbcType=INTEGER},
+				AND order_num = #{orderNum,jdbcType=INTEGER}
 			</if>
 			<if test="param2.authcType != null">
-				AND authc_type = #{authcType,jdbcType=BOOLEAN},
+				AND authc_type = #{authcType,jdbcType=BOOLEAN}
 			</if>
 		</where>
 		ORDER BY gmt_create DESC 

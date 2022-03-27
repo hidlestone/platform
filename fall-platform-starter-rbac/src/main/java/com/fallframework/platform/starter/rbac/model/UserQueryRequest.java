@@ -53,9 +53,14 @@ public class UserQueryRequest extends BasePageRequest {
 	private String name;
 
 	/**
-	 * 生日
+	 * 生日开始日期
 	 */
-	private Date birthday;
+	private Date birthdayStart;
+
+	/**
+	 * 生日结束日期
+	 */
+	private Date birthdayEnd;
 
 	/**
 	 * 地址

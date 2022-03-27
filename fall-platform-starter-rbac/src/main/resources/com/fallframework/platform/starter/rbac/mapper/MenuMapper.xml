@@ -55,16 +55,59 @@
 				AND icon CONCAT('%', #{icon,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.order != null">
-				AND order = #{order,jdbcType=TINYINT},
+				AND order = #{order,jdbcType=TINYINT}
 			</if>
 			<if test="param2.remark != null">
 				AND remark CONCAT('%', #{remark,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.isShow != null">
-				AND is_show = #{isShow,jdbcType=TINYINT},
+				AND is_show = #{isShow,jdbcType=TINYINT}
 			</if>
 		</where>
 		ORDER BY id DESC
+	</select>
+
+	<select id="getMenusByUserId" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+			s_menu
+		WHERE
+			id IN (
+				SELECT
+					menu_id
+				FROM
+					s_role_menu
+				WHERE
+					role_id IN (
+						SELECT
+							role_id
+						FROM
+							s_user_role
+						WHERE
+							user_id = #{userId,jdbcType=BIGINT}
+					)
+			)
+	</select>
+	
+	<select id="getMenusByRoleIds" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+			s_menu
+		WHERE
+			id IN (
+				SELECT
+					menu_id
+				FROM
+					s_role_menu
+				WHERE
+					role_id IN
+				<foreach collection="param2" item="item" index="index" open="(" separator="," close=")">
+					#{item,jdbcType=VARCHAR}
+				</foreach>
+		
+			)
 	</select>
 
 </mapper>
