@@ -70,14 +70,14 @@ public class ShiroRealm extends AuthorizingRealm {
 			String account = (String) token.getPrincipal();
 			String password = new String((char[]) token.getCredentials());
 			QueryWrapper<User> wrapper = new QueryWrapper<>();
-			wrapper.eq("account", account);
+			wrapper.eq("account", account).or().eq("tel", account);
 			wrapper.eq("password", password);
 			User user = userService.getOne(wrapper);
 			if (null == user) {
 				// 用户名或者密码错误
 				throw new UnknownAccountException("account or password is not correct.");
 			}
-			if (StatusEnum.DISABLE.equals(user.getStatus())) {
+			if (StatusEnum.N.equals(user.getStatus())) {
 				throw new LockedAccountException("account is disable, contact the admin.");
 			}
 			// 生成accesstoken

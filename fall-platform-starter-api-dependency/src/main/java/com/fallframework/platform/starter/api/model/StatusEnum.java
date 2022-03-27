@@ -8,10 +8,10 @@ public enum StatusEnum {
 	/**
 	 * 0-停用
 	 */
-	DISABLE,
+	N,
 	/**
 	 * 1-启用
 	 */
-	ENABLE;
+	Y;
 
 }

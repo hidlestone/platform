@@ -153,7 +153,7 @@ public class User extends BaseEntity implements UserDetails {
 	 */
 	@Override
 	public boolean isEnabled() {
-		return StatusEnum.ENABLE.equals(status) ? true : false;
+		return StatusEnum.Y.equals(status) ? true : false;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.fallframework.platform.starter.mail.model;
 
+import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.api.request.BasePageRequest;
 import lombok.Getter;
 import lombok.Setter;
@@ -88,6 +89,6 @@ public class MailHistoryRequest extends BasePageRequest {
 	/**
 	 * 0-失败，1-成功
 	 */
-	private Byte sendFlag;
+	private StatusEnum sendFlag;
 
 }
