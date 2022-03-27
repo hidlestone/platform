@@ -8,14 +8,6 @@ import com.fallframework.platform.starter.file.model.FileGroupRequest;
 
 public interface FileGroupService extends IService<FileGroup> {
 
-	ResponseResult insert(FileGroup fileGroup);
-
-	ResponseResult delete(Long id);
-
-	ResponseResult update(FileGroup fileGroup);
-
-	ResponseResult<FileGroup> select(Long id);
-
 	ResponseResult<Page<FileGroup>> list(FileGroupRequest request);
 
 	ResponseResult saveGroupAndInfoList(FileGroupRequest request);

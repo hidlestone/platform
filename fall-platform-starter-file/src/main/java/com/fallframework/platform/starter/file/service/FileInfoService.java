@@ -8,14 +8,6 @@ import com.fallframework.platform.starter.file.model.FileInfoRequest;
 
 public interface FileInfoService extends IService<FileInfo> {
 
-	ResponseResult insert(FileInfo fileInfo);
-
-	ResponseResult delete(Long id);
-
-	ResponseResult update(FileInfo fileInfo);
-
-	ResponseResult<FileInfo> select(Long id);
-
 	ResponseResult<Page<FileInfo>> list(FileInfoRequest request);
 
 }

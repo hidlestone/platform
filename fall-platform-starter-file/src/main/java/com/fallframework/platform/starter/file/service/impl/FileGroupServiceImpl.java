@@ -22,35 +22,11 @@ import java.util.List;
 public class FileGroupServiceImpl extends ServiceImpl<FileGroupMapper, FileGroup> implements FileGroupService {
 
 	@Autowired
+	private FileGroupService fileGroupService;
+	@Autowired
 	private FileGroupMapper fileGroupMapper;
 	@Autowired
-	private FileInfoMapper fileInfoMapper;
-	@Autowired
 	private FileInfoService fileInfoService;
-
-	@Override
-	public ResponseResult insert(FileGroup fileGroup) {
-		int i = fileGroupMapper.insert(fileGroup);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult delete(Long id) {
-		int i = fileGroupMapper.deleteById(id);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult update(FileGroup fileGroup) {
-		int i = fileGroupMapper.updateById(fileGroup);
-		return ResponseResult.success();
-	}
-
-	@Override
-	public ResponseResult<FileGroup> select(Long id) {
-		FileGroup fileGroup = fileGroupMapper.selectById(id);
-		return ResponseResult.success(fileGroup);
-	}
 
 	@Override
 	public ResponseResult<Page<FileGroup>> list(FileGroupRequest request) {
@@ -69,7 +45,7 @@ public class FileGroupServiceImpl extends ServiceImpl<FileGroupMapper, FileGroup
 	@Override
 	public ResponseResult saveGroupAndInfoList(FileGroupRequest request) {
 		FileGroup fileGroup = JSON.parseObject(JSON.toJSONString(request), FileGroup.class);
-		this.insert(fileGroup);
+		save(fileGroup);
 		List<FileInfo> fileInfoList = JSON.parseArray(JSON.toJSONString(request.getFileInfoList()), FileInfo.class);
 		fileInfoList.forEach(dtl -> dtl.setFileGroupId(fileGroup.getId()));
 		fileInfoService.saveBatch(fileInfoList);

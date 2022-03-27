@@ -5,6 +5,8 @@ import com.fallframework.platform.starter.api.response.BaseEntityResponse;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * @author zhuangpf
  */
@@ -29,4 +31,6 @@ public class FileGroupResponse extends BaseEntityResponse {
 	 */
 	private StatusEnum status;
 	
+	private List<FileInfoResponse> fileInfoResponseList;
+
 }

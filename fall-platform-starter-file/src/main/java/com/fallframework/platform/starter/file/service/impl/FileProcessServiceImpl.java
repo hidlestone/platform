@@ -89,7 +89,7 @@ public class FileProcessServiceImpl implements FileProcessService {
 
 	@Override
 	public ResponseResult downloadFile(Long fileInfoId, HttpServletResponse response) {
-		FileInfo fileInfo = fileInfoService.select(fileInfoId).getData();
+		FileInfo fileInfo = fileInfoService.getById(fileInfoId);
 		if (null == fileInfo) {
 			return ResponseResult.fail("file is not exist.");
 		}
