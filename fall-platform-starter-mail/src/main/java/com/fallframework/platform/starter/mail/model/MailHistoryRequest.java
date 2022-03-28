@@ -79,7 +79,7 @@ public class MailHistoryRequest extends BasePageRequest {
 	/**
 	 * 失败原因
 	 */
-	private Byte msg;
+	private String msg;
 
 	/**
 	 * 最后一次发送时间
