@@ -8,7 +8,6 @@ import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.file.entity.FileGroup;
 import com.fallframework.platform.starter.file.entity.FileInfo;
 import com.fallframework.platform.starter.file.mapper.FileGroupMapper;
-import com.fallframework.platform.starter.file.mapper.FileInfoMapper;
 import com.fallframework.platform.starter.file.model.FileGroupRequest;
 import com.fallframework.platform.starter.file.service.FileGroupService;
 import com.fallframework.platform.starter.file.service.FileInfoService;
@@ -21,8 +20,6 @@ import java.util.List;
 @Service
 public class FileGroupServiceImpl extends ServiceImpl<FileGroupMapper, FileGroup> implements FileGroupService {
 
-	@Autowired
-	private FileGroupService fileGroupService;
 	@Autowired
 	private FileGroupMapper fileGroupMapper;
 	@Autowired
