@@ -43,9 +43,9 @@
 		<url>https://github.com/hidlestone/platform/issues</url>
 	</issueManagement>
 
-	<!-- control 层的公共依赖抽取 -->
+	<!-- control层公共依赖抽取 -->
 	<dependencies>
-		<!-- consul注册中心客户端 -->
+		<!-- consul注册中心客户端START -->
 		<!--<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-consul-discovery</artifactId>
@@ -54,7 +54,8 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-consul</artifactId>
 		</dependency>-->
-		<!-- nacos注册中心客户端 -->
+		<!-- consul注册中心客户端END -->
+		<!-- nacos注册中心客户端START -->
 		<dependency>
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -63,7 +64,8 @@
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
 		</dependency>
-		<!--springboot feign(ribbon) + hystrix -->
+		<!-- nacos注册中心客户端END -->
+		<!-- 组件：springboot feign(ribbon) + hystrix START -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
@@ -79,10 +81,6 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-jwt</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
