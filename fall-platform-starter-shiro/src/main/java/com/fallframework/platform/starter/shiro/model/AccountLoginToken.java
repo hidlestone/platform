@@ -22,17 +22,17 @@ public class AccountLoginToken extends UsernamePasswordToken {
 	private String verificationCode;
 
 	/**
-	 * 随机码
+	 * 随机校验码
 	 */
-	private String randomCode;
+	private String randomCheckCode;
 
 	/**
 	 * 构造函数
 	 */
-	public AccountLoginToken(String account, String password, LoginTypeEnum loginType, String verificationCode, String randomCode) {
+	public AccountLoginToken(String account, String password, LoginTypeEnum loginType, String verificationCode, String randomCheckCode) {
 		super(account, password);
 		this.loginType = loginType;
 		this.verificationCode = verificationCode;
-		this.randomCode = randomCode;
+		this.randomCheckCode = randomCheckCode;
 	}
 }
