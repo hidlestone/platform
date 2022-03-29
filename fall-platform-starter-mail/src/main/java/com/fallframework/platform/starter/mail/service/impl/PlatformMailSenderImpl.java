@@ -53,9 +53,9 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 	@Override
 	public ResponseResult sendSimpleEmail(MailSendInfoRequest request) {
 		// 模板
-		MailTemplate mailTemplate = mailTemplateService.select(request.getMailTemplateId()).getData();
+		MailTemplate mailTemplate = mailTemplateService.getById(request.getMailTemplateId());
 		// 配置
-		MailSenderConfig mailSenderConfig = mailSenderConfigService.select(request.getMailSenderConfigId()).getData();
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(request.getMailSenderConfigId());
 		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		// 失败原因
 		String msg = null;
@@ -93,8 +93,8 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 	@Override
 	public ResponseResult sendMimeMsgEmail(MailSendInfoRequest request) {
 		// 配置&模板
-		MailTemplate mailTemplate = mailTemplateService.select(request.getMailTemplateId()).getData();
-		MailSenderConfig mailSenderConfig = mailSenderConfigService.select(request.getMailSenderConfigId()).getData();
+		MailTemplate mailTemplate = mailTemplateService.getById(request.getMailTemplateId());
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(request.getMailSenderConfigId());
 		// 0-失败，1-成功
 		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		String msg = null;
@@ -137,8 +137,8 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 	@Override
 	public ResponseResult sendInlineMail(MailSendInfoRequest request) {
 		// 配置&模板
-		MailTemplate mailTemplate = mailTemplateService.select(request.getMailTemplateId()).getData();
-		MailSenderConfig mailSenderConfig = mailSenderConfigService.select(request.getMailSenderConfigId()).getData();
+		MailTemplate mailTemplate = mailTemplateService.getById(request.getMailTemplateId());
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(request.getMailSenderConfigId());
 		// 0-失败，1-成功
 		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		String msg = null;
@@ -182,8 +182,8 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 	@Override
 	public ResponseResult sendTemplateEmail(MailSendInfoRequest request) {
 		// 配置&模板
-		MailTemplate mailTemplate = mailTemplateService.select(request.getMailTemplateId()).getData();
-		MailSenderConfig mailSenderConfig = mailSenderConfigService.select(request.getMailSenderConfigId()).getData();
+		MailTemplate mailTemplate = mailTemplateService.getById(request.getMailTemplateId());
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(request.getMailSenderConfigId());
 		// 0-失败，1-成功
 		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		String msg = null;
@@ -220,8 +220,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		}
 		return ResponseResult.success();
 	}
-
-
+	
 	/**
 	 * 添加邮件历史记录
 	 *
@@ -248,7 +247,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 		mailHistory.setMsg(msg);
 		mailHistory.setLastSendTime(new Date());
 		mailHistory.setSendFlag(sendFlag);
-		mailHistoryService.insert(mailHistory);
+		mailHistoryService.save(mailHistory);
 	}
 
 }
