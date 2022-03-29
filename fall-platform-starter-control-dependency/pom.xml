@@ -86,7 +86,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		<!-- 平台 -->
 		<!-- 其他 -->
 		<dependency>
 			<groupId>commons-lang</groupId>

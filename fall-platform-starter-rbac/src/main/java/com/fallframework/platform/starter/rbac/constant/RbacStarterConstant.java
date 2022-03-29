@@ -19,6 +19,21 @@ public class RbacStarterConstant {
 	/**
 	 * 权限缓存key：role:permission:{id}
 	 */
-	public static final String CACHE_KEY_ROLE_PERMISSION = "role:permission";
+	public static final String CACHE_KEY_ROLE_PERMISSION = "role:permission:";
+
+	/**
+	 * 权限缓存key：user:verificationcode:{account的md5}
+	 */
+	public static final String CACHE_KEY_USER_VERIFICATIONCODE = "user:verificationcode:";
+
+	/**
+	 * 响应请求头，访问token
+	 */
+	public static final String ACCESSTOKEN = "accesstoken";
+
+	/**
+	 * 响应请求头，刷新token
+	 */
+	public static final String REFRESHTOKEN = "refreshtoken";
 
 }

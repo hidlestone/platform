@@ -3,6 +3,7 @@ package com.fallframework.platform.starter.shiro.model;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
+import com.fallframework.platform.starter.core.util.EncryptionUtil;
 import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;
 import com.fallframework.platform.starter.rbac.entity.Role;
 import com.fallframework.platform.starter.rbac.entity.User;
@@ -54,7 +55,8 @@ public class ShiroRealm extends AuthorizingRealm {
 	@Override
 	public boolean supports(AuthenticationToken authenticationToken) {
 		return authenticationToken instanceof JWTToken
-				|| authenticationToken instanceof UsernamePasswordToken;
+				|| authenticationToken instanceof UsernamePasswordToken
+				|| authenticationToken instanceof AccountLoginToken;
 	}
 
 	/**
@@ -65,13 +67,23 @@ public class ShiroRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		SimpleAuthenticationInfo info = null;
 		// 登录账号密码验证
-		if (token instanceof UsernamePasswordToken) {
-			// 账号密码
+		if (token instanceof AccountLoginToken) {
 			String account = (String) token.getPrincipal();
 			String password = new String((char[]) token.getCredentials());
 			QueryWrapper<User> wrapper = new QueryWrapper<>();
-			wrapper.eq("account", account).or().eq("tel", account);
-			wrapper.eq("password", password);
+			// 账号密码登录
+			if (LoginTypeEnum.PASSWORD.equals(((AccountLoginToken) token).getLoginType())) {
+				wrapper.eq("account", account);
+				wrapper.eq("password", password);
+			} else if (LoginTypeEnum.VERIFICATIONCODE.equals(((AccountLoginToken) token).getLoginType())) {
+				String verificationCode = (String) redisUtil.get(RbacStarterConstant.CACHE_KEY_USER_VERIFICATIONCODE + EncryptionUtil.encryptMD5(account));
+				if (!verificationCode.equals(((AccountLoginToken) token).getVerificationCode())) {
+					throw new UnknownAccountException("verification code is not correct.");
+				}
+				wrapper.eq("account", account);
+			} else if (LoginTypeEnum.VERIFICATIONCODE.equals(((AccountLoginToken) token).getLoginType())) {
+				// TODO
+			}
 			User user = userService.getOne(wrapper);
 			if (null == user) {
 				// 用户名或者密码错误
