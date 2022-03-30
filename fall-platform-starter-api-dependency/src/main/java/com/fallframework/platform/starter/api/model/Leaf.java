@@ -17,8 +17,21 @@ public class Leaf<T> implements Serializable {
 
 	private static final long serialVersionUID = -4371588110597992171L;
 
+	/**
+	 * 分页数据
+	 */
 	protected List<T> records;
+	/**
+	 * 总记录数
+	 */
 	protected long total;
+	/**
+	 * 总页数
+	 */
+	protected long size;
+	/**
+	 * 当前页码
+	 */
 	protected long current;
 
 }
