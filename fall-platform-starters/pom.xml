@@ -102,6 +102,7 @@
 		<module>../fall-platform-starter-sleuth</module>
 		<module>../fall-platform-starter-sentinel</module>
 		<module>../fall-platform-starter-hystrix-dashboard</module>
+		<module>../fall-platform-starter-data-jpa</module>
 	</modules>
 
 </project>
