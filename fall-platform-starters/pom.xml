@@ -54,7 +54,7 @@
 		<module>../fall-platform-starter-config</module>
 		<module>../fall-platform-starter-control-dependency</module>
 		<module>../fall-platform-starter-core</module>
-		<module>../fall-platform-starter-data</module>
+		<module>../fall-platform-starter-data-mp</module>
 		<module>../fall-platform-starter-datax</module>
 		<module>../fall-platform-starter-doc</module>
 		<module>../fall-platform-starter-drools</module>
@@ -97,6 +97,11 @@
 		<module>../fall-platform-starter-websocket</module>
 		<module>../fall-platform-starter-wechat</module>
 		<module>../fall-platform-starters</module>
+		<module>../fall-platform-starter-hystrix</module>
+		<module>../fall-platform-starter-seata</module>
+		<module>../fall-platform-starter-sleuth</module>
+		<module>../fall-platform-starter-sentinel</module>
+		<module>../fall-platform-starter-hystrix-dashboard</module>
 	</modules>
 
 </project>

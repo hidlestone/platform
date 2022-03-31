@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.data.entity;
+package com.fallframework.platform.starter.data.mp.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Getter;

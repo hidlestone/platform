@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fallframework.platform.starter.api.model.StatusEnum;
-import com.fallframework.platform.starter.data.entity.BaseEntity;
+import com.fallframework.platform.starter.data.mp.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 

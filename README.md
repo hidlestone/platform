@@ -15,7 +15,7 @@ fall-platform-starter-cache-simple
 fall-platform-starter-config
 fall-platform-starter-control-dependency
 fall-platform-starter-core
-fall-platform-starter-data
+fall-platform-starter-data-mp
 fall-platform-starter-doc
 fall-platform-starter-elasticjob
 fall-platform-starter-elasticsearch

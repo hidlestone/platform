@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.data.exception;
+package com.fallframework.platform.starter.data.mp.exception;
 
 /**
  * 无数据权限异常

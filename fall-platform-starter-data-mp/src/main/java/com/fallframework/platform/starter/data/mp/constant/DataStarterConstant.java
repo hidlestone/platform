@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.data.constant;
+package com.fallframework.platform.starter.data.mp.constant;
 
 /**
  * 常量

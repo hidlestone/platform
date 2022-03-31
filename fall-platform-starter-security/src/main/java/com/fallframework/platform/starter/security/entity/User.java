@@ -1,7 +1,7 @@
 package com.fallframework.platform.starter.security.entity;
 
 import com.fallframework.platform.starter.api.model.StatusEnum;
-import com.fallframework.platform.starter.data.entity.BaseEntity;
+import com.fallframework.platform.starter.data.mp.entity.BaseEntity;
 import com.fallframework.platform.starter.rbac.model.SexEnum;
 import lombok.Getter;
 import lombok.Setter;

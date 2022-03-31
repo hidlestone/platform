@@ -41,7 +41,7 @@
 		</dependency>
 		<!--<dependency>
 			<groupId>com.fallframework.platform</groupId>
-			<artifactId>fall-platform-starter-data</artifactId>
+			<artifactId>fall-platform-starter-data-mp</artifactId>
 		</dependency>-->
 		<dependency>
 			<groupId>org.activiti</groupId>

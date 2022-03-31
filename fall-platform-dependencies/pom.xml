@@ -212,7 +212,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.fallframework.platform</groupId>
-				<artifactId>fall-platform-starter-data</artifactId>
+				<artifactId>fall-platform-starter-data-mp</artifactId>
 				<version>${platform.starters.version}</version>
 			</dependency>
 			<dependency>

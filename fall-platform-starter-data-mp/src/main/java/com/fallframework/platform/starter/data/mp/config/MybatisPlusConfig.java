@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.data.config;
+package com.fallframework.platform.starter.data.mp.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;

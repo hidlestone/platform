@@ -27,4 +27,5 @@ public class ConfigInitListener implements ApplicationListener<ApplicationStarte
 		LOGGER.info(responseResult.toString());
 		LOGGER.info("init system config to cache.");
 	}
+	
 }

@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.data.config;
+package com.fallframework.platform.starter.data.mp.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
