@@ -51,8 +51,8 @@ public class User extends BaseEntity {
 	/**
 	 * 头像URL
 	 */
-	@TableField(value = "avtar")
-	private String avtar;
+	@TableField(value = "avatar")
+	private String avatar;
 
 	/**
 	 * 电话号码
