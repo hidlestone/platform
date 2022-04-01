@@ -30,7 +30,7 @@ public class UserQueryRequest extends BasePageRequest {
 	/**
 	 * 头像URL
 	 */
-	private String avtar;
+	private String avatar;
 
 	/**
 	 * 电话号码
