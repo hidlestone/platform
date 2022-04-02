@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 /**
- * 使用feign进行调用的时候，需要往下游的服务携带请求头
+ * 使用feign进行调用的时候，需要往下游的服务携带请求头<br/>
+ * https://www.jianshu.com/p/6cbf91572c21
  *
  * @author zhuangpf
  */
@@ -22,15 +23,16 @@ public class FeignRequestConfig implements RequestInterceptor {
 		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		HttpServletRequest request = attributes.getRequest();
 		Enumeration<String> headerNames = request.getHeaderNames();
-		// template.header(自定义请求头Key, 自定义请求头值);
-		if (headerNames == null) {
-			return;
-		}
-		// 处理上游请求头信息，传递时继续携带
-		while (headerNames.hasMoreElements()) {
-			String name = headerNames.nextElement();
-			String values = request.getHeader(name);
-			template.header(name, values);
+		if (headerNames != null) {
+			while (headerNames.hasMoreElements()) {
+				String name = headerNames.nextElement();
+				String values = request.getHeader(name);
+				// 跳过 content-length，解决too many bites written的问题
+				if (name.equalsIgnoreCase("content-length")) {
+					continue;
+				}
+				template.header(name, values);
+			}
 		}
 	}
 
