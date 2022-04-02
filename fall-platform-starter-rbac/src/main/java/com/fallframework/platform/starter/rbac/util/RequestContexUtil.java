@@ -1,9 +1,11 @@
 package com.fallframework.platform.starter.rbac.util;
 
+import com.fallframework.platform.starter.core.constant.CoreContextConstant;
 import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -21,6 +23,33 @@ public class RequestContexUtil {
 		HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
 		response.setHeader(RbacStarterConstant.ACCESSTOKEN, accesstoken);
 		response.setHeader(RbacStarterConstant.REFRESHTOKEN, refreshtoken);
+	}
+
+	/**
+	 * 获取访问token
+	 */
+	public static String getAccesstoken() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		return request.getHeader(CoreContextConstant.ACCESSTOKEN);
+	}
+
+	/**
+	 * 获取刷新token
+	 */
+	public static String getRefreshtoken() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		return request.getHeader(CoreContextConstant.REFRESHTOKEN);
+	}
+
+	/**
+	 * 获取请求头中的值
+	 *
+	 * @param header 请求头
+	 * @return 请求头中的值
+	 */
+	public static String getRequestHeader(String header) {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		return request.getHeader(header);
 	}
 
 }
