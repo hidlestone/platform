@@ -7,6 +7,8 @@ import com.fallframework.platform.starter.rbac.entity.Menu;
 import com.fallframework.platform.starter.rbac.model.MenuQueryRequest;
 import com.fallframework.platform.starter.rbac.model.MenuRequest;
 
+import java.util.List;
+
 public interface MenuService extends IService<Menu> {
 
 	ResponseResult<Page<Menu>> list(MenuRequest request);
@@ -14,5 +16,7 @@ public interface MenuService extends IService<Menu> {
 	ResponseResult<Page<Menu>> getMenusByUserId(MenuQueryRequest request);
 
 	ResponseResult<Page<Menu>> getMenusByRoleIds(MenuQueryRequest request);
+
+	ResponseResult<List<Menu>> getAllMenusByUserId(Long userId);
 
 }

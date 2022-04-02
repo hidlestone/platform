@@ -11,6 +11,8 @@ import com.fallframework.platform.starter.rbac.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements MenuService {
 
@@ -38,5 +40,10 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 		return ResponseResult.success(page);
 	}
 
-
+	@Override
+	public ResponseResult<List<Menu>> getAllMenusByUserId(Long userId) {
+		List<Menu> menuList = menuMapper.getAllMenusByUserId(userId);
+		return ResponseResult.success(menuList);
+	}
+	
 }
