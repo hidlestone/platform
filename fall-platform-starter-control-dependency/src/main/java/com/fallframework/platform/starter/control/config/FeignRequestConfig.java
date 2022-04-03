@@ -12,6 +12,7 @@ import java.util.Enumeration;
 /**
  * 使用feign进行调用的时候，需要往下游的服务携带请求头<br/>
  * https://www.jianshu.com/p/6cbf91572c21
+ * http://www.manongjc.com/detail/14-kwcgxhesqshssdg.html
  *
  * @author zhuangpf
  */

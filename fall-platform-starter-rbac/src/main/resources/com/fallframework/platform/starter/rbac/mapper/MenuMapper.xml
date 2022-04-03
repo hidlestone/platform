@@ -8,6 +8,7 @@
 		<result column="menu_code" jdbcType="VARCHAR" property="menuCode"/>
 		<result column="menu_name" jdbcType="VARCHAR" property="menuName"/>
 		<result column="menu_desc" jdbcType="VARCHAR" property="menuDesc"/>
+		<result column="path" jdbcType="VARCHAR" property="path"/>
 		<result column="func_link" jdbcType="VARCHAR" property="funcLink"/>
 		<result column="open_type" jdbcType="TINYINT" property="openType"/>
 		<result column="icon" jdbcType="VARCHAR" property="icon"/>
@@ -21,7 +22,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		<!--@mbg.generated-->
-		id, parent_id, menu_code, menu_name, menu_desc, func_link, open_type, icon, `order`,
+		id, parent_id, menu_code, menu_name, menu_desc, path, func_link, open_type, icon, `order`,
 		remark, is_show, create_user_id, modify_user_id, gmt_create, gmt_modified
 	</sql>
 
@@ -44,6 +45,9 @@
 			</if>
 			<if test="param2.menuDesc != null">
 				AND menu_desc CONCAT('%', #{menuDesc,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.path != null">
+				AND path CONCAT('%', #{path,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.funcLink != null">
 				AND func_link CONCAT('%', #{funcLink,jdbcType=VARCHAR}, '%')

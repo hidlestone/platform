@@ -24,6 +24,8 @@ public class MenuRequest extends BasePageRequest {
 
 	private String menuDesc;
 
+	private String path;
+
 	private String funcLink;
 
 	private OpenTypeEnum openType;

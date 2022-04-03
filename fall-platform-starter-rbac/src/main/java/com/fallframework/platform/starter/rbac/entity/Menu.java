@@ -48,6 +48,12 @@ public class Menu extends BaseEntity {
 	private String menuDesc;
 
 	/**
+	 * 访问路径
+	 */
+	@TableField(value = "path")
+	private String path;
+
+	/**
 	 * 功能链接如：/platform/msg-log
 	 */
 	@TableField(value = "func_link")
