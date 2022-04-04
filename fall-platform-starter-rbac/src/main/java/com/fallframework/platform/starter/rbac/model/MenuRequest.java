@@ -18,6 +18,8 @@ public class MenuRequest extends BasePageRequest {
 
 	private Long parentId;
 
+	private Byte level;
+	
 	private String menuCode;
 
 	private String menuName;

@@ -30,6 +30,12 @@ public class Menu extends BaseEntity {
 	private Long parentId;
 
 	/**
+	 * 菜单层级
+	 */
+	@TableField(value = "`level`")
+	private Byte level;
+	
+	/**
 	 * 菜单编码
 	 */
 	@TableField(value = "menu_code")
