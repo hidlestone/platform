@@ -51,3 +51,39 @@ Activiti 数据表介绍
 ```
 https://blog.csdn.net/hj7jay/article/details/51302829
 ```
+
+## 三、功能
+引擎中提供的封装好的接口。   
+Service总览 
+```
+RepositoryService       activiti的资源管理类
+RuntimeService          activiti的流程运行管理类
+TaskService             activiti的任务管理类
+HistoryService          activiti的历史管理类
+ManagerService          activiti的引擎管理类
+```
+
+### RepositoryService
+是activiti的资源管理类，提供了管理和控制流程发布包和流程定义的操作。使用工作流建模工具设计的业务流程图需 要使用此service将流程定义文件的内容部署到计算机。   
+除了部署流程定义以外还可以：查询引擎中的发布包和流程定义。  
+暂停或激活发布包，对应全部和特定流程定义。 暂停意味着它们不能再执行任何操作了，激活是对应的反向操作。 获得多种资源，像是包含在发布包里的文件， 或引擎自动生成的流程图。   
+获得流程定义的pojo版本， 可以用来通过java解析流程，而不必通过xml。  
+
+### RuntimeService 
+Activiti的流程运行管理类。可以从这个服务类中获取很多关于流程执行相关的信息
+
+### TaskService 
+Activiti的任务管理类。可以从这个类中获取任务的信息。
+
+### HistoryService 
+Activiti的历史管理类，可以查询历史信息，执行流程时，引擎会保存很多数据（根据配置），比如流程实例启动时 间，任务的参与者， 完成任务的时间，每个流程实例的执行路径，等等。 这个服务主要通过查询功能来获得这些数 据。
+
+### ManagementService 
+Activiti的引擎管理类，提供了对 Activiti 流程引擎的管理和维护功能，这些功能不在工作流驱动的应用程序中使用， 主要用于 Activiti 系统的日常维护。 
+
+
+
+
+
+参考：  
+https://segmentfault.com/a/1190000020286897

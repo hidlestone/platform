@@ -15,7 +15,7 @@ import java.util.HashMap;
  * @author zengj
  * @date 2022/3/20 9:49 上午
  */
-@SpringBootTest(classes = ActivityApplication.class)
+//@SpringBootTest(classes = ActivityApplication.class)
 public class ActivityApplicationTest {
 
     @Resource
