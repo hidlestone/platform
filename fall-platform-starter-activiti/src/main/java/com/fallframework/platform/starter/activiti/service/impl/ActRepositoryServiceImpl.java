@@ -7,14 +7,24 @@ import com.fallframework.platform.starter.activiti.service.ActRepositoryService;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import org.activiti.engine.RepositoryService;
+import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * @author zhuangpf
@@ -24,6 +34,23 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 
 	@Autowired
 	private RepositoryService repositoryService;
+
+	@Override
+	public ResponseResult bpmDeploy(String deploymentId) {
+		// 查询对象
+		ProcessDefinitionQuery definitionQuery = repositoryService.createProcessDefinitionQuery();
+		ProcessDefinition processDefinition = definitionQuery.processDefinitionId(deploymentId).singleResult();
+		if (null == processDefinition) {
+			return ResponseResult.fail("process definition is not exist");
+		}
+		// TODO 加载数据库中的文件
+		Deployment deploy = repositoryService.createDeployment()
+				.name(processDefinition.getName())
+//				.addClasspathResource("bpmn/evection.bpmn")
+//				.addClasspathResource("bpmn/evection.png")
+				.deploy();
+		return ResponseResult.success();
+	}
 
 	@Override
 	public ResponseResult<Leaf<ProcessDefinitionResponse>> getProcessDefinitionList(ProcessDefinitionRequest request) {
@@ -69,6 +96,85 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 		List<ProcessDefinitionResponse> responseList = this.ProcessDefinitionToResponse(processDefinitionList);
 		Leaf<ProcessDefinitionResponse> leaf = new Leaf<>(responseList, total, (total / request.getPageSize()) + 1, request.getPageNum());
 		return ResponseResult.success(leaf);
+	}
+
+	@Override
+	public ResponseResult downloadBpmnFile(String definitionKey) {
+		InputStream fis = null;
+		BufferedInputStream bis = null;
+		try {
+			ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
+					.processDefinitionKey(definitionKey)
+					.singleResult();
+			// 通过流程定义信息，获取部署ID
+			String deploymentId = processDefinition.getDeploymentId();
+			// 从流程定义表中，获取png图片的目录和名字
+			String pngName = processDefinition.getDiagramResourceName();
+			// 通过部署id和 文件名字来获取图片的资源
+			InputStream pngInput = repositoryService.getResourceAsStream(deploymentId, pngName);
+			// 获取bpmn的流
+			String bpmnName = processDefinition.getResourceName();
+			InputStream bpmnInput = repositoryService.getResourceAsStream(deploymentId, bpmnName);
+			// 获取response
+			HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
+			// 压缩流
+			ZipOutputStream zos = new ZipOutputStream(response.getOutputStream());
+			// 压缩文件的名称
+			String downloadFilename = bpmnName + ".zip";
+			// 转换中文否则可能会产生乱码
+			downloadFilename = URLEncoder.encode(downloadFilename, "UTF-8");
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("application/octet-stream");
+			// response.setContentLength((int) file.length());
+			// 设置强制下载不打开
+			response.setContentType("application/force-download");
+			// 设置文件名
+			response.addHeader("Content-Disposition", "attachment;fileName=" + downloadFilename);
+			// buffer
+			byte[] buffer = new byte[1024];
+			// 1、png 文件
+			// 设置打包文件名称
+			zos.putNextEntry(new ZipEntry(pngName));
+			// 设置注释
+			// zos.setComment("hello");
+			fis = pngInput;
+			bis = new BufferedInputStream(fis);
+			int i = bis.read(buffer);
+			while (i != -1) {
+				zos.write(buffer, 0, i);
+				i = bis.read(buffer);
+			}
+			zos.closeEntry();
+			// 2、bpm 文件
+			zos.putNextEntry(new ZipEntry(bpmnName));
+			fis = bpmnInput;
+			bis = new BufferedInputStream(fis);
+			i = bis.read(buffer);
+			while (i != -1) {
+				zos.write(buffer, 0, i);
+				i = bis.read(buffer);
+			}
+			zos.closeEntry();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			// 做关闭操作
+			if (bis != null) {
+				try {
+					bis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			if (fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return ResponseResult.success();
 	}
 
 	/**

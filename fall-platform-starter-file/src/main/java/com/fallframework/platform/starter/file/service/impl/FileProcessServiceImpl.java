@@ -24,6 +24,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -102,8 +104,15 @@ public class FileProcessServiceImpl implements FileProcessService {
 		response.setContentLength((int) file.length());
 		// 设置强制下载不打开
 		response.setContentType("application/force-download");
+		// 转换中文否则可能会产生乱码
+		String downloadFilename = null;
+		try {
+			downloadFilename = URLEncoder.encode(fileInfo.getNonsenseName(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		// 设置文件名
-		response.addHeader("Content-Disposition", "attachment;fileName=" + fileInfo.getNonsenseName());
+		response.addHeader("Content-Disposition", "attachment;fileName=" + downloadFilename);
 		byte[] buffer = new byte[1024];
 		FileInputStream fis = null;
 		BufferedInputStream bis = null;
