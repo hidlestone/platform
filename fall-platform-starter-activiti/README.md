@@ -24,27 +24,27 @@ Activiti 数据表介绍
 [ACT_GE_PROPERTY] 系统相关属性
 
 流程历史记录    
-[ACT_HI_ACTINST] 历史的流程实例
-[ACT_HI_ATTACHMENT] 历史的流程附件
-[ACT_HI_COMMENT] 历史的说明性信息
-[ACT_HI_DETAIL] 历史的流程运行中的细节信息
-[ACT_HI_IDENTITYLINK] 历史的流程运行过程中用户关系
-[ACT_HI_PROCINST] 历史的流程实例（核心）
-[ACT_HI_TASKINST] 历史的任务实例
-[ACT_HI_VARINST] 历史的流程运行中的变量信息
+[ACT_HI_ACTINST]            历史的流程实例
+[ACT_HI_ATTACHMENT]         历史的流程附件
+[ACT_HI_COMMENT]            历史的说明性信息
+[ACT_HI_DETAIL]             历史的流程运行中的细节信息
+[ACT_HI_IDENTITYLINK]       历史的流程运行过程中用户关系
+[ACT_HI_PROCINST]           历史的流程实例（核心）
+[ACT_HI_TASKINST]           历史的任务实例
+[ACT_HI_VARINST]            历史的流程运行中的变量信息
 
 流程定义表    
-[ACT_RE_DEPLOYMENT] 部署单元信息
-[ACT_RE_MODEL] 模型信息
-[ACT_RE_PROCDEF] 已部署的流程定义
+[ACT_RE_DEPLOYMENT]         部署单元信息
+[ACT_RE_MODEL]              模型信息
+[ACT_RE_PROCDEF]            已部署的流程定义
 
 运行实例表    
-[ACT_RU_EVENT_SUBSCR] 运行时事件
-[ACT_RU_EXECUTION] 运行时流程执行实例
-[ACT_RU_IDENTITYLINK] 运行时用户关系信息，存储任务节点与参与者的相关信息
-[ACT_RU_JOB] 运行时作业
-[ACT_RU_TASK] 运行时任务
-[ACT_RU_VARIABLE] 运行时变量表
+[ACT_RU_EVENT_SUBSCR]       运行时事件
+[ACT_RU_EXECUTION]          运行时流程执行实例
+[ACT_RU_IDENTITYLINK]       运行时用户关系信息，存储任务节点与参与者的相关信息
+[ACT_RU_JOB]                运行时作业
+[ACT_RU_TASK]               运行时任务
+[ACT_RU_VARIABLE]           运行时变量表
 ```
 
 各个表字段含义见：
