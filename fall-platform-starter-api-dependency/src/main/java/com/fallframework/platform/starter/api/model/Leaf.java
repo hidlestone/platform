@@ -34,4 +34,11 @@ public class Leaf<T> implements Serializable {
 	 */
 	protected long current;
 
+	public Leaf(List<T> records, long total, long size, long current) {
+		this.records = records;
+		this.total = total;
+		this.size = size;
+		this.current = current;
+	}
+
 }

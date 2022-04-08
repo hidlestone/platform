@@ -17,9 +17,8 @@ public class ProcessDefinitionRequest extends BasePageRequest {
 
 	private String id;
 	private String name;
-	private String description;
 	private String key;
-	private int version;
+	private Integer version;
 	private String category;
 	private String deploymentId;
 	private String resourceName;

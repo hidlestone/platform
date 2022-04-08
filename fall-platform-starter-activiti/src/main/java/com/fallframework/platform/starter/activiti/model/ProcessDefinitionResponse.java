@@ -29,11 +29,11 @@ public class ProcessDefinitionResponse extends BaseEntityResponse {
 	protected Integer historyLevel;
 	protected String diagramResourceName;
 	protected boolean isGraphicalNotationDefined;
-	protected Map<String, Object> variables;
+//	protected Map<String, Object> variables;
 	protected boolean hasStartFormKey;
-	protected int suspensionState;
-	protected boolean isIdentityLinksInitialized;
-	//	protected List<IdentityLinkEntity> definitionIdentityLinkEntities;
+//	protected int suspensionState;
+//	protected boolean isIdentityLinksInitialized;
+//	protected List<IdentityLinkEntity> definitionIdentityLinkEntities;
 //	protected IOSpecification ioSpecification;
 	protected String engineVersion;
 
