@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/processdef" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:yaoqiang="http://bpmn.sourceforge.net" exporter="Yaoqiang BPMN Editor" exporterVersion="5.3" expressionLanguage="http://www.w3.org/1999/XPath" id="_1649522062695" name="" targetNamespace="http://www.activiti.org/processdef" typeLanguage="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://bpmn.sourceforge.net/schemas/BPMN20.xsd">
+  <process id="SimpleProcess" isClosed="false" isExecutable="true" name="SimpleProcess" processType="None">
+    <extensionElements>
+      <yaoqiang:description/>
+      <yaoqiang:pageFormat height="841.8897637795276" imageableHeight="831.8897637795276" imageableWidth="588.1102362204724" imageableX="5.0" imageableY="5.0" orientation="0" width="598.1102362204724"/>
+      <yaoqiang:page background="#FFFFFF" horizontalCount="1" verticalCount="1"/>
+    </extensionElements>
+    <startEvent id="startEvent1" isInterrupting="true" parallelMultiple="false">
+      <outgoing>sid-F506EEC7-0411-4A97-930D-87500FF1414F</outgoing>
+      <outputSet/>
+    </startEvent>
+    <userTask activiti:assignee="admin" completionQuantity="1" id="sid-2B2AA039-82D2-479C-8FE9-6F48E4478BD8" implstartEvent ementation="##unspecified" isForCompensation="false" name="Admin Approver" startQuantity="1">
+      <extensionElements>
+        <modeler:activiti-idm-assignee xmlns:modeler="http://activiti.com/modeler">
+          <activiti-idm-assignee>
+            <activiti-idm-assignee><![CDATA[true]]></activiti-idm-assignee>
+          </activiti-idm-assignee>
+        </modeler:activiti-idm-assignee>
+        <modeler:assignee-info-email xmlns:modeler="http://activiti.com/modeler">
+          <assignee-info-email>
+            <assignee-info-email><![CDATA[admin]]></assignee-info-email>
+          </assignee-info-email>
+        </modeler:assignee-info-email>
+        <modeler:assignee-info-lastname xmlns:modeler="http://activiti.com/modeler">
+          <assignee-info-lastname>
+            <assignee-info-lastname><![CDATA[Administrator]]></assignee-info-lastname>
+          </assignee-info-lastname>
+        </modeler:assignee-info-lastname>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
+          <initiator-can-complete>
+            <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+          </initiator-can-complete>
+        </modeler:initiator-can-complete>
+      </extensionElements>
+      <incoming>sid-F506EEC7-0411-4A97-930D-87500FF1414F</incoming>
+      <outgoing>sid-9FC989EE-BBC3-4EB2-A7AF-DA4F2649A68F</outgoing>
+    </userTask>
+    <sequenceFlow id="sid-F506EEC7-0411-4A97-930D-87500FF1414F" sourceRef="startEvent1" targetRef="sid-2B2AA039-82D2-479C-8FE9-6F48E4478BD8"/>
+    <endEvent id="sid-2C31753A-3AE2-4C91-B4F8-3B5EED2B4FC5">
+      <incoming>sid-9FC989EE-BBC3-4EB2-A7AF-DA4F2649A68F</incoming>
+      <inputSet/>
+    </endEvent>
+    <sequenceFlow id="sid-9FC989EE-BBC3-4EB2-A7AF-DA4F2649A68F" sourceRef="sid-2B2AA039-82D2-479C-8FE9-6F48E4478BD8" targetRef="sid-2C31753A-3AE2-4C91-B4F8-3B5EED2B4FC5"/>
+  </process>
+  <bpmndi:BPMNDiagram id="Yaoqiang_Diagram-SimpleProcess" name="Untitled Diagram" resolution="96.0">
+    <bpmndi:BPMNPlane bpmnElement="SimpleProcess">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="Yaoqiang-startEvent1">
+        <omgdc:Bounds height="32.0" width="32.0" x="100.0" y="163.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="19.84" width="6.0" x="113.0" y="203.06"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-2B2AA039-82D2-479C-8FE9-6F48E4478BD8" id="Yaoqiang-sid-2B2AA039-82D2-479C-8FE9-6F48E4478BD8">
+        <omgdc:Bounds height="80.0" width="100.0" x="255.0" y="138.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="19.84" width="85.0" x="262.5" y="170.08"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-2C31753A-3AE2-4C91-B4F8-3B5EED2B4FC5" id="Yaoqiang-sid-2C31753A-3AE2-4C91-B4F8-3B5EED2B4FC5">
+        <omgdc:Bounds height="32.0" width="32.0" x="465.0" y="164.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="19.84" width="6.0" x="478.0" y="204.06"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-F506EEC7-0411-4A97-930D-87500FF1414F" id="Yaoqiang-sid-F506EEC7-0411-4A97-930D-87500FF1414F">
+        <omgdi:waypoint x="132.0" y="179.0"/>
+        <omgdi:waypoint x="255.0" y="178.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="19.84" width="6.0" x="190.5" y="168.58"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-9FC989EE-BBC3-4EB2-A7AF-DA4F2649A68F" id="Yaoqiang-sid-9FC989EE-BBC3-4EB2-A7AF-DA4F2649A68F">
+        <omgdi:waypoint x="355.0" y="178.0"/>
+        <omgdi:waypoint x="465.0" y="180.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="19.84" width="6.0" x="407.0" y="169.08"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

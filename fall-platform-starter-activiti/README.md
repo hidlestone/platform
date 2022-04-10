@@ -1,8 +1,8 @@
 # fall-platform-starter-activiti
 
-基于 activiti7
+基于 activiti6
 
-## 一、activiti7 工作流使用步骤：
+## 一、activiti6 工作流使用步骤：
 - 部署activiti 
 - 流程定义 
 - 流程定义部署 
@@ -14,6 +14,7 @@
 ## 二、activiti7 数据库表结构参考
 - ACT_RE ：'RE'表示 repository。 这个前缀的 表包含了流程定义和流程静态资源 （图片，规则，等等）。 
 - ACT_RU：'RU'表示 runtime。 这些运行时的表，包含流 程实例，任务，变量，异步任务，等运行中的数据。 Activiti 只在流程实例执行过程中保存这些数据， 在流程结束时 就会删除这些记录。 这样运行时表可以一直很小速度很快。 
+- ACT_ID_*: ID表示identity（认证），存储认证信息，比如用户，组等。
 - ACT_HI：'HI'表示 history。 这些表包含历史数据，比如历史流程实例， 变量，任务等等。 
 - ACT_GE ： GE 表示 general。 通用数据， 用于不同场景下。
 

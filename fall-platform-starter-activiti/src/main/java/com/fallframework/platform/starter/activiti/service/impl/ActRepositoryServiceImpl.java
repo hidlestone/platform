@@ -51,6 +51,15 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 				.deploy();
 		return ResponseResult.success();
 	}
+	
+	@Override
+	public ResponseResult deleteDeployment(String deploymentId) {
+		// TODO
+		// repositoryService.deleteDeployment(deploymentId);
+		// 级联删除
+		repositoryService.deleteDeployment(deploymentId, true);
+		return ResponseResult.success();
+	}
 
 	@Override
 	public ResponseResult<Leaf<ProcessDefinitionResponse>> getProcessDefinitionList(ProcessDefinitionRequest request) {
@@ -85,6 +94,7 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 		if (StringUtils.isNotEmpty(request.getResourceName())) {
 			definitionQuery.processDefinitionResourceNameLike(request.getResourceName());
 		}
+		// 分页开始
 		int start = (request.getPageNum() - 1) * request.getPageSize() + 1;
 		// 总记录数
 		long total = definitionQuery.count();
@@ -93,7 +103,7 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 				.orderByDeploymentId().desc()                // 部署ID降序
 				.orderByProcessDefinitionVersion().desc()    // 部署版本号降序
 				.list();                                     // 获取全部
-		List<ProcessDefinitionResponse> responseList = this.ProcessDefinitionToResponse(processDefinitionList);
+		List<ProcessDefinitionResponse> responseList = this.processDefinitionToResponse(processDefinitionList);
 		Leaf<ProcessDefinitionResponse> leaf = new Leaf<>(responseList, total, (total / request.getPageSize()) + 1, request.getPageNum());
 		return ResponseResult.success(leaf);
 	}
@@ -181,7 +191,7 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 	 * @param processDefinitionList 流程定义列表
 	 * @return 响应列表
 	 */
-	private List<ProcessDefinitionResponse> ProcessDefinitionToResponse(List<ProcessDefinition> processDefinitionList) {
+	private List<ProcessDefinitionResponse> processDefinitionToResponse(List<ProcessDefinition> processDefinitionList) {
 		List<ProcessDefinitionResponse> responseList = new ArrayList<>();
 		if (CollectionUtil.isNotEmpty(processDefinitionList)) {
 			for (ProcessDefinition processDefinition : processDefinitionList) {

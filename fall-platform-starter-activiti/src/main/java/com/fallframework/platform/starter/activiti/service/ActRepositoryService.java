@@ -19,6 +19,14 @@ public interface ActRepositoryService {
 	ResponseResult bpmDeploy(String deploymentId);
 
 	/**
+	 * 删除流程定义
+	 *
+	 * @param deploymentId 部署ID
+	 * @return 是否删除成功
+	 */
+	ResponseResult deleteDeployment(String deploymentId);
+
+	/**
 	 * 分页查询流程定义列表
 	 *
 	 * @param request 请求参数
