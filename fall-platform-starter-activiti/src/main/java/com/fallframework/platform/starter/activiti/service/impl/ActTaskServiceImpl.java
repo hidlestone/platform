@@ -1,5 +1,6 @@
 package com.fallframework.platform.starter.activiti.service.impl;
 
+import com.fallframework.platform.starter.activiti.model.CompletTaskRequest;
 import com.fallframework.platform.starter.activiti.model.PendingTaskRequest;
 import com.fallframework.platform.starter.activiti.service.ActTaskService;
 import com.fallframework.platform.starter.api.model.Leaf;
@@ -36,8 +37,17 @@ public class ActTaskServiceImpl implements ActTaskService {
 	}
 
 	@Override
-	public ResponseResult doCompletTask(String userId, String taskId) {
-		return null;
+	public ResponseResult doCompletTask(CompletTaskRequest request) {
+		Task task = taskService.createTaskQuery()
+				.taskId(request.getTaskId())
+				.taskAssignee(request.getAssignee()).singleResult();
+		// 任务不存在
+		if (null == task) {
+			return ResponseResult.fail("task is not exist");
+		}
+		// 处理任务
+		taskService.complete(task.getId());
+		return ResponseResult.success();
 	}
 
 }

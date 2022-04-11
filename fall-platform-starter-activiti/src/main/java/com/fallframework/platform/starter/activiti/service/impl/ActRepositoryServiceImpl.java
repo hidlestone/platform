@@ -6,6 +6,7 @@ import com.fallframework.platform.starter.activiti.model.ProcessDefinitionRespon
 import com.fallframework.platform.starter.activiti.service.ActRepositoryService;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
+import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
@@ -24,6 +25,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 /**
@@ -34,6 +36,36 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 
 	@Autowired
 	private RepositoryService repositoryService;
+
+	@Override
+	public ResponseResult deployByInputStream(String resourceName, InputStream inputStream) {
+		Deployment deploy = repositoryService.createDeployment().addInputStream(resourceName, inputStream).deploy();
+		return ResponseResult.success();
+	}
+
+	@Override
+	public ResponseResult deployByClasspathResource(String resource) {
+		Deployment deploy = repositoryService.createDeployment().addClasspathResource(resource).deploy();
+		return ResponseResult.success();
+	}
+
+	@Override
+	public ResponseResult deployByString(String resourceName, String str) {
+		Deployment deploy = repositoryService.createDeployment().addString(resourceName, str).deploy();
+		return ResponseResult.success();
+	}
+
+	@Override
+	public ResponseResult deployByZipInputStream(ZipInputStream zipInputStream) {
+		Deployment deploy = repositoryService.createDeployment().addZipInputStream(zipInputStream).deploy();
+		return ResponseResult.success();
+	}
+
+	@Override
+	public ResponseResult deployByBpmnModel(String resourceName, BpmnModel bpmnModel) {
+		Deployment deploy = repositoryService.createDeployment().addBpmnModel(resourceName, bpmnModel).deploy();
+		return ResponseResult.success();
+	}
 
 	@Override
 	public ResponseResult bpmDeploy(String deploymentId) {
@@ -51,7 +83,7 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 				.deploy();
 		return ResponseResult.success();
 	}
-	
+
 	@Override
 	public ResponseResult deleteDeployment(String deploymentId) {
 		// TODO

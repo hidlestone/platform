@@ -1,5 +1,6 @@
 package com.fallframework.platform.starter.activiti.service;
 
+import com.fallframework.platform.starter.activiti.model.CompletTaskRequest;
 import com.fallframework.platform.starter.activiti.model.PendingTaskRequest;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
@@ -18,10 +19,9 @@ public interface ActTaskService {
 	/**
 	 * 完成任务
 	 *
-	 * @param userId 用户ID
-	 * @param taskId 任务ID
+	 * @param request 请求参数
 	 * @return 是否成功
 	 */
-	ResponseResult doCompletTask(String userId, String taskId);
+	ResponseResult doCompletTask(CompletTaskRequest request);
 
 }
