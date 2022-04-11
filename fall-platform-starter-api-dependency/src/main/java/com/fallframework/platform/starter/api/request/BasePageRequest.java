@@ -36,17 +36,10 @@ public class BasePageRequest implements Serializable {
 	}
 
 	/**
-	 * 页码【1】开始的，第一条记录行号。
+	 * 第一条记录行号
 	 */
-	public Integer getFirstRowFromNumOne() {
+	public Integer getFirstRow() {
 		return (pageNum - 1) * pageSize;
-	}
-
-	/**
-	 * 页码【0】开始的，第一条记录行号。
-	 */
-	public Integer getFirstRowFromNumZero() {
-		return pageNum * pageSize;
 	}
 
 }

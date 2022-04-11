@@ -1,5 +1,6 @@
 package com.fallframework.platform.starter.api.model;
 
+import com.fallframework.platform.starter.api.request.BasePageRequest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,6 +40,13 @@ public class Leaf<T> implements Serializable {
 		this.total = total;
 		this.size = size;
 		this.current = current;
+	}
+
+	public Leaf(List<T> records, long total, BasePageRequest request) {
+		this.records = records;
+		this.total = total;
+		this.size = total % request.getPageSize() + 1;
+		this.current = request.getPageNum();
 	}
 
 }

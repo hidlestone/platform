@@ -47,8 +47,8 @@ public class ActivityApplicationTest {
 	public void testGetPendingTaskList() {
 		PendingTaskRequest request = new PendingTaskRequest();
 		request.setAssignee("admin");
-		request.setProcdefKey("TestProcess-01");
-		request.setPageNum(1);
+//		request.setProcdefKey("TestProcess-01");
+		request.setPageNum(2);
 		request.setPageSize(1);
 		ResponseResult<Leaf<Task>> pendingTaskList = actTaskService.getPendingTaskList(request);
 		System.out.println(pendingTaskList);
