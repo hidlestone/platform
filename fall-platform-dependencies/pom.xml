@@ -77,7 +77,7 @@
 		<mybatis.plus.version>3.4.0</mybatis.plus.version>
 		<flywaydb.version>6.0.8</flywaydb.version>
 		<eclipselink.version>2.6.3</eclipselink.version>
-		<activiti.version>7.0.0.Beta1</activiti.version>
+		<!--<activiti.version>7.0.0.Beta1</activiti.version>-->
 		<oracle.version>11.2.0.1.0</oracle.version>
 		<ojdbc8.version>12.2.0.1.0</ojdbc8.version>
 		<jpush.version>3.3.11</jpush.version>
@@ -667,11 +667,11 @@
 				<artifactId>eclipselink</artifactId>
 				<version>${eclipselink.version}</version>
 			</dependency>
-			<dependency>
+			<!--<dependency>
 				<groupId>org.activiti</groupId>
 				<artifactId>activiti-engine</artifactId>
 				<version>${activiti.version}</version>
-			</dependency>
+			</dependency>-->
 			<dependency>
 				<groupId>com.oracle</groupId>
 				<artifactId>ojdbc6</artifactId>

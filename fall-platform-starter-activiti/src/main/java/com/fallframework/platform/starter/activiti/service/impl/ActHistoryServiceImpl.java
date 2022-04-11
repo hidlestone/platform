@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ActHistoryServiceImpl implements ActHistoryService {
 
-	@Autowired
-	private HistoryService historyService;
+	/*@Autowired
+	private HistoryService historyService;*/
 	
 	
 	

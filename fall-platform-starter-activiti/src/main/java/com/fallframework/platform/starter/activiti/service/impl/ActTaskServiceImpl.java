@@ -1,8 +1,8 @@
 package com.fallframework.platform.starter.activiti.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.fallframework.platform.starter.activiti.model.TaskResponse;
+import com.fallframework.platform.starter.activiti.model.PendingTaskRequest;
 import com.fallframework.platform.starter.activiti.service.ActTaskService;
+import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.Task;
@@ -21,14 +21,13 @@ public class ActTaskServiceImpl implements ActTaskService {
 	private TaskService taskService;
 
 	@Override
-	public ResponseResult<List<TaskResponse>> getPendingTaskList(String userId, String procdefKey) {
+	public ResponseResult<Leaf<Task>> getPendingTaskList(PendingTaskRequest request) {
 		List<Task> taskList = taskService.createTaskQuery()
-				.processDefinitionKey(procdefKey)
-				.taskAssignee(userId)
-				.list();
-		// TODO
-		List<TaskResponse> taskResponseList = JSON.parseArray(JSON.toJSONString(taskList), TaskResponse.class);
-		return ResponseResult.success(taskResponseList);
+				.processDefinitionKey(request.getProcdefKey())
+				.taskAssignee(request.getAssignee())
+				.listPage(request.getFirstRowFromNumZero(), request.getPageSize());
+		Leaf leaf = new Leaf(taskList, 0, 1, 1);
+		return ResponseResult.success(leaf);
 	}
 
 	@Override

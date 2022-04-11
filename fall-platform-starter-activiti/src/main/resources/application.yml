@@ -1,13 +1,16 @@
+server:
+  port: 9910
+  
 spring:
-  activiti:
-    check-process-definitions: true
-    database-schema-update: true
-    history-level: full
-    process-definition-location-prefix: classpath:/process/
-  datasource:
+#  activiti:
+#    check-process-definitions: true
+#    database-schema-update: true
+#    history-level: full
+#    process-definition-location-prefix: classpath:/process/
+#  datasource:
 #    type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 17301995zj
-    url: jdbc:mysql://127.0.0.1:3306/activity_demo
-    username: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/wordplay_test
+#    password: root
+#    username: root
 

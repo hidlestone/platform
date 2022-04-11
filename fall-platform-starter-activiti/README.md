@@ -57,11 +57,14 @@ https://blog.csdn.net/hj7jay/article/details/51302829
 引擎中提供的封装好的接口。   
 Service总览 
 ```
-RepositoryService       activiti的资源管理类
-RuntimeService          activiti的流程运行管理类
-TaskService             activiti的任务管理类
-HistoryService          activiti的历史管理类
-ManagerService          activiti的引擎管理类
+TaskService	对用户任务进行操作和查询
+RepositoryService	对activiti资源进行操作，比如部署文件，附件
+RuntimeService	运行时服务，可以对运行时流程进行修改，如增加变量，移除变量等
+IdentityService	身份认证服务，对用户，用户组，用户角色进行操作
+HistoryService	历史记录服务，对审批历史进行操作
+FormService	表单服务，操作表单数据
+DynamicBpmnService	通过该服务，可以动态修改流程
+ManagementService	管理服务，查看当前activiti系统信息，不会在应用里用到，一般用于管理系统里
 ```
 
 ### RepositoryService
