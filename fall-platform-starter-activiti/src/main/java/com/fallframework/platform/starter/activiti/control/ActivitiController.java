@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ActivitiController {
 
 	/**
+	 * 访问：localhost:9910/activiti-explorer/model/create
+	 * 跳转：http://localhost:9910/modeler.html?modelId=xxx
 	 * 创建基本模型
 	 *
 	 * @param request
