@@ -43,7 +43,7 @@ public class EHCacheUtil {
 		// 绝对路径
 		File file = new File(url.getFile());
 		if (!file.exists()) {
-			throw new RuntimeException("file " + filename + " is not exist");
+			throw new RuntimeException("file " + configfile + " is not exist");
 		}
 		manager = CacheManager.create(EHCacheUtil.class.getClassLoader().getResourceAsStream(configfile));
 	}
