@@ -57,35 +57,15 @@ https://blog.csdn.net/hj7jay/article/details/51302829
 引擎中提供的封装好的接口。   
 Service总览 
 ```
-TaskService	对用户任务进行操作和查询
-RepositoryService	对activiti资源进行操作，比如部署文件，附件
-RuntimeService	运行时服务，可以对运行时流程进行修改，如增加变量，移除变量等
-IdentityService	身份认证服务，对用户，用户组，用户角色进行操作
-HistoryService	历史记录服务，对审批历史进行操作
-FormService	表单服务，操作表单数据
-DynamicBpmnService	通过该服务，可以动态修改流程
-ManagementService	管理服务，查看当前activiti系统信息，不会在应用里用到，一般用于管理系统里
+RepositoryService	    Activiti 中每一个不同版本的业务流程的定义都需要使用一些定义文件，部署文件和支持数据 ( 例如 BPMN2.0 XML 文件，表单定义文件，流程定义图像文件等 )，这些文件都存储在 Activiti 内建的 Repository 中。Repository Service 提供了对 repository 的存取服务。
+RuntimeService          在Activiti 中，每当一个流程定义被启动一次之后，都会生成一个相应的流程对象实例。Runtime Service 提供了启动流程、查询流程实例、设置获取流程实例变量等功能。此外它还提供了对流程部署，流程定义和流程实例的存取服务。
+TaskService	            在Activiti 中业务流程定义中的每一个执行节点被称为一个 Task，对流程中的数据存取，状态变更等操作均需要在 Task 中完成。Task Service 提供了对用户 Task 和 Form 相关的操作。它提供了运行时任务查询、领取、完成、删除以及变量设置等功能。
+HistoryService	        History Service 用于获取正在运行或已经完成的流程实例的信息，与 Runtime Service 中获取的流程信息不同，历史信息包含已经持久化存储的永久信息，并已经被针对查询优化。
+IdentityService	        Activiti 中内置了用户以及组管理的功能，必须使用这些用户和组的信息才能获取到相应的 Task。Identity Service 提供了对 Activiti 系统中的用户和组的管理功能。
+FormService	            Activiti 中的流程和状态 Task 均可以关联业务相关的数据。通过使用 Form Service 可以存取启动和完成任务所需的表单数据并且根据需要来渲染表单。
+ManagementService	    Management Service 提供了对 Activiti 流程引擎的管理和维护功能，这些功能不在工作流驱动的应用程序中使用，主要用于 Activiti 系统的日常维护。
+DynamicBpmnService	    通过该服务，可以动态修改流程
 ```
-
-### RepositoryService
-是activiti的资源管理类，提供了管理和控制流程发布包和流程定义的操作。使用工作流建模工具设计的业务流程图需 要使用此service将流程定义文件的内容部署到计算机。   
-除了部署流程定义以外还可以：查询引擎中的发布包和流程定义。  
-暂停或激活发布包，对应全部和特定流程定义。 暂停意味着它们不能再执行任何操作了，激活是对应的反向操作。 获得多种资源，像是包含在发布包里的文件， 或引擎自动生成的流程图。   
-获得流程定义的pojo版本， 可以用来通过java解析流程，而不必通过xml。  
-
-### RuntimeService 
-Activiti的流程运行管理类。可以从这个服务类中获取很多关于流程执行相关的信息
-
-### TaskService 
-Activiti的任务管理类。可以从这个类中获取任务的信息。
-
-### HistoryService 
-Activiti的历史管理类，可以查询历史信息，执行流程时，引擎会保存很多数据（根据配置），比如流程实例启动时 间，任务的参与者， 完成任务的时间，每个流程实例的执行路径，等等。 这个服务主要通过查询功能来获得这些数 据。
-
-### ManagementService 
-Activiti的引擎管理类，提供了对 Activiti 流程引擎的管理和维护功能，这些功能不在工作流驱动的应用程序中使用， 主要用于 Activiti 系统的日常维护。 
-
-
 
 
 
