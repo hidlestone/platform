@@ -6,7 +6,9 @@ import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 import org.springframework.util.StringUtils;
 
+import java.io.File;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +38,13 @@ public class EHCacheUtil {
 	 */
 	public EHCacheUtil(String filename) {
 		this.configfile = StringUtils.isEmpty(filename) ? "ehcache.xml" : filename;
+		ClassLoader classLoader = getClass().getClassLoader();
+		URL url = classLoader.getResource(configfile);
+		// 绝对路径
+		File file = new File(url.getFile());
+		if (!file.exists()) {
+			throw new RuntimeException("file " + filename + " is not exist");
+		}
 		manager = CacheManager.create(EHCacheUtil.class.getClassLoader().getResourceAsStream(configfile));
 	}
 
