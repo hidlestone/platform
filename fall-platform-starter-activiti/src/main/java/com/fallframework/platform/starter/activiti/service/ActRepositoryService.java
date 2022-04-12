@@ -58,12 +58,12 @@ public interface ActRepositoryService {
 	ResponseResult deployByBpmnModel(String resourceName, BpmnModel bpmnModel);
 
 	/**
-	 * 流程部署
+	 * 根据名称发布流程
 	 *
-	 * @param deploymentId 部署ID
+	 * @param bpmnName 流程名称
 	 * @return 是否部署成功
 	 */
-	ResponseResult bpmDeploy(String deploymentId);
+	ResponseResult deployByBpmnName(String bpmnName);
 
 	/**
 	 * 删除流程定义

@@ -12,6 +12,8 @@ import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -33,6 +35,8 @@ import java.util.zip.ZipOutputStream;
  */
 @Service
 public class ActRepositoryServiceImpl implements ActRepositoryService {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ActRepositoryServiceImpl.class);
 
 	@Autowired
 	private RepositoryService repositoryService;
@@ -68,25 +72,20 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 	}
 
 	@Override
-	public ResponseResult bpmDeploy(String deploymentId) {
-		// 查询对象
-		ProcessDefinitionQuery definitionQuery = repositoryService.createProcessDefinitionQuery();
-		ProcessDefinition processDefinition = definitionQuery.processDefinitionId(deploymentId).singleResult();
-		if (null == processDefinition) {
-			return ResponseResult.fail("process definition is not exist");
-		}
-		// TODO 加载数据库中的文件
+	public ResponseResult deployByBpmnName(String bpmnName) {
+		String bpmn = "processes/" + bpmnName + ".xml";
+		String png = "processes/" + bpmnName + ".png";
+		LOGGER.debug(String.format("deployByBpmnName xml:%s, png", bpmn, png));
 		Deployment deploy = repositoryService.createDeployment()
-				.name(processDefinition.getName())
-//				.addClasspathResource("bpmn/evection.bpmn")
-//				.addClasspathResource("bpmn/evection.png")
+				.name(bpmnName)
+				.addInputStream(bpmn, this.getClass().getClassLoader().getResourceAsStream(bpmn))
 				.deploy();
 		return ResponseResult.success();
 	}
 
 	@Override
 	public ResponseResult deleteDeployment(String deploymentId) {
-		// TODO
+		// 非级联删除
 		// repositoryService.deleteDeployment(deploymentId);
 		// 级联删除
 		repositoryService.deleteDeployment(deploymentId, true);
