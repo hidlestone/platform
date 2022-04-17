@@ -117,5 +117,12 @@ public interface ActRepositoryService {
 	 */
 	ResponseResult<StartProcessResponse> startProcessInfo(String procDefId);
 
+	/**
+	 * 根据流程实例ID获取获取流程图
+	 *
+	 * @param processInstanceId 流程实例ID
+	 * @return 流程图base64格式
+	 */
+	ResponseResult<String> generateDiagram(String processInstanceId);
 
 }

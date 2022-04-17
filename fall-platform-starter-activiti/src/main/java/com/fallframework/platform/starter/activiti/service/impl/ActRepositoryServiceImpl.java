@@ -369,6 +369,11 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 		StartProcessResponse response = new StartProcessResponse(procDefId, formProperties);
 		return ResponseResult.success(response);
 	}
-	
+
+	@Override
+	public ResponseResult<String> generateDiagram(String processInstanceId) {
+		return null;
+	}
+
 
 }
