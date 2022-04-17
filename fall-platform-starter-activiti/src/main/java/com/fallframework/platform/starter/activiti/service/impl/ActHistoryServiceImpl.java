@@ -191,16 +191,16 @@ public class ActHistoryServiceImpl implements ActHistoryService {
 		if (null != request.getTaskMaxPriority()) {
 			historicTaskInstanceQuery.taskMaxPriority(request.getTaskMaxPriority());
 		}
-		if (true == request.getFinished()) {
+		if (request.getFinished()) {
 			historicTaskInstanceQuery.finished();
 		}
-		if (true == request.getUnfinished()) {
+		if (request.getUnfinished()) {
 			historicTaskInstanceQuery.unfinished();
 		}
-		if (true == request.getProcessFinished()) {
+		if (request.getProcessFinished()) {
 			historicTaskInstanceQuery.processFinished();
 		}
-		if (true == request.getProcessUnfinished()) {
+		if (request.getProcessUnfinished()) {
 			historicTaskInstanceQuery.processUnfinished();
 		}
 		if (null != request.getDueDate()) {
@@ -212,7 +212,7 @@ public class ActHistoryServiceImpl implements ActHistoryService {
 		if (null != request.getDueBefore()) {
 			historicTaskInstanceQuery.taskDueBefore(request.getDueBefore());
 		}
-		if (true == request.getWithoutDueDate()) {
+		if (request.getWithoutDueDate()) {
 			historicTaskInstanceQuery.withoutTaskDueDate();
 		}
 		if (null != request.getCreationDate()) {
@@ -242,19 +242,19 @@ public class ActHistoryServiceImpl implements ActHistoryService {
 		if (StringUtils.isNotEmpty(request.getTenantIdLike())) {
 			historicTaskInstanceQuery.taskTenantIdLike(request.getTenantIdLike());
 		}
-		if (true == request.getWithoutTenantId()) {
+		if (request.getWithoutTenantId()) {
 			historicTaskInstanceQuery.taskWithoutTenantId();
 		}
 		if (StringUtils.isNotEmpty(request.getLocale())) {
 			historicTaskInstanceQuery.locale(request.getLocale());
 		}
-		if (true == request.getWithLocalizationFallback()) {
+		if (request.getWithLocalizationFallback()) {
 			historicTaskInstanceQuery.withLocalizationFallback();
 		}
-		if (true == request.getIncludeTaskLocalVariables()) {
+		if (request.getIncludeTaskLocalVariables()) {
 			historicTaskInstanceQuery.includeTaskLocalVariables();
 		}
-		if (true == request.getIncludeProcessVariables()) {
+		if (request.getIncludeProcessVariables()) {
 			historicTaskInstanceQuery.includeProcessVariables();
 		}
 		if (null != request.getTaskVariablesLimit()) {
@@ -268,6 +268,5 @@ public class ActHistoryServiceImpl implements ActHistoryService {
 		Leaf<HistoricTaskInstance> leaf = new Leaf(historicTaskInstanceList, total, request);
 		return ResponseResult.success(leaf);
 	}
-
-
+	
 }
