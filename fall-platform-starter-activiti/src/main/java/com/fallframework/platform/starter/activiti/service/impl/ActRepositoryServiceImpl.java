@@ -1,14 +1,23 @@
 package com.fallframework.platform.starter.activiti.service.impl;
 
-import cn.hutool.core.collection.CollectionUtil;
-import com.fallframework.platform.starter.activiti.model.ProcessDefinitionRequest;
-import com.fallframework.platform.starter.activiti.model.ProcessDefinitionResponse;
+import com.fallframework.platform.starter.activiti.model.ModelQueryRequest;
+import com.fallframework.platform.starter.activiti.model.ProcessDefinitionQueryRequest;
+import com.fallframework.platform.starter.activiti.model.StartProcessResponse;
 import com.fallframework.platform.starter.activiti.service.ActRepositoryService;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.BpmnModel;
+import org.activiti.editor.language.json.converter.BpmnJsonConverter;
+import org.activiti.engine.FormService;
 import org.activiti.engine.RepositoryService;
+import org.activiti.engine.form.FormProperty;
+import org.activiti.engine.form.StartFormData;
 import org.activiti.engine.repository.Deployment;
+import org.activiti.engine.repository.Model;
+import org.activiti.engine.repository.ModelQuery;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.apache.commons.lang3.StringUtils;
@@ -16,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -24,7 +34,6 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -40,6 +49,10 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 
 	@Autowired
 	private RepositoryService repositoryService;
+	@Autowired
+	private FormService formService;
+	;
+
 
 	@Override
 	public ResponseResult deployByInputStream(String resourceName, InputStream inputStream) {
@@ -93,7 +106,7 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 	}
 
 	@Override
-	public ResponseResult<Leaf<ProcessDefinitionResponse>> getProcessDefinitionList(ProcessDefinitionRequest request) {
+	public ResponseResult<Leaf<ProcessDefinition>> getProcessDefinitionList(ProcessDefinitionQueryRequest request) {
 		// 查询对象
 		ProcessDefinitionQuery definitionQuery = repositoryService.createProcessDefinitionQuery();
 		// 查询条件
@@ -101,46 +114,94 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 		if (StringUtils.isNotEmpty(request.getId())) {
 			definitionQuery.processDefinitionId(request.getId());
 		}
+		if (!CollectionUtils.isEmpty(request.getIds())) {
+			definitionQuery.deploymentIds(request.getIds());
+		}
+		if (StringUtils.isNotEmpty(request.getCategory())) {
+			definitionQuery.processDefinitionCategory(request.getCategory());
+		}
+		if (StringUtils.isNotEmpty(request.getCategoryLike())) {
+			definitionQuery.processDefinitionCategoryLike(request.getCategoryLike());
+		}
+		if (StringUtils.isNotEmpty(request.getCategoryNotEquals())) {
+			definitionQuery.processDefinitionCategoryNotEquals(request.getCategoryNotEquals());
+		}
 		// name
 		if (StringUtils.isNotEmpty(request.getName())) {
 			definitionQuery.processDefinitionNameLike(request.getName());
 		}
-		// key
-		if (StringUtils.isNotEmpty(request.getKey())) {
-			definitionQuery.processDefinitionKeyLike(request.getKey());
-		}
-		// version
-		if (null != request.getVersion()) {
-			definitionQuery.processDefinitionVersion(request.getVersion());
-		}
-		// category
-		if (StringUtils.isNotEmpty(request.getCategory())) {
-			definitionQuery.processDefinitionCategoryLike(request.getCategory());
+		if (StringUtils.isNotEmpty(request.getNameLike())) {
+			definitionQuery.processDefinitionNameLike(request.getNameLike());
 		}
 		// deploymentId
 		if (StringUtils.isNotEmpty(request.getDeploymentId())) {
 			definitionQuery.deploymentId(request.getDeploymentId());
 		}
-		// resourceName
-		if (StringUtils.isNotEmpty(request.getResourceName())) {
-			definitionQuery.processDefinitionResourceNameLike(request.getResourceName());
+		if (!CollectionUtils.isEmpty(request.getDeploymentIds())) {
+			definitionQuery.deploymentIds(request.getDeploymentIds());
 		}
-		// 分页开始
-		int start = (request.getPageNum() - 1) * request.getPageSize() + 1;
+		// key
+		if (StringUtils.isNotEmpty(request.getKey())) {
+			definitionQuery.processDefinitionKey(request.getKey());
+		}
+		if (StringUtils.isNotEmpty(request.getKeyLike())) {
+			definitionQuery.processDefinitionKeyLike(request.getKeyLike());
+		}
+		if (StringUtils.isNotEmpty(request.getResourceName())) {
+			definitionQuery.processDefinitionResourceName(request.getResourceName());
+		}
+		if (StringUtils.isNotEmpty(request.getResourceNameLike())) {
+			definitionQuery.processDefinitionResourceNameLike(request.getResourceNameLike());
+		}
+		// version
+		if (null != request.getVersion()) {
+			definitionQuery.processDefinitionVersion(request.getVersion());
+		}
+		if (null != request.getVersionGt()) {
+			definitionQuery.processDefinitionVersionGreaterThan(request.getVersionGt());
+		}
+		if (null != request.getVersionGte()) {
+			definitionQuery.processDefinitionVersionGreaterThanOrEquals(request.getVersionGte());
+		}
+		if (null != request.getVersionLt()) {
+			definitionQuery.processDefinitionVersionLowerThan(request.getVersionLt());
+		}
+		if (null != request.getVersionLte()) {
+			definitionQuery.processDefinitionVersionLowerThanOrEquals(request.getVersionLte());
+		}
+		if (null != request.getLatest()) {
+			definitionQuery.latestVersion();
+		}
+		if ("active".equals(request.getSuspensionState().getStateCode())) {
+			definitionQuery.active();
+		}
+		if ("suspended".equals(request.getSuspensionState().getStateCode())) {
+			definitionQuery.suspended();
+		}
+		if (StringUtils.isNotEmpty(request.getTenantId())) {
+			definitionQuery.processDefinitionTenantId(request.getTenantId());
+		}
+		if (StringUtils.isNotEmpty(request.getTenantIdLike())) {
+			definitionQuery.processDefinitionTenantIdLike(request.getTenantIdLike());
+		}
+		if (true == request.getWithoutTenantId()) {
+			definitionQuery.processDefinitionWithoutTenantId();
+		}
+		if (StringUtils.isNotEmpty(request.getEventSubscriptionName())) {
+			definitionQuery.messageEventSubscriptionName(request.getEventSubscriptionName());
+		}
 		// 总记录数
 		long total = definitionQuery.count();
-		definitionQuery.listPage(start, request.getPageSize());
 		List<ProcessDefinition> processDefinitionList = definitionQuery
-				.orderByDeploymentId().desc()                // 部署ID降序
-				.orderByProcessDefinitionVersion().desc()    // 部署版本号降序
-				.list();                                     // 获取全部
-		List<ProcessDefinitionResponse> responseList = this.processDefinitionToResponse(processDefinitionList);
-		Leaf<ProcessDefinitionResponse> leaf = new Leaf<>(responseList, total, (total / request.getPageSize()) + 1, request.getPageNum());
+				.orderByDeploymentId().desc()                                // 部署ID降序
+				.orderByProcessDefinitionVersion().desc()                    // 部署版本号降序
+				.listPage(request.getFirstRow(), request.getPageSize());     // 分页
+		Leaf<ProcessDefinition> leaf = new Leaf<>(processDefinitionList, total, request);
 		return ResponseResult.success(leaf);
 	}
 
 	@Override
-	public ResponseResult downloadBpmnFile(String definitionKey) {
+	public ResponseResult downloadBpmnile(String definitionKey) {
 		InputStream fis = null;
 		BufferedInputStream bis = null;
 		try {
@@ -218,33 +279,96 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 		return ResponseResult.success();
 	}
 
-	/**
-	 * @param processDefinitionList 流程定义列表
-	 * @return 响应列表
-	 */
-	private List<ProcessDefinitionResponse> processDefinitionToResponse(List<ProcessDefinition> processDefinitionList) {
-		List<ProcessDefinitionResponse> responseList = new ArrayList<>();
-		if (CollectionUtil.isNotEmpty(processDefinitionList)) {
-			for (ProcessDefinition processDefinition : processDefinitionList) {
-				ProcessDefinitionResponse response = new ProcessDefinitionResponse();
-				response.setId(processDefinition.getId());
-				response.setName(processDefinition.getName());
-				response.setDescription(processDefinition.getDescription());
-				response.setKey(processDefinition.getKey());
-				response.setVersion(processDefinition.getVersion());
-				response.setCategory(processDefinition.getCategory());
-				response.setDeploymentId(processDefinition.getDeploymentId());
-				response.setResourceName(processDefinition.getResourceName());
-				response.setTenantId(processDefinition.getTenantId());
-				response.setHistoryLevel(processDefinition.getVersion());
-				response.setDiagramResourceName(processDefinition.getDiagramResourceName());
-				response.setGraphicalNotationDefined(processDefinition.hasGraphicalNotation());
-				response.setHasStartFormKey(processDefinition.hasStartFormKey());
-				response.setEngineVersion(processDefinition.getEngineVersion());
-				responseList.add(response);
-			}
+	@Override
+	public ResponseResult<Leaf<Model>> getModelList(ModelQueryRequest request) {
+		// 查询条件
+		ModelQuery modelQuery = repositoryService.createModelQuery();
+		if (StringUtils.isNotEmpty(request.getId())) {
+			modelQuery.modelId(request.getId());
 		}
-		return responseList;
+		if (StringUtils.isNotEmpty(request.getCategory())) {
+			modelQuery.modelCategory(request.getCategory());
+		}
+		if (StringUtils.isNotEmpty(request.getCategoryLike())) {
+			modelQuery.modelCategoryLike(request.getCategoryLike());
+		}
+		if (StringUtils.isNotEmpty(request.getCategoryNotEquals())) {
+			modelQuery.modelCategoryNotEquals(request.getCategoryNotEquals());
+		}
+		if (StringUtils.isNotEmpty(request.getName())) {
+			modelQuery.modelName(request.getName());
+		}
+		if (StringUtils.isNotEmpty(request.getNameLike())) {
+			modelQuery.modelNameLike(request.getNameLike());
+		}
+		if (StringUtils.isNotEmpty(request.getKey())) {
+			modelQuery.modelKey(request.getKey());
+		}
+		if (null != request.getVersion()) {
+			modelQuery.modelVersion(request.getVersion());
+		}
+		if (null != request.getLatest()) {
+			modelQuery.latestVersion();
+		}
+		if (StringUtils.isNotEmpty(request.getDeploymentId())) {
+			modelQuery.deploymentId(request.getDeploymentId());
+		}
+		if (null != request.getNotDeployed()) {
+			modelQuery.notDeployed();
+		}
+		if (null != request.getDeployed()) {
+			modelQuery.deployed();
+		}
+		if (StringUtils.isNotEmpty(request.getTenantId())) {
+			modelQuery.modelTenantId(request.getTenantId());
+		}
+		if (StringUtils.isNotEmpty(request.getTenantIdLike())) {
+			modelQuery.modelTenantIdLike(request.getTenantIdLike());
+		}
+		if (true == request.getWithoutTenantId()) {
+			modelQuery.modelWithoutTenantId();
+		}
+		// 总记录数
+		long total = modelQuery.count();
+		// 分页数据
+		List<Model> modelList = modelQuery.orderByCreateTime().desc().listPage(request.getFirstRow(), request.getPageSize());
+		Leaf<Model> leaf = new Leaf(modelList, total, request);
+		return ResponseResult.success(leaf);
 	}
+
+	@Override
+	public ResponseResult deployByModelId(String modelId) throws IOException {
+		// 获取模型
+		Model modelData = repositoryService.getModel(modelId);
+		if (null == modelData) {
+			return ResponseResult.fail("模型" + modelId + "不存在");
+		}
+		byte[] bytes = repositoryService.getModelEditorSource(modelData.getId());
+		JsonNode modelNode = modelNode = new ObjectMapper().readTree(bytes);
+		BpmnModel model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
+		if (model.getProcesses().size() == 0) {
+			return ResponseResult.fail("数据模型不符要求，请至少设计一条主线流程");
+		}
+		byte[] bpmnBytes = new BpmnXMLConverter().convertToXML(model);
+		// 发布流程
+		String processName = modelData.getName() + ".bpmn20.xml";
+		Deployment deployment = repositoryService.createDeployment()
+				.name(modelData.getName())
+				.addString(processName, new String(bpmnBytes, "UTF-8"))
+				.deploy();
+		modelData.setDeploymentId(deployment.getId());
+		repositoryService.saveModel(modelData);
+		return ResponseResult.success();
+	}
+
+	@Override
+	public ResponseResult<StartProcessResponse> startProcessInfo(String procDefId) {
+		// 按照流程定义ID加载流程开启时候需要的表单信息
+		StartFormData startFormData = formService.getStartFormData(procDefId);
+		List<FormProperty> formProperties = startFormData.getFormProperties();
+		StartProcessResponse response = new StartProcessResponse(procDefId, formProperties);
+		return ResponseResult.success(response);
+	}
+	
 
 }

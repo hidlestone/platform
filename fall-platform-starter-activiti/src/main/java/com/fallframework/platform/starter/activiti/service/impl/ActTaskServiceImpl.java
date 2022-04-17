@@ -4,6 +4,7 @@ import com.fallframework.platform.starter.activiti.model.AssignTaskRequest;
 import com.fallframework.platform.starter.activiti.model.CompletTaskRequest;
 import com.fallframework.platform.starter.activiti.model.PendingTaskRequest;
 import com.fallframework.platform.starter.activiti.model.RejectTaskRequest;
+import com.fallframework.platform.starter.activiti.model.TaskDetailResponse;
 import com.fallframework.platform.starter.activiti.service.ActTaskService;
 import com.fallframework.platform.starter.activiti.service.cmd.DeleteTaskCmd;
 import com.fallframework.platform.starter.activiti.service.cmd.SetFLowNodeAndGoCmd;
@@ -12,10 +13,13 @@ import com.fallframework.platform.starter.api.response.ResponseResult;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.bpmn.model.FlowNode;
 import org.activiti.engine.ActivitiException;
+import org.activiti.engine.FormService;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.ManagementService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.form.FormProperty;
+import org.activiti.engine.form.TaskFormData;
 import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
@@ -33,6 +37,8 @@ public class ActTaskServiceImpl implements ActTaskService {
 
 	@Autowired
 	private TaskService taskService;
+	@Autowired
+	private FormService formService;
 	@Autowired
 	private RepositoryService repositoryService;
 	@Autowired
@@ -59,8 +65,8 @@ public class ActTaskServiceImpl implements ActTaskService {
 		// 总记录数
 		long total = taskQuery.count();
 		// 分页数据
-		List<Task> taskList = taskQuery.listPage(request.getFirstRow(), request.getPageSize());
-		Leaf leaf = new Leaf(taskList, total, request);
+		List<Task> taskList = taskQuery.orderByTaskCreateTime().desc().listPage(request.getFirstRow(), request.getPageSize());
+		Leaf<Task> leaf = new Leaf(taskList, total, request);
 		return ResponseResult.success(leaf);
 	}
 
@@ -94,7 +100,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 		// 获取目标节点定义
 		FlowNode targetNode = null;
 		// 驳回到发起点
-		if (request.getReturnStart()) {
+		if (request.getReturnStartFlag()) {
 			targetNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(historicList.get(0).getActivityId());
 		} else {
 			// 驳回到上一个节点
@@ -126,6 +132,21 @@ public class ActTaskServiceImpl implements ActTaskService {
 	public ResponseResult assignTask(AssignTaskRequest request) {
 		taskService.claim(request.getTaskId(), request.getAssignee());
 		return ResponseResult.success();
+	}
+
+	@Override
+	public ResponseResult getTaskDetail(String taskId) {
+		// 当前任务
+		Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
+		String processInstanceId = task.getProcessInstanceId();
+		TaskFormData taskFormData = formService.getTaskFormData(taskId);
+		List<FormProperty> formProperties = taskFormData.getFormProperties();
+		// 查询历史操作 TODO
+		// 返回的数据
+		TaskDetailResponse response = new TaskDetailResponse();
+		response.setTask(task);
+		response.setFormProperties(formProperties);
+		return ResponseResult.success(response);
 	}
 
 }

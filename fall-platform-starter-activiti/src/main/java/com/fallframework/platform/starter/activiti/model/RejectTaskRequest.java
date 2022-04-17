@@ -23,6 +23,6 @@ public class RejectTaskRequest extends BaseEntityRequest {
 	private String taskId;
 
 	@ApiModelProperty("是否返回开始")
-	private Boolean returnStart;
+	private Boolean returnStartFlag;
 
 }

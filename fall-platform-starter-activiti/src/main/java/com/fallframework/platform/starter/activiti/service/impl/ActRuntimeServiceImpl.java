@@ -30,6 +30,9 @@ public class ActRuntimeServiceImpl implements ActRuntimeService {
 	public ResponseResult startProcessInstance(StartProcessInstanceRequest request) {
 		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(request.getProcessDefinitionKey(), request.getVariables());
 		LOGGER.debug(String.format("startProcessInstance : id:%s, activitiId:%s", processInstance.getId(), processInstance.getActivityId()));
+		if (null == processInstance) {
+			return ResponseResult.fail();
+		}
 		return ResponseResult.success();
 	}
 
@@ -40,5 +43,5 @@ public class ActRuntimeServiceImpl implements ActRuntimeService {
 				.processInstanceId(processInstanceId).count();
 		return 0 == count;
 	}
-	
+
 }

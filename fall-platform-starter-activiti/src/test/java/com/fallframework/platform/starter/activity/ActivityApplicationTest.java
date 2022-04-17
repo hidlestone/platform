@@ -39,8 +39,8 @@ public class ActivityApplicationTest {
 	@Test
 	public void test() {
 		String key = "737372ieieiie";
-		ProcessInstance instance = runtimeService.startProcessInstanceByKey("leave", key, new HashMap<>(0));
-		System.out.println();
+//		ProcessInstance instance = runtimeService.startProcessInstanceByKey("leave", key, new HashMap<>(0));
+//		System.out.println();
 	}
 
 	@Test

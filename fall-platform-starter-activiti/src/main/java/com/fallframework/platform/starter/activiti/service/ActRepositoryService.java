@@ -1,11 +1,15 @@
 package com.fallframework.platform.starter.activiti.service;
 
-import com.fallframework.platform.starter.activiti.model.ProcessDefinitionRequest;
-import com.fallframework.platform.starter.activiti.model.ProcessDefinitionResponse;
+import com.fallframework.platform.starter.activiti.model.ModelQueryRequest;
+import com.fallframework.platform.starter.activiti.model.ProcessDefinitionQueryRequest;
+import com.fallframework.platform.starter.activiti.model.StartProcessResponse;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import org.activiti.bpmn.model.BpmnModel;
+import org.activiti.engine.repository.Model;
+import org.activiti.engine.repository.ProcessDefinition;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipInputStream;
 
@@ -74,12 +78,12 @@ public interface ActRepositoryService {
 	ResponseResult deleteDeployment(String deploymentId);
 
 	/**
-	 * 分页查询流程定义列表
+	 * 分页查询((模型)已部署)流程定义列表
 	 *
 	 * @param request 请求参数
 	 * @return 流程定义分页
 	 */
-	ResponseResult<Leaf<ProcessDefinitionResponse>> getProcessDefinitionList(ProcessDefinitionRequest request);
+	ResponseResult<Leaf<ProcessDefinition>> getProcessDefinitionList(ProcessDefinitionQueryRequest request);
 
 	/**
 	 * 下载资源文件
@@ -87,6 +91,31 @@ public interface ActRepositoryService {
 	 * @param definitionKey 流程定义key
 	 * @return 文件
 	 */
-	ResponseResult downloadBpmnFile(String definitionKey);
+	ResponseResult downloadBpmnile(String definitionKey);
+
+	/**
+	 * 分页查询模型列表
+	 *
+	 * @param request 请求参数
+	 * @return 模型分页
+	 */
+	ResponseResult<Leaf<Model>> getModelList(ModelQueryRequest request);
+
+	/**
+	 * 根据已设计好的模型进行部署
+	 *
+	 * @param modelId 模型ID
+	 * @return 是否部署成功
+	 */
+	ResponseResult deployByModelId(String modelId) throws IOException;
+
+	/**
+	 * 跳转到流程开启页(如果有的话)携带的数据
+	 *
+	 * @param procDefId 流程定义ID
+	 * @return 开启流程所需信息
+	 */
+	ResponseResult<StartProcessResponse> startProcessInfo(String procDefId);
+
 
 }

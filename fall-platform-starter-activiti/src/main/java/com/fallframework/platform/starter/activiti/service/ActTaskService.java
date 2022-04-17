@@ -42,4 +42,12 @@ public interface ActTaskService {
 	 */
 	ResponseResult assignTask(AssignTaskRequest request);
 
+	/**
+	 * 获取任务详细信息
+	 *
+	 * @param taskId 任务ID
+	 * @return 任务详细信息
+	 */
+	ResponseResult getTaskDetail(String taskId);
+
 }

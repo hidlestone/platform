@@ -16,8 +16,7 @@ public class AssignTaskRequest extends BaseEntityRequest {
 
 	@ApiModelProperty(value = "任务ID")
 	private String taskId;
-
-
+	
 	@ApiModelProperty(value = "审批人")
 	private String assignee;
 
