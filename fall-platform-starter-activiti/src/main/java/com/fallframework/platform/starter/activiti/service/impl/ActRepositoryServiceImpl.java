@@ -51,8 +51,6 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 	private RepositoryService repositoryService;
 	@Autowired
 	private FormService formService;
-	;
-
 
 	@Override
 	public ResponseResult deployByInputStream(String resourceName, InputStream inputStream) {
@@ -169,7 +167,7 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 		if (null != request.getVersionLte()) {
 			definitionQuery.processDefinitionVersionLowerThanOrEquals(request.getVersionLte());
 		}
-		if (null != request.getLatest()) {
+		if (request.getLatest()) {
 			definitionQuery.latestVersion();
 		}
 		if ("active".equals(request.getSuspensionState().getStateCode())) {
@@ -307,16 +305,16 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 		if (null != request.getVersion()) {
 			modelQuery.modelVersion(request.getVersion());
 		}
-		if (null != request.getLatest()) {
+		if (request.getLatest()) {
 			modelQuery.latestVersion();
 		}
 		if (StringUtils.isNotEmpty(request.getDeploymentId())) {
 			modelQuery.deploymentId(request.getDeploymentId());
 		}
-		if (null != request.getNotDeployed()) {
+		if (request.getNotDeployed()) {
 			modelQuery.notDeployed();
 		}
-		if (null != request.getDeployed()) {
+		if (request.getDeployed()) {
 			modelQuery.deployed();
 		}
 		if (StringUtils.isNotEmpty(request.getTenantId())) {
@@ -325,7 +323,7 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 		if (StringUtils.isNotEmpty(request.getTenantIdLike())) {
 			modelQuery.modelTenantIdLike(request.getTenantIdLike());
 		}
-		if (true == request.getWithoutTenantId()) {
+		if (request.getWithoutTenantId()) {
 			modelQuery.modelWithoutTenantId();
 		}
 		// 总记录数
@@ -374,6 +372,5 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 	public ResponseResult<String> generateDiagram(String processInstanceId) {
 		return null;
 	}
-
 
 }
