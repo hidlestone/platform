@@ -369,8 +369,9 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 	}
 
 	@Override
-	public ResponseResult<String> generateDiagram(String processInstanceId) {
-		return null;
+	public ResponseResult deleteModel(String modelId) {
+		repositoryService.deleteModel(modelId);
+		return ResponseResult.success();
 	}
 
 }

@@ -7,6 +7,8 @@ import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import org.activiti.engine.history.HistoricTaskInstance;
 
+import java.io.IOException;
+
 public interface ActHistoryService {
 
 	/**
@@ -24,5 +26,13 @@ public interface ActHistoryService {
 	 * @return 历史任务列表
 	 */
 	ResponseResult<Leaf<HistoricTaskInstance>> getHistoricTaskInstanceList(HistoricTaskInstanceRequest request);
+
+	/**
+	 * 根据流程实例ID获取获取流程(跟踪)图(高亮显示)
+	 *
+	 * @param processInstanceId 流程实例ID
+	 * @return 流程图base64格式
+	 */
+	ResponseResult<String> generateProcessDiagram(String processInstanceId) throws IOException;
 
 }

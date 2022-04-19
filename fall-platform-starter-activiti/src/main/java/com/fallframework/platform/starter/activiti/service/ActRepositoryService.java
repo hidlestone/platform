@@ -70,7 +70,7 @@ public interface ActRepositoryService {
 	ResponseResult deployByBpmnName(String bpmnName);
 
 	/**
-	 * 删除流程定义
+	 * 删除(已部署)流程定义
 	 *
 	 * @param deploymentId 部署ID
 	 * @return 是否删除成功
@@ -118,11 +118,11 @@ public interface ActRepositoryService {
 	ResponseResult<StartProcessResponse> startProcessInfo(String procDefId);
 
 	/**
-	 * 根据流程实例ID获取获取流程图
+	 * 删除流程实例（未部署model）
 	 *
-	 * @param processInstanceId 流程实例ID
-	 * @return 流程图base64格式
+	 * @param modelId 模型ID
+	 * @return 是否删除成功
 	 */
-	ResponseResult<String> generateDiagram(String processInstanceId);
+	ResponseResult deleteModel(String modelId);
 
 }
