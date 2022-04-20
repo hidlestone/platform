@@ -12,14 +12,16 @@ import javax.sql.DataSource;
  */
 @Configuration
 public class ActivitiConfiguration {
-    @Bean
-    @Primary
-    public DataSource database() {
-        return DataSourceBuilder.create()
-                .url("jdbc:mysql://localhost:3306/wordplay_test?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
-                .username("root")
-                .password("root")
-                .driverClassName("com.mysql.jdbc.Driver")
-                .build();
-    }
+	
+	@Bean
+	@Primary
+	public DataSource database() {
+		return DataSourceBuilder.create()
+				.url("jdbc:mysql://localhost:3306/wordplay_test?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
+				.username("root")
+				.password("root")
+				.driverClassName("com.mysql.jdbc.Driver")
+				.build();
+	}
+	
 }
