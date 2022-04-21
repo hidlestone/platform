@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @ApiModel("用户组查询请求参数")
 public class GroupQueryRequest extends BasePageRequest {
-	
+
 	private static final long serialVersionUID = 948470878650186549L;
 
 	@ApiModelProperty("ID")
@@ -33,5 +33,5 @@ public class GroupQueryRequest extends BasePageRequest {
 
 	@ApiModelProperty("流程定义ID")
 	protected String procDefId;
-	
+
 }

@@ -176,6 +176,9 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 		if ("suspended".equals(request.getSuspensionState().getStateCode())) {
 			definitionQuery.suspended();
 		}
+		if (StringUtils.isNotEmpty(request.getProcDefId())) {
+			definitionQuery.processDefinitionId(request.getProcDefId());
+		}
 		if (StringUtils.isNotEmpty(request.getTenantId())) {
 			definitionQuery.processDefinitionTenantId(request.getTenantId());
 		}

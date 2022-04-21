@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @ApiModel("查询历史任务实例查询参数")
-public class HistoricTaskInstanceRequest extends BasePageRequest {
+public class HistoricTaskInstanceQueryRequest extends BasePageRequest {
 
 	private static final long serialVersionUID = 896428922293078443L;
 
@@ -169,7 +169,7 @@ public class HistoricTaskInstanceRequest extends BasePageRequest {
 	@ApiModelProperty("流程未结束")
 	protected Boolean processUnfinished;
 
-	@ApiModelProperty("截至日期")
+	@ApiModelProperty("截止日期")
 	protected Date dueDate;
 
 	@ApiModelProperty("在此日期后截止")
@@ -178,7 +178,7 @@ public class HistoricTaskInstanceRequest extends BasePageRequest {
 	@ApiModelProperty("在此日期前截止")
 	protected Date dueBefore;
 
-	@ApiModelProperty("流程定义")
+	@ApiModelProperty("无截止日期")
 	protected Boolean withoutDueDate;
 
 	@ApiModelProperty("创建日期")
@@ -211,10 +211,10 @@ public class HistoricTaskInstanceRequest extends BasePageRequest {
 	@ApiModelProperty("排除租户ID")
 	protected Boolean withoutTenantId;
 
-	@ApiModelProperty("流程定义")
+	@ApiModelProperty("本地化")
 	protected String locale;
 
-	@ApiModelProperty("带本地化回退")
+	@ApiModelProperty("本地化")
 	protected Boolean withLocalizationFallback;
 
 	@ApiModelProperty("包括任务本地化变量")
@@ -234,5 +234,5 @@ public class HistoricTaskInstanceRequest extends BasePageRequest {
 
 //	@ApiModelProperty("inOrStatement")
 //	protected boolean inOrStatement = false;
-	
+
 }

@@ -1,8 +1,8 @@
 package com.fallframework.platform.starter.activiti.service.impl;
 
-import com.fallframework.platform.starter.activiti.model.HistoricActivityRequest;
+import com.fallframework.platform.starter.activiti.model.HistoricActivityInstanceQueryRequest;
 import com.fallframework.platform.starter.activiti.model.HistoricActivityResponse;
-import com.fallframework.platform.starter.activiti.model.HistoricTaskInstanceRequest;
+import com.fallframework.platform.starter.activiti.model.HistoricTaskInstanceQueryRequest;
 import com.fallframework.platform.starter.activiti.service.ActHistoryService;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
@@ -50,8 +50,53 @@ public class ActHistoryServiceImpl implements ActHistoryService {
 	private ProcessEngineConfiguration processEngineConfiguration;
 
 	@Override
-	public ResponseResult<Leaf<HistoricActivityResponse>> getHistoricActivityList(HistoricActivityRequest request) {
-		HistoricActivityInstanceQuery historicActivityInstanceQuery = historyService.createHistoricActivityInstanceQuery().processInstanceId(request.getProcessInstanceId());
+	public ResponseResult<Leaf<HistoricActivityResponse>> getHistoricActivityList(HistoricActivityInstanceQueryRequest request) {
+		HistoricActivityInstanceQuery historicActivityInstanceQuery = historyService.createHistoricActivityInstanceQuery();
+		if (StringUtils.isNotEmpty(request.getActivityInstanceId())) {
+			historicActivityInstanceQuery.activityInstanceId(request.getActivityInstanceId());
+		}
+		if (StringUtils.isNotEmpty(request.getProcessInstanceId())) {
+			historicActivityInstanceQuery.processInstanceId(request.getProcessInstanceId());
+		}
+		if (StringUtils.isNotEmpty(request.getExecutionId())) {
+			historicActivityInstanceQuery.executionId(request.getExecutionId());
+		}
+		if (StringUtils.isNotEmpty(request.getProcessDefinitionId())) {
+			historicActivityInstanceQuery.processDefinitionId(request.getProcessDefinitionId());
+		}
+		if (StringUtils.isNotEmpty(request.getActivityId())) {
+			historicActivityInstanceQuery.activityId(request.getActivityId());
+		}
+		if (StringUtils.isNotEmpty(request.getActivityName())) {
+			historicActivityInstanceQuery.activityName(request.getActivityName());
+		}
+		if (StringUtils.isNotEmpty(request.getActivityType())) {
+			historicActivityInstanceQuery.activityType(request.getActivityType());
+		}
+		if (StringUtils.isNotEmpty(request.getAssignee())) {
+			historicActivityInstanceQuery.taskAssignee(request.getAssignee());
+		}
+		if (StringUtils.isNotEmpty(request.getTenantId())) {
+			historicActivityInstanceQuery.activityTenantId(request.getTenantId());
+		}
+		if (StringUtils.isNotEmpty(request.getTenantIdLike())) {
+			historicActivityInstanceQuery.activityTenantIdLike(request.getTenantIdLike());
+		}
+		if (request.getWithoutTenantId()) {
+			historicActivityInstanceQuery.activityWithoutTenantId();
+		}
+		if (request.getFinished()) {
+			historicActivityInstanceQuery.finished();
+		}
+		if (request.getUnfinished()) {
+			historicActivityInstanceQuery.unfinished();
+		}
+		if (StringUtils.isNotEmpty(request.getDeleteReason())) {
+			historicActivityInstanceQuery.deleteReason(request.getDeleteReason());
+		}
+		if (StringUtils.isNotEmpty(request.getDeleteReasonLike())) {
+			historicActivityInstanceQuery.deleteReasonLike(request.getDeleteReasonLike());
+		}
 		long toatal = historicActivityInstanceQuery.count();
 		// 历史活动实例
 		List<HistoricActivityInstance> historicActivityInstanceList =
@@ -70,7 +115,7 @@ public class ActHistoryServiceImpl implements ActHistoryService {
 	}
 
 	@Override
-	public ResponseResult<Leaf<HistoricTaskInstance>> getHistoricTaskInstanceList(HistoricTaskInstanceRequest request) {
+	public ResponseResult<Leaf<HistoricTaskInstance>> getHistoricTaskInstanceList(HistoricTaskInstanceQueryRequest request) {
 		// 查询条件
 		HistoricTaskInstanceQuery historicTaskInstanceQuery = historyService.createHistoricTaskInstanceQuery();
 		if (StringUtils.isNotEmpty(request.getProcessDefinitionId())) {

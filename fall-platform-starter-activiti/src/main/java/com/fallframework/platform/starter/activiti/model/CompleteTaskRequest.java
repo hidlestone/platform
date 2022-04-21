@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ApiModel("完成待处理任务请求参数")
-public class CompletTaskRequest extends BaseEntityRequest {
+public class CompleteTaskRequest extends BaseEntityRequest {
 
 	private static final long serialVersionUID = 4467556248359897765L;
 

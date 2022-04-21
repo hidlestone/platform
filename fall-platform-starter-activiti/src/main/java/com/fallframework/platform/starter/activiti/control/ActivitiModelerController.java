@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @RequestMapping("/activiti-explorer/model")
-public class ActivitiController {
+public class ActivitiModelerController {
 
 	/**
 	 * 访问：localhost:9910/activiti-explorer/model/create

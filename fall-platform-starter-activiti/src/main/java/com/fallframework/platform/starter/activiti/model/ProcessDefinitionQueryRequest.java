@@ -79,8 +79,8 @@ public class ProcessDefinitionQueryRequest extends BasePageRequest {
 	@ApiModelProperty("状态")
 	protected SuspensionState suspensionState;
 
-//	@ApiModelProperty("流程定义ID")
-//	protected String procDefId;
+	@ApiModelProperty("流程定义ID")
+	protected String procDefId;
 
 	@ApiModelProperty("租户ID")
 	protected String tenantId;
