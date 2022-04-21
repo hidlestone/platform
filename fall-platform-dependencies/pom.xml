@@ -78,6 +78,7 @@
 		<flywaydb.version>6.0.8</flywaydb.version>
 		<eclipselink.version>2.6.3</eclipselink.version>
 		<activiti.version>6.0.0</activiti.version>
+		<activiti-spring-boot-starter-basic.version>6.0.0</activiti-spring-boot-starter-basic.version>
 		<oracle.version>11.2.0.1.0</oracle.version>
 		<ojdbc8.version>12.2.0.1.0</ojdbc8.version>
 		<jpush.version>3.3.11</jpush.version>
@@ -666,6 +667,11 @@
 				<groupId>org.eclipse.persistence</groupId>
 				<artifactId>eclipselink</artifactId>
 				<version>${eclipselink.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-spring-boot-starter-basic</artifactId>
+				<version>${activiti-spring-boot-starter-basic.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.activiti</groupId>

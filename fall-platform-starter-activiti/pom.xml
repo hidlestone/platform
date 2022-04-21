@@ -2,27 +2,45 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>fall-platform-starters</artifactId>
 		<groupId>com.fallframework.platform</groupId>
 		<version>1.0-SNAPSHOT</version>
 		<relativePath>../fall-platform-starters/pom.xml</relativePath>
 	</parent>
-	<modelVersion>4.0.0</modelVersion>
-
 	<artifactId>fall-platform-starter-activiti</artifactId>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+	<version>1.0-SNAPSHOT</version>
+	<name>Fall Platform Activiti Starter</name>
+	<description>starter of activiti</description>
+	<url>http://www.wordplay.work/#/fall-platform-starters/fall-platform-starter-activiti</url>
+	<organization>
+		<name>Wordplay Software, Inc.</name>
+		<url>https://wordplay.work</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Wordplay</name>
+			<email>info@wordplay.work</email>
+			<organization>Wordplay Software, Inc.</organization>
+			<organizationUrl>https://www.wordplay.work</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git://github.com/hidlestone/platform.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/hidlestone/platform.git</developerConnection>
+		<url>https://github.com/hidlestone/platform</url>
+	</scm>
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/hidlestone/platform/issues</url>
+	</issueManagement>
 
 	<dependencies>
 		<dependency>
@@ -33,34 +51,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<!--<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>-->
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.14</version>
 		</dependency>
-		<!--<dependency>
-			<groupId>com.fallframework.platform</groupId>
-			<artifactId>fall-platform-starter-data-mp</artifactId>
-		</dependency>-->
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-spring-boot-starter-basic</artifactId>
-			<version>6.0.0</version>
 		</dependency>
-		<!-- Activity -->
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-engine</artifactId>
-			<version>6.0.0</version>
-		</dependency>
-
 		<!-- Activiti modeler 可视化依赖 -->
 		<dependency>
 			<groupId>org.activiti</groupId>
@@ -90,23 +89,21 @@
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-transcoder</artifactId>
-			<version>1.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-codec</artifactId>
-			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-json-converter</artifactId>
+			<version>6.0.0</version>
 		</dependency>
 		<!-- 【重要】用来兼容batik-codec -->
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>xmlgraphics-commons</artifactId>
 			<version>2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-json-converter</artifactId>
-			<version>6.0.0</version>
 		</dependency>
 	</dependencies>
 
