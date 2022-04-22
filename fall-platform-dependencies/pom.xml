@@ -156,6 +156,7 @@
 		<servlet-api.version>4.0.1</servlet-api.version>
 		<!-- elasticsearch搜索引擎 -->
 		<elasticsearch.version>7.8.0</elasticsearch.version>
+		<hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
 	</properties>
 
 	<dependencyManagement>
@@ -1031,6 +1032,11 @@
 				<groupId>org.kie</groupId>
 				<artifactId>kie-spring</artifactId>
 				<version>${drools.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate-validator.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
