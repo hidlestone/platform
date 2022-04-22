@@ -19,7 +19,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
 
 	List<Menu> getAllMenusByUserId(Long userId);
 
-	List<Menu> getMenTree(MenuQueryRequest request);
+	List<Menu> getMenuTree(MenuQueryRequest request);
 
 	List<Menu> getMenuListByParentId(Long parentId);
 }

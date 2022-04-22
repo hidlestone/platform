@@ -47,8 +47,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 	}
 
 	@Override
-	public ResponseResult<List<Menu>> getMenTree(MenuQueryRequest request) {
-		List<Menu> menuList = menuMapper.getMenTree(request);
+	public ResponseResult<List<Menu>> getMenuTree(MenuQueryRequest request) {
+		List<Menu> menuList = menuMapper.getMenuTree(request);
 		return ResponseResult.success(menuList);
 	}
 

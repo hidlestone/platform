@@ -1,5 +1,6 @@
 package com.fallframework.platform.starter.rbac.model;
 
+import com.fallframework.platform.starter.api.model.OpenTypeEnum;
 import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.api.request.BasePageRequest;
 import lombok.Getter;

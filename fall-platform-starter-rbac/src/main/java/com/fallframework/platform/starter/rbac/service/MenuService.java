@@ -19,7 +19,7 @@ public interface MenuService extends IService<Menu> {
 
 	ResponseResult<List<Menu>> getAllMenusByUserId(Long userId);
 
-	ResponseResult<List<Menu>> getMenTree(MenuQueryRequest request);
+	ResponseResult<List<Menu>> getMenuTree(MenuQueryRequest request);
 
 	ResponseResult<List<Menu>> getMenuListByParentId(Long parentId);
 

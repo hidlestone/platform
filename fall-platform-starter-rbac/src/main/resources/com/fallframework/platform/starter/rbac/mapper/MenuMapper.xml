@@ -164,7 +164,7 @@
 			)
 	</select>
 	
-	<select id="getMenTree" resultMap="TreeResultMap">
+	<select id="getMenuTree" resultMap="TreeResultMap">
 		SELECT
 		<include refid="Base_Column_List"/>
 		FROM

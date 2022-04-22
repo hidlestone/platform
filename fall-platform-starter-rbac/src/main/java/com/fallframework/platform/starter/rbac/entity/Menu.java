@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fallframework.platform.starter.api.model.OpenTypeEnum;
 import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.data.mp.entity.BaseEntity;
-import com.fallframework.platform.starter.rbac.model.OpenTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 

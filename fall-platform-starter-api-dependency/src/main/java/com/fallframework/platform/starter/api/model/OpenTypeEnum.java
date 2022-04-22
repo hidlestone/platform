@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.rbac.model;
+package com.fallframework.platform.starter.api.model;
 
 /**
  * HTML <a> 标签的 target 属性
