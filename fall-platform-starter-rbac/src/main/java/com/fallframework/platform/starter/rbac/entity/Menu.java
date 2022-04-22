@@ -10,6 +10,8 @@ import com.fallframework.platform.starter.rbac.model.OpenTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @TableName(value = "s_menu")
@@ -34,7 +36,7 @@ public class Menu extends BaseEntity {
 	 */
 	@TableField(value = "`level`")
 	private Byte level;
-	
+
 	/**
 	 * 菜单编码
 	 */
@@ -66,7 +68,7 @@ public class Menu extends BaseEntity {
 	private String funcLink;
 
 	/**
-	 * 打开方式，inner-link：通过链接打开tab，outter-link：通过链接打开浏览器新窗口，默认空表示:调用/console/open读取元数据打开
+	 * 打开方式，inner-link：通过链接打开tab，outter-link：通过链接打开浏览器新窗口，默认空
 	 */
 	@TableField(value = "open_type")
 	private OpenTypeEnum openType;
@@ -92,7 +94,12 @@ public class Menu extends BaseEntity {
 	/**
 	 * 是否显示
 	 */
-	@TableField(value = "is_show")
-	private StatusEnum isShow;
+	@TableField(value = "status")
+	private StatusEnum status;
+
+	/**
+	 * 子菜单
+	 */
+	private List<Menu> children;
 
 }

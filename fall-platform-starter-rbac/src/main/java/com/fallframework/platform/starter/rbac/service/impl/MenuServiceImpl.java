@@ -45,5 +45,17 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 		List<Menu> menuList = menuMapper.getAllMenusByUserId(userId);
 		return ResponseResult.success(menuList);
 	}
-	
+
+	@Override
+	public ResponseResult<List<Menu>> getMenTree(MenuQueryRequest request) {
+		List<Menu> menuList = menuMapper.getMenTree(request);
+		return ResponseResult.success(menuList);
+	}
+
+	@Override
+	public ResponseResult<List<Menu>> getMenuListByParentId(Long parentId) {
+		List<Menu> menuList = menuMapper.getMenuListByParentId(parentId);
+		return ResponseResult.success(menuList);
+	}
+
 }

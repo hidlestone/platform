@@ -38,6 +38,6 @@ public class MenuRequest extends BasePageRequest {
 
 	private String remark;
 
-	private StatusEnum isShow;
+	private StatusEnum status;
 
 }
