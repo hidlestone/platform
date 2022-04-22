@@ -14,6 +14,6 @@ public interface RoleService extends IService<Role> {
 
 	ResponseResult<Page<Role>> list(RoleRequest request);
 
-	ResponseResult<List<Role>> getAllRole(RoleRequest request);
+	ResponseResult<List<Role>> getAllRole();
 
 }

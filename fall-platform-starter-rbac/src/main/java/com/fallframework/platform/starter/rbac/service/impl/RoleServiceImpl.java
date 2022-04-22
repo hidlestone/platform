@@ -1,5 +1,6 @@
 package com.fallframework.platform.starter.rbac.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fallframework.platform.starter.api.response.ResponseResult;
@@ -31,8 +32,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 	}
 
 	@Override
-	public ResponseResult<List<Role>> getAllRole(RoleRequest request) {
-		List<Role> roleList = roleMapper.selectList(null);
+	public ResponseResult<List<Role>> getAllRole() {
+		QueryWrapper wrapper = new QueryWrapper();
+		wrapper.orderByAsc("id");
+		List<Role> roleList = roleMapper.selectList(wrapper);
 		return ResponseResult.success(roleList);
 	}
 
