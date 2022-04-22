@@ -3,7 +3,6 @@ package com.fallframework.platform.starter.rbac.service.impl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fallframework.platform.starter.api.response.ResponseResult;
-import com.fallframework.platform.starter.rbac.entity.Permission;
 import com.fallframework.platform.starter.rbac.entity.Role;
 import com.fallframework.platform.starter.rbac.mapper.RoleMapper;
 import com.fallframework.platform.starter.rbac.model.RoleRequest;
@@ -29,6 +28,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 		Page<Role> page = new Page<>(request.getPageNum(), request.getPageSize());
 		page = roleMapper.list(page, request);
 		return ResponseResult.success(page);
+	}
+
+	@Override
+	public ResponseResult<List<Role>> getAllRole(RoleRequest request) {
+		List<Role> roleList = roleMapper.selectList(null);
+		return ResponseResult.success(roleList);
 	}
 
 }

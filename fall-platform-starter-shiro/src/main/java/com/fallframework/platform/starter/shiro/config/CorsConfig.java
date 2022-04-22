@@ -11,7 +11,7 @@ import org.springframework.web.filter.CorsFilter;
  *
  * @author zhuangpf
  */
-@Configuration
+//@Configuration
 public class CorsConfig {
 
 	private CorsConfiguration buildConfig() {
