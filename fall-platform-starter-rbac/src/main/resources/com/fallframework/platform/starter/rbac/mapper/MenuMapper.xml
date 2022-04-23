@@ -199,6 +199,7 @@
 			<foreach collection="roleIds" item="item" index="index" open="(" separator="," close=")">
 				#{item,jdbcType=VARCHAR}
 			</foreach>
+			)
 		</if>
 		ORDER BY `order` ASC
 	</select>
