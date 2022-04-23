@@ -41,7 +41,7 @@
 		<result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId"/>
 		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
 		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
-		<collection property="children" ofType="com.fallframework.platform.starter.rbac.entity.Menu" column="parent_id" select="getMenuListByParentId"/>
+		<collection property="children" ofType="com.fallframework.platform.starter.rbac.entity.Menu" column="id" select="getMenuListByParentId"/>
 	</resultMap>
 	
 	<sql id="Base_Column_List">
@@ -171,6 +171,36 @@
 			s_menu
 		WHERE
 			parent_id IS NULL
+		<if test="userId != null">
+			AND id IN (
+			SELECT
+				DISTINCT menu_id
+			FROM
+				s_role_menu
+			WHERE
+				role_id IN (
+				SELECT
+					role_id
+				FROM
+					s_user_role
+				WHERE
+					user_id = #{userId,jdbcType=BIGINT}
+				)
+			)
+		</if>
+		<if test="roleIds != null">
+			AND id IN (
+			SELECT
+				DISTINCT menu_id
+			FROM
+				s_role_menu
+			WHERE
+				role_id IN
+			<foreach collection="roleIds" item="item" index="index" open="(" separator="," close=")">
+				#{item,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+		ORDER BY `order` ASC
 	</select>
 	
 	<select id="getMenuListByParentId" resultMap="BaseResultMap">
@@ -179,7 +209,8 @@
 		FROM
 			s_menu
 		WHERE
-			parent_id = #{parentId},jdbcType=BIGINT}
+			parent_id = #{id,jdbcType=BIGINT}
+		ORDER BY `order` ASC
 	</select>
 	
 </mapper>

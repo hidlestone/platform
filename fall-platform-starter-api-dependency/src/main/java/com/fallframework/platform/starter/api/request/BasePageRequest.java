@@ -19,12 +19,12 @@ public class BasePageRequest implements Serializable {
 	/**
 	 * 页码。系统默认：start from 1。
 	 */
-	private Integer pageNum;
+	private Integer pageNum = 1;
 
 	/**
 	 * 条数
 	 */
-	private Integer pageSize;
+	private Integer pageSize = 10;
 
 	/**
 	 * 获取页码减一
