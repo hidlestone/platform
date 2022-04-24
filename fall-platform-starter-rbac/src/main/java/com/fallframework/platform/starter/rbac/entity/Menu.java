@@ -82,7 +82,7 @@ public class Menu extends BaseEntity {
 	/**
 	 * 排序
 	 */
-	@TableField(value = "order")
+	@TableField(value = "`order`")
 	private Byte order;
 
 	/**
@@ -94,12 +94,13 @@ public class Menu extends BaseEntity {
 	/**
 	 * 是否显示
 	 */
-	@TableField(value = "status")
+	@TableField(value = "`status`")
 	private StatusEnum status;
 
 	/**
 	 * 子菜单
 	 */
+	@TableField(exist=false)
 	private List<Menu> children;
 
 }

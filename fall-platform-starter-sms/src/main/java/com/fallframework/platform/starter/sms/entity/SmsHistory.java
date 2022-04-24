@@ -93,7 +93,7 @@ public class SmsHistory extends BaseEntity {
 	/**
 	 * 0-失败，1-成功
 	 */
-	@TableField(value = "status")
+	@TableField(value = "`status`")
 	private StatusEnum status;
 
 }

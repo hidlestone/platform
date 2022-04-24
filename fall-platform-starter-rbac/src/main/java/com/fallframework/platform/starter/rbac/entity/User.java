@@ -99,7 +99,7 @@ public class User extends BaseEntity {
 	/**
 	 * 状态
 	 */
-	@TableField(value = "status")
+	@TableField(value = "`status`")
 	private StatusEnum status;
 
 	/**
