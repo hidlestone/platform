@@ -100,7 +100,7 @@ public class Menu extends BaseEntity {
 	/**
 	 * 子菜单
 	 */
-	@TableField(exist=false)
+	@TableField(exist = false)
 	private List<Menu> children;
 
 }
