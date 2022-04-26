@@ -44,10 +44,10 @@
     </issueManagement>
 
     <dependencies>
-        <!-- starter-core -->
+        <!-- starter-config -->
         <dependency>
             <groupId>com.fallframework.platform</groupId>
-            <artifactId>fall-platform-starter-core</artifactId>
+            <artifactId>fall-platform-starter-config</artifactId>
         </dependency>
         <!-- redis -->
         <dependency>
