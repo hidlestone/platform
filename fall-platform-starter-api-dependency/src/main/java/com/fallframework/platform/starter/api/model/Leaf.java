@@ -25,27 +25,27 @@ public class Leaf<T> implements Serializable {
 	/**
 	 * 总记录数
 	 */
-	protected long total;
+	protected Integer total;
 	/**
 	 * 总页数
 	 */
-	protected long size;
+	protected Integer size;
 	/**
 	 * 当前页码
 	 */
-	protected long current;
+	protected Integer current;
 
 	public Leaf() {
 	}
 
-	public Leaf(List<T> records, long total, long size, long current) {
+	public Leaf(List<T> records, Integer total, Integer size, Integer current) {
 		this.records = records;
 		this.total = total;
 		this.size = size;
 		this.current = current;
 	}
 
-	public Leaf(List<T> records, long total, BasePageRequest request) {
+	public Leaf(List<T> records, Integer total, BasePageRequest request) {
 		this.records = records;
 		this.total = total;
 		this.size = total % request.getPageSize() + 1;
