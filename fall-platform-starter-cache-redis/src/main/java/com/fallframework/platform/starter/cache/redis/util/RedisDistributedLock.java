@@ -144,7 +144,7 @@ public class RedisDistributedLock {
 	}
 
 	public boolean setAndExpireIfAbsent2(final String key, final String value, final long expire) {
-		return (Boolean) redisTemplate.execute(new RedisCallback<Boolean>() {
+		return redisTemplate.execute(new RedisCallback<Boolean>() {
 			public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
 				Object obj = null;
 
