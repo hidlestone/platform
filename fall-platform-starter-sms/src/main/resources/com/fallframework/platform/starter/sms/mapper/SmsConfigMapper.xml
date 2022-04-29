@@ -26,19 +26,19 @@
 		FROM
 		s_sms_config
 		<where>
-			<if test="param2.productType != null">
+			<if test="param2.productType != null and param2.productType != ''">
 				product_type = #{param2.productType,jdbcType=VARCHAR}
 			</if>
-			<if test="param2.regionId != null">
+			<if test="param2.regionId != null and param2.regionId != ''">
 				AND region_id = #{param2.regionId,jdbcType=VARCHAR}
 			</if>
-			<if test="param2.accessKeyId != null">
+			<if test="param2.accessKeyId != null and param2.accessKeyId != ''">
 				AND accessKeyId LIKE CONCAT('%', #{param2.accessKeyId,jdbcType=VARCHAR}, '%')
 			</if>
-			<if test="param2.accessKeySecret != null">
+			<if test="param2.accessKeySecret != null and param2.accessKeySecret != ''">
 				AND access_key_secret LIKE CONCAT('%', #{param2.accessKeySecret,jdbcType=VARCHAR}, '%')
 			</if>
-			<if test="param2.properties != null">
+			<if test="param2.properties != null and param2.properties != ''">
 				AND properties LIKE CONCAT('%', #{param2.properties,jdbcType=VARCHAR}, '%')
 			</if>
 		</where>
