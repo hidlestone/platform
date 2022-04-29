@@ -25,20 +25,20 @@ public class SmsTemplate extends BaseEntity {
 	/**
 	 * 短信模板配置描述
 	 */
-	@TableField(value = "desc")
+	@TableField(value = "`desc`")
 	private String desc;
 
 	/**
 	 * 发送号码
 	 */
-	@TableField(value = "from")
+	@TableField(value = "`from`")
 	private String from;
 
 	/**
 	 * 0-简单，1-模板
 	 */
 	@TableField(value = "content_type")
-	private ContentTypeEnum contentType;
+	private Byte contentType;
 
 	/**
 	 * 内容
