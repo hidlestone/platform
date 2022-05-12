@@ -28,7 +28,7 @@ public class Dict extends BaseEntity {
 	/**
 	 * 字典编码
 	 */
-	@TableField(value = "`code`")
+	@TableField(value = "code")
 	private String code;
 
 	/**

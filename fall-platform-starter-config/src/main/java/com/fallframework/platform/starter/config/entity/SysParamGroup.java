@@ -9,6 +9,8 @@ import com.fallframework.platform.starter.data.mp.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @TableName(value = "s_sys_param_group")
@@ -17,9 +19,15 @@ public class SysParamGroup extends BaseEntity {
 	private static final long serialVersionUID = -7376969741515058697L;
 
 	/**
+	 * 主键
+	 */
+	@TableId(value = "id", type = IdType.ASSIGN_ID)
+	private Long id;
+
+	/**
 	 * 系统参数组编码
 	 */
-	@TableId(value = "`code`", type = IdType.INPUT)
+	@TableId(value = "code")
 	private String code;
 
 	/**
@@ -29,9 +37,12 @@ public class SysParamGroup extends BaseEntity {
 	private String desc;
 
 	/**
-	 * 是否启用：0-停用，1-启用
+	 * 是否启用
 	 */
 	@TableField(value = "`status`")
 	private StatusEnum status;
+
+	@TableField(exist = false)
+	private List<SysParamItem> sysParamItems;
 
 }

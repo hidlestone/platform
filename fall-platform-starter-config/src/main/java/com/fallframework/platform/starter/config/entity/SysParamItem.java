@@ -17,9 +17,15 @@ public class SysParamItem extends BaseEntity {
 	private static final long serialVersionUID = -735051379561213142L;
 
 	/**
+	 * 主键
+	 */
+	@TableId(value = "id", type = IdType.ASSIGN_ID)
+	private Long id;
+
+	/**
 	 * 系统参数编码
 	 */
-	@TableId(value = "`code`", type = IdType.INPUT)
+	@TableId(value = "code")
 	private String code;
 
 	/**

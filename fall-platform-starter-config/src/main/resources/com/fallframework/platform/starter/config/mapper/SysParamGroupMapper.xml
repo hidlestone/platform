@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fallframework.platform.starter.config.mapper.SysParamGroupMapper">
-    <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.config.model.SysParamGroupResponse">
+    <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.config.entity.SysParamGroup">
         <!--@mbg.generated-->
         <id column="code" jdbcType="VARCHAR" property="code"/>
         <result column="desc" jdbcType="VARCHAR" property="desc"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
         <!-- 配置一对多的关系 -->
-        <collection property="sysParamItemList" javaType="list" ofType="com.fallframework.platform.starter.config.model.SysParamItemResponse">
+        <collection property="sysParamItems" javaType="list" ofType="com.fallframework.platform.starter.config.entity.SysParamItem">
             <!-- 配置主键，是关联Order的唯一标识 -->
             <!-- 这里的column对应的是下面查询的别名，而不是表字段名 -->
             <id column="tcode" jdbcType="VARCHAR" property="code"/>
@@ -19,7 +19,7 @@
         </collection>
     </resultMap>
 
-    <select id="findAllSysParamGroup" resultMap="BaseResultMap">
+    <select id="getAllSysParamGroup" resultMap="BaseResultMap">
         SELECT
             sgroup.`code`,
             sgroup.`desc`,
@@ -35,8 +35,7 @@
         LEFT JOIN s_sys_param_item sitem ON sitem.group_code = sgroup.`code`
     </select>
 
-    <select id="list" resultType="com.fallframework.platform.starter.config.model.SysParamGroupResponse"
-            parameterType="com.fallframework.platform.starter.config.model.SysParamGroupRequest">
+    <select id="list" resultMap="BaseResultMap">
         SELECT
             sgroup.`code`,
             sgroup.`desc`,
@@ -51,13 +50,17 @@
             s_sys_param_group sgroup
         LEFT JOIN s_sys_param_item sitem ON sitem.group_code = sgroup.`code`
         <where>
+            <if test="param2.id != null">
+                sgroup.id LIKE CONCAT('%', #{param2.id,jdbcType=VARCHAR}, '%')
+            </if>
             <if test="param2.code != null">
-                sgroup.`code` LIKE CONCAT('%', #{code,jdbcType=VARCHAR}, '%'),
+                AND sgroup.`code` LIKE CONCAT('%', #{param2.code,jdbcType=VARCHAR}, '%')
             </if>
             <if test="param2.desc != null">
-                sgroup.`desc` LIKE CONCAT('%', #{code,jdbcType=VARCHAR}, '%')
+                AND sgroup.`desc` LIKE CONCAT('%', #{param2.desc,jdbcType=VARCHAR}, '%')
             </if>
         </where>
+        ORDER BY id DESC
     </select>
 
 </mapper>

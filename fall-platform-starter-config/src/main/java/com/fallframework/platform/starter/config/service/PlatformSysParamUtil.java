@@ -4,15 +4,13 @@ import cn.hutool.core.collection.CollectionUtil;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.config.constant.ConfigStarterConstant;
+import com.fallframework.platform.starter.config.entity.SysParamGroup;
 import com.fallframework.platform.starter.config.entity.SysParamItem;
 import com.fallframework.platform.starter.config.mapper.SysParamGroupMapper;
 import com.fallframework.platform.starter.config.mapper.SysParamItemMapper;
-import com.fallframework.platform.starter.config.model.SysParamGroupResponse;
-import com.fallframework.platform.starter.config.model.SysParamItemResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,12 +57,13 @@ public class PlatformSysParamUtil {
 	 * @return 系统参数明细的map形式
 	 */
 	public ResponseResult<Map<String, String>> getSysParamGroupItemMap(String groupCode) {
-		List<SysParamItemResponse> sysParamItemList = (List<SysParamItemResponse>) redisUtil.hget(ConfigStarterConstant.CACHE_KEY_SYS_PARAM, groupCode);
+		List<SysParamItem> sysParamItemList = (List<SysParamItem>) redisUtil.hget(ConfigStarterConstant.CACHE_KEY_SYS_PARAM, groupCode);
 		if (CollectionUtil.isEmpty(sysParamItemList)) {
-			SysParamGroupResponse sysParamGroupResponse = sysParamGroupService.get(groupCode).getData();
-			sysParamItemList = sysParamGroupResponse.getSysParamItemList();
+			SysParamGroup sysParamGroup = sysParamGroupService.get(groupCode).getData();
+			sysParamItemList = sysParamGroup.getSysParamItems();
 		}
 		if (CollectionUtil.isEmpty(sysParamItemList)) {
+			// 系统参数未被初始化
 			throw new RuntimeException("system param " + groupCode + " had not inited.");
 		}
 		Map<String, String> sysItemMap = sysParamItemList.stream().collect(Collectors.toMap(it -> it.getCode(), it -> it.getValue()));
@@ -78,14 +77,14 @@ public class PlatformSysParamUtil {
 	 * @param itemCode  明细项编码
 	 * @return 系统参数明细项信息
 	 */
-	public ResponseResult<SysParamItemResponse> getSysParamItem(String groupCode, String itemCode) {
-		List<SysParamItemResponse> sysParamItemList = (List<SysParamItemResponse>) redisUtil.hget(ConfigStarterConstant.CACHE_KEY_SYS_PARAM, groupCode);
-		SysParamItemResponse sysParamItemResponse = sysParamItemList.stream().filter(it -> itemCode.equals(it.getCode())).findFirst().get();
-		if (null == sysParamItemResponse) {
-			SysParamItem sysParamItem = sysParamItemMapper.selectById(itemCode);
-			BeanUtils.copyProperties(sysParamItem, sysParamItemResponse);
+	public ResponseResult<SysParamItem> getSysParamItem(String groupCode, String itemCode) {
+		List<SysParamItem> sysParamItemList = (List<SysParamItem>) redisUtil.hget(ConfigStarterConstant.CACHE_KEY_SYS_PARAM, groupCode);
+		SysParamItem sysParamItem = sysParamItemList.stream().filter(it -> itemCode.equals(it.getCode())).findFirst().get();
+		if (null == sysParamItem) {
+			SysParamItem sysParamItemTmp = sysParamItemMapper.selectById(itemCode);
+			sysParamItem = sysParamItemTmp;
 		}
-		return ResponseResult.success(sysParamItemResponse);
+		return ResponseResult.success(sysParamItem);
 	}
 
 	/**
@@ -94,11 +93,12 @@ public class PlatformSysParamUtil {
 	 * @return 是否更新系统参数缓存成功
 	 */
 	public ResponseResult refreshSysParamCache() {
-		List<SysParamGroupResponse> sysParamGroupResponseList = sysParamGroupMapper.findAllSysParamGroup();
+		List<SysParamGroup> sysParamGroupList = sysParamGroupMapper.getAllSysParamGroup();
 		redisUtil.del(ConfigStarterConstant.CACHE_KEY_SYS_PARAM);
-		for (SysParamGroupResponse sysParamGroup : sysParamGroupResponseList) {
-			redisUtil.hset(ConfigStarterConstant.CACHE_KEY_SYS_PARAM, sysParamGroup.getCode(), sysParamGroup.getSysParamItemList());
+		for (SysParamGroup sysParamGroup : sysParamGroupList) {
+			redisUtil.hset(ConfigStarterConstant.CACHE_KEY_SYS_PARAM, sysParamGroup.getCode(), sysParamGroup.getSysParamItems());
 		}
+		// 更新缓存成功
 		LOGGER.info("system global parameters cache has refreshed.");
 		return ResponseResult.success();
 	}
@@ -113,6 +113,7 @@ public class PlatformSysParamUtil {
 	public String mapGet(Map<String, String> sysItemMap, String sysParamItem) {
 		String value = sysItemMap.get(sysParamItem);
 		if (StringUtils.isEmpty(value)) {
+			// 未找到系统参数明细
 			throw new RuntimeException("system param item " + sysParamItem + " is no exist.");
 		}
 		return value;

@@ -32,7 +32,7 @@ public class DictDtl extends BaseEntity {
 	/**
 	 * 明细编码
 	 */
-	@TableField(value = "`code`")
+	@TableField(value = "code")
 	private String code;
 
 	/**
