@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.config.entity.Dict;
+import com.fallframework.platform.starter.config.entity.DictDtl;
 import com.fallframework.platform.starter.config.mapper.DictMapper;
 import com.fallframework.platform.starter.config.service.DictDtlService;
 import com.fallframework.platform.starter.config.service.DictService;

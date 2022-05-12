@@ -24,7 +24,7 @@ public class MailTemplate extends BaseEntity {
 	/**
 	 * 邮件模板配置编码
 	 */
-	@TableField(value = "code")
+	@TableField(value = "`code`")
 	private String code;
 
 	/**

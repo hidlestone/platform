@@ -43,5 +43,28 @@
 		</where>
 		ORDER by id DESC
 	</select>
+	
+	<select id="getDictDtlsByCode" resultMap="BaseResultMap">
+		SELECT
+			t1. `code`,
+			t2.resource_value AS `desc`
+		FROM
+			(
+				SELECT
+					`code`
+				FROM
+					s_dict_dtl
+				WHERE
+					dict_id = (
+						SELECT
+							id
+						FROM
+							s_dict
+						WHERE
+							`code` = #{code,jdbcType=VARCHAR} 
+					)
+			) t1
+		LEFT JOIN s_i18n_resource t2 ON t2.resource_key = t1.`code`
+	</select>
 
 </mapper>
