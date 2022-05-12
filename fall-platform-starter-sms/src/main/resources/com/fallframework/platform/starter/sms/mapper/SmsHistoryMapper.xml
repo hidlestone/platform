@@ -71,7 +71,7 @@
 				AND date_format(last_send_time,'%y%m%d %h:%i:%s') &lt;= date_format(#{param2.endLastSendTime} ,'%y%m%d %h:%i:%s')
 			</if>
 			<if test="param2.status != null">
-				AND `status` = #{param2.status,jdbcType=BOOLEAN}
+				AND `status` = #{param2.status,jdbcType=TINYINT}
 			</if>
 		</where>
 		ORDER by id DESC

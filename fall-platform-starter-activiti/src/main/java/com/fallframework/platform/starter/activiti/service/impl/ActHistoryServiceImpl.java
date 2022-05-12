@@ -100,7 +100,7 @@ public class ActHistoryServiceImpl implements ActHistoryService {
 		long toatal = historicActivityInstanceQuery.count();
 		// 历史活动实例
 		List<HistoricActivityInstance> historicActivityInstanceList =
-				historicActivityInstanceQuery.listPage(request.getFirstRow(), request.getPageSize());
+				historicActivityInstanceQuery.listPage(request.firstRowNum(), request.getPageSize());
 		List<HistoricActivityResponse> resultList = new ArrayList<>();
 		// 获取明细信息
 		for (HistoricActivityInstance activity : historicActivityInstanceList) {
@@ -329,7 +329,7 @@ public class ActHistoryServiceImpl implements ActHistoryService {
 		long total = historicTaskInstanceQuery.count();
 		List<HistoricTaskInstance> historicTaskInstanceList =
 				historicTaskInstanceQuery.orderByHistoricTaskInstanceStartTime().desc()
-						.listPage(request.getFirstRow(), request.getPageSize());
+						.listPage(request.firstRowNum(), request.getPageSize());
 		Leaf<HistoricTaskInstance> leaf = new Leaf(historicTaskInstanceList, total, request);
 		return ResponseResult.success(leaf);
 	}

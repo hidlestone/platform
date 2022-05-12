@@ -3,8 +3,6 @@ package com.fallframework.platform.starter.api.request;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 /**
  * 基础分页请求参数
  *
@@ -12,7 +10,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class BasePageRequest implements Serializable {
+public class BasePageRequest extends BaseEntityRequest {
 
 	private static final long serialVersionUID = 3355162771426361051L;
 
@@ -27,18 +25,9 @@ public class BasePageRequest implements Serializable {
 	private Integer pageSize = 10;
 
 	/**
-	 * 获取页码减一
-	 *
-	 * @return 当前页面减一
-	 */
-	public Integer getPageNumMinusOne() {
-		return pageNum - 1;
-	}
-
-	/**
 	 * 第一条记录行号
 	 */
-	public Integer getFirstRow() {
+	public Integer firstRowNum() {
 		return (pageNum - 1) * pageSize;
 	}
 

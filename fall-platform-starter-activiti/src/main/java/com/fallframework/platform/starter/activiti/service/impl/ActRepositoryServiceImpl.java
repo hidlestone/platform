@@ -196,7 +196,7 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 		List<ProcessDefinition> processDefinitionList = definitionQuery
 				.orderByDeploymentId().desc()                                // 部署ID降序
 				.orderByProcessDefinitionVersion().desc()                    // 部署版本号降序
-				.listPage(request.getFirstRow(), request.getPageSize());     // 分页
+				.listPage(request.firstRowNum(), request.getPageSize());     // 分页
 		Leaf<ProcessDefinition> leaf = new Leaf<>(processDefinitionList, total, request);
 		return ResponseResult.success(leaf);
 	}
@@ -332,7 +332,7 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 		// 总记录数
 		long total = modelQuery.count();
 		// 分页数据
-		List<Model> modelList = modelQuery.orderByCreateTime().desc().listPage(request.getFirstRow(), request.getPageSize());
+		List<Model> modelList = modelQuery.orderByCreateTime().desc().listPage(request.firstRowNum(), request.getPageSize());
 		Leaf<Model> leaf = new Leaf(modelList, total, request);
 		return ResponseResult.success(leaf);
 	}

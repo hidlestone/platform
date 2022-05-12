@@ -78,7 +78,7 @@ public class ActIdentityServiceImpl implements ActIdentityService {
 			userQuery.potentialStarter(request.getProcDefId());
 		}
 		long total = userQuery.count();
-		List<User> userList = userQuery.orderByUserId().asc().listPage(request.getFirstRow(), request.getPageSize());
+		List<User> userList = userQuery.orderByUserId().asc().listPage(request.firstRowNum(), request.getPageSize());
 		Leaf<User> leaf = new Leaf<>(userList, total, request);
 		return ResponseResult.success(leaf);
 	}
@@ -120,7 +120,7 @@ public class ActIdentityServiceImpl implements ActIdentityService {
 			groupQuery.potentialStarter(request.getProcDefId());
 		}
 		long total = groupQuery.count();
-		List<Group> groupList = groupQuery.orderByGroupId().asc().listPage(request.getFirstRow(), request.getPageSize());
+		List<Group> groupList = groupQuery.orderByGroupId().asc().listPage(request.firstRowNum(), request.getPageSize());
 		Leaf<Group> leaf = new Leaf<>(groupList, total, request);
 		return ResponseResult.success(leaf);
 	}

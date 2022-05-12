@@ -249,7 +249,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 		// 总记录数
 		long total = taskQuery.count();
 		// 分页数据
-		List<Task> taskList = taskQuery.orderByTaskCreateTime().desc().listPage(request.getFirstRow(), request.getPageSize());
+		List<Task> taskList = taskQuery.orderByTaskCreateTime().desc().listPage(request.firstRowNum(), request.getPageSize());
 		Leaf<Task> leaf = new Leaf(taskList, total, request);
 		return ResponseResult.success(leaf);
 	}
@@ -273,7 +273,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 		// 总记录数
 		long total = taskQuery.count();
 		// 分页数据
-		List<Task> taskList = taskQuery.orderByTaskCreateTime().desc().listPage(request.getFirstRow(), request.getPageSize());
+		List<Task> taskList = taskQuery.orderByTaskCreateTime().desc().listPage(request.firstRowNum(), request.getPageSize());
 		Leaf<Task> leaf = new Leaf(taskList, total, request);
 		return ResponseResult.success(leaf);
 	}

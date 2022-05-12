@@ -24,6 +24,18 @@ public class BaseEntity implements Serializable {
 	private static final long serialVersionUID = -2019856722533574712L;
 
 	/**
+	 * 页码。系统默认：start from 1。
+	 */
+	@TableField(exist = false)
+	private Integer pageNum = 1;
+
+	/**
+	 * 条数
+	 */
+	@TableField(exist = false)
+	private Integer pageSize = 10;
+
+	/**
 	 * 创建用户ID
 	 */
 	@TableField(value = "create_user_id")
@@ -46,5 +58,36 @@ public class BaseEntity implements Serializable {
 	 */
 	@TableField(value = "gmt_modified")
 	private Date gmtModified;
+
+	/**
+	 * 起始创建时间
+	 */
+	@TableField(exist = false)
+	private Date gmtCreateStart;
+
+	/**
+	 * 结束创建时间
+	 */
+	@TableField(exist = false)
+	private Date gmtCreateEnd;
+
+	/**
+	 * 起始更改时间
+	 */
+	@TableField(exist = false)
+	private Date gmtModifiedStart;
+
+	/**
+	 * 结束更改时间
+	 */
+	@TableField(exist = false)
+	private Date gmtModifiedEnd;
+
+	/**
+	 * 第一条记录行号
+	 */
+	public Integer firstRowNum() {
+		return (pageNum - 1) * pageSize;
+	}
 
 }

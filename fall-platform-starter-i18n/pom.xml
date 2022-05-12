@@ -46,7 +46,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.fallframework.platform</groupId>
-			<artifactId>fall-platform-starter-config</artifactId>
+			<artifactId>fall-platform-starter-cache-redis</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>

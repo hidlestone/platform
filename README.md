@@ -203,3 +203,7 @@ fall-platform-starter-data
 
 遵循相关的开发规范，见【阿里巴巴Java开发手册】。
 尽量考虑其 高内聚/低耦合 & 高并发、高性能、高可用，尽量做到 最佳实践(Best Practice) 。
+
+
+Mybatis Plus排除表中不存在字段的三种方式
+https://codeleading.com/article/51682023551/
