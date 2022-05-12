@@ -40,7 +40,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 	}
 
 	@Override
-	public ResponseResult list(Dict dict) {
+	public ResponseResult<Page<Dict>> list(Dict dict) {
 		Page<Dict> page = new Page<>(dict.getPageNum(), dict.getPageSize());
 		page = dictMapper.list(page, dict);
 		return ResponseResult.success(page);

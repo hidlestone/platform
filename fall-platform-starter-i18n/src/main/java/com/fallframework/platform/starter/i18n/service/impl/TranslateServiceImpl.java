@@ -6,12 +6,14 @@ import com.fallframework.platform.starter.i18n.model.TranslateReqeust;
 import com.fallframework.platform.starter.i18n.model.langCodeEnum;
 import com.fallframework.platform.starter.i18n.service.TranslateService;
 import com.fallframework.platform.starter.i18n.util.TraditionalSimplifyConverter;
+import org.springframework.stereotype.Service;
 
 /**
  * 词条翻译工具类
  *
  * @author zhuangpf
  */
+@Service
 public class TranslateServiceImpl implements TranslateService {
 
 	@Override

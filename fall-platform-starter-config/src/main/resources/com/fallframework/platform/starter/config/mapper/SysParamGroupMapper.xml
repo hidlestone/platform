@@ -3,14 +3,16 @@
 <mapper namespace="com.fallframework.platform.starter.config.mapper.SysParamGroupMapper">
     <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.config.entity.SysParamGroup">
         <!--@mbg.generated-->
-        <id column="code" jdbcType="VARCHAR" property="code"/>
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="desc" jdbcType="VARCHAR" property="desc"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
         <!-- 配置一对多的关系 -->
         <collection property="sysParamItems" javaType="list" ofType="com.fallframework.platform.starter.config.entity.SysParamItem">
             <!-- 配置主键，是关联Order的唯一标识 -->
             <!-- 这里的column对应的是下面查询的别名，而不是表字段名 -->
-            <id column="tcode" jdbcType="VARCHAR" property="code"/>
+            <id column="tid" jdbcType="BIGINT" property="id"/>
+            <result column="tcode" jdbcType="VARCHAR" property="code"/>
             <result column="tvalue" jdbcType="VARCHAR" property="value"/>
             <result column="encrypted_value" jdbcType="VARCHAR" property="encryptedValue"/>
             <result column="tdesc" jdbcType="VARCHAR" property="desc"/>
@@ -21,14 +23,16 @@
 
     <select id="getAllSysParamGroup" resultMap="BaseResultMap">
         SELECT
+            sgroup.id,
             sgroup.`code`,
             sgroup.`desc`,
             sgroup.`status`,
-            sitem.`code` as tcode,
-            sitem.`value` as tvalue,
-            sitem.encrypted_value as encrypted_value,
-            sitem.`desc` as tdesc,
-            sitem.`status` as tstatus,
+            sitem.id AS tid,
+            sitem.`code` AS tcode,
+            sitem.`value` AS tvalue,
+            sitem.encrypted_value AS encrypted_value,
+            sitem.`desc` AS tdesc,
+            sitem.`status` AS tstatus,
             sitem.group_code
         FROM
             s_sys_param_group sgroup
@@ -37,14 +41,16 @@
 
     <select id="list" resultMap="BaseResultMap">
         SELECT
+            sgroup.id,
             sgroup.`code`,
             sgroup.`desc`,
             sgroup.`status`,
-            sitem.`code` as tcode,
-            sitem.`value` as tvalue,
+            sitem.id AS tid,
+            sitem.`code` AS tcode,
+            sitem.`value` AS tvalue,
             sitem.encrypted_value as encrypted_value,
-            sitem.`desc` as tdesc,
-            sitem.`status` as tstatus,
+            sitem.`desc` AS tdesc,
+            sitem.`status` AS tstatus,
             sitem.group_code
         FROM
             s_sys_param_group sgroup
