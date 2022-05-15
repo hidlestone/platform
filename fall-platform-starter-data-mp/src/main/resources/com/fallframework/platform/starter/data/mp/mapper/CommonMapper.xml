@@ -5,30 +5,30 @@
 	<!-- 基础字段过滤 -->
 	<sql id="Common_Column_Filter">
 		<if test="param2.createUserId != null">
-			AND createUserId =#{createUserId,jdbcType=BIGINT}
+			AND create_user_id = #{param2.createUserId,jdbcType=BIGINT}
 		</if>
 		<if test="param2.modifyUserId != null">
-			AND modifyUserId =#{modifyUserId,jdbcType=BIGINT}
+			AND modify_user_id = #{param2.modifyUserId,jdbcType=BIGINT}
 		</if>
 		<if test="param2.gmtCreate != null">
-			AND gmtCreate =#{gmtCreate,jdbcType=TIMESTAMP}
+			AND gmt_create = #{param2.gmtCreate,jdbcType=TIMESTAMP}
 		</if>
 		<if test="param2.gmtModified != null">
-			AND gmtModified =#{gmtModified,jdbcType=TIMESTAMP}
+			AND gmt_modified = #{param2.gmtModified,jdbcType=TIMESTAMP}
 		</if>
 		<!-- 创建时间范围 -->
 		<if test="param2.gmtCreateStart != null">
-			AND gmtCreate &gt;=#{gmtCreateStart, jdbcType=TIMESTAMP}
+			AND gmt_create &gt;= #{param2.gmtCreateStart, jdbcType=TIMESTAMP}
 		</if>
-		<if test="param2.createTimeEnd != null">
-			AND gmtCreate &lt;=#{createTimeEnd, jdbcType=TIMESTAMP}
+		<if test="param2.gmtCreateEnd != null">
+			AND gmt_create &lt;= #{param2.gmtCreateEnd, jdbcType=TIMESTAMP}
 		</if>
 		<!-- 修改时间范围 -->
 		<if test="param2.gmtModifiedStart != null">
-			AND gmtModified &gt;=#{gmtModifiedStart, jdbcType=TIMESTAMP}
+			AND gmt_modified &gt;= #{param2.gmtModifiedStart, jdbcType=TIMESTAMP}
 		</if>
 		<if test="param2.gmtModifiedEnd != null">
-			AND gmtModified &lt;=#{gmtModifiedEnd, jdbcType=TIMESTAMP}
+			AND gmt_modified &lt;= #{param2.gmtModifiedEnd, jdbcType=TIMESTAMP}
 		</if>
 	</sql>
 

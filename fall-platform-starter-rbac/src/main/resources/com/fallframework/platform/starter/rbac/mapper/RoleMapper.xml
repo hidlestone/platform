@@ -40,16 +40,16 @@
 		from s_role
 		<where>
 			<if test="param2.id != null">
-				id = #{id,jdbcType=BIGINT}
+				id = #{param2.id,jdbcType=BIGINT}
 			</if>
 			<if test="param2.roleCode != null">
-				AND role_code CONCAT('%', #{roleCode,jdbcType=VARCHAR}, '%')
+				AND role_code LIKE CONCAT('%', #{param2.roleCode,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.roleName != null">
-				AND role_name CONCAT('%', #{roleName,jdbcType=VARCHAR}, '%')
+				AND role_name LIKE CONCAT('%', #{param2.roleName,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.roleDesc != null">
-				ADN role_desc CONCAT('%', #{roleDesc,jdbcType=VARCHAR}, '%')
+				ADN role_desc LIKE CONCAT('%', #{param2.roleDesc,jdbcType=VARCHAR}, '%')
 			</if>
 		</where>
 		ORDER BY id DESC 

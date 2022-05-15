@@ -56,43 +56,43 @@
 		from s_menu
 		<where>
 			<if test="param2.id != null">
-				id = #{id,jdbcType=BIGINT}
+				id = #{param2.id,jdbcType=BIGINT}
 			</if>
 			<if test="param2.parentId != null">
-				AND parent_id = #{parentId,jdbcType=BIGINT}
+				AND parent_id = #{param2.parentId,jdbcType=BIGINT}
 			</if>
 			<if test="param2.level != null">
-				AND `level` = #{level,jdbcType=TINYINT}
+				AND `level` = #{param2.level,jdbcType=TINYINT}
 			</if>
 			<if test="param2.menuCode != null">
-				AND menu_code CONCAT('%', #{menuCode,jdbcType=VARCHAR}, '%')
+				AND menu_code LIKE CONCAT('%', #{param2.menuCode,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.menuName != null">
-				AND menu_name CONCAT('%', #{menuName,jdbcType=VARCHAR}, '%')
+				AND menu_name LIKE CONCAT('%', #{param2.menuName,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.menuDesc != null">
-				AND menu_desc CONCAT('%', #{menuDesc,jdbcType=VARCHAR}, '%')
+				AND menu_desc LIKE CONCAT('%', #{param2.menuDesc,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.path != null">
-				AND path CONCAT('%', #{path,jdbcType=VARCHAR}, '%')
+				AND path LIKE CONCAT('%', #{param2.path,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.funcLink != null">
-				AND func_link CONCAT('%', #{funcLink,jdbcType=VARCHAR}, '%')
+				AND func_link LIKE CONCAT('%', #{param2.funcLink,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.openType != null">
-				AND open_type = #{openType,jdbcType=TINYINT}
+				AND open_type = #{param2.openType,jdbcType=TINYINT}
 			</if>
 			<if test="param2.icon != null">
-				AND icon CONCAT('%', #{icon,jdbcType=VARCHAR}, '%')
+				AND icon LIKE CONCAT('%', #{param2.icon,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.order != null">
-				AND order = #{order,jdbcType=TINYINT}
+				AND order = #{param2.order,jdbcType=TINYINT}
 			</if>
 			<if test="param2.remark != null">
-				AND remark CONCAT('%', #{remark,jdbcType=VARCHAR}, '%')
+				AND remark LIKE CONCAT('%', #{param2.remark,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.status != null">
-				AND `status` = #{status,jdbcType=TINYINT}
+				AND `status` = #{param2.status,jdbcType=TINYINT}
 			</if>
 			<!-- 用户ID -->
 			<if test="param2.userId != null">
@@ -108,7 +108,7 @@
 							FROM
 								s_user_role
 							WHERE
-								user_id = #{userId,jdbcType=BIGINT}
+								user_id = #{param2.userId,jdbcType=BIGINT}
 					)
 				)
 			</if>
@@ -122,10 +122,12 @@
 					WHERE
 						role_id IN
 						<foreach collection="param2" item="item" index="index" open="(" separator="," close=")">
-							#{item,jdbcType=VARCHAR}
+							#{param2.item,jdbcType=VARCHAR}
 						</foreach>
 				)
 			</if>
+			<!-- 基础字段过滤 -->
+			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
 		</where>
 		ORDER BY id DESC
 	</select>
