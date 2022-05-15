@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fallframework.platform.starter.data.mp.entity.BaseEntity">
+<mapper namespace="com.fallframework.platform.starter.data.mp.mapper.CommonMapper">
 
 	<!-- 基础字段过滤 -->
 	<sql id="Common_Column_Filter">

@@ -36,7 +36,7 @@
 				AND `status` = #{param2.status,jdbcType=TINYINT}
 			</if>
 			<!-- 基础字段过滤 -->
-			<include refid="com.fallframework.platform.starter.data.mp.entity.BaseEntity.Common_Column_Filter"/>
+			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
 		</where>
 		ORDER by id DESC
 	</select>
