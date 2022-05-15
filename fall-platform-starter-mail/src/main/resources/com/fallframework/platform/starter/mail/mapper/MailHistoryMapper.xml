@@ -36,8 +36,11 @@
 		<include refid="Base_Column_List"/>
 		from s_mail_history
 		<where>
+			<if test="param2.id != null">
+				id = #{param2.id,jdbcType=BIGINT},
+			</if>
 			<if test="param2.templateId != null">
-				template_id = #{param2.templateId,jdbcType=BIGINT}
+				AND template_id = #{param2.templateId,jdbcType=BIGINT}
 			</if>
 			<if test="param2.configId != null">
 				AND config_id = #{param2.configId,jdbcType=BIGINT}
@@ -78,6 +81,8 @@
 			<if test="param2.sendFlag != null">
 				AND sendFlag = #{param2.sendFlag,jdbcType=BOOLEAN},
 			</if>
+			<!-- 基础字段过滤 -->
+			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
 		</where>
 		ORDER by id DESC
 	</select>

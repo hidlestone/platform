@@ -96,4 +96,16 @@ public class SmsHistory extends BaseEntity {
 	@TableField(value = "`status`")
 	private StatusEnum status;
 
+	/**
+	 * 上次发送时间开始
+	 */
+	@TableField(exist = false)
+	private Date lastSendTimeStart;
+
+	/**
+	 * 上次发送时间结束
+	 */
+	@TableField(exist = false)
+	private Date lastSendTimeEnd;
+	
 }

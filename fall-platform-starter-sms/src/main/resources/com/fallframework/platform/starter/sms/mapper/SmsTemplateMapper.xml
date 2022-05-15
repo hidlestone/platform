@@ -27,8 +27,11 @@
 		FROM
 		s_sms_template
 		<where>
+			<if test="param2.id != null">
+				id = #{param2.id,jdbcType=BIGINT},
+			</if>
 			<if test="param2.desc != null">
-				`desc` LIKE CONCAT('%', #{param2.desc,jdbcType=VARCHAR}, '%')
+				AND `desc` LIKE CONCAT('%', #{param2.desc,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.from != null">
 				AND `from` LIKE CONCAT('%', #{param2.from,jdbcType=VARCHAR}, '%')
@@ -45,6 +48,8 @@
 			<if test="param2.retryCount != null">
 				AND retry_count = #{param2.retryCount,jdbcType=BOOLEAN},
 			</if>
+			<!-- 基础字段过滤 -->
+			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
 		</where>
 		ORDER by id DESC
 	</select>

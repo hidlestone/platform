@@ -17,9 +17,9 @@ public class MailSenderConfigServiceImpl extends ServiceImpl<MailSenderConfigMap
 	private MailSenderConfigMapper mailSenderConfigMapper;
 
 	@Override
-	public ResponseResult<Page<MailSenderConfig>> list(MailSenderConfigRequest request) {
-		Page<MailSenderConfig> page = new Page<>(request.getPageNum(), request.getPageSize());
-		page = mailSenderConfigMapper.list(page, request);
+	public ResponseResult<Page<MailSenderConfig>> list(MailSenderConfig mailSenderConfig) {
+		Page<MailSenderConfig> page = new Page<>(mailSenderConfig.getPageNum(), mailSenderConfig.getPageSize());
+		page = mailSenderConfigMapper.list(page, mailSenderConfig);
 		return ResponseResult.success(page);
 	}
 

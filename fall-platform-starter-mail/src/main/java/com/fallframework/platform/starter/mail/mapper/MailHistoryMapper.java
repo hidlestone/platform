@@ -7,6 +7,6 @@ import com.fallframework.platform.starter.mail.model.MailHistoryRequest;
 
 public interface MailHistoryMapper extends BaseMapper<MailHistory> {
 
-	Page<MailHistory> list(Page<MailHistory> page, MailHistoryRequest request);
+	Page<MailHistory> list(Page<MailHistory> page, MailHistory mailHistory);
 
 }

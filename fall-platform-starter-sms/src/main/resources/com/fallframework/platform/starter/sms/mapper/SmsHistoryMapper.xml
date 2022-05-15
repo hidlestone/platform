@@ -34,8 +34,11 @@
 		FROM
 		s_sms_history
 		<where>
+			<if test="param2.id != null">
+				id = #{param2.id,jdbcType=BIGINT},
+			</if>
 			<if test="param2.templateId != null">
-				template_id = #{param2.templateId,jdbcType=BIGINT}
+				AND template_id = #{param2.templateId,jdbcType=BIGINT}
 			</if>
 			<if test="param2.configId != null">
 				AND config_id = #{param2.configId,jdbcType=BIGINT}
@@ -64,15 +67,17 @@
 			<if test="param2.msg != null">
 				AND msg LIKE CONCAT('%', #{param2.msg,jdbcType=LONGVARCHAR}, '%')
 			</if>
-			<if test="param2.startLastSendTime != null">
-				AND date_format(last_send_time,'%y%m%d %h:%i:%s') &gt;= date_format(#{param2.startLastSendTime},'%y%m%d %h:%i:%s')
+			<if test="param2.lastSendTimeStart != null">
+				AND last_send_time &gt;= #{param2.lastSendTimeStart, jdbcType=TIMESTAMP}
 			</if>
-			<if test="param2.endLastSendTime != null">
-				AND date_format(last_send_time,'%y%m%d %h:%i:%s') &lt;= date_format(#{param2.endLastSendTime} ,'%y%m%d %h:%i:%s')
+			<if test="param2.lastSendTimeEnd != null">
+				AND last_send_time &lt;= #{param2.lastSendTimeEnd, jdbcType=TIMESTAMP}
 			</if>
 			<if test="param2.status != null">
 				AND `status` = #{param2.status,jdbcType=TINYINT}
 			</if>
+			<!-- 基础字段过滤 -->
+			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
 		</where>
 		ORDER by id DESC
 	</select>

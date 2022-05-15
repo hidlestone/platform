@@ -8,6 +8,6 @@ import com.fallframework.platform.starter.mail.model.MailHistoryRequest;
 
 public interface MailHistoryService extends IService<MailHistory> {
 
-	ResponseResult<Page<MailHistory>> list(MailHistoryRequest request);
+	ResponseResult<Page<MailHistory>> list(MailHistory mailHistory);
 
 }

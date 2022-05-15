@@ -17,9 +17,9 @@ public class SmsTemplateServiceImpl extends ServiceImpl<SmsTemplateMapper, SmsTe
 	private SmsTemplateMapper smsTemplateMapper;
 
 	@Override
-	public ResponseResult<Page<SmsTemplate>> list(SmsTemplateReqeust request) {
-		Page<SmsTemplate> page = new Page<>(request.getPageNum(), request.getPageSize());
-		page = smsTemplateMapper.list(page, request);
+	public ResponseResult<Page<SmsTemplate>> list(SmsTemplate smsTemplate) {
+		Page<SmsTemplate> page = new Page<>(smsTemplate.getPageNum(), smsTemplate.getPageSize());
+		page = smsTemplateMapper.list(page, smsTemplate);
 		return ResponseResult.success(page);
 	}
 
