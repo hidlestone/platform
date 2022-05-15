@@ -8,8 +8,6 @@ import com.fallframework.platform.starter.config.entity.SysParamGroup;
 import com.fallframework.platform.starter.config.entity.SysParamItem;
 import com.fallframework.platform.starter.config.mapper.SysParamGroupMapper;
 import com.fallframework.platform.starter.config.mapper.SysParamItemMapper;
-import com.fallframework.platform.starter.config.model.SysParamGroupRequest;
-import com.fallframework.platform.starter.config.model.SysParamGroupResponse;
 import com.fallframework.platform.starter.config.service.SysParamGroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,9 +46,9 @@ public class SysParamGroupServiceImpl extends ServiceImpl<SysParamGroupMapper, S
 	}
 
 	@Override
-	public ResponseResult<Page<SysParamGroup>> list(SysParamGroup request) {
-		Page<SysParamGroup> page = new Page<>(request.getPageNum(), request.getPageSize());
-		page = sysParamGroupMapper.list(page, request);
+	public ResponseResult<Page<SysParamGroup>> list(SysParamGroup sysParamGroup) {
+		Page<SysParamGroup> page = new Page<>(sysParamGroup.getPageNum(), sysParamGroup.getPageSize());
+		page = sysParamGroupMapper.list(page, sysParamGroup);
 		return ResponseResult.success(page);
 	}
 
