@@ -16,8 +16,41 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		<!--@mbg.generated-->
-		code, id, `value`, encrypted_value, `desc`, `status`, group_code, create_user_id,
+		id, code, `value`, encrypted_value, `desc`, `status`, group_code, create_user_id,
 		modify_user_id, gmt_create, gmt_modified
 	</sql>
+
+	<select id="list" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		s_sys_param_item
+		<where>
+			<if test="param2.id != null">
+				id = #{param2.id,jdbcType=BIGINT},
+			</if>
+			<if test="param2.code != null">
+				AND code like CONCAT('%', #{code,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.value != null">
+				AND `value` like CONCAT('%', #{value,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.encryptedValue != null">
+				AND encrypted_value like CONCAT('%', #{encryptedValue,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.desc != null">
+				AND `desc` like CONCAT('%', #{desc,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.status != null">
+				AND `status` = #{status,jdbcType=TINYINT}
+			</if>
+			<if test="param2.groupCode != null">
+				AND groupCode like CONCAT('%', #{groupCode,jdbcType=VARCHAR}, '%')
+			</if>
+			<!-- 基础字段过滤 -->
+			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
+		</where>
+		ORDER by id DESC
+	</select>
 
 </mapper>

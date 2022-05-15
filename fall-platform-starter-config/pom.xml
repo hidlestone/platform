@@ -53,10 +53,10 @@
             <groupId>com.fallframework.platform</groupId>
             <artifactId>fall-platform-starter-data-mp</artifactId>
         </dependency>
-        <!-- redis -->
+        <!-- starter-cache-redis -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <groupId>com.fallframework.platform</groupId>
+            <artifactId>fall-platform-starter-cache-redis</artifactId>
         </dependency>
     </dependencies>
 

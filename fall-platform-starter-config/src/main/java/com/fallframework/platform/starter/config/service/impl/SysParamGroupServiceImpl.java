@@ -33,14 +33,16 @@ public class SysParamGroupServiceImpl extends ServiceImpl<SysParamGroupMapper, S
 
 	@Override
 	public ResponseResult<SysParamGroup> get(String code) {
-		SysParamGroup sysParamGroup = sysParamGroupMapper.selectById(code);
+		QueryWrapper<SysParamGroup> wrapper01 = new QueryWrapper<>();
+		wrapper01.eq("code", code);
+		SysParamGroup sysParamGroup = sysParamGroupMapper.selectOne(wrapper01);
 		if (null == sysParamGroup) {
 			return ResponseResult.success();
 		}
 		// 明细
-		QueryWrapper<SysParamItem> wrapper = new QueryWrapper<>();
-		wrapper.eq("group_code", sysParamGroup.getCode());
-		List<SysParamItem> sysParamItems = sysParamItemMapper.selectList(wrapper);
+		QueryWrapper<SysParamItem> wrapper02 = new QueryWrapper<>();
+		wrapper02.eq("group_code", code);
+		List<SysParamItem> sysParamItems = sysParamItemMapper.selectList(wrapper02);
 		sysParamGroup.setSysParamItems(sysParamItems);
 		return ResponseResult.success(sysParamGroup);
 	}

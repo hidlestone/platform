@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.cache.redis.util;
+package com.fallframework.platform.starter.config.util;
 
 import com.fallframework.platform.starter.config.model.SysParamGroupEnum;
 import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
