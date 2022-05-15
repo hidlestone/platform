@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.i18n.entity.I18nResource;
-import com.fallframework.platform.starter.i18n.model.I18nResourceRequest;
 
 import java.util.List;
 
