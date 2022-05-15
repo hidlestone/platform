@@ -5,5 +5,4 @@ import com.fallframework.platform.starter.rbac.entity.UserRole;
 
 public interface UserRoleService extends IService<UserRole> {
 
-
 }

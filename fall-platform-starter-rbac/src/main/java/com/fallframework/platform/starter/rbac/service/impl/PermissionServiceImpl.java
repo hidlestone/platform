@@ -9,11 +9,10 @@ import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;
 import com.fallframework.platform.starter.rbac.entity.Permission;
+import com.fallframework.platform.starter.rbac.entity.Role;
 import com.fallframework.platform.starter.rbac.entity.UserRole;
 import com.fallframework.platform.starter.rbac.mapper.PermissionMapper;
 import com.fallframework.platform.starter.rbac.mapper.UserRoleMapper;
-import com.fallframework.platform.starter.rbac.model.PermissionRequest;
-import com.fallframework.platform.starter.rbac.model.RolePermissionResponse;
 import com.fallframework.platform.starter.rbac.service.PermissionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,14 +41,14 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 	@Override
 	public ResponseResult refreshPermissionCache() {
 		// 获取所有角色权限
-		List<RolePermissionResponse> rolePermissionResponseList = permissionMapper.selectAllRolePermission();
-		if (CollectionUtil.isEmpty(rolePermissionResponseList)) {
+		List<Role> rolePermissionList = permissionMapper.selectAllRolePermission();
+		if (CollectionUtil.isEmpty(rolePermissionList)) {
 			return ResponseResult.success();
 		}
 		// 按照角色分组
-		Map<Long, List<RolePermissionResponse>> rolePermMap =
-				rolePermissionResponseList.stream().collect(Collectors.groupingBy(RolePermissionResponse::getId));
-		for (Map.Entry<Long, List<RolePermissionResponse>> entry : rolePermMap.entrySet()) {
+		Map<Long, List<Role>> rolePermMap =
+				rolePermissionList.stream().collect(Collectors.groupingBy(Role::getId));
+		for (Map.Entry<Long, List<Role>> entry : rolePermMap.entrySet()) {
 			redisUtil.hset(RbacStarterConstant.CACHE_KEY_ROLE_PERMISSION, String.valueOf(entry.getKey()), entry.getValue());
 		}
 		LOGGER.info("role permission cache has refreshed.");
@@ -57,22 +56,22 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 	}
 
 	@Override
-	public List<RolePermissionResponse> getPermissionListByUserId(Long id) {
+	public List<Permission> getPermissionListByUserId(Long id) {
 		// 1、从缓存中获取
 		// 当前用户拥有的角色
 		Wrapper<UserRole> wrapper = new QueryWrapper<>();
 		List<UserRole> userRoles = userRoleMapper.selectList(wrapper);
 		// 所有的权限
-		List<RolePermissionResponse> allRolePermList = new ArrayList<>();
+		List<Permission> allRolePermList = new ArrayList<>();
 		if (CollectionUtil.isNotEmpty(userRoles)) {
 			for (UserRole item : userRoles) {
-				allRolePermList.addAll((List<RolePermissionResponse>) redisUtil.hget(RbacStarterConstant.CACHE_KEY_ROLE_PERMISSION, String.valueOf(item.getRoleId())));
+				allRolePermList.addAll((List<Permission>) redisUtil.hget(RbacStarterConstant.CACHE_KEY_ROLE_PERMISSION, String.valueOf(item.getRoleId())));
 			}
 		}
 		if (CollectionUtil.isNotEmpty(allRolePermList)) {
 			// 权限去重
 			allRolePermList = allRolePermList.stream().collect(Collectors.collectingAndThen(
-					Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RolePermissionResponse::getPermissionCode))), ArrayList::new));
+					Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Permission::getPermissionCode))), ArrayList::new));
 			return allRolePermList;
 		}
 		// 2、从数据库获取
@@ -81,9 +80,9 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 	}
 
 	@Override
-	public ResponseResult<Page<Permission>> list(PermissionRequest request) {
-		Page<Permission> page = new Page<>(request.getPageNum(), request.getPageSize());
-		page = permissionMapper.list(page, request);
+	public ResponseResult<Page<Permission>> list(Permission permission) {
+		Page<Permission> page = new Page<>(permission.getPageNum(), permission.getPageSize());
+		page = permissionMapper.list(page, permission);
 		return ResponseResult.success(page);
 	}
 }

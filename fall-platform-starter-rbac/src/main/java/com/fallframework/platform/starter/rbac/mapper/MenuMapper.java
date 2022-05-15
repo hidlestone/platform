@@ -11,15 +11,11 @@ import java.util.List;
 
 public interface MenuMapper extends BaseMapper<Menu> {
 
-	Page<Menu> list(Page<Menu> page, MenuRequest request);
-
-	Page<Menu> getMenusByUserId(Page<Menu> page, Long userId);
-
-	Page<Menu> getMenusByRoleIds(Page<Menu> page, List<Long> roleIds);
+	Page<Menu> list(Page<Menu> page, Menu menu);
 
 	List<Menu> getAllMenusByUserId(Long userId);
 
-	List<Menu> getMenuTree(MenuQueryRequest request);
+	List<Menu> getMenuTree(Menu menu);
 
-	List<Menu> getMenuListByParentId(Long parentId);
+	List<Menu> getMenusByParentId(Long parentId);
 }

@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.rbac.entity.Permission;
-import com.fallframework.platform.starter.rbac.model.PermissionRequest;
-import com.fallframework.platform.starter.rbac.model.RolePermissionResponse;
 
 import java.util.List;
 
@@ -22,11 +20,11 @@ public interface PermissionService extends IService<Permission> {
 	 * @param id 用户ID
 	 * @return 资源权限列表
 	 */
-	List<RolePermissionResponse> getPermissionListByUserId(Long id);
+	List<Permission> getPermissionListByUserId(Long id);
 
 	/**
-	 * @param request 请求参数
+	 * @param permission 请求参数
 	 * @return 分页的权限列表
 	 */
-	ResponseResult<Page<Permission>> list(PermissionRequest request);
+	ResponseResult<Page<Permission>> list(Permission permission);
 }

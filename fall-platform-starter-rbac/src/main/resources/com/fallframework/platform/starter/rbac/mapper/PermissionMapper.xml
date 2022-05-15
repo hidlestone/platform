@@ -20,7 +20,7 @@
 		modify_user_id, gmt_create, gmt_modified
 	</sql>
 
-	<select id="selectAllRolePermission" resultType="com.fallframework.platform.starter.rbac.model.RolePermissionResponse">
+	<select id="selectAllRolePermission" resultType="com.fallframework.platform.starter.rbac.entity.Role">
 		SELECT
 			r.id AS id,
 			r.role_code AS roleCode,
@@ -35,7 +35,7 @@
 			r.role_code IS NOT NULL	
 	</select>
 
-	<select id="getPermissionListByUserId" resultType="com.fallframework.platform.starter.rbac.model.RolePermissionResponse" parameterType="long">
+	<select id="getPermissionListByUserId" resultType="com.fallframework.platform.starter.rbac.entity.Permission" parameterType="long">
 		SELECT
 			resource_value AS resourceValue,
 			authc_type AS authcType

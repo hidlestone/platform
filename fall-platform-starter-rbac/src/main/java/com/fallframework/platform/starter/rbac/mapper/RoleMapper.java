@@ -11,5 +11,5 @@ public interface RoleMapper extends BaseMapper<Role> {
 
 	List<Role> getRolesByUserId(Long userId);
 
-	Page<Role> list(Page<Role> page, RoleRequest request);
+	Page<Role> list(Page<Role> page, Role role);
 }

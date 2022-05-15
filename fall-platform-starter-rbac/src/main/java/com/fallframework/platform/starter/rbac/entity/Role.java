@@ -8,6 +8,8 @@ import com.fallframework.platform.starter.data.mp.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @TableName(value = "s_role")
@@ -39,4 +41,16 @@ public class Role extends BaseEntity {
 	@TableField(value = "role_desc")
 	private String roleDesc;
 
+	/**
+	 * 菜单列表
+	 */
+	@TableField(exist = false)
+	private List<Menu> menus;
+
+	/**
+	 * 权限列表
+	 */
+	@TableField(exist = false)
+	private List<Permission> permissions;
+	
 }

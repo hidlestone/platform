@@ -103,4 +103,16 @@ public class Menu extends BaseEntity {
 	@TableField(exist = false)
 	private List<Menu> children;
 
+	/**
+	 * 用户ID
+	 */
+	@TableField(exist = false)
+	private Long userId;
+
+	/**
+	 * 角色ID列表
+	 */
+	@TableField(exist = false)
+	private List<Long> roleIds;
+
 }

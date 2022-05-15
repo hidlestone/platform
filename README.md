@@ -207,3 +207,7 @@ fall-platform-starter-data
 
 Mybatis Plus排除表中不存在字段的三种方式
 https://codeleading.com/article/51682023551/
+
+
+<!-- 基础字段过滤 -->
+<include refid="com.fallframework.platform.starter.data.mp.entity.BaseEntity.Common_Column_Filter"/>
