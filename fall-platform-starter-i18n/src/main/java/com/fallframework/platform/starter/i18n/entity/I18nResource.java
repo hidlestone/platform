@@ -45,4 +45,16 @@ public class I18nResource extends BaseEntity {
 	@TableField(value = "module_code")
 	private String moduleCode;
 
+	/**
+	 * 源语言编码
+	 */
+	@TableField(exist = false)
+	private String sourceLangCode;
+
+	/**
+	 * 目标语言编码
+	 */
+	@TableField(exist = false)
+	private String trargetLangCode;
+
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface I18nResourceService extends IService<I18nResource> {
 
-	ResponseResult<Page<I18nResource>> list(I18nResourceRequest request);
+	ResponseResult<Page<I18nResource>> list(I18nResource i18nResource);
 
 	ResponseResult<List<I18nResource>> getByResourceKey(String resourceKey);
 

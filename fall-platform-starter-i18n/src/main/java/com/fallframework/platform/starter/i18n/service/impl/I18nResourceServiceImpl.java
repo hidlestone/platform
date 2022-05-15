@@ -9,7 +9,6 @@ import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.i18n.constant.I18nStarterConstant;
 import com.fallframework.platform.starter.i18n.entity.I18nResource;
 import com.fallframework.platform.starter.i18n.mapper.I18nResourceMapper;
-import com.fallframework.platform.starter.i18n.model.I18nResourceRequest;
 import com.fallframework.platform.starter.i18n.service.I18nResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,9 +26,9 @@ public class I18nResourceServiceImpl extends ServiceImpl<I18nResourceMapper, I18
 	private RedisUtil redisUtil;
 
 	@Override
-	public ResponseResult<Page<I18nResource>> list(I18nResourceRequest request) {
-		Page<I18nResource> page = new Page<>(request.getPageNum(), request.getPageSize());
-		page = i18nResourceMapper.list(page, request);
+	public ResponseResult<Page<I18nResource>> list(I18nResource i18nResource) {
+		Page<I18nResource> page = new Page<>(i18nResource.getPageNum(), i18nResource.getPageSize());
+		page = i18nResourceMapper.list(page, i18nResource);
 		return ResponseResult.success(page);
 	}
 
