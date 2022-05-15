@@ -83,7 +83,7 @@
 				AND source_type = #{param2.sourceType,jdbcType=TINYINT}
 			</if>
 			<if test="param2.lastLoginTime != null">
-				#{param2.lastLoginTime,jdbcType=TIMESTAMP}
+				AND #{param2.lastLoginTime,jdbcType=TIMESTAMP}
 			</if>
 			<!-- 基础字段过滤 -->
 			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
