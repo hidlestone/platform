@@ -16,4 +16,25 @@
 		id, `desc`, `status`, create_user_id, modify_user_id, gmt_create, gmt_modified
 	</sql>
 
+	<select id="list" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+		s_file_group
+		<where>
+			<if test="param2.id != null">
+				id = #{param2.id,jdbcType=BIGINT}
+			</if>
+			<if test="param2.desc != null">
+				AND `desc` LIKE CONCAT('%', #{param2.desc,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.status != null">
+				AND `status` = #{param2.status,jdbcType=TINYINT}
+			</if>
+			<!-- 基础字段过滤 -->
+			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
+		</where>
+		ORDER by id DESC
+	</select>
+
 </mapper>

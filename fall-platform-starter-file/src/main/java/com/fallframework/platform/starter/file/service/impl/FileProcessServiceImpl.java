@@ -2,10 +2,9 @@ package com.fallframework.platform.starter.file.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.fallframework.platform.starter.api.response.ResponseResult;
+import com.fallframework.platform.starter.file.entity.FileGroup;
 import com.fallframework.platform.starter.file.entity.FileInfo;
-import com.fallframework.platform.starter.file.model.FileGroupRequest;
-import com.fallframework.platform.starter.file.model.FileGroupUploadRequest;
-import com.fallframework.platform.starter.file.model.FileInfoRequest;
+import com.fallframework.platform.starter.file.model.FileGroupUploadDto;
 import com.fallframework.platform.starter.file.service.FileGroupService;
 import com.fallframework.platform.starter.file.service.FileInfoService;
 import com.fallframework.platform.starter.file.service.FileProcessService;
@@ -50,16 +49,16 @@ public class FileProcessServiceImpl implements FileProcessService {
 
 	@Transactional
 	@Override
-	public ResponseResult uploadFileGroup(FileGroupUploadRequest uploadRequest) {
+	public ResponseResult uploadFileGroup(FileGroupUploadDto dto) {
 		// // 所有待上传的文件 MultipartFile
-		List<MultipartFile> files = uploadRequest.getFiles();
+		List<MultipartFile> files = dto.getFiles();
 		if (CollectionUtil.isEmpty(files)) {
 			return ResponseResult.fail("files are not exist.");
 		}
-		FileGroupRequest fileGroupRequest = new FileGroupRequest();
-		List<FileInfoRequest> fileInfoRequestList = new ArrayList<>();
-		fileGroupRequest.setFileInfoList(fileInfoRequestList);
-		fileGroupRequest.setDesc(uploadRequest.getDesc());
+		FileGroup fileGroupRequest = new FileGroup();
+		List<FileInfo> fileInfoRequestList = new ArrayList<>();
+		fileGroupRequest.setFileInfos(fileInfoRequestList);
+		fileGroupRequest.setDesc(dto.getDesc());
 		try {
 			for (MultipartFile multipartFile : files) {
 				String fname = multipartFile.getOriginalFilename();
@@ -74,11 +73,11 @@ public class FileProcessServiceImpl implements FileProcessService {
 				// 进行对上传文件的IO拷贝操作
 				FileCopyUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
 
-				FileInfoRequest infoRequest = new FileInfoRequest();
+				FileInfo infoRequest = new FileInfo();
 				infoRequest.setName(fname);
 				infoRequest.setNonsenseName(fkey);
 				infoRequest.setExtension(FileStarterUtil.getFileExt(fname));
-				infoRequest.setStorageType(uploadRequest.getStorageType());
+				infoRequest.setStorageType(dto.getStorageType());
 				//infoRequest.setFileType();
 				infoRequest.setContentType(contentType);
 				fileInfoRequestList.add(infoRequest);

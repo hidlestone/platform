@@ -1,7 +1,7 @@
 package com.fallframework.platform.starter.file.service;
 
 import com.fallframework.platform.starter.api.response.ResponseResult;
-import com.fallframework.platform.starter.file.model.FileGroupUploadRequest;
+import com.fallframework.platform.starter.file.model.FileGroupUploadDto;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,10 +13,10 @@ public interface FileProcessService {
 	/**
 	 * 上传文件
 	 *
-	 * @param uploadRequest 文件上传请求参数
+	 * @param dto 文件上传请求参数
 	 * @return 是否上传成功
 	 */
-	ResponseResult uploadFileGroup(FileGroupUploadRequest uploadRequest);
+	ResponseResult uploadFileGroup(FileGroupUploadDto dto);
 
 	/**
 	 * 下载文件

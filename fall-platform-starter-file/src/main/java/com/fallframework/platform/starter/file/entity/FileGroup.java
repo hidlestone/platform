@@ -9,6 +9,8 @@ import com.fallframework.platform.starter.data.mp.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @TableName(value = "s_file_group")
@@ -33,5 +35,11 @@ public class FileGroup extends BaseEntity {
 	 */
 	@TableField(value = "`status`")
 	private StatusEnum status;
+
+	/**
+	 * 文件明细
+	 */
+	@TableField(exist = false)
+	private List<FileInfo> fileInfos;
 
 }

@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.file.entity.FileInfo;
 import com.fallframework.platform.starter.file.mapper.FileInfoMapper;
-import com.fallframework.platform.starter.file.model.FileInfoRequest;
 import com.fallframework.platform.starter.file.service.FileInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +16,9 @@ public class FileInfoServiceImpl extends ServiceImpl<FileInfoMapper, FileInfo> i
 	private FileInfoMapper fileInfoMapper;
 
 	@Override
-	public ResponseResult<Page<FileInfo>> list(FileInfoRequest request) {
-		Page<FileInfo> page = new Page<>(request.getPageNum(), request.getPageSize());
-		page = fileInfoMapper.list(page, request);
+	public ResponseResult<Page<FileInfo>> list(FileInfo fileInfo) {
+		Page<FileInfo> page = new Page<>(fileInfo.getPageNum(), fileInfo.getPageSize());
+		page = fileInfoMapper.list(page, fileInfo);
 		return ResponseResult.success(page);
 	}
 

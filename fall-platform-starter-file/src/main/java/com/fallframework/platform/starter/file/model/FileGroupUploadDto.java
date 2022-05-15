@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class FileGroupUploadRequest extends BasePageRequest {
+public class FileGroupUploadDto extends BasePageRequest {
 
 	private static final long serialVersionUID = -5628554331347879601L;
 
@@ -24,11 +24,11 @@ public class FileGroupUploadRequest extends BasePageRequest {
 	/**
 	 * 存储类型
 	 */
-	private Byte storageType;
+	private StorageTypeEnum storageType;
 
 	/**
 	 * 请求上传的文件
 	 */
 	private List<MultipartFile> files;
-	
+
 }

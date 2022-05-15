@@ -6,7 +6,7 @@ import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.mail.entity.MailHistory;
 import com.fallframework.platform.starter.mail.entity.MailSenderConfig;
 import com.fallframework.platform.starter.mail.entity.MailTemplate;
-import com.fallframework.platform.starter.mail.model.MailSendInfoRequest;
+import com.fallframework.platform.starter.mail.model.MailSendInfoDto;
 import com.fallframework.platform.starter.mail.model.SendFlagEnum;
 import com.fallframework.platform.starter.mail.service.MailHistoryService;
 import com.fallframework.platform.starter.mail.service.MailSenderConfigService;
@@ -47,22 +47,22 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 	/**
 	 * 发送简单邮件
 	 *
-	 * @param request 邮件信息
+	 * @param dto 邮件信息
 	 * @return 是否发送成功
 	 */
 	@Override
-	public ResponseResult sendSimpleEmail(MailSendInfoRequest request) {
+	public ResponseResult sendSimpleEmail(MailSendInfoDto dto) {
 		// 模板
-		MailTemplate mailTemplate = mailTemplateService.getById(request.getMailTemplateId());
+		MailTemplate mailTemplate = mailTemplateService.getById(dto.getMailTemplateId());
 		// 配置
-		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(request.getMailSenderConfigId());
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(dto.getMailSenderConfigId());
 		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		// 失败原因
 		String msg = null;
 		try {
 			SimpleMailMessage message = new SimpleMailMessage();
 			message.setFrom(mailSenderConfig.getUsername());
-			message.setTo(request.getReceiveMail());
+			message.setTo(dto.getReceiveMail());
 			message.setSubject(mailTemplate.getTitle());
 			message.setText(mailTemplate.getContent());
 			if (null != mailTemplate.getFileGroupId()) {
@@ -77,7 +77,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			e.printStackTrace();
 		}
 		// 添加历史记录
-		this.addMailHistoryLog(request, mailTemplate, mailSenderConfig, sendFlag, msg);
+		this.addMailHistoryLog(dto, mailTemplate, mailSenderConfig, sendFlag, msg);
 		if (SendFlagEnum.FAIL.ordinal() == sendFlag) {
 			return ResponseResult.fail(msg);
 		}
@@ -87,14 +87,14 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 	/**
 	 * html格式邮件
 	 *
-	 * @param request 邮件信息
+	 * @param dto 邮件信息
 	 * @return 是否发送成功
 	 */
 	@Override
-	public ResponseResult sendMimeMsgEmail(MailSendInfoRequest request) {
+	public ResponseResult sendMimeMsgEmail(MailSendInfoDto dto) {
 		// 配置&模板
-		MailTemplate mailTemplate = mailTemplateService.getById(request.getMailTemplateId());
-		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(request.getMailSenderConfigId());
+		MailTemplate mailTemplate = mailTemplateService.getById(dto.getMailTemplateId());
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(dto.getMailSenderConfigId());
 		// 0-失败，1-成功
 		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		String msg = null;
@@ -105,7 +105,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 			helper.setFrom(mailSenderConfig.getUsername());
-			helper.setTo(request.getReceiveMail());
+			helper.setTo(dto.getReceiveMail());
 			helper.setSubject(mailTemplate.getTitle());
 			// 带HTML格式的内容
 //			StringBuffer sb = new StringBuffer("<p style='color:#42b983'>使用Spring Boot发送HTML格式邮件。</p>");
@@ -121,7 +121,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			e.printStackTrace();
 		}
 		// 添加历史记录
-		this.addMailHistoryLog(request, mailTemplate, mailSenderConfig, sendFlag, msg);
+		this.addMailHistoryLog(dto, mailTemplate, mailSenderConfig, sendFlag, msg);
 		if (SendFlagEnum.FAIL.ordinal() == sendFlag) {
 			return ResponseResult.fail(msg);
 		}
@@ -131,14 +131,14 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 	/**
 	 * 发送行内邮件
 	 *
-	 * @param request 邮件信息
+	 * @param dto 邮件信息
 	 * @return 是否发送成功
 	 */
 	@Override
-	public ResponseResult sendInlineMail(MailSendInfoRequest request) {
+	public ResponseResult sendInlineMail(MailSendInfoDto dto) {
 		// 配置&模板
-		MailTemplate mailTemplate = mailTemplateService.getById(request.getMailTemplateId());
-		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(request.getMailSenderConfigId());
+		MailTemplate mailTemplate = mailTemplateService.getById(dto.getMailTemplateId());
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(dto.getMailSenderConfigId());
 		// 0-失败，1-成功
 		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		String msg = null;
@@ -149,7 +149,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 			helper.setFrom(mailSenderConfig.getUsername());
-			helper.setTo(request.getReceiveMail());
+			helper.setTo(dto.getReceiveMail());
 			helper.setSubject(mailTemplate.getTitle());
 //			helper.setText("<html><body>博客图：<img src='cid:img'/></body></html>", true);
 			helper.setText(mailTemplate.getContent(), true);
@@ -166,7 +166,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			e.printStackTrace();
 		}
 		// 添加历史记录
-		this.addMailHistoryLog(request, mailTemplate, mailSenderConfig, sendFlag, msg);
+		this.addMailHistoryLog(dto, mailTemplate, mailSenderConfig, sendFlag, msg);
 		if (SendFlagEnum.FAIL.ordinal() == sendFlag) {
 			return ResponseResult.fail(msg);
 		}
@@ -176,14 +176,14 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 	/**
 	 * 发送模板邮件
 	 *
-	 * @param request 邮件信息
+	 * @param dto 邮件信息
 	 * @return 是否发送成功
 	 */
 	@Override
-	public ResponseResult sendTemplateEmail(MailSendInfoRequest request) {
+	public ResponseResult sendTemplateEmail(MailSendInfoDto dto) {
 		// 配置&模板
-		MailTemplate mailTemplate = mailTemplateService.getById(request.getMailTemplateId());
-		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(request.getMailSenderConfigId());
+		MailTemplate mailTemplate = mailTemplateService.getById(dto.getMailTemplateId());
+		MailSenderConfig mailSenderConfig = mailSenderConfigService.getById(dto.getMailSenderConfigId());
 		// 0-失败，1-成功
 		byte sendFlag = (byte) SendFlagEnum.SUCCESS.ordinal();
 		String msg = null;
@@ -196,12 +196,12 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 			helper.setFrom(mailSenderConfig.getUsername());
-			helper.setTo(request.getReceiveMail());
+			helper.setTo(dto.getReceiveMail());
 			helper.setSubject(mailTemplate.getTitle());
 			// 处理邮件模板
 			Context context = new Context();
 			// 获取模板变量
-			JSONObject jsonObject = JSON.parseObject(request.getTemplateVarStr());
+			JSONObject jsonObject = JSON.parseObject(dto.getTemplateVarStr());
 			for (Map.Entry entry : jsonObject.entrySet()) {
 				context.setVariable(entry.getKey().toString(), entry.getValue().toString());
 			}
@@ -214,7 +214,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 			e.printStackTrace();
 		}
 		// 添加历史记录
-		this.addMailHistoryLog(request, mailTemplate, mailSenderConfig, sendFlag, msg);
+		this.addMailHistoryLog(dto, mailTemplate, mailSenderConfig, sendFlag, msg);
 		if (SendFlagEnum.FAIL.ordinal() == sendFlag) {
 			return ResponseResult.fail(msg);
 		}
@@ -230,7 +230,7 @@ public class PlatformMailSenderImpl implements PlatformMailSender {
 	 * @param sendFlag
 	 * @param msg              失败原因
 	 */
-	private void addMailHistoryLog(MailSendInfoRequest request, MailTemplate mailTemplate, MailSenderConfig mailSenderConfig, byte sendFlag, String msg) {
+	private void addMailHistoryLog(MailSendInfoDto request, MailTemplate mailTemplate, MailSenderConfig mailSenderConfig, byte sendFlag, String msg) {
 		MailHistory mailHistory = new MailHistory();
 		mailHistory.setTemplateId(mailTemplate.getId());
 		mailHistory.setConfigId(mailSenderConfig.getId());

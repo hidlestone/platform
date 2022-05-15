@@ -11,7 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class MailSendInfoRequest extends BaseEntityRequest {
+public class MailSendInfoDto extends BaseEntityRequest {
 
 	private static final long serialVersionUID = 4148012618236603712L;
 
