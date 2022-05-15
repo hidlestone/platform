@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.mq.entity.MqTraceLog;
 import com.fallframework.platform.starter.mq.mapper.MqTraceLogMapper;
-import com.fallframework.platform.starter.mq.model.MqTraceLogRequest;
 import com.fallframework.platform.starter.mq.service.MqTraceLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +16,9 @@ public class MqTraceLogServiceImpl extends ServiceImpl<MqTraceLogMapper, MqTrace
 	private MqTraceLogMapper mqTraceLogMapper;
 
 	@Override
-	public ResponseResult<Page<MqTraceLog>> list(MqTraceLogRequest request) {
-		Page<MqTraceLog> page = new Page<>(request.getPageNum(), request.getPageSize());
-		page = mqTraceLogMapper.list(page, request);
+	public ResponseResult<Page<MqTraceLog>> list(MqTraceLog mqTraceLog) {
+		Page<MqTraceLog> page = new Page<>(mqTraceLog.getPageNum(), mqTraceLog.getPageSize());
+		page = mqTraceLogMapper.list(page, mqTraceLog);
 		return ResponseResult.success(page);
 	}
 

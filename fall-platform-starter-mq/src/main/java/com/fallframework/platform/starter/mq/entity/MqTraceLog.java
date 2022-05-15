@@ -96,4 +96,28 @@ public class MqTraceLog extends BaseEntity {
 	@TableField(value = "status")
 	private Byte status;
 
+	/**
+	 * 开始发布时间
+	 */
+	@TableField(exist = false)
+	private Date publishTimeStart;
+
+	/**
+	 * 结束发布时间
+	 */
+	@TableField(exist = false)
+	private Date publishTimeEnd;
+
+	/**
+	 * 开始消费时间
+	 */
+	@TableField(exist = false)
+	private Date consumeTimeStart;
+
+	/**
+	 * 结束消费时间
+	 */
+	@TableField(exist = false)
+	private Date consumeTimeEnd;
+
 }

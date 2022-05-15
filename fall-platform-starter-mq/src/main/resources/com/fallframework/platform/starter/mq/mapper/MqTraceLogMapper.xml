@@ -34,6 +34,9 @@
 		FROM
 		s_mq_trace_log
 		<where>
+			<if test="param2.id != null">
+				id = #{param2.id,jdbcType=BIGINT}
+			</if>
 			<if test="param2.stage != null">
 				AND stage = #{param2.stage,jdbcType=TINYINT}
 			</if>
@@ -55,18 +58,6 @@
 			<if test="param2.ackMode != null">
 				AND ack_mode = #{param2.ackMode,jdbcType=VARCHAR}
 			</if>
-			<if test="param2.startPublishTime != null">
-				AND date_format(publish_time,'%y%m%d %h:%i:%s') &gt;= date_format(#{param2.startPublishTime},'%y%m%d %h:%i:%s')
-			</if>
-			<if test="param2.endPublishTime != null">
-				AND date_format(publish_time,'%y%m%d %h:%i:%s') &lt;= date_format(#{param2.endPublishTime},'%y%m%d %h:%i:%s')
-			</if>
-			<if test="param2.startConsumeTime != null">
-				AND date_format(consume_time,'%y%m%d %h:%i:%s') &gt;= date_format(#{param2.startConsumeTime},'%y%m%d %h:%i:%s')
-			</if>
-			<if test="param2.startConsumeTime != null">
-				AND date_format(consume_time,'%y%m%d %h:%i:%s') &lt;= date_format(#{param2.endConsumeTime},'%y%m%d %h:%i:%s')
-			</if>
 			<if test="param2.subscriber != null">
 				AND subscriber LIKE CONCAT('%', #{param2.subscriber,jdbcType=VARCHAR}, '%')
 			</if>
@@ -76,6 +67,20 @@
 			<if test="param2.status != null">
 				AND `status` = #{param2.status,jdbcType=TINYINT}
 			</if>
+			<if test="param2.publishTimeStart != null">
+				AND publzish_time &gt;= #{param2.publishTimeStart, jdbcType=TIMESTAMP}
+			</if>
+			<if test="param2.publishTimeEnd != null">
+				AND publzish_time &lt;= #{param2.publishTimeEnd, jdbcType=TIMESTAMP}
+			</if>
+			<if test="param2.consumeTimeStart != null">
+				AND consume_time &gt;= #{param2.consumeTimeStart, jdbcType=TIMESTAMP}
+			</if>
+			<if test="param2.consumeTimeEnd != null">
+				AND consume_time &lt;= #{param2.consumeTimeEnd, jdbcType=TIMESTAMP}
+			</if>
+			<!-- 基础字段过滤 -->
+			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
 		</where>
 		ORDER by id DESC
 	</select>
