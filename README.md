@@ -211,3 +211,13 @@ https://codeleading.com/article/51682023551/
 
 <!-- 基础字段过滤 -->
 <include refid="com.fallframework.platform.starter.data.mp.entity.BaseEntity.Common_Column_Filter"/>
+
+https://www.bbsmax.com/A/kvJ38jDO5g/
+https://www.jb51.net/article/194176.htm
+Stream stream = Stream.of(1, 2, 3, 4).filter(p -> p > 2);
+ 
+List result = stream.collect(() -> new ArrayList<>(), (list, item) -> list.add(item), (one, two) -> one.addAll(two));
+/* 或者使用方法引用 */
+result = stream.collect(ArrayList::new, List::add, List::addAll);
+
+

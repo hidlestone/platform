@@ -47,7 +47,7 @@ public class Dict extends BaseEntity {
 	 * 字典多语言词条
 	 */
 	@TableField(exist = false)
-	private I18nResource i18nResource;
+	private List<I18nResource> i18nResources;
 
 	/**
 	 * 字典项明细

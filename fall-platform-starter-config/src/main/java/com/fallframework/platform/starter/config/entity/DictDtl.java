@@ -10,6 +10,8 @@ import com.fallframework.platform.starter.i18n.entity.I18nResource;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @TableName(value = "s_dict_dtl")
@@ -40,7 +42,7 @@ public class DictDtl extends BaseEntity {
 	 */
 	@TableField(value = "`desc`")
 	private String desc;
-	
+
 	/**
 	 * 是否启用
 	 */
@@ -51,6 +53,6 @@ public class DictDtl extends BaseEntity {
 	 * 字典明细多语言词条
 	 */
 	@TableField(exist = false)
-	private I18nResource i18nResource;
+	private List<I18nResource> i18nResources;
 
 }
