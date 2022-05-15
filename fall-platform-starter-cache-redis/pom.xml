@@ -44,6 +44,10 @@
 	</issueManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.fallframework.platform</groupId>
+			<artifactId>fall-platform-starter-config</artifactId>
+		</dependency>
 		<!-- starter-data-mp -->
 		<dependency>
 			<groupId>com.fallframework.platform</groupId>

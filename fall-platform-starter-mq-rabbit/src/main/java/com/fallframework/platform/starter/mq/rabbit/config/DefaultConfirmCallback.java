@@ -35,7 +35,7 @@ public class DefaultConfirmCallback implements RabbitTemplate.ConfirmCallback {
 	public void init() {
 		rabbitTemplate.setConfirmCallback(this);
 	}
-	
+
 	@Override
 	public void confirm(CorrelationData correlationData, boolean ack, String cause) {
 		if (!ack) {
@@ -52,7 +52,7 @@ public class DefaultConfirmCallback implements RabbitTemplate.ConfirmCallback {
 			return;
 		}
 		// 更新该记录的状态
-		MqTraceLog mqTraceLog = mqTraceLogService.select(Long.valueOf(id)).getData();
+		MqTraceLog mqTraceLog = mqTraceLogService.getById(Long.valueOf(id));
 		if (null == mqTraceLog) {
 			LOGGER.error("mqTraceLog is not exist, id : {}", id);
 		}
@@ -61,7 +61,7 @@ public class DefaultConfirmCallback implements RabbitTemplate.ConfirmCallback {
 		} else {
 			mqTraceLog.setStage(StageEnum.DELIVER_EXCHANGE_FAIL);
 		}
-		mqTraceLogService.update(mqTraceLog);
+		mqTraceLogService.updateById(mqTraceLog);
 	}
 
 }

@@ -5,9 +5,9 @@ import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.core.util.EncryptionUtil;
 import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;
+import com.fallframework.platform.starter.rbac.entity.Permission;
 import com.fallframework.platform.starter.rbac.entity.Role;
 import com.fallframework.platform.starter.rbac.entity.User;
-import com.fallframework.platform.starter.rbac.model.RolePermissionResponse;
 import com.fallframework.platform.starter.rbac.service.PermissionService;
 import com.fallframework.platform.starter.rbac.service.RoleService;
 import com.fallframework.platform.starter.rbac.service.UserService;
@@ -131,9 +131,9 @@ public class ShiroRealm extends AuthorizingRealm {
 		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 		simpleAuthorizationInfo.setRoles(roleSet);
 		// 用户权限集
-		List<RolePermissionResponse> permissionResponseList = permissionService.getPermissionListByUserId(id);
+		List<Permission> permissionResponseList = permissionService.getPermissionListByUserId(id);
 		Set<String> permissionSet = new HashSet<>();
-		for (RolePermissionResponse permission : permissionResponseList) {
+		for (Permission permission : permissionResponseList) {
 			permissionSet.add(permission.getPermissionCode());
 		}
 		simpleAuthorizationInfo.setStringPermissions(permissionSet);

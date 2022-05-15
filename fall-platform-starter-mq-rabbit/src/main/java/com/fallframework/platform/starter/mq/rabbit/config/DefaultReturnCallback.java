@@ -49,12 +49,12 @@ public class DefaultReturnCallback implements RabbitTemplate.ReturnCallback {
 		}
 		MqTraceLog mqTraceLogTmp = JSON.parseObject(msg, MqTraceLog.class);
 		// 更新该记录的状态
-		MqTraceLog mqTraceLog = mqTraceLogService.select(mqTraceLogTmp.getId()).getData();
+		MqTraceLog mqTraceLog = mqTraceLogService.getById(mqTraceLogTmp.getId());
 		if (null == mqTraceLog) {
 			LOGGER.error("mqTraceLog is not exist, id : {}", mqTraceLogTmp.getId());
 		}
 		mqTraceLog.setStage(StageEnum.DELIVER_QUEUE_FAIL);
-		mqTraceLogService.update(mqTraceLog);
+		mqTraceLogService.updateById(mqTraceLog);
 	}
 	
 }

@@ -1,6 +1,7 @@
 package com.fallframework.platform.starter.data.mp.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,7 @@ import java.util.Date;
  */
 @Getter
 @Setter
+@TableName(value = "base_entity")
 public class BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = -2019856722533574712L;
@@ -28,7 +30,7 @@ public class BaseEntity implements Serializable {
 	 */
 	@TableField(exist = false)
 	private String langCode;
-	
+
 	/**
 	 * 页码。系统默认：start from 1。
 	 */

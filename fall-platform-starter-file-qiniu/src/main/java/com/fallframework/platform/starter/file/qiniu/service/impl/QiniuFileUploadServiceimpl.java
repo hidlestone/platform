@@ -42,7 +42,7 @@ public class QiniuFileUploadServiceimpl implements QiniuFileUploadService {
 	 * 获取简单上传的凭证<br/>
 	 * 客户端（移动端或者Web端）上传文件的时候，需要从客户自己的业务服务器获取上传凭证，而这些上传凭证是通过服务端的SDK来生成的，然后通过客户自己的业务API分发给客户端使用。
 	 */
-	@Override
+//	@Override
 	public String getUploadToken() {
 		Auth auth = Auth.create(qiniuPropertyResource.getAccessKey(), qiniuPropertyResource.getSecretKey());
 		return auth.uploadToken(qiniuPropertyResource.getBucket());

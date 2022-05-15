@@ -10,7 +10,6 @@ import com.fallframework.platform.starter.core.constant.CoreContextConstant;
 import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;
 import com.fallframework.platform.starter.rbac.entity.User;
 import com.fallframework.platform.starter.rbac.model.TokenTypeEnum;
-import com.fallframework.platform.starter.shiro.constant.ShiroStarterConstant;
 import com.fallframework.platform.starter.shiro.custom.JWTToken;
 import com.fallframework.platform.starter.shiro.util.JWTUtil;
 import com.fallframework.platform.starter.shiro.util.ShiroUtil;

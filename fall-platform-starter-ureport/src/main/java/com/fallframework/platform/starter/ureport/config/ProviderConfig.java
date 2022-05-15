@@ -20,7 +20,7 @@ public class ProviderConfig {
 	/**
 	 * FTP 配置
 	 */
-	@Configuration
+	/*@Configuration
 	@ConditionalOnProperty(prefix = "ftp.factory", name = "enable", havingValue = "true")
 	@EnableConfigurationProperties(FTPProperties.class)
 	public static class FTPConfig {
@@ -47,5 +47,5 @@ public class ProviderConfig {
 			return new FTPProvider();
 		}
 
-	}
+	}*/
 }

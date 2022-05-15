@@ -1,32 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fallframework.platform.starter.data.mp.mapper.CommonMapper">
 
 	<!-- 基础字段过滤 -->
 	<sql id="Common_Column_Filter">
 		<if test="param2.createUserId != null">
-			AND createUserId = #{param2.createUserId,jdbcType=BIGINT}
+			AND createUserId =#{createUserId,jdbcType=BIGINT}
 		</if>
 		<if test="param2.modifyUserId != null">
-			AND modifyUserId = #{param2.modifyUserId,jdbcType=BIGINT}
+			AND modifyUserId =#{modifyUserId,jdbcType=BIGINT}
 		</if>
 		<if test="param2.gmtCreate != null">
-			AND gmtCreate = #{param2.gmtCreate,jdbcType=TIMESTAMP}
+			AND gmtCreate =#{gmtCreate,jdbcType=TIMESTAMP}
 		</if>
 		<if test="param2.gmtModified != null">
-			AND gmtModified = #{param2.gmtModified,jdbcType=TIMESTAMP}
+			AND gmtModified =#{gmtModified,jdbcType=TIMESTAMP}
 		</if>
 		<!-- 创建时间范围 -->
 		<if test="param2.gmtCreateStart != null">
-			AND gmtCreate &gt;= #{param2.gmtCreateStart, jdbcType=TIMESTAMP}
+			AND gmtCreate &gt;=#{gmtCreateStart, jdbcType=TIMESTAMP}
 		</if>
 		<if test="param2.createTimeEnd != null">
-			AND gmtCreate &lt;= #{param2.createTimeEnd, jdbcType=TIMESTAMP}
+			AND gmtCreate &lt;=#{createTimeEnd, jdbcType=TIMESTAMP}
 		</if>
 		<!-- 修改时间范围 -->
 		<if test="param2.gmtModifiedStart != null">
-			AND gmtModified &gt;= #{param2.gmtModifiedStart, jdbcType=TIMESTAMP}
+			AND gmtModified &gt;=#{gmtModifiedStart, jdbcType=TIMESTAMP}
 		</if>
 		<if test="param2.gmtModifiedEnd != null">
-			AND gmtModified &lt;= #{param2.gmtModifiedEnd, jdbcType=TIMESTAMP}
+			AND gmtModified &lt;=#{gmtModifiedEnd, jdbcType=TIMESTAMP}
 		</if>
 	</sql>
 

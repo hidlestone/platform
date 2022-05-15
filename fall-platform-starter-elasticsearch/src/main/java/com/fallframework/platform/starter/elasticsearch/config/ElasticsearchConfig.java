@@ -12,7 +12,7 @@ import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.common.unit.ByteSizeUnit;
 import org.elasticsearch.common.unit.ByteSizeValue;
 import org.elasticsearch.common.unit.TimeValue;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
+//import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,7 +47,7 @@ public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
 		return null;
 	}
 
-	@Bean
+	/*@Bean
 	public BulkProcessor bulkProcessor() throws UnknownHostException {
 		Settings settings = Settings.EMPTY;
 		if (!EmptyUtil.isEmpty(clusterName)) {
@@ -77,7 +77,7 @@ public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
 				.setConcurrentRequests(1)//设置并发请求数，如果是0，那表示只有一个请求就可以被执行，如果为1，则可以积累并被执行。默认为1.
 				.setBackoffPolicy(BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3))//这里有个backoff策略，最初等待100ms,然后按照指数增长并重试3次。每当一个或者多个bulk请求失败,并出现EsRejectedExecutionException异常时.就会尝试重试。这个异常表示用于处理请求的可用计算资源太少。如果要禁用这个backoff策略，需要用backoff.nobackoff()。
 				.build();
-	}
+	}*/
 	
 	@PostConstruct
 	void init() {
