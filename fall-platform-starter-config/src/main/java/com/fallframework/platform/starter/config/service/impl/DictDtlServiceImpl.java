@@ -3,7 +3,6 @@ package com.fallframework.platform.starter.config.service.impl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fallframework.platform.starter.api.response.ResponseResult;
-import com.fallframework.platform.starter.config.entity.Dict;
 import com.fallframework.platform.starter.config.entity.DictDtl;
 import com.fallframework.platform.starter.config.mapper.DictDtlMapper;
 import com.fallframework.platform.starter.config.service.DictDtlService;
@@ -19,16 +18,16 @@ public class DictDtlServiceImpl extends ServiceImpl<DictDtlMapper, DictDtl> impl
 	private DictDtlMapper dictDtlMapper;
 
 	@Override
+	public ResponseResult<List<DictDtl>> getDictDtlsByDictCode(String dictCode) {
+		List<DictDtl> dictDtls = dictDtlMapper.getDictDtlsByCode(dictCode);
+		return ResponseResult.success(dictDtls);
+	}
+
+	@Override
 	public ResponseResult<Page<DictDtl>> list(DictDtl dictDtl) {
 		Page<DictDtl> page = new Page<>(dictDtl.getPageNum(), dictDtl.getPageSize());
 		page = dictDtlMapper.list(page, dictDtl);
 		return ResponseResult.success(page);
-	}
-
-	@Override
-	public ResponseResult<List<DictDtl>> getDictDtlsByCode(Dict dict) {
-		List<DictDtl> dictDtls =  dictDtlMapper.getDictDtlsByCode(dict.getCode());
-		return ResponseResult.success(dictDtls);
 	}
 
 }
