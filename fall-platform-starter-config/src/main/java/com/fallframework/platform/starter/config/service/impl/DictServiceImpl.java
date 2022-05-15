@@ -28,9 +28,10 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 
 	@Override
 	public ResponseResult saveDict(Dict dict) {
-		// 字典项
+		// 保存字典项
 		save(dict);
 		dict.getDictDtls().forEach(e -> e.setDictId(dict.getId()));
+		// 保存字典明细
 		dictDtlService.saveBatch(dict.getDictDtls());
 		// 字典项词条
 		List<I18nResource> dictI18nResourceList = dict.getI18nResources();
