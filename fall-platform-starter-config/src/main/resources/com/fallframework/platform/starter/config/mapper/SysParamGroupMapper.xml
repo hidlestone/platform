@@ -21,6 +21,11 @@
         </collection>
     </resultMap>
 
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, code, `desc`, `status`, create_user_id, modify_user_id, gmt_create, gmt_modified
+    </sql>
+
     <select id="getAllSysParamGroup" resultMap="BaseResultMap">
         SELECT
             sgroup.id,
@@ -65,6 +70,11 @@
             <if test="param2.desc != null">
                 AND sgroup.`desc` LIKE CONCAT('%', #{param2.desc,jdbcType=VARCHAR}, '%')
             </if>
+            <if test="param2.status != null">
+                AND `status` = #{param2.status,jdbcType=TINYINT},
+            </if>
+            <!-- 基础字段过滤 -->
+            <include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
         </where>
         ORDER BY id DESC
     </select>

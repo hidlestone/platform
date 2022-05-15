@@ -25,11 +25,11 @@ public class BaseEntityResponse implements Serializable {
 	@ApiModelProperty("创建用户ID")
 	private Long modifyUserId;
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@ApiModelProperty("创建时间")
 	private Date gmtCreate;
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@ApiModelProperty("更改时间")
 	private Date gmtModified;
 
