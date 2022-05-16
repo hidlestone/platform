@@ -27,7 +27,7 @@ public class SysParamGroup extends BaseEntity {
 	/**
 	 * 系统参数组编码
 	 */
-	@TableId(value = "code")
+	@TableField(value = "code")
 	private String code;
 
 	/**

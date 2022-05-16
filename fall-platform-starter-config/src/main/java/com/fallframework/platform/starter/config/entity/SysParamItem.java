@@ -25,7 +25,7 @@ public class SysParamItem extends BaseEntity {
 	/**
 	 * 系统参数编码
 	 */
-	@TableId(value = "code")
+	@TableField(value = "code")
 	private String code;
 
 	/**
