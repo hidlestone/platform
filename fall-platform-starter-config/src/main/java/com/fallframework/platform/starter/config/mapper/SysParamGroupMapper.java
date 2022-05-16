@@ -10,5 +10,5 @@ public interface SysParamGroupMapper extends BaseMapper<SysParamGroup> {
 
 	List<SysParamGroup> getAllSysParamGroup();
 
-	Page<SysParamGroup> list(Page<SysParamGroup> page, SysParamGroup request);
+	Page<SysParamGroup> list(Page<SysParamGroup> page, SysParamGroup sysParamGroup);
 }
