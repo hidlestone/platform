@@ -129,7 +129,7 @@
 			<!-- 基础字段过滤 -->
 			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
 		</where>
-		ORDER BY id DESC
+		ORDER BY `order` ASC
 	</select>
 	
 	<select id="getAllMenusByUserId" resultMap="BaseResultMap">
@@ -153,6 +153,7 @@
 							user_id = #{userId,jdbcType=BIGINT}
 					)
 			)
+		ORDER BY `order` ASC
 	</select>
 	
 	<select id="getMenuTree" resultMap="TreeResultMap">

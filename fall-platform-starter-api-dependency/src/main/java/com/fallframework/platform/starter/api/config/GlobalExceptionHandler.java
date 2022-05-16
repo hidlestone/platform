@@ -24,6 +24,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(value = Exception.class)
 	@ResponseBody
 	public ResponseResult defaultErrorHandler(Exception e) {
+		e.printStackTrace();
 		if (e instanceof ConstraintViolationException) {
 			ConstraintViolationException constraintViolationException = (ConstraintViolationException) e;
 			String message = StringUtils.collectionToCommaDelimitedString(
