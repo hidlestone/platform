@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.mail.entity.MailSenderConfig;
 import com.fallframework.platform.starter.mail.mapper.MailSenderConfigMapper;
-import com.fallframework.platform.starter.mail.model.MailSenderConfigRequest;
 import com.fallframework.platform.starter.mail.service.MailSenderConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -3,6 +3,7 @@
 <mapper namespace="com.fallframework.platform.starter.config.mapper.SysParamItemMapper">
 	<resultMap id="BaseResultMap" type="com.fallframework.platform.starter.config.entity.SysParamItem">
 		<!--@mbg.generated-->
+		<id column="id" jdbcType="BIGINT" property="id"/>
 		<result column="code" jdbcType="VARCHAR" property="code"/>
 		<result column="value" jdbcType="VARCHAR" property="value"/>
 		<result column="encrypted_value" jdbcType="VARCHAR" property="encryptedValue"/>
@@ -30,22 +31,22 @@
 				id = #{param2.id,jdbcType=BIGINT},
 			</if>
 			<if test="param2.code != null">
-				AND code like CONCAT('%', #{code,jdbcType=VARCHAR}, '%')
+				AND code like CONCAT('%', #{param2.code,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.value != null">
-				AND `value` like CONCAT('%', #{value,jdbcType=VARCHAR}, '%')
+				AND `value` like CONCAT('%', #{param2.value,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.encryptedValue != null">
-				AND encrypted_value like CONCAT('%', #{encryptedValue,jdbcType=VARCHAR}, '%')
+				AND encrypted_value like CONCAT('%', #{param2.encryptedValue,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.desc != null">
-				AND `desc` like CONCAT('%', #{desc,jdbcType=VARCHAR}, '%')
+				AND `desc` like CONCAT('%', #{param2.desc,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.status != null">
-				AND `status` = #{status,jdbcType=TINYINT}
+				AND `status` = #{param2.status,jdbcType=TINYINT}
 			</if>
 			<if test="param2.groupCode != null">
-				AND groupCode like CONCAT('%', #{groupCode,jdbcType=VARCHAR}, '%')
+				AND group_code like CONCAT('%', #{param2.groupCode,jdbcType=VARCHAR}, '%')
 			</if>
 			<!-- 基础字段过滤 -->
 			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
