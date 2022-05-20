@@ -26,10 +26,10 @@ public class BaseEntity implements Serializable {
 	private static final long serialVersionUID = -2019856722533574712L;
 
 	/**
-	 * 多语言编码
+	 * 多语言编码，默认中文
 	 */
 	@TableField(exist = false)
-	private String langCode;
+	private String langCode = "zh_CN";
 
 	/**
 	 * 页码。系统默认：start from 1。

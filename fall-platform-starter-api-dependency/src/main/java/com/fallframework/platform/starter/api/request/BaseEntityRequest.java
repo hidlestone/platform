@@ -19,7 +19,7 @@ public class BaseEntityRequest implements Serializable {
 	private static final long serialVersionUID = -3908244974737701868L;
 
 	@ApiModelProperty(value = "多语言编码")
-	private String langCode;
+	private String langCode = "zh_CN";
 
 	@ApiModelProperty(value = "创建用户ID")
 	private Long createUserId;
