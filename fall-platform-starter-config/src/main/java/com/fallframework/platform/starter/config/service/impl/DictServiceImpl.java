@@ -52,4 +52,10 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 		return ResponseResult.success(page);
 	}
 
+	@Override
+	public ResponseResult<List<Dict>> getAllDicts() {
+		List<Dict> dicts = dictMapper.selectList(null);
+		return ResponseResult.success(dicts);
+	}
+
 }
