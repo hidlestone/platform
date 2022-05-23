@@ -32,6 +32,12 @@ public class Dict extends BaseEntity {
 	private String code;
 
 	/**
+	 * 字典值
+	 */
+	@TableField(value = "`value`")
+	private String value;
+
+	/**
 	 * 字典描述
 	 */
 	@TableField(value = "`desc`")

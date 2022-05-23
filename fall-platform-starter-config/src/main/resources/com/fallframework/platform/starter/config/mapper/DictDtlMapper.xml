@@ -14,7 +14,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		<!--@mbg.generated-->
-		id, dict_id, code, `desc`, `status`, create_user_id, modify_user_id, gmt_create, gmt_modified
+		id, dict_id, code, `value`, `desc`, `status`, create_user_id, modify_user_id, gmt_create, gmt_modified
 	</sql>
 
 	<select id="list" resultMap="BaseResultMap">
@@ -31,6 +31,9 @@
 			</if>
 			<if test="param2.code != null">
 				AND code like CONCAT('%', #{param2.code,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.value != null">
+				AND `value` like CONCAT('%', #{param2.value,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.desc != null">
 				AND `desc` LIKE CONCAT('%', #{param2.desc,jdbcType=VARCHAR}, '%')

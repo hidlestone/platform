@@ -38,6 +38,12 @@ public class DictDtl extends BaseEntity {
 	private String code;
 
 	/**
+	 * 明细值
+	 */
+	@TableField(value = "`value`")
+	private String value;
+	
+	/**
 	 * 明细描述
 	 */
 	@TableField(value = "`desc`")
