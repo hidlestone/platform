@@ -1,12 +1,12 @@
 package com.fallframework.platform.starter.activiti.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.fallframework.platform.starter.activiti.model.AssignTaskRequest;
-import com.fallframework.platform.starter.activiti.model.CompleteTaskRequest;
-import com.fallframework.platform.starter.activiti.model.PendingTaskRequest;
-import com.fallframework.platform.starter.activiti.model.RejectTaskRequest;
-import com.fallframework.platform.starter.activiti.model.TaskDetailResponse;
-import com.fallframework.platform.starter.activiti.model.TaskQueryRequest;
+import com.fallframework.platform.starter.activiti.model.AssignTaskDto;
+import com.fallframework.platform.starter.activiti.model.CompleteTaskDto;
+import com.fallframework.platform.starter.activiti.model.PendingTaskDto;
+import com.fallframework.platform.starter.activiti.model.RejectTaskDto;
+import com.fallframework.platform.starter.activiti.model.TaskDetailOutVo;
+import com.fallframework.platform.starter.activiti.model.TaskQueryDto;
 import com.fallframework.platform.starter.activiti.service.ActTaskService;
 import com.fallframework.platform.starter.activiti.service.cmd.DeleteTaskCmd;
 import com.fallframework.platform.starter.activiti.service.cmd.SetFLowNodeAndGoCmd;
@@ -49,7 +49,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 	private ManagementService managementService;
 
 	@Override
-	public ResponseResult<Leaf<Task>> getTaskList(TaskQueryRequest request) {
+	public ResponseResult<Leaf<Task>> getTaskList(TaskQueryDto request) {
 		TaskQuery taskQuery = taskService.createTaskQuery();
 		if (StringUtils.isNotEmpty(request.getTaskId())) {
 			taskQuery.taskId(request.getTaskId());
@@ -255,7 +255,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 	}
 
 	@Override
-	public ResponseResult<Leaf<Task>> getPendingTaskList(PendingTaskRequest request) {
+	public ResponseResult<Leaf<Task>> getPendingTaskList(PendingTaskDto request) {
 		// 查询条件
 		TaskQuery taskQuery = taskService.createTaskQuery();
 		if (StringUtils.isNotEmpty(request.getProcdefKey())) {
@@ -279,7 +279,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 	}
 
 	@Override
-	public ResponseResult completTask(CompleteTaskRequest request) {
+	public ResponseResult completTask(CompleteTaskDto request) {
 		Task task = taskService.createTaskQuery()
 				.taskId(request.getTaskId())
 				.taskAssignee(request.getAssignee()).singleResult();
@@ -293,7 +293,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 	}
 
 	@Override
-	public ResponseResult rejectTask(RejectTaskRequest request) {
+	public ResponseResult rejectTask(RejectTaskDto request) {
 		// 当前任务
 		Task currentTask = taskService.createTaskQuery().taskId(request.getTaskId()).singleResult();
 		// 获取流程定义
@@ -337,7 +337,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 	}
 
 	@Override
-	public ResponseResult assignTask(AssignTaskRequest request) {
+	public ResponseResult assignTask(AssignTaskDto request) {
 		taskService.claim(request.getTaskId(), request.getAssignee());
 		return ResponseResult.success();
 	}
@@ -351,7 +351,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 		List<FormProperty> formProperties = taskFormData.getFormProperties();
 		// 查询历史操作 TODO
 		// 返回的数据
-		TaskDetailResponse response = new TaskDetailResponse();
+		TaskDetailOutVo response = new TaskDetailOutVo();
 		response.setTask(task);
 		response.setFormProperties(formProperties);
 		return ResponseResult.success(response);

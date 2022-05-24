@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @ApiModel("查询历史任务实例查询参数")
-public class HistoricTaskInstanceQueryRequest extends BasePageRequest {
+public class HistoricTaskInstanceQueryDto extends BasePageRequest {
 
 	private static final long serialVersionUID = 896428922293078443L;
 

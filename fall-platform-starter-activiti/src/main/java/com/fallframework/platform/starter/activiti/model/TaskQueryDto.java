@@ -17,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @ApiModel("任务查询请求参数")
-public class TaskQueryRequest extends BasePageRequest {
+public class TaskQueryDto extends BasePageRequest {
 
 	private static final long serialVersionUID = 4495696399691684044L;
 

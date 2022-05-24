@@ -1,7 +1,7 @@
 package com.fallframework.platform.starter.activity;
 
 import com.fallframework.platform.starter.ActivitiApplication;
-import com.fallframework.platform.starter.activiti.model.ModelQueryRequest;
+import com.fallframework.platform.starter.activiti.model.ModelQueryDto;
 import com.fallframework.platform.starter.activiti.service.ActRepositoryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class ActRepositoryServiceTest {
 
 	@Test
 	public void getModelListTest() {
-		ModelQueryRequest request = new ModelQueryRequest();
+		ModelQueryDto request = new ModelQueryDto();
 		request.setPageNum(1);
 		request.setPageSize(2);
 		request.setNameLike("modelertest-01");

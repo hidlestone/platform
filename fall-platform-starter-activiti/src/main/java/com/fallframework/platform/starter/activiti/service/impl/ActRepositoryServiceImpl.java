@@ -1,8 +1,8 @@
 package com.fallframework.platform.starter.activiti.service.impl;
 
-import com.fallframework.platform.starter.activiti.model.ModelQueryRequest;
-import com.fallframework.platform.starter.activiti.model.ProcessDefinitionQueryRequest;
-import com.fallframework.platform.starter.activiti.model.StartProcessResponse;
+import com.fallframework.platform.starter.activiti.model.ModelQueryDto;
+import com.fallframework.platform.starter.activiti.model.ProcessDefinitionQueryDto;
+import com.fallframework.platform.starter.activiti.model.StartProcessOutVo;
 import com.fallframework.platform.starter.activiti.service.ActRepositoryService;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
@@ -104,7 +104,7 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 	}
 
 	@Override
-	public ResponseResult<Leaf<ProcessDefinition>> getProcessDefinitionList(ProcessDefinitionQueryRequest request) {
+	public ResponseResult<Leaf<ProcessDefinition>> getProcessDefinitionList(ProcessDefinitionQueryDto request) {
 		// 查询对象
 		ProcessDefinitionQuery definitionQuery = repositoryService.createProcessDefinitionQuery();
 		// 查询条件
@@ -281,7 +281,7 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 	}
 
 	@Override
-	public ResponseResult<Leaf<Model>> getModelList(ModelQueryRequest request) {
+	public ResponseResult<Leaf<Model>> getModelList(ModelQueryDto request) {
 		// 查询条件
 		ModelQuery modelQuery = repositoryService.createModelQuery();
 		if (StringUtils.isNotEmpty(request.getId())) {
@@ -363,11 +363,11 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 	}
 
 	@Override
-	public ResponseResult<StartProcessResponse> startProcessInfo(String procDefId) {
+	public ResponseResult<StartProcessOutVo> startProcessInfo(String procDefId) {
 		// 按照流程定义ID加载流程开启时候需要的表单信息
 		StartFormData startFormData = formService.getStartFormData(procDefId);
 		List<FormProperty> formProperties = startFormData.getFormProperties();
-		StartProcessResponse response = new StartProcessResponse(procDefId, formProperties);
+		StartProcessOutVo response = new StartProcessOutVo(procDefId, formProperties);
 		return ResponseResult.success(response);
 	}
 

@@ -14,7 +14,7 @@ import org.activiti.engine.identity.User;
 @Getter
 @Setter
 @ApiModel("保存用户&用户组请求参数")
-public class SaveUserAndGroupRequest extends BaseEntityRequest {
+public class SaveUserAndGroupDto extends BaseEntityRequest {
 
 	private static final long serialVersionUID = 8444116516188293125L;
 

@@ -1,8 +1,8 @@
 package com.fallframework.platform.starter.activiti.service;
 
-import com.fallframework.platform.starter.activiti.model.ModelQueryRequest;
-import com.fallframework.platform.starter.activiti.model.ProcessDefinitionQueryRequest;
-import com.fallframework.platform.starter.activiti.model.StartProcessResponse;
+import com.fallframework.platform.starter.activiti.model.ModelQueryDto;
+import com.fallframework.platform.starter.activiti.model.ProcessDefinitionQueryDto;
+import com.fallframework.platform.starter.activiti.model.StartProcessOutVo;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import org.activiti.bpmn.model.BpmnModel;
@@ -83,7 +83,7 @@ public interface ActRepositoryService {
 	 * @param request 请求参数
 	 * @return 流程定义分页
 	 */
-	ResponseResult<Leaf<ProcessDefinition>> getProcessDefinitionList(ProcessDefinitionQueryRequest request);
+	ResponseResult<Leaf<ProcessDefinition>> getProcessDefinitionList(ProcessDefinitionQueryDto request);
 
 	/**
 	 * 下载资源文件
@@ -99,7 +99,7 @@ public interface ActRepositoryService {
 	 * @param request 请求参数
 	 * @return 模型分页
 	 */
-	ResponseResult<Leaf<Model>> getModelList(ModelQueryRequest request);
+	ResponseResult<Leaf<Model>> getModelList(ModelQueryDto request);
 
 	/**
 	 * 根据已设计好的模型进行部署
@@ -115,7 +115,7 @@ public interface ActRepositoryService {
 	 * @param procDefId 流程定义ID
 	 * @return 开启流程所需信息
 	 */
-	ResponseResult<StartProcessResponse> startProcessInfo(String procDefId);
+	ResponseResult<StartProcessOutVo> startProcessInfo(String procDefId);
 
 	/**
 	 * 删除流程实例（未部署model）

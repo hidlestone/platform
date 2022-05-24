@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ApiModel("流程信息请求参数")
-public class ProcessDefinitionQueryRequest extends BasePageRequest {
+public class ProcessDefinitionQueryDto extends BasePageRequest {
 
 	private static final long serialVersionUID = 1968146285061897822L;
 

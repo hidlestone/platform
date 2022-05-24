@@ -1,8 +1,8 @@
 package com.fallframework.platform.starter.activiti.service.impl;
 
-import com.fallframework.platform.starter.activiti.model.GroupQueryRequest;
-import com.fallframework.platform.starter.activiti.model.SaveUserAndGroupRequest;
-import com.fallframework.platform.starter.activiti.model.UserQueryRequest;
+import com.fallframework.platform.starter.activiti.model.GroupQueryDto;
+import com.fallframework.platform.starter.activiti.model.SaveUserAndGroupDto;
+import com.fallframework.platform.starter.activiti.model.UserQueryDto;
 import com.fallframework.platform.starter.activiti.service.ActIdentityService;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
@@ -45,7 +45,7 @@ public class ActIdentityServiceImpl implements ActIdentityService {
 	}
 
 	@Override
-	public ResponseResult<Leaf<User>> getUserList(UserQueryRequest request) {
+	public ResponseResult<Leaf<User>> getUserList(UserQueryDto request) {
 		UserQuery userQuery = identityService.createUserQuery();
 		if (StringUtils.isNotEmpty(request.getId())) {
 			userQuery.userId(request.getId());
@@ -102,7 +102,7 @@ public class ActIdentityServiceImpl implements ActIdentityService {
 	}
 
 	@Override
-	public ResponseResult<Leaf<Group>> getGroupList(GroupQueryRequest request) {
+	public ResponseResult<Leaf<Group>> getGroupList(GroupQueryDto request) {
 		GroupQuery groupQuery = identityService.createGroupQuery();
 		if (StringUtils.isNotEmpty(request.getId())) {
 			groupQuery.groupId(request.getId());
@@ -132,7 +132,7 @@ public class ActIdentityServiceImpl implements ActIdentityService {
 	}
 
 	@Override
-	public ResponseResult saveUserAndGroup(SaveUserAndGroupRequest request) {
+	public ResponseResult saveUserAndGroup(SaveUserAndGroupDto request) {
 		User user = request.getUser();
 		Group group = request.getGroup();
 		saveUser(user);

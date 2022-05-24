@@ -14,7 +14,7 @@ import java.util.Map;
 @Getter
 @Setter
 @ApiModel("启动流程示例请求参数")
-public class StartProcessInstanceRequest extends BaseEntityRequest {
+public class StartProcessInstanceDto extends BaseEntityRequest {
 
 	private static final long serialVersionUID = 7366724410184806061L;
 

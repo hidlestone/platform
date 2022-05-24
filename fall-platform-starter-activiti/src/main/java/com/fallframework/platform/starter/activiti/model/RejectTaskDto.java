@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ApiModel("拒绝任务请求参数")
-public class RejectTaskRequest extends BaseEntityRequest {
+public class RejectTaskDto extends BaseEntityRequest {
 
 	private static final long serialVersionUID = 1275766839004806991L;
 

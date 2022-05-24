@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ApiModel("历史活动实例查询参数")
-public class HistoricActivityInstanceQueryRequest extends BasePageRequest {
+public class HistoricActivityInstanceQueryDto extends BasePageRequest {
 
 	private static final long serialVersionUID = -8180935181416520683L;
 

@@ -16,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @ApiModel("已启动任务的历史活动信息")
-public class HistoricActivityResponse extends BaseEntityResponse {
+public class HistoricActivityOutVo extends BaseEntityResponse {
 
 	private static final long serialVersionUID = 4053769524668851272L;
 

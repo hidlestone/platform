@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.activiti.service.impl;
 
-import com.fallframework.platform.starter.activiti.model.StartProcessInstanceRequest;
+import com.fallframework.platform.starter.activiti.model.StartProcessInstanceDto;
 import com.fallframework.platform.starter.activiti.service.ActRuntimeService;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import org.activiti.engine.RuntimeService;
@@ -27,7 +27,7 @@ public class ActRuntimeServiceImpl implements ActRuntimeService {
 	 * 通过key启动的流程就是当前key下最新版本的流程。
 	 */
 	@Override
-	public ResponseResult startProcessInstance(StartProcessInstanceRequest request) {
+	public ResponseResult startProcessInstance(StartProcessInstanceDto request) {
 		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(request.getProcessDefinitionKey(), request.getVariables());
 		LOGGER.debug(String.format("startProcessInstance : id:%s, activitiId:%s", processInstance.getId(), processInstance.getActivityId()));
 		if (null == processInstance) {

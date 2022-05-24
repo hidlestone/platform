@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ApiModel("用户组查询请求参数")
-public class GroupQueryRequest extends BasePageRequest {
+public class GroupQueryDto extends BasePageRequest {
 
 	private static final long serialVersionUID = 948470878650186549L;
 

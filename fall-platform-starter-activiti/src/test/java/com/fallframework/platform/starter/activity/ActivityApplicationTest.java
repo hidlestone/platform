@@ -1,22 +1,19 @@
 package com.fallframework.platform.starter.activity;
 
 import com.fallframework.platform.starter.ActivitiApplication;
-import com.fallframework.platform.starter.activiti.model.PendingTaskRequest;
+import com.fallframework.platform.starter.activiti.model.PendingTaskDto;
 import com.fallframework.platform.starter.activiti.model.TaskResponse;
 import com.fallframework.platform.starter.activiti.service.ActTaskService;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
-import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * 测试类
@@ -45,7 +42,7 @@ public class ActivityApplicationTest {
 
 	@Test
 	public void testGetPendingTaskList() {
-		PendingTaskRequest request = new PendingTaskRequest();
+		PendingTaskDto request = new PendingTaskDto();
 		request.setAssignee("admin");
 //		request.setProcdefKey("TestProcess-01");
 		request.setPageNum(2);

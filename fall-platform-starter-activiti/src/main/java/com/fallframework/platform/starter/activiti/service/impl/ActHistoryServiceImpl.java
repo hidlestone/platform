@@ -1,8 +1,8 @@
 package com.fallframework.platform.starter.activiti.service.impl;
 
-import com.fallframework.platform.starter.activiti.model.HistoricActivityInstanceQueryRequest;
-import com.fallframework.platform.starter.activiti.model.HistoricActivityResponse;
-import com.fallframework.platform.starter.activiti.model.HistoricTaskInstanceQueryRequest;
+import com.fallframework.platform.starter.activiti.model.HistoricActivityInstanceQueryDto;
+import com.fallframework.platform.starter.activiti.model.HistoricActivityOutVo;
+import com.fallframework.platform.starter.activiti.model.HistoricTaskInstanceQueryDto;
 import com.fallframework.platform.starter.activiti.service.ActHistoryService;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
@@ -50,7 +50,7 @@ public class ActHistoryServiceImpl implements ActHistoryService {
 	private ProcessEngineConfiguration processEngineConfiguration;
 
 	@Override
-	public ResponseResult<Leaf<HistoricActivityResponse>> getHistoricActivityList(HistoricActivityInstanceQueryRequest request) {
+	public ResponseResult<Leaf<HistoricActivityOutVo>> getHistoricActivityList(HistoricActivityInstanceQueryDto request) {
 		HistoricActivityInstanceQuery historicActivityInstanceQuery = historyService.createHistoricActivityInstanceQuery();
 		if (StringUtils.isNotEmpty(request.getActivityInstanceId())) {
 			historicActivityInstanceQuery.activityInstanceId(request.getActivityInstanceId());
@@ -101,21 +101,21 @@ public class ActHistoryServiceImpl implements ActHistoryService {
 		// 历史活动实例
 		List<HistoricActivityInstance> historicActivityInstanceList =
 				historicActivityInstanceQuery.listPage(request.firstRowNum(), request.getPageSize());
-		List<HistoricActivityResponse> resultList = new ArrayList<>();
+		List<HistoricActivityOutVo> resultList = new ArrayList<>();
 		// 获取明细信息
 		for (HistoricActivityInstance activity : historicActivityInstanceList) {
-			HistoricActivityResponse response = new HistoricActivityResponse();
+			HistoricActivityOutVo response = new HistoricActivityOutVo();
 			response.setHistoricActivityInstance(activity);
 			List<HistoricDetail> historicDetailList = historyService.createHistoricDetailQuery().activityInstanceId(activity.getProcessInstanceId()).list();
 			response.setHistoricDetailList(historicDetailList);
 			resultList.add(response);
 		}
-		Leaf<HistoricActivityResponse> leaf = new Leaf<>(resultList, toatal, request);
+		Leaf<HistoricActivityOutVo> leaf = new Leaf<>(resultList, toatal, request);
 		return ResponseResult.success(leaf);
 	}
 
 	@Override
-	public ResponseResult<Leaf<HistoricTaskInstance>> getHistoricTaskInstanceList(HistoricTaskInstanceQueryRequest request) {
+	public ResponseResult<Leaf<HistoricTaskInstance>> getHistoricTaskInstanceList(HistoricTaskInstanceQueryDto request) {
 		// 查询条件
 		HistoricTaskInstanceQuery historicTaskInstanceQuery = historyService.createHistoricTaskInstanceQuery();
 		if (StringUtils.isNotEmpty(request.getProcessDefinitionId())) {

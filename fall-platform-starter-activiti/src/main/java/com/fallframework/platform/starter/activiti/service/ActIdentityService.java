@@ -1,8 +1,8 @@
 package com.fallframework.platform.starter.activiti.service;
 
-import com.fallframework.platform.starter.activiti.model.GroupQueryRequest;
-import com.fallframework.platform.starter.activiti.model.SaveUserAndGroupRequest;
-import com.fallframework.platform.starter.activiti.model.UserQueryRequest;
+import com.fallframework.platform.starter.activiti.model.GroupQueryDto;
+import com.fallframework.platform.starter.activiti.model.SaveUserAndGroupDto;
+import com.fallframework.platform.starter.activiti.model.UserQueryDto;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import org.activiti.engine.identity.Group;
@@ -45,7 +45,7 @@ public interface ActIdentityService {
 	 * @param request 请求参数
 	 * @return 用户分页
 	 */
-	ResponseResult<Leaf<User>> getUserList(UserQueryRequest request);
+	ResponseResult<Leaf<User>> getUserList(UserQueryDto request);
 
 	/**
 	 * 添加组（角色）
@@ -77,7 +77,7 @@ public interface ActIdentityService {
 	 * @param request 请求参数
 	 * @return 用户组分页
 	 */
-	ResponseResult<Leaf<Group>> getGroupList(GroupQueryRequest request);
+	ResponseResult<Leaf<Group>> getGroupList(GroupQueryDto request);
 
 	/**
 	 * 保存用户和用户组之间的关系
@@ -94,6 +94,6 @@ public interface ActIdentityService {
 	 * @param request 请求参数
 	 * @return 是否保存成功
 	 */
-	ResponseResult saveUserAndGroup(SaveUserAndGroupRequest request);
+	ResponseResult saveUserAndGroup(SaveUserAndGroupDto request);
 
 }

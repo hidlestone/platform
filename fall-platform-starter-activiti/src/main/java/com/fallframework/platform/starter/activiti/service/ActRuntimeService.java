@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.activiti.service;
 
-import com.fallframework.platform.starter.activiti.model.StartProcessInstanceRequest;
+import com.fallframework.platform.starter.activiti.model.StartProcessInstanceDto;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 
 public interface ActRuntimeService {
@@ -11,7 +11,7 @@ public interface ActRuntimeService {
 	 * @param request 请求参数
 	 * @return 是否启动成功
 	 */
-	ResponseResult startProcessInstance(StartProcessInstanceRequest request);
+	ResponseResult startProcessInstance(StartProcessInstanceDto request);
 
 	/**
 	 * 查询流程实例是否已经结束

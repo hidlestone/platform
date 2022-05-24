@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ApiModel("待处理任务查询请求参数")
-public class PendingTaskRequest extends BasePageRequest {
+public class PendingTaskDto extends BasePageRequest {
 
 	private static final long serialVersionUID = -8319995691866984757L;
 

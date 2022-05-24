@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.activiti.engine.form.FormProperty;
+import org.activiti.engine.task.Task;
 
 import java.util.List;
 
@@ -14,20 +15,15 @@ import java.util.List;
  */
 @Getter
 @Setter
-@ApiModel("跳转流程开启页携带的表单信息")
-public class StartProcessResponse extends BaseEntityResponse {
+@ApiModel("任务详细信息")
+public class TaskDetailOutVo extends BaseEntityResponse {
 
-	private static final long serialVersionUID = 7307907859920703125L;
+	private static final long serialVersionUID = 4741799794566009527L;
 
-	@ApiModelProperty("流程定义ID")
-	private String procDefId;
+	@ApiModelProperty("任务")
+	private Task task;
 
 	@ApiModelProperty("表单信息")
 	private List<FormProperty> formProperties;
 
-	public StartProcessResponse(String procDefId, List<FormProperty> formProperties) {
-		this.procDefId = procDefId;
-		this.formProperties = formProperties;
-	}
-	
 }
