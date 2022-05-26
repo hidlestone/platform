@@ -80,10 +80,10 @@ public interface ActRepositoryService {
 	/**
 	 * 分页查询((模型)已部署)流程定义列表
 	 *
-	 * @param request 请求参数
+	 * @param dto 请求参数
 	 * @return 流程定义分页
 	 */
-	ResponseResult<Leaf<ProcessDefinition>> getProcessDefinitionList(ProcessDefinitionQueryDto request);
+	ResponseResult<Leaf<ProcessDefinition>> getProcessDefinitionList(ProcessDefinitionQueryDto dto);
 
 	/**
 	 * 下载资源文件
@@ -96,10 +96,10 @@ public interface ActRepositoryService {
 	/**
 	 * 分页查询模型列表
 	 *
-	 * @param request 请求参数
+	 * @param dto 请求参数
 	 * @return 模型分页
 	 */
-	ResponseResult<Leaf<Model>> getModelList(ModelQueryDto request);
+	ResponseResult<Leaf<Model>> getModelList(ModelQueryDto dto);
 
 	/**
 	 * 根据已设计好的模型进行部署

@@ -14,42 +14,42 @@ public interface ActTaskService {
 	/**
 	 * 分页查询任务
 	 *
-	 * @param request 请求参数
+	 * @param dto 请求参数
 	 * @return 任务列表分页
 	 */
-	ResponseResult<Leaf<Task>> getTaskList(TaskQueryDto request);
+	ResponseResult<Leaf<Task>> getTaskList(TaskQueryDto dto);
 
 	/**
 	 * 查询用户待处理任务列表
 	 *
-	 * @param request 请求参数
+	 * @param dto 请求参数
 	 * @return 待处理任务列表
 	 */
-	ResponseResult<Leaf<Task>> getPendingTaskList(PendingTaskDto request);
+	ResponseResult<Leaf<Task>> getPendingTaskList(PendingTaskDto dto);
 
 	/**
 	 * 完成任务
 	 *
-	 * @param request 请求参数
+	 * @param dto 请求参数
 	 * @return 是否成功
 	 */
-	ResponseResult completTask(CompleteTaskDto request);
+	ResponseResult completTask(CompleteTaskDto dto);
 
 	/**
 	 * 任务驳回
 	 *
-	 * @param request 请求参数
+	 * @param dto 请求参数
 	 * @return 是否成功
 	 */
-	ResponseResult rejectTask(RejectTaskDto request);
+	ResponseResult rejectTask(RejectTaskDto dto);
 
 	/**
 	 * 指派任务
 	 *
-	 * @param request 请求参数
+	 * @param dto 请求参数
 	 * @return 是否成功
 	 */
-	ResponseResult assignTask(AssignTaskDto request);
+	ResponseResult assignTask(AssignTaskDto dto);
 
 	/**
 	 * 获取任务详细信息

@@ -27,8 +27,8 @@ public class ActRuntimeServiceImpl implements ActRuntimeService {
 	 * 通过key启动的流程就是当前key下最新版本的流程。
 	 */
 	@Override
-	public ResponseResult startProcessInstance(StartProcessInstanceDto request) {
-		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(request.getProcessDefinitionKey(), request.getVariables());
+	public ResponseResult startProcessInstance(StartProcessInstanceDto dto) {
+		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(dto.getProcessDefinitionKey(), dto.getVariables());
 		LOGGER.debug(String.format("startProcessInstance : id:%s, activitiId:%s", processInstance.getId(), processInstance.getActivityId()));
 		if (null == processInstance) {
 			return ResponseResult.fail();

@@ -8,10 +8,10 @@ public interface ActRuntimeService {
 	/**
 	 * 启动流程实例
 	 *
-	 * @param request 请求参数
+	 * @param dto 请求参数
 	 * @return 是否启动成功
 	 */
-	ResponseResult startProcessInstance(StartProcessInstanceDto request);
+	ResponseResult startProcessInstance(StartProcessInstanceDto dto);
 
 	/**
 	 * 查询流程实例是否已经结束

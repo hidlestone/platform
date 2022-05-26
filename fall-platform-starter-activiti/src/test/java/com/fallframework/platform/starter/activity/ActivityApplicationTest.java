@@ -2,7 +2,6 @@ package com.fallframework.platform.starter.activity;
 
 import com.fallframework.platform.starter.ActivitiApplication;
 import com.fallframework.platform.starter.activiti.model.PendingTaskDto;
-import com.fallframework.platform.starter.activiti.model.TaskResponse;
 import com.fallframework.platform.starter.activiti.service.ActTaskService;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;

@@ -49,240 +49,240 @@ public class ActTaskServiceImpl implements ActTaskService {
 	private ManagementService managementService;
 
 	@Override
-	public ResponseResult<Leaf<Task>> getTaskList(TaskQueryDto request) {
+	public ResponseResult<Leaf<Task>> getTaskList(TaskQueryDto dto) {
 		TaskQuery taskQuery = taskService.createTaskQuery();
-		if (StringUtils.isNotEmpty(request.getTaskId())) {
-			taskQuery.taskId(request.getTaskId());
+		if (StringUtils.isNotEmpty(dto.getTaskId())) {
+			taskQuery.taskId(dto.getTaskId());
 		}
-		if (StringUtils.isNotEmpty(request.getName())) {
-			taskQuery.taskName(request.getName());
+		if (StringUtils.isNotEmpty(dto.getName())) {
+			taskQuery.taskName(dto.getName());
 		}
-		if (StringUtils.isNotEmpty(request.getNameLike())) {
-			taskQuery.taskNameLike(request.getNameLike());
+		if (StringUtils.isNotEmpty(dto.getNameLike())) {
+			taskQuery.taskNameLike(dto.getNameLike());
 		}
-		if (StringUtils.isNotEmpty(request.getNameLikeIgnoreCase())) {
-			taskQuery.taskNameLikeIgnoreCase(request.getNameLikeIgnoreCase());
+		if (StringUtils.isNotEmpty(dto.getNameLikeIgnoreCase())) {
+			taskQuery.taskNameLikeIgnoreCase(dto.getNameLikeIgnoreCase());
 		}
-		if (CollectionUtil.isNotEmpty(request.getNameList())) {
-			taskQuery.taskNameIn(request.getNameList());
+		if (CollectionUtil.isNotEmpty(dto.getNameList())) {
+			taskQuery.taskNameIn(dto.getNameList());
 		}
-		if (CollectionUtil.isNotEmpty(request.getNameListIgnoreCase())) {
-			taskQuery.taskNameInIgnoreCase(request.getNameListIgnoreCase());
+		if (CollectionUtil.isNotEmpty(dto.getNameListIgnoreCase())) {
+			taskQuery.taskNameInIgnoreCase(dto.getNameListIgnoreCase());
 		}
-		if (StringUtils.isNotEmpty(request.getDescription())) {
-			taskQuery.taskDescription(request.getDescription());
+		if (StringUtils.isNotEmpty(dto.getDescription())) {
+			taskQuery.taskDescription(dto.getDescription());
 		}
-		if (StringUtils.isNotEmpty(request.getDescriptionLike())) {
-			taskQuery.taskDescriptionLike(request.getDescriptionLike());
+		if (StringUtils.isNotEmpty(dto.getDescriptionLike())) {
+			taskQuery.taskDescriptionLike(dto.getDescriptionLike());
 		}
-		if (StringUtils.isNotEmpty(request.getDescriptionLikeIgnoreCase())) {
-			taskQuery.taskDescriptionLikeIgnoreCase(request.getDescriptionLikeIgnoreCase());
+		if (StringUtils.isNotEmpty(dto.getDescriptionLikeIgnoreCase())) {
+			taskQuery.taskDescriptionLikeIgnoreCase(dto.getDescriptionLikeIgnoreCase());
 		}
-		if (null != request.getPriority()) {
-			taskQuery.taskPriority(request.getPriority());
+		if (null != dto.getPriority()) {
+			taskQuery.taskPriority(dto.getPriority());
 		}
-		if (null != request.getMinPriority()) {
-			taskQuery.taskMinPriority(request.getMinPriority());
+		if (null != dto.getMinPriority()) {
+			taskQuery.taskMinPriority(dto.getMinPriority());
 		}
-		if (null != request.getMaxPriority()) {
-			taskQuery.taskMaxPriority(request.getMaxPriority());
+		if (null != dto.getMaxPriority()) {
+			taskQuery.taskMaxPriority(dto.getMaxPriority());
 		}
-		if (StringUtils.isNotEmpty(request.getAssignee())) {
-			taskQuery.taskAssignee(request.getAssignee());
+		if (StringUtils.isNotEmpty(dto.getAssignee())) {
+			taskQuery.taskAssignee(dto.getAssignee());
 		}
-		if (StringUtils.isNotEmpty(request.getAssigneeLike())) {
-			taskQuery.taskAssigneeLike(request.getAssigneeLike());
+		if (StringUtils.isNotEmpty(dto.getAssigneeLike())) {
+			taskQuery.taskAssigneeLike(dto.getAssigneeLike());
 		}
-		if (StringUtils.isNotEmpty(request.getAssigneeLikeIgnoreCase())) {
-			taskQuery.taskAssigneeLikeIgnoreCase(request.getAssigneeLikeIgnoreCase());
+		if (StringUtils.isNotEmpty(dto.getAssigneeLikeIgnoreCase())) {
+			taskQuery.taskAssigneeLikeIgnoreCase(dto.getAssigneeLikeIgnoreCase());
 		}
-		if (CollectionUtil.isNotEmpty(request.getAssigneeIds())) {
-			taskQuery.taskAssigneeIds(request.getAssigneeIds());
+		if (CollectionUtil.isNotEmpty(dto.getAssigneeIds())) {
+			taskQuery.taskAssigneeIds(dto.getAssigneeIds());
 		}
-		if (StringUtils.isNotEmpty(request.getInvolvedUser())) {
-			taskQuery.taskInvolvedUser(request.getInvolvedUser());
+		if (StringUtils.isNotEmpty(dto.getInvolvedUser())) {
+			taskQuery.taskInvolvedUser(dto.getInvolvedUser());
 		}
-		if (CollectionUtil.isNotEmpty(request.getInvolvedGroups())) {
-			taskQuery.taskInvolvedGroupsIn(request.getInvolvedGroups());
+		if (CollectionUtil.isNotEmpty(dto.getInvolvedGroups())) {
+			taskQuery.taskInvolvedGroupsIn(dto.getInvolvedGroups());
 		}
-		if (StringUtils.isNotEmpty(request.getOwner())) {
-			taskQuery.taskOwner(request.getOwner());
+		if (StringUtils.isNotEmpty(dto.getOwner())) {
+			taskQuery.taskOwner(dto.getOwner());
 		}
-		if (StringUtils.isNotEmpty(request.getOwnerLike())) {
-			taskQuery.taskOwnerLike(request.getOwnerLike());
+		if (StringUtils.isNotEmpty(dto.getOwnerLike())) {
+			taskQuery.taskOwnerLike(dto.getOwnerLike());
 		}
-		if (StringUtils.isNotEmpty(request.getOwnerLikeIgnoreCase())) {
-			taskQuery.taskOwnerLikeIgnoreCase(request.getOwnerLikeIgnoreCase());
+		if (StringUtils.isNotEmpty(dto.getOwnerLikeIgnoreCase())) {
+			taskQuery.taskOwnerLikeIgnoreCase(dto.getOwnerLikeIgnoreCase());
 		}
-		if (request.getUnassigned()) {
+		if (dto.getUnassigned()) {
 			taskQuery.taskUnassigned();
 		}
-		if (null != request.getDelegationState()) {
-			taskQuery.taskDelegationState(request.getDelegationState());
+		if (null != dto.getDelegationState()) {
+			taskQuery.taskDelegationState(dto.getDelegationState());
 		}
-		if (StringUtils.isNotEmpty(request.getCandidateUser())) {
-			taskQuery.taskCandidateUser(request.getCandidateUser());
+		if (StringUtils.isNotEmpty(dto.getCandidateUser())) {
+			taskQuery.taskCandidateUser(dto.getCandidateUser());
 		}
-		if (StringUtils.isNotEmpty(request.getCandidateGroup())) {
-			taskQuery.taskCandidateGroup(request.getCandidateGroup());
+		if (StringUtils.isNotEmpty(dto.getCandidateGroup())) {
+			taskQuery.taskCandidateGroup(dto.getCandidateGroup());
 		}
-		if (CollectionUtil.isNotEmpty(request.getCandidateGroups())) {
-			taskQuery.taskCandidateGroupIn(request.getCandidateGroups());
+		if (CollectionUtil.isNotEmpty(dto.getCandidateGroups())) {
+			taskQuery.taskCandidateGroupIn(dto.getCandidateGroups());
 		}
-		if (StringUtils.isNotEmpty(request.getTenantId())) {
-			taskQuery.taskTenantId(request.getTenantId());
+		if (StringUtils.isNotEmpty(dto.getTenantId())) {
+			taskQuery.taskTenantId(dto.getTenantId());
 		}
-		if (StringUtils.isNotEmpty(request.getTenantIdLike())) {
-			taskQuery.taskTenantIdLike(request.getTenantIdLike());
+		if (StringUtils.isNotEmpty(dto.getTenantIdLike())) {
+			taskQuery.taskTenantIdLike(dto.getTenantIdLike());
 		}
-		if (request.getWithoutTenantId()) {
+		if (dto.getWithoutTenantId()) {
 			taskQuery.taskWithoutTenantId();
 		}
-		if (StringUtils.isNotEmpty(request.getProcessInstanceId())) {
-			taskQuery.processInstanceId(request.getProcessInstanceId());
+		if (StringUtils.isNotEmpty(dto.getProcessInstanceId())) {
+			taskQuery.processInstanceId(dto.getProcessInstanceId());
 		}
-		if (CollectionUtil.isNotEmpty(request.getProcessInstanceIds())) {
-			taskQuery.processInstanceIdIn(request.getProcessInstanceIds());
+		if (CollectionUtil.isNotEmpty(dto.getProcessInstanceIds())) {
+			taskQuery.processInstanceIdIn(dto.getProcessInstanceIds());
 		}
-		if (StringUtils.isNotEmpty(request.getExecutionId())) {
-			taskQuery.executionId(request.getExecutionId());
+		if (StringUtils.isNotEmpty(dto.getExecutionId())) {
+			taskQuery.executionId(dto.getExecutionId());
 		}
-		if (null != request.getCreateTime()) {
-			taskQuery.taskCreatedOn(request.getCreateTime());
+		if (null != dto.getCreateTime()) {
+			taskQuery.taskCreatedOn(dto.getCreateTime());
 		}
-		if (null != request.getCreateTimeBefore()) {
-			taskQuery.taskCreatedBefore(request.getCreateTimeBefore());
+		if (null != dto.getCreateTimeBefore()) {
+			taskQuery.taskCreatedBefore(dto.getCreateTimeBefore());
 		}
-		if (null != request.getCreateTimeAfter()) {
-			taskQuery.taskCreatedAfter(request.getCreateTimeAfter());
+		if (null != dto.getCreateTimeAfter()) {
+			taskQuery.taskCreatedAfter(dto.getCreateTimeAfter());
 		}
-		if (StringUtils.isNotEmpty(request.getCategory())) {
-			taskQuery.taskCategory(request.getCategory());
+		if (StringUtils.isNotEmpty(dto.getCategory())) {
+			taskQuery.taskCategory(dto.getCategory());
 		}
-		if (StringUtils.isNotEmpty(request.getKey())) {
-			taskQuery.taskDefinitionKey(request.getKey());
+		if (StringUtils.isNotEmpty(dto.getKey())) {
+			taskQuery.taskDefinitionKey(dto.getKey());
 		}
-		if (StringUtils.isNotEmpty(request.getKeyLike())) {
-			taskQuery.taskDefinitionKeyLike(request.getKeyLike());
+		if (StringUtils.isNotEmpty(dto.getKeyLike())) {
+			taskQuery.taskDefinitionKeyLike(dto.getKeyLike());
 		}
-		if (StringUtils.isNotEmpty(request.getProcessDefinitionKey())) {
-			taskQuery.processDefinitionKey(request.getProcessDefinitionKey());
+		if (StringUtils.isNotEmpty(dto.getProcessDefinitionKey())) {
+			taskQuery.processDefinitionKey(dto.getProcessDefinitionKey());
 		}
-		if (StringUtils.isNotEmpty(request.getProcessDefinitionKeyLike())) {
-			taskQuery.processDefinitionKeyLike(request.getProcessDefinitionKeyLike());
+		if (StringUtils.isNotEmpty(dto.getProcessDefinitionKeyLike())) {
+			taskQuery.processDefinitionKeyLike(dto.getProcessDefinitionKeyLike());
 		}
-		if (StringUtils.isNotEmpty(request.getProcessDefinitionKeyLikeIgnoreCase())) {
-			taskQuery.processDefinitionKeyLikeIgnoreCase(request.getProcessDefinitionKeyLikeIgnoreCase());
+		if (StringUtils.isNotEmpty(dto.getProcessDefinitionKeyLikeIgnoreCase())) {
+			taskQuery.processDefinitionKeyLikeIgnoreCase(dto.getProcessDefinitionKeyLikeIgnoreCase());
 		}
-		if (CollectionUtil.isNotEmpty(request.getProcessDefinitionKeys())) {
-			taskQuery.processDefinitionKeyIn(request.getProcessDefinitionKeys());
+		if (CollectionUtil.isNotEmpty(dto.getProcessDefinitionKeys())) {
+			taskQuery.processDefinitionKeyIn(dto.getProcessDefinitionKeys());
 		}
-		if (StringUtils.isNotEmpty(request.getProcessDefinitionId())) {
-			taskQuery.processDefinitionId(request.getProcessDefinitionId());
+		if (StringUtils.isNotEmpty(dto.getProcessDefinitionId())) {
+			taskQuery.processDefinitionId(dto.getProcessDefinitionId());
 		}
-		if (StringUtils.isNotEmpty(request.getProcessDefinitionName())) {
-			taskQuery.processDefinitionName(request.getProcessDefinitionName());
+		if (StringUtils.isNotEmpty(dto.getProcessDefinitionName())) {
+			taskQuery.processDefinitionName(dto.getProcessDefinitionName());
 		}
-		if (StringUtils.isNotEmpty(request.getProcessDefinitionNameLike())) {
-			taskQuery.processDefinitionNameLike(request.getProcessDefinitionNameLike());
+		if (StringUtils.isNotEmpty(dto.getProcessDefinitionNameLike())) {
+			taskQuery.processDefinitionNameLike(dto.getProcessDefinitionNameLike());
 		}
-		if (CollectionUtil.isNotEmpty(request.getProcessCategoryInList())) {
-			taskQuery.processCategoryIn(request.getProcessCategoryInList());
+		if (CollectionUtil.isNotEmpty(dto.getProcessCategoryInList())) {
+			taskQuery.processCategoryIn(dto.getProcessCategoryInList());
 		}
-		if (CollectionUtil.isNotEmpty(request.getProcessCategoryNotInList())) {
-			taskQuery.processCategoryNotIn(request.getProcessCategoryNotInList());
+		if (CollectionUtil.isNotEmpty(dto.getProcessCategoryNotInList())) {
+			taskQuery.processCategoryNotIn(dto.getProcessCategoryNotInList());
 		}
-		if (StringUtils.isNotEmpty(request.getDeploymentId())) {
-			taskQuery.deploymentId(request.getDeploymentId());
+		if (StringUtils.isNotEmpty(dto.getDeploymentId())) {
+			taskQuery.deploymentId(dto.getDeploymentId());
 		}
-		if (CollectionUtil.isNotEmpty(request.getDeploymentIds())) {
-			taskQuery.deploymentIdIn(request.getDeploymentIds());
+		if (CollectionUtil.isNotEmpty(dto.getDeploymentIds())) {
+			taskQuery.deploymentIdIn(dto.getDeploymentIds());
 		}
-		if (StringUtils.isNotEmpty(request.getProcessInstanceBusinessKey())) {
-			taskQuery.processInstanceBusinessKey(request.getProcessInstanceBusinessKey());
+		if (StringUtils.isNotEmpty(dto.getProcessInstanceBusinessKey())) {
+			taskQuery.processInstanceBusinessKey(dto.getProcessInstanceBusinessKey());
 		}
-		if (StringUtils.isNotEmpty(request.getProcessInstanceBusinessKeyLike())) {
-			taskQuery.processInstanceBusinessKeyLike(request.getProcessInstanceBusinessKeyLike());
+		if (StringUtils.isNotEmpty(dto.getProcessInstanceBusinessKeyLike())) {
+			taskQuery.processInstanceBusinessKeyLike(dto.getProcessInstanceBusinessKeyLike());
 		}
-		if (StringUtils.isNotEmpty(request.getProcessInstanceBusinessKeyLikeIgnoreCase())) {
-			taskQuery.processInstanceBusinessKeyLikeIgnoreCase(request.getProcessInstanceBusinessKeyLikeIgnoreCase());
+		if (StringUtils.isNotEmpty(dto.getProcessInstanceBusinessKeyLikeIgnoreCase())) {
+			taskQuery.processInstanceBusinessKeyLikeIgnoreCase(dto.getProcessInstanceBusinessKeyLikeIgnoreCase());
 		}
-		if (null != request.getDueDate()) {
-			taskQuery.taskDueDate(request.getDueDate());
+		if (null != dto.getDueDate()) {
+			taskQuery.taskDueDate(dto.getDueDate());
 		}
-		if (null != request.getDueBefore()) {
-			taskQuery.taskDueBefore(request.getDueBefore());
+		if (null != dto.getDueBefore()) {
+			taskQuery.taskDueBefore(dto.getDueBefore());
 		}
-		if (null != request.getDueAfter()) {
-			taskQuery.taskDueAfter(request.getDueAfter());
+		if (null != dto.getDueAfter()) {
+			taskQuery.taskDueAfter(dto.getDueAfter());
 		}
-		if (request.getWithoutDueDate()) {
+		if (dto.getWithoutDueDate()) {
 			taskQuery.withoutTaskDueDate();
 		}
-		if ("active".equals(request.getSuspensionState().getStateCode())) {
+		if ("active".equals(dto.getSuspensionState().getStateCode())) {
 			taskQuery.active();
 		}
-		if ("suspended".equals(request.getSuspensionState().getStateCode())) {
+		if ("suspended".equals(dto.getSuspensionState().getStateCode())) {
 			taskQuery.suspended();
 		}
-		if (request.getExcludeSubtasks()) {
+		if (dto.getExcludeSubtasks()) {
 			taskQuery.excludeSubtasks();
 		}
-		if (request.getIncludeTaskLocalVariables()) {
+		if (dto.getIncludeTaskLocalVariables()) {
 			taskQuery.includeTaskLocalVariables();
 		}
-		if (request.getIncludeProcessVariables()) {
+		if (dto.getIncludeProcessVariables()) {
 			taskQuery.includeProcessVariables();
 		}
-		if (null != request.getTaskVariablesLimit()) {
-			taskQuery.limitTaskVariables(request.getTaskVariablesLimit());
+		if (null != dto.getTaskVariablesLimit()) {
+			taskQuery.limitTaskVariables(dto.getTaskVariablesLimit());
 		}
-		if (request.getBothCandidateAndAssigned() && StringUtils.isNotEmpty(request.getUserIdForCandidateAndAssignee())) {
-			taskQuery.taskCandidateOrAssigned(request.getUserIdForCandidateAndAssignee());
+		if (dto.getBothCandidateAndAssigned() && StringUtils.isNotEmpty(dto.getUserIdForCandidateAndAssignee())) {
+			taskQuery.taskCandidateOrAssigned(dto.getUserIdForCandidateAndAssignee());
 		}
-		if (StringUtils.isNotEmpty(request.getLocale())) {
-			taskQuery.locale(request.getLocale());
+		if (StringUtils.isNotEmpty(dto.getLocale())) {
+			taskQuery.locale(dto.getLocale());
 		}
-		if (request.getWithLocalizationFallback()) {
+		if (dto.getWithLocalizationFallback()) {
 			taskQuery.withLocalizationFallback();
 		}
 		// 总记录数
 		long total = taskQuery.count();
 		// 分页数据
-		List<Task> taskList = taskQuery.orderByTaskCreateTime().desc().listPage(request.firstRowNum(), request.getPageSize());
-		Leaf<Task> leaf = new Leaf(taskList, total, request);
+		List<Task> taskList = taskQuery.orderByTaskCreateTime().desc().listPage(dto.firstRowNum(), dto.getPageSize());
+		Leaf<Task> leaf = new Leaf(taskList, total, dto);
 		return ResponseResult.success(leaf);
 	}
 
 	@Override
-	public ResponseResult<Leaf<Task>> getPendingTaskList(PendingTaskDto request) {
+	public ResponseResult<Leaf<Task>> getPendingTaskList(PendingTaskDto dto) {
 		// 查询条件
 		TaskQuery taskQuery = taskService.createTaskQuery();
-		if (StringUtils.isNotEmpty(request.getProcdefKey())) {
-			taskQuery.processDefinitionKey(request.getProcdefKey());
+		if (StringUtils.isNotEmpty(dto.getProcdefKey())) {
+			taskQuery.processDefinitionKey(dto.getProcdefKey());
 		}
-		if (StringUtils.isNotEmpty(request.getAssignee())) {
-			taskQuery.taskAssignee(request.getAssignee());
+		if (StringUtils.isNotEmpty(dto.getAssignee())) {
+			taskQuery.taskAssignee(dto.getAssignee());
 		}
-		if (StringUtils.isNotEmpty(request.getCandidateUser())) {
-			taskQuery.taskCandidateUser(request.getCandidateUser());
+		if (StringUtils.isNotEmpty(dto.getCandidateUser())) {
+			taskQuery.taskCandidateUser(dto.getCandidateUser());
 		}
-		if (StringUtils.isNotEmpty(request.getCandidateGroup())) {
-			taskQuery.taskCandidateGroup(request.getCandidateGroup());
+		if (StringUtils.isNotEmpty(dto.getCandidateGroup())) {
+			taskQuery.taskCandidateGroup(dto.getCandidateGroup());
 		}
 		// 总记录数
 		long total = taskQuery.count();
 		// 分页数据
-		List<Task> taskList = taskQuery.orderByTaskCreateTime().desc().listPage(request.firstRowNum(), request.getPageSize());
-		Leaf<Task> leaf = new Leaf(taskList, total, request);
+		List<Task> taskList = taskQuery.orderByTaskCreateTime().desc().listPage(dto.firstRowNum(), dto.getPageSize());
+		Leaf<Task> leaf = new Leaf(taskList, total, dto);
 		return ResponseResult.success(leaf);
 	}
 
 	@Override
-	public ResponseResult completTask(CompleteTaskDto request) {
+	public ResponseResult completTask(CompleteTaskDto dto) {
 		Task task = taskService.createTaskQuery()
-				.taskId(request.getTaskId())
-				.taskAssignee(request.getAssignee()).singleResult();
+				.taskId(dto.getTaskId())
+				.taskAssignee(dto.getAssignee()).singleResult();
 		// 任务不存在
 		if (null == task) {
 			return ResponseResult.fail("task is not exist");
@@ -293,9 +293,9 @@ public class ActTaskServiceImpl implements ActTaskService {
 	}
 
 	@Override
-	public ResponseResult rejectTask(RejectTaskDto request) {
+	public ResponseResult rejectTask(RejectTaskDto dto) {
 		// 当前任务
-		Task currentTask = taskService.createTaskQuery().taskId(request.getTaskId()).singleResult();
+		Task currentTask = taskService.createTaskQuery().taskId(dto.getTaskId()).singleResult();
 		// 获取流程定义
 		BpmnModel bpmnModel = repositoryService.getBpmnModel(currentTask.getProcessDefinitionId());
 		// 历史
@@ -308,7 +308,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 		// 获取目标节点定义
 		FlowNode targetNode = null;
 		// 驳回到发起点
-		if (request.getReturnStartFlag()) {
+		if (dto.getReturnStartFlag()) {
 			targetNode = (FlowNode) bpmnModel.getMainProcess().getFlowElement(historicList.get(0).getActivityId());
 		} else {
 			// 驳回到上一个节点
@@ -337,8 +337,8 @@ public class ActTaskServiceImpl implements ActTaskService {
 	}
 
 	@Override
-	public ResponseResult assignTask(AssignTaskDto request) {
-		taskService.claim(request.getTaskId(), request.getAssignee());
+	public ResponseResult assignTask(AssignTaskDto dto) {
+		taskService.claim(dto.getTaskId(), dto.getAssignee());
 		return ResponseResult.success();
 	}
 

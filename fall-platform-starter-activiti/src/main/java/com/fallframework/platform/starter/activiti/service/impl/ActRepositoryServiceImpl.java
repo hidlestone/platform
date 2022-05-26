@@ -104,100 +104,100 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 	}
 
 	@Override
-	public ResponseResult<Leaf<ProcessDefinition>> getProcessDefinitionList(ProcessDefinitionQueryDto request) {
+	public ResponseResult<Leaf<ProcessDefinition>> getProcessDefinitionList(ProcessDefinitionQueryDto dto) {
 		// 查询对象
 		ProcessDefinitionQuery definitionQuery = repositoryService.createProcessDefinitionQuery();
 		// 查询条件
 		// id
-		if (StringUtils.isNotEmpty(request.getId())) {
-			definitionQuery.processDefinitionId(request.getId());
+		if (StringUtils.isNotEmpty(dto.getId())) {
+			definitionQuery.processDefinitionId(dto.getId());
 		}
-		if (!CollectionUtils.isEmpty(request.getIds())) {
-			definitionQuery.deploymentIds(request.getIds());
+		if (!CollectionUtils.isEmpty(dto.getIds())) {
+			definitionQuery.deploymentIds(dto.getIds());
 		}
-		if (StringUtils.isNotEmpty(request.getCategory())) {
-			definitionQuery.processDefinitionCategory(request.getCategory());
+		if (StringUtils.isNotEmpty(dto.getCategory())) {
+			definitionQuery.processDefinitionCategory(dto.getCategory());
 		}
-		if (StringUtils.isNotEmpty(request.getCategoryLike())) {
-			definitionQuery.processDefinitionCategoryLike(request.getCategoryLike());
+		if (StringUtils.isNotEmpty(dto.getCategoryLike())) {
+			definitionQuery.processDefinitionCategoryLike(dto.getCategoryLike());
 		}
-		if (StringUtils.isNotEmpty(request.getCategoryNotEquals())) {
-			definitionQuery.processDefinitionCategoryNotEquals(request.getCategoryNotEquals());
+		if (StringUtils.isNotEmpty(dto.getCategoryNotEquals())) {
+			definitionQuery.processDefinitionCategoryNotEquals(dto.getCategoryNotEquals());
 		}
 		// name
-		if (StringUtils.isNotEmpty(request.getName())) {
-			definitionQuery.processDefinitionNameLike(request.getName());
+		if (StringUtils.isNotEmpty(dto.getName())) {
+			definitionQuery.processDefinitionNameLike(dto.getName());
 		}
-		if (StringUtils.isNotEmpty(request.getNameLike())) {
-			definitionQuery.processDefinitionNameLike(request.getNameLike());
+		if (StringUtils.isNotEmpty(dto.getNameLike())) {
+			definitionQuery.processDefinitionNameLike(dto.getNameLike());
 		}
 		// deploymentId
-		if (StringUtils.isNotEmpty(request.getDeploymentId())) {
-			definitionQuery.deploymentId(request.getDeploymentId());
+		if (StringUtils.isNotEmpty(dto.getDeploymentId())) {
+			definitionQuery.deploymentId(dto.getDeploymentId());
 		}
-		if (!CollectionUtils.isEmpty(request.getDeploymentIds())) {
-			definitionQuery.deploymentIds(request.getDeploymentIds());
+		if (!CollectionUtils.isEmpty(dto.getDeploymentIds())) {
+			definitionQuery.deploymentIds(dto.getDeploymentIds());
 		}
 		// key
-		if (StringUtils.isNotEmpty(request.getKey())) {
-			definitionQuery.processDefinitionKey(request.getKey());
+		if (StringUtils.isNotEmpty(dto.getKey())) {
+			definitionQuery.processDefinitionKey(dto.getKey());
 		}
-		if (StringUtils.isNotEmpty(request.getKeyLike())) {
-			definitionQuery.processDefinitionKeyLike(request.getKeyLike());
+		if (StringUtils.isNotEmpty(dto.getKeyLike())) {
+			definitionQuery.processDefinitionKeyLike(dto.getKeyLike());
 		}
-		if (StringUtils.isNotEmpty(request.getResourceName())) {
-			definitionQuery.processDefinitionResourceName(request.getResourceName());
+		if (StringUtils.isNotEmpty(dto.getResourceName())) {
+			definitionQuery.processDefinitionResourceName(dto.getResourceName());
 		}
-		if (StringUtils.isNotEmpty(request.getResourceNameLike())) {
-			definitionQuery.processDefinitionResourceNameLike(request.getResourceNameLike());
+		if (StringUtils.isNotEmpty(dto.getResourceNameLike())) {
+			definitionQuery.processDefinitionResourceNameLike(dto.getResourceNameLike());
 		}
 		// version
-		if (null != request.getVersion()) {
-			definitionQuery.processDefinitionVersion(request.getVersion());
+		if (null != dto.getVersion()) {
+			definitionQuery.processDefinitionVersion(dto.getVersion());
 		}
-		if (null != request.getVersionGt()) {
-			definitionQuery.processDefinitionVersionGreaterThan(request.getVersionGt());
+		if (null != dto.getVersionGt()) {
+			definitionQuery.processDefinitionVersionGreaterThan(dto.getVersionGt());
 		}
-		if (null != request.getVersionGte()) {
-			definitionQuery.processDefinitionVersionGreaterThanOrEquals(request.getVersionGte());
+		if (null != dto.getVersionGte()) {
+			definitionQuery.processDefinitionVersionGreaterThanOrEquals(dto.getVersionGte());
 		}
-		if (null != request.getVersionLt()) {
-			definitionQuery.processDefinitionVersionLowerThan(request.getVersionLt());
+		if (null != dto.getVersionLt()) {
+			definitionQuery.processDefinitionVersionLowerThan(dto.getVersionLt());
 		}
-		if (null != request.getVersionLte()) {
-			definitionQuery.processDefinitionVersionLowerThanOrEquals(request.getVersionLte());
+		if (null != dto.getVersionLte()) {
+			definitionQuery.processDefinitionVersionLowerThanOrEquals(dto.getVersionLte());
 		}
-		if (request.getLatest()) {
+		if (dto.getLatest()) {
 			definitionQuery.latestVersion();
 		}
-		if ("active".equals(request.getSuspensionState().getStateCode())) {
+		if ("active".equals(dto.getSuspensionState().getStateCode())) {
 			definitionQuery.active();
 		}
-		if ("suspended".equals(request.getSuspensionState().getStateCode())) {
+		if ("suspended".equals(dto.getSuspensionState().getStateCode())) {
 			definitionQuery.suspended();
 		}
-		if (StringUtils.isNotEmpty(request.getProcDefId())) {
-			definitionQuery.processDefinitionId(request.getProcDefId());
+		if (StringUtils.isNotEmpty(dto.getProcDefId())) {
+			definitionQuery.processDefinitionId(dto.getProcDefId());
 		}
-		if (StringUtils.isNotEmpty(request.getTenantId())) {
-			definitionQuery.processDefinitionTenantId(request.getTenantId());
+		if (StringUtils.isNotEmpty(dto.getTenantId())) {
+			definitionQuery.processDefinitionTenantId(dto.getTenantId());
 		}
-		if (StringUtils.isNotEmpty(request.getTenantIdLike())) {
-			definitionQuery.processDefinitionTenantIdLike(request.getTenantIdLike());
+		if (StringUtils.isNotEmpty(dto.getTenantIdLike())) {
+			definitionQuery.processDefinitionTenantIdLike(dto.getTenantIdLike());
 		}
-		if (true == request.getWithoutTenantId()) {
+		if (true == dto.getWithoutTenantId()) {
 			definitionQuery.processDefinitionWithoutTenantId();
 		}
-		if (StringUtils.isNotEmpty(request.getEventSubscriptionName())) {
-			definitionQuery.messageEventSubscriptionName(request.getEventSubscriptionName());
+		if (StringUtils.isNotEmpty(dto.getEventSubscriptionName())) {
+			definitionQuery.messageEventSubscriptionName(dto.getEventSubscriptionName());
 		}
 		// 总记录数
 		long total = definitionQuery.count();
 		List<ProcessDefinition> processDefinitionList = definitionQuery
 				.orderByDeploymentId().desc()                                // 部署ID降序
 				.orderByProcessDefinitionVersion().desc()                    // 部署版本号降序
-				.listPage(request.firstRowNum(), request.getPageSize());     // 分页
-		Leaf<ProcessDefinition> leaf = new Leaf<>(processDefinitionList, total, request);
+				.listPage(dto.firstRowNum(), dto.getPageSize());     // 分页
+		Leaf<ProcessDefinition> leaf = new Leaf<>(processDefinitionList, total, dto);
 		return ResponseResult.success(leaf);
 	}
 
@@ -281,59 +281,59 @@ public class ActRepositoryServiceImpl implements ActRepositoryService {
 	}
 
 	@Override
-	public ResponseResult<Leaf<Model>> getModelList(ModelQueryDto request) {
+	public ResponseResult<Leaf<Model>> getModelList(ModelQueryDto dto) {
 		// 查询条件
 		ModelQuery modelQuery = repositoryService.createModelQuery();
-		if (StringUtils.isNotEmpty(request.getId())) {
-			modelQuery.modelId(request.getId());
+		if (StringUtils.isNotEmpty(dto.getId())) {
+			modelQuery.modelId(dto.getId());
 		}
-		if (StringUtils.isNotEmpty(request.getCategory())) {
-			modelQuery.modelCategory(request.getCategory());
+		if (StringUtils.isNotEmpty(dto.getCategory())) {
+			modelQuery.modelCategory(dto.getCategory());
 		}
-		if (StringUtils.isNotEmpty(request.getCategoryLike())) {
-			modelQuery.modelCategoryLike(request.getCategoryLike());
+		if (StringUtils.isNotEmpty(dto.getCategoryLike())) {
+			modelQuery.modelCategoryLike(dto.getCategoryLike());
 		}
-		if (StringUtils.isNotEmpty(request.getCategoryNotEquals())) {
-			modelQuery.modelCategoryNotEquals(request.getCategoryNotEquals());
+		if (StringUtils.isNotEmpty(dto.getCategoryNotEquals())) {
+			modelQuery.modelCategoryNotEquals(dto.getCategoryNotEquals());
 		}
-		if (StringUtils.isNotEmpty(request.getName())) {
-			modelQuery.modelName(request.getName());
+		if (StringUtils.isNotEmpty(dto.getName())) {
+			modelQuery.modelName(dto.getName());
 		}
-		if (StringUtils.isNotEmpty(request.getNameLike())) {
-			modelQuery.modelNameLike(request.getNameLike());
+		if (StringUtils.isNotEmpty(dto.getNameLike())) {
+			modelQuery.modelNameLike(dto.getNameLike());
 		}
-		if (StringUtils.isNotEmpty(request.getKey())) {
-			modelQuery.modelKey(request.getKey());
+		if (StringUtils.isNotEmpty(dto.getKey())) {
+			modelQuery.modelKey(dto.getKey());
 		}
-		if (null != request.getVersion()) {
-			modelQuery.modelVersion(request.getVersion());
+		if (null != dto.getVersion()) {
+			modelQuery.modelVersion(dto.getVersion());
 		}
-		if (request.getLatest()) {
+		if (dto.getLatest()) {
 			modelQuery.latestVersion();
 		}
-		if (StringUtils.isNotEmpty(request.getDeploymentId())) {
-			modelQuery.deploymentId(request.getDeploymentId());
+		if (StringUtils.isNotEmpty(dto.getDeploymentId())) {
+			modelQuery.deploymentId(dto.getDeploymentId());
 		}
-		if (request.getNotDeployed()) {
+		if (dto.getNotDeployed()) {
 			modelQuery.notDeployed();
 		}
-		if (request.getDeployed()) {
+		if (dto.getDeployed()) {
 			modelQuery.deployed();
 		}
-		if (StringUtils.isNotEmpty(request.getTenantId())) {
-			modelQuery.modelTenantId(request.getTenantId());
+		if (StringUtils.isNotEmpty(dto.getTenantId())) {
+			modelQuery.modelTenantId(dto.getTenantId());
 		}
-		if (StringUtils.isNotEmpty(request.getTenantIdLike())) {
-			modelQuery.modelTenantIdLike(request.getTenantIdLike());
+		if (StringUtils.isNotEmpty(dto.getTenantIdLike())) {
+			modelQuery.modelTenantIdLike(dto.getTenantIdLike());
 		}
-		if (request.getWithoutTenantId()) {
+		if (dto.getWithoutTenantId()) {
 			modelQuery.modelWithoutTenantId();
 		}
 		// 总记录数
 		long total = modelQuery.count();
 		// 分页数据
-		List<Model> modelList = modelQuery.orderByCreateTime().desc().listPage(request.firstRowNum(), request.getPageSize());
-		Leaf<Model> leaf = new Leaf(modelList, total, request);
+		List<Model> modelList = modelQuery.orderByCreateTime().desc().listPage(dto.firstRowNum(), dto.getPageSize());
+		Leaf<Model> leaf = new Leaf(modelList, total, dto);
 		return ResponseResult.success(leaf);
 	}
 
