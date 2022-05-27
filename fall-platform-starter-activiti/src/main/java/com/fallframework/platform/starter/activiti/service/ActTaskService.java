@@ -4,6 +4,7 @@ import com.fallframework.platform.starter.activiti.model.AssignTaskDto;
 import com.fallframework.platform.starter.activiti.model.CompleteTaskDto;
 import com.fallframework.platform.starter.activiti.model.PendingTaskDto;
 import com.fallframework.platform.starter.activiti.model.RejectTaskDto;
+import com.fallframework.platform.starter.activiti.model.TaskDetailOutVo;
 import com.fallframework.platform.starter.activiti.model.TaskQueryDto;
 import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.api.response.ResponseResult;
@@ -57,6 +58,6 @@ public interface ActTaskService {
 	 * @param taskId 任务ID
 	 * @return 任务详细信息
 	 */
-	ResponseResult getTaskDetail(String taskId);
+	ResponseResult<TaskDetailOutVo> getTaskDetail(String taskId);
 
 }

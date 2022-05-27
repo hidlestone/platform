@@ -343,7 +343,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 	}
 
 	@Override
-	public ResponseResult getTaskDetail(String taskId) {
+	public ResponseResult<TaskDetailOutVo> getTaskDetail(String taskId) {
 		// 当前任务
 		Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
 		String processInstanceId = task.getProcessInstanceId();
