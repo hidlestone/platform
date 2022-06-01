@@ -12,7 +12,7 @@ import java.io.IOException;
 public interface ActHistoryService {
 
 	/**
-	 * 根据流程实例ID分页查询历史活动信息
+	 * 分页查询历史活动信息
 	 *
 	 * @param request 请求参数
 	 * @return 历史活动信息

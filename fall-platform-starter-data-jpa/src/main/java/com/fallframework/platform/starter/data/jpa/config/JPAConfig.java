@@ -20,8 +20,8 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaAuditing
-//@EnableJpaRepositories(basePackages = "com.fallframeword", transactionManagerRef = "jpaTransactionManager")
-public class JpaConfig {
+//@EnableJpaRepositories(basePackages = "com.fallframeword", transactionManagerRef = "jpaTransactionManager") // 扫描范围
+public class JPAConfig {
 
 	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource")
