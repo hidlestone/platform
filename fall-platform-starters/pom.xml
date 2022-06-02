@@ -55,7 +55,6 @@
 		<module>../fall-platform-starter-control-dependency</module>
 		<module>../fall-platform-starter-core</module>
 		<module>../fall-platform-starter-data-mp</module>
-		<module>../fall-platform-starter-datax</module>
 		<module>../fall-platform-starter-doc</module>
 		<module>../fall-platform-starter-drools</module>
 		<module>../fall-platform-starter-elasticjob</module>
