@@ -102,6 +102,7 @@
 		<module>../fall-platform-starter-sentinel</module>
 		<module>../fall-platform-starter-hystrix-dashboard</module>
 		<module>../fall-platform-starter-data-jpa</module>
+		<module>../fall-platform-starter-logback</module>
 	</modules>
 
 </project>

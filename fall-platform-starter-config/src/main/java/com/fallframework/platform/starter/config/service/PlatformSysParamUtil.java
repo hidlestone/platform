@@ -27,14 +27,10 @@ import java.util.stream.Collectors;
 public class PlatformSysParamUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PlatformSysParamUtil.class);
-
-	@Autowired
+	
 	private RedisUtil redisUtil;
-	@Autowired
 	private SysParamGroupService sysParamGroupService;
-	@Autowired
 	private SysParamItemMapper sysParamItemMapper;
-	@Autowired
 	private SysParamGroupMapper sysParamGroupMapper;
 
 	/**
