@@ -75,7 +75,7 @@
 		</encoder>
 	</appender>
 	
-	<logger name="com.qzing.ieep.message.amqp.log.MQLogger" level="INFO">
+	<logger name="MQLogger" level="INFO">
 		<appender-ref ref="mq"/>
 	</logger>
 
