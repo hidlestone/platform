@@ -1,0 +1,25 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: wechatcp
+
+wechat:
+  corp:
+    corpId: ww372907d5406d4a59
+    contactConfig:
+      token: s86DYeCKWoD3ew5dknEDVxWWrv
+      secret: uKCXBRISNHyQgxLjZYE1NCx49zNR7CAqqVWAft3R9rA
+      encodingAESKey: EAp3uYDnB9bVCbxUQZyARZGp5FvrUK4I95CJ23F6GaF
+    appConfigs:
+      - agentId: 1000001
+        secret: 1111
+        token: 111
+        aesKey: 111
+      - agentId: 1000002
+        secret: 1111
+        token: 111
+        aesKey: 111
+  
+
