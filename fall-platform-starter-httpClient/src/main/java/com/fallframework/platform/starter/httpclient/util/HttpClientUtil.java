@@ -1,7 +1,8 @@
 package com.fallframework.platform.starter.httpclient.util;
 
 import com.fallframework.platform.starter.httpclient.config.HttpClientConfig;
-import org.apache.http.HttpResponse;
+import com.fallframework.platform.starter.httpclient.model.HttpClientResult;
+import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -16,6 +17,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -47,14 +49,14 @@ public class HttpClientUtil {
 	/**
 	 * GET 不带请求头和请求参数
 	 */
-	public static HttpResponse get(String url) throws Exception {
+	public static HttpClientResult get(String url) throws Exception {
 		return get(url, null, null);
 	}
 
 	/**
 	 * GET 带请求参数
 	 */
-	public static HttpResponse get(String url, Map<String, String> params) throws Exception {
+	public static HttpClientResult get(String url, Map<String, String> params) throws Exception {
 		return get(url, null, params);
 	}
 
@@ -64,10 +66,10 @@ public class HttpClientUtil {
 	 * @param url     url
 	 * @param headers 请求头
 	 * @param params  请求参数
-	 * @return HttpResponse
+	 * @return HttpClientResult
 	 * @throws Exception
 	 */
-	public static HttpResponse get(String url, Map<String, String> headers, Map<String, String> params) throws Exception {
+	public static HttpClientResult get(String url, Map<String, String> headers, Map<String, String> params) throws Exception {
 		// 创建httpClient对象
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		// 创建访问的地址
@@ -88,8 +90,7 @@ public class HttpClientUtil {
 		CloseableHttpResponse httpResponse = null;
 		try {
 			// 执行请求并获得响应结果
-			httpResponse = httpClient.execute(httpGet);
-			return httpResponse;
+			return getHttpClientResult(httpResponse, httpClient, httpGet);
 		} finally {
 			// 释放资源
 			release(httpResponse, httpClient);
@@ -99,21 +100,21 @@ public class HttpClientUtil {
 	/**
 	 * POST 不带请求头和请求参数
 	 */
-	public static HttpResponse post(String url) throws Exception {
+	public static HttpClientResult post(String url) throws Exception {
 		return post(url, null, null);
 	}
 
 	/**
 	 * POST 带请求参数
 	 */
-	public static HttpResponse post(String url, Map<String, String> params) throws Exception {
+	public static HttpClientResult post(String url, Map<String, String> params) throws Exception {
 		return post(url, null, params);
 	}
 
 	/**
 	 * POST 带请求头和请求参数
 	 */
-	private static HttpResponse post(String url, Map<String, String> headers, Map<String, String> params) throws Exception {
+	private static HttpClientResult post(String url, Map<String, String> headers, Map<String, String> params) throws Exception {
 		// 创建httpClient对象
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		// 创建http对象
@@ -127,8 +128,7 @@ public class HttpClientUtil {
 		CloseableHttpResponse httpResponse = null;
 		try {
 			// 执行请求并获得响应结果
-			httpResponse = httpClient.execute(httpPost);
-			return httpResponse;
+			return getHttpClientResult(httpResponse, httpClient, httpPost);
 		} finally {
 			// 释放资源
 			release(httpResponse, httpClient);
@@ -138,14 +138,14 @@ public class HttpClientUtil {
 	/**
 	 * PUT 不带请求参数
 	 */
-	public static HttpResponse put(String url) throws Exception {
+	public static HttpClientResult put(String url) throws Exception {
 		return put(url, null);
 	}
 
 	/**
 	 * PUT 带请求参数
 	 */
-	private static HttpResponse put(String url, Map<String, String> params) throws Exception {
+	private static HttpClientResult put(String url, Map<String, String> params) throws Exception {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpPut httpPut = new HttpPut(url);
 		httpPut.setConfig(requestConfig);
@@ -153,8 +153,7 @@ public class HttpClientUtil {
 		CloseableHttpResponse httpResponse = null;
 		try {
 			// 执行请求并获得响应结果
-			httpResponse = httpClient.execute(httpPut);
-			return httpResponse;
+			return getHttpClientResult(httpResponse, httpClient, httpPut);
 		} finally {
 			// 释放资源
 			release(httpResponse, httpClient);
@@ -164,15 +163,14 @@ public class HttpClientUtil {
 	/**
 	 * DELETE 不带请求参数
 	 */
-	public static HttpResponse delete(String url) throws Exception {
+	public static HttpClientResult delete(String url) throws Exception {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpDelete httpDelete = new HttpDelete(url);
 		httpDelete.setConfig(requestConfig);
 		CloseableHttpResponse httpResponse = null;
 		try {
 			// 执行请求并获得响应结果
-			httpResponse = httpClient.execute(httpDelete);
-			return httpResponse;
+			return getHttpClientResult(httpResponse, httpClient, httpDelete);
 		} finally {
 			// 释放资源
 			release(httpResponse, httpClient);
@@ -182,12 +180,30 @@ public class HttpClientUtil {
 	/**
 	 * DELETE 带请求参数
 	 */
-	public static HttpResponse delete(String url, Map<String, String> params) throws Exception {
+	public static HttpClientResult delete(String url, Map<String, String> params) throws Exception {
 		if (params == null) {
 			params = new HashMap<String, String>();
 		}
 		params.put("_method", "delete");
 		return post(url, params);
+	}
+
+	/**
+	 * 获得响应结果
+	 */
+	public static HttpClientResult getHttpClientResult(CloseableHttpResponse httpResponse,
+													   CloseableHttpClient httpClient, HttpRequestBase httpMethod) throws Exception {
+		// 执行请求
+		httpResponse = httpClient.execute(httpMethod);
+		// 获取返回结果
+		if (httpResponse != null && httpResponse.getStatusLine() != null) {
+			String content = "";
+			if (httpResponse.getEntity() != null) {
+				content = EntityUtils.toString(httpResponse.getEntity(), httpClientConfig.getEncoding());
+			}
+			return new HttpClientResult(httpResponse.getStatusLine().getStatusCode(), content);
+		}
+		return new HttpClientResult(HttpStatus.SC_INTERNAL_SERVER_ERROR);
 	}
 
 	/**
