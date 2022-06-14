@@ -1,7 +1,10 @@
 package com.fallframework.platform.starter.httpclient.util;
 
 import com.fallframework.platform.starter.httpclient.config.HttpClientConfig;
+import com.fallframework.platform.starter.httpclient.model.DownloadDto;
 import com.fallframework.platform.starter.httpclient.model.HttpClientResult;
+import com.fallframework.platform.starter.httpclient.model.UploadDto;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
@@ -14,11 +17,15 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -28,6 +35,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * 基础请求功能封装
+ *
  * @author zhuangpf
  */
 public class HttpClientUtil {
@@ -255,6 +264,47 @@ public class HttpClientUtil {
 		if (null != httpClient) {
 			httpClient.close();
 		}
+	}
+
+	/**
+	 * 文件上传
+	 */
+	public static HttpClientResult upload(UploadDto dto) throws IOException {
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		CloseableHttpResponse httpResponse = null;
+		try {
+			// 创建http对象
+			HttpPost httpPost = new HttpPost(dto.getUrl());
+			// HttpMultipartMode.RFC6532参数的设定是为避免文件名为中文时乱码
+			MultipartEntityBuilder builder = MultipartEntityBuilder.create().setMode(HttpMultipartMode.RFC6532);
+			// 设置请求头
+			packageHeader(dto.getHeaders(), httpPost);
+			// 上传的文件
+			File file = new File(dto.getPath() + dto.getFileName());
+			builder.addBinaryBody("file", file, ContentType.MULTIPART_FORM_DATA, dto.getFileName());
+			// 封装请求参数
+			packageParam(dto.getParams(), httpPost);
+			HttpEntity entity = builder.build();
+			httpPost.setEntity(entity);
+			httpResponse = httpClient.execute(httpPost);
+			// 执行请求并获得响应结果
+			return getHttpClientResult(httpResponse, httpClient, httpPost);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 释放资源
+			release(httpResponse, httpClient);
+		}
+		return new HttpClientResult(HttpStatus.SC_INTERNAL_SERVER_ERROR);
+	}
+
+	/**
+	 * 文件下载
+	 */
+	public static HttpClientResult download(DownloadDto dto) throws IOException {
+
+		
+		return null;
 	}
 
 }

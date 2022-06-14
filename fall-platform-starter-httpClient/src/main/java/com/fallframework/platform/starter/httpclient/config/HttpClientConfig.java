@@ -3,7 +3,7 @@ package com.fallframework.platform.starter.httpclient.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * httpclient 配置
+ * httpclient 基础配置
  *
  * @author zhuangpf
  */
@@ -62,5 +62,5 @@ public class HttpClientConfig {
 	public void setSocketTimeout(Integer socketTimeout) {
 		this.socketTimeout = socketTimeout;
 	}
-	
+
 }

@@ -1,10 +1,15 @@
 package com.fallframework.platform.starter.httpclient.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
  * httpClient响应结果
  */
+@Getter
+@Setter
 public class HttpClientResult implements Serializable {
 
 	private static final long serialVersionUID = -8547286228323358703L;
@@ -32,22 +37,6 @@ public class HttpClientResult implements Serializable {
 
 	public HttpClientResult(int code, String content) {
 		this.code = code;
-		this.content = content;
-	}
-
-	public int getCode() {
-		return code;
-	}
-
-	public void setCode(int code) {
-		this.code = code;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
 		this.content = content;
 	}
 
