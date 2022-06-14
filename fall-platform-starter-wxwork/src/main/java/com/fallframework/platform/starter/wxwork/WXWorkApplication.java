@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WXWorkApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WechatcpApplication.class, args);
+		SpringApplication.run(WXWorkApplication.class, args);
 	}
 
 }

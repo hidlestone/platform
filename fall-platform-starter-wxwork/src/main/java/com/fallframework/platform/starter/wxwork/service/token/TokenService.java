@@ -27,8 +27,11 @@ public class TokenService {
 	@Autowired
 	private RedisUtil redisUtil;
 
-	public ResponseResult<TokenResponse> gettoken(GetAccessTokenDto dto) throws IOException {
-		String url = WxworkStarterConstant.URL_GETTOKEN + "?" + "corpid=" + dto.getCorpId() + "&" + "corpsecret=" + dto.getSecret();
+	/**
+	 * 请求获取token
+	 */
+	public ResponseResult<TokenResponse> getToken(GetAccessTokenDto dto) throws IOException {
+		String url = WxworkStarterConstant.URL_GETTOKEN.replace("ID", dto.getCorpId()).replace("SECRET", dto.getSecret());
 		// 请求
 		Response response = new OkHttpClient().newCall(new Request.Builder().url(url).get().build()).execute();
 		TokenResponse tokenResponse = JSON.parseObject(response.body().string(), TokenResponse.class);

@@ -14,7 +14,7 @@ public class WxworkStarterConstant {
 	/**
 	 * 获取token
 	 */
-	public static final String URL_GETTOKEN = "https://qyapi.weixin.qq.com/cgi-bin/gettoken";
+	public static final String URL_GETTOKEN = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ID&corpsecret=SECRET";
 
 	// ----------------------------------------- 通讯录管理 ----------------------------------------- //
 	/**
