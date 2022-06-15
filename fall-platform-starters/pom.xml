@@ -104,6 +104,7 @@
 		<module>../fall-platform-starter-data-jpa</module>
 		<module>../fall-platform-starter-logback</module>
 		<module>../fall-platform-starter-wxwork</module>
+		<module>../fall-platform-starter-okhttp</module>
 	</modules>
 
 </project>
