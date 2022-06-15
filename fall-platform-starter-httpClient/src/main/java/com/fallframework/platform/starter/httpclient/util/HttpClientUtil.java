@@ -3,6 +3,7 @@ package com.fallframework.platform.starter.httpclient.util;
 import com.fallframework.platform.starter.httpclient.config.HttpClientConfig;
 import com.fallframework.platform.starter.httpclient.model.DownloadDto;
 import com.fallframework.platform.starter.httpclient.model.HttpClientResult;
+import com.fallframework.platform.starter.httpclient.model.HttpMethodEnum;
 import com.fallframework.platform.starter.httpclient.model.UploadDto;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
@@ -13,9 +14,13 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpHead;
+import org.apache.http.client.methods.HttpOptions;
+import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.methods.HttpTrace;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -26,7 +31,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -267,7 +274,7 @@ public class HttpClientUtil {
 	}
 
 	/**
-	 * 文件上传
+	 * 文件上传 TODO 待测试
 	 */
 	public static HttpClientResult upload(UploadDto dto) throws IOException {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -299,12 +306,68 @@ public class HttpClientUtil {
 	}
 
 	/**
-	 * 文件下载
+	 * 文件下载 TODO 待测试
 	 */
-	public static HttpClientResult download(DownloadDto dto) throws IOException {
+	public static OutputStream download(DownloadDto dto) throws IOException {
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		CloseableHttpResponse httpResponse = null;
+		FileOutputStream fileOutputStream = null;
+		try {
+			//创建请求对象
+			HttpRequestBase httpRequestBase = getRequest(dto.getSourceUrl(), dto.getHttpMethod());
+			// 设置请求头
+			packageHeader(dto.getHeaders(), httpRequestBase);
+			// 判断是否支持设置entity(仅HttpPost、HttpPut、HttpPatch支持)
+			if (HttpEntityEnclosingRequestBase.class.isAssignableFrom(httpRequestBase.getClass())) {
+				// 封装请求参数
+				packageParam(dto.getParams(), (HttpEntityEnclosingRequestBase) httpRequestBase);
+			}
+			// 执行请求操作，并拿到结果（同步阻塞）
+			httpResponse = httpClient.execute(httpRequestBase);
+			fileOutputStream = new FileOutputStream(dto.getDestPath());
+			httpResponse.getEntity().writeTo(fileOutputStream);
+			EntityUtils.consume(httpResponse.getEntity());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			// 释放资源
+			release(httpResponse, httpClient);
+		}
+		return fileOutputStream;
+	}
 
-
-		return null;
+	private static HttpRequestBase getRequest(String url, HttpMethodEnum method) {
+		HttpRequestBase request = null;
+		switch (method) {
+			case GET:// HttpGet
+				request = new HttpGet(url);
+				break;
+			case POST:// HttpPost
+				request = new HttpPost(url);
+				break;
+			case HEAD:// HttpHead
+				request = new HttpHead(url);
+				break;
+			case PUT:// HttpPut
+				request = new HttpPut(url);
+				break;
+			case DELETE:// HttpDelete
+				request = new HttpDelete(url);
+				break;
+			case TRACE:// HttpTrace
+				request = new HttpTrace(url);
+				break;
+			case PATCH:// HttpPatch
+				request = new HttpPatch(url);
+				break;
+			case OPTIONS:// HttpOptions
+				request = new HttpOptions(url);
+				break;
+			default:
+				request = new HttpPost(url);
+				break;
+		}
+		return request;
 	}
 
 }

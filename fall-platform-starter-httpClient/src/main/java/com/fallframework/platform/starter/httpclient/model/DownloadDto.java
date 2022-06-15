@@ -19,6 +19,11 @@ public class DownloadDto implements Serializable {
 	private String sourceUrl;
 
 	/**
+	 * 请求方法
+	 */
+	private HttpMethodEnum httpMethod;
+
+	/**
 	 * 下载到的目标路径
 	 */
 	private String destPath;
