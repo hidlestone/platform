@@ -303,7 +303,7 @@ public class HttpClientUtil {
 	 */
 	public static HttpClientResult download(DownloadDto dto) throws IOException {
 
-		
+
 		return null;
 	}
 
