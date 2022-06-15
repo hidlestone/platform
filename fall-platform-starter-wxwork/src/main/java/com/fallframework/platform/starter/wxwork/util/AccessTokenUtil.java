@@ -27,6 +27,7 @@ public class AccessTokenUtil {
 	public String getAccessToken(GetAccessTokenDto dto) throws IOException {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = (String) redisUtil.hget(WxworkStarterConstant.CACHE_KEY_ACCESS_TOKEN, dto.getAccessTokenType().name());
+		// 缓存中不存在，则重新请求获取
 		if (StringUtils.isEmpty(access_token)) {
 			access_token = tokenService.getToken(dto).getData().getAccess_token();
 		}
