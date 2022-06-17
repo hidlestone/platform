@@ -175,13 +175,15 @@ public class SimpleMemoryCacheImpl {
 		while (iterator.hasNext()) {
 			String key = (String) iterator.next();
 			Long ttl = (Long) SimpleMemoryCacheImpl.TTL.get(key);
-			if (ttl != null && ttl < System.currentTimeMillis()) {
-				SimpleMemoryCacheImpl.TTL.remove(key);
-				SimpleMemoryCacheImpl.CACHE.remove(key);
-			} else if (ttl == null) {
-				SimpleMemoryCacheImpl.CACHE.remove(key);
-			} else if (!SimpleMemoryCacheImpl.CACHE.containsKey(key)) {
-				SimpleMemoryCacheImpl.TTL.remove(key);
+			if (-1 != ttl) {
+				if (ttl != null && ttl < System.currentTimeMillis()) {
+					SimpleMemoryCacheImpl.TTL.remove(key);
+					SimpleMemoryCacheImpl.CACHE.remove(key);
+				} else if (ttl == null) {
+					SimpleMemoryCacheImpl.CACHE.remove(key);
+				} else if (!SimpleMemoryCacheImpl.CACHE.containsKey(key)) {
+					SimpleMemoryCacheImpl.TTL.remove(key);
+				}
 			}
 		}
 	}
