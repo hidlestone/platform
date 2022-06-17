@@ -8,6 +8,10 @@ import com.fallframework.platform.starter.data.mp.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 企微通讯录-部门<br/>
+ * https://developer.work.weixin.qq.com/document/path/90208
+ */
 @Getter
 @Setter
 @TableName("wxwork_department")
@@ -18,7 +22,7 @@ public class Department extends BaseEntity {
 	/**
 	 * ID
 	 */
-	@TableId(value = "id", type = IdType.ASSIGN_ID)
+	@TableId(value = "id", type = IdType.INPUT)
 	private Long id;
 
 	/**

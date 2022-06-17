@@ -9,17 +9,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * 企微通讯录-部门-成员<br/>
  * 详见：https://developer.work.weixin.qq.com/document/path/90196
  */
 @Getter
 @Setter
 @TableName("wxwork_user")
 public class User extends BaseEntity {
+
 	private static final long serialVersionUID = -8397056354063579252L;
+
 	/**
 	 * 成员UserID
 	 */
-	@TableId(value = "userid", type = IdType.ASSIGN_ID)
+	@TableId(value = "userid", type = IdType.INPUT)
 	private String userid;
 
 	/**
@@ -104,7 +107,7 @@ public class User extends BaseEntity {
 	 * 激活状态
 	 */
 	@TableField("status")
-	private Boolean status;
+	private Byte status;
 
 	/**
 	 * 员工个人二维码

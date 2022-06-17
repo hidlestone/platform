@@ -1,34 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fallframework.platform.starter.wxwork.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.fallframework.platform.starter.wxwork.entity.User">
-    <!--@mbg.generated-->
-    <id column="userid" jdbcType="VARCHAR" property="userid" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="department" jdbcType="VARCHAR" property="department" />
-    <result column="order" jdbcType="VARCHAR" property="order" />
-    <result column="position" jdbcType="VARCHAR" property="position" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="biz_mail" jdbcType="VARCHAR" property="bizMail" />
-    <result column="is_leader_in_dept" jdbcType="VARCHAR" property="isLeaderInDept" />
-    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
-    <result column="thumb_avatar" jdbcType="VARCHAR" property="thumbAvatar" />
-    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
-    <result column="alias" jdbcType="VARCHAR" property="alias" />
-    <result column="extattr" jdbcType="LONGVARCHAR" property="extattr" />
-    <result column="status" jdbcType="BOOLEAN" property="status" />
-    <result column="qr_code" jdbcType="VARCHAR" property="qrCode" />
-    <result column="external_profile" jdbcType="LONGVARCHAR" property="externalProfile" />
-    <result column="external_position" jdbcType="VARCHAR" property="externalPosition" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="open_userid" jdbcType="VARCHAR" property="openUserid" />
-    <result column="main_department" jdbcType="VARCHAR" property="mainDepartment" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    userid, `name`, mobile, department, `order`, `position`, email, biz_mail, is_leader_in_dept, 
-    avatar, thumb_avatar, telephone, `alias`, extattr, `status`, qr_code, external_profile, 
-    external_position, address, open_userid, main_department
-  </sql>
+	<resultMap id="BaseResultMap" type="com.fallframework.platform.starter.wxwork.entity.User">
+		<!--@mbg.generated-->
+		<id column="userid" jdbcType="VARCHAR" property="userid"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+		<result column="department" jdbcType="VARCHAR" property="department"/>
+		<result column="order" jdbcType="VARCHAR" property="order"/>
+		<result column="position" jdbcType="VARCHAR" property="position"/>
+		<result column="email" jdbcType="VARCHAR" property="email"/>
+		<result column="biz_mail" jdbcType="VARCHAR" property="bizMail"/>
+		<result column="is_leader_in_dept" jdbcType="VARCHAR" property="isLeaderInDept"/>
+		<result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+		<result column="thumb_avatar" jdbcType="VARCHAR" property="thumbAvatar"/>
+		<result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+		<result column="alias" jdbcType="VARCHAR" property="alias"/>
+		<result column="extattr" jdbcType="LONGVARCHAR" property="extattr"/>
+		<result column="status" jdbcType="BYTE" property="status"/>
+		<result column="qr_code" jdbcType="VARCHAR" property="qrCode"/>
+		<result column="external_profile" jdbcType="LONGVARCHAR" property="externalProfile"/>
+		<result column="external_position" jdbcType="VARCHAR" property="externalPosition"/>
+		<result column="address" jdbcType="VARCHAR" property="address"/>
+		<result column="open_userid" jdbcType="VARCHAR" property="openUserid"/>
+		<result column="main_department" jdbcType="VARCHAR" property="mainDepartment"/>
+		<result column="create_user_id" jdbcType="BIGINT" property="createUserId"/>
+		<result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId"/>
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		userid, `name`, mobile, department, `order`, `position`, email, biz_mail, is_leader_in_dept,
+		avatar, thumb_avatar, telephone, `alias`, extattr, `status`, qr_code, external_profile,
+		external_position, address, open_userid, main_department, create_user_id, modify_user_id, gmt_create,
+		gmt_modified
+	</sql>
+
+	<select id="list" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from wxwork_user
+		<where>
+			<if test="param2.userid != null">
+				userid = #{param2.userid,jdbcType=BIGINT}
+			</if>
+			<if test="param2.name != null">
+				AND `name` LIKE CONCAT('%', #{param2.name,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.mobile != null">
+				AND mobile LIKE CONCAT('%', #{param2.mobile,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.department != null">
+				AND department LIKE CONCAT('%', #{param2.department,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.order != null">
+				AND `order` = #{order,jdbcType=VARCHAR}
+			</if>
+			<if test="param2.position != null">
+				AND `position` = #{position,jdbcType=VARCHAR}
+			</if>
+			<if test="param2.email != null">
+				AND email LIKE CONCAT('%', #{param2.email,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.bizMail != null">
+				AND biz_mail LIKE CONCAT('%', #{param2.bizMail,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.isLeaderInDept != null">
+				AND is_leader_in_dept = #{isLeaderInDept,jdbcType=VARCHAR}
+			</if>
+			<if test="param2.avatar != null">
+				AND avatar LIKE CONCAT('%', #{param2.avatar,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.thumbAvatar != null">
+				AND thumb_avatar LIKE CONCAT('%', #{param2.thumbAvatar,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.telephone != null">
+				AND telephone LIKE CONCAT('%', #{param2.telephone,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.alias != null">
+				AND `alias` LIKE CONCAT('%', #{param2.alias,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.extattr != null">
+				AND extattr LIKE CONCAT('%', #{param2.extattr,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.status != null">
+				AND `status` = #{status,jdbcType=BYTE}
+			</if>
+			<if test="param2.qrCode != null">
+				AND qr_code LIKE CONCAT('%', #{param2.qrCode,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.externalProfile != null">
+				AND external_profile LIKE CONCAT('%', #{param2.externalProfile,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.externalPosition != null">
+				AND external_position LIKE CONCAT('%', #{param2.externalPosition,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.address != null">
+				AND address LIKE CONCAT('%', #{param2.address,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="param2.openUserid != null">
+				AND open_userid = #{openUserid,jdbcType=VARCHAR}
+			</if>
+			<if test="param2.mainDepartment != null">
+				AND main_department = #{mainDepartment,jdbcType=VARCHAR}
+			</if>
+			<!-- 基础字段过滤 -->
+			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
+		</where>
+		ORDER BY userid ASC
+	</select>
+
 </mapper>
