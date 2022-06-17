@@ -12,92 +12,80 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 /**
- * 通讯录管理-部门管理
+ * 通讯录管理-互联企业
  *
  * @author zhuangpf
  */
 @Service
-public class DepartmentService {
+public class LinkedCorpService {
 
 	@Autowired
 	private AccessTokenUtil accessTokenUtil;
 
 	/**
-	 * 创建部门
+	 * 获取应用的可见范围
 	 */
-	public ResponseResult create(Map<String, Object> deptMap) {
+	public ResponseResult getPermList(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_CREATE.replace("ACCESS_TOKEN", access_token);
-		HttpResponse httpResponse = HttpClientUtil.post(url, deptMap);
+		String url = WxworkStarterConstant.URL_LINKEDCORP_AGENT_GET_PERM_LIST.replace("ACCESS_TOKEN", access_token);
+		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
 		return responseResult;
 	}
 
 	/**
-	 * 创建部门
+	 * 获取互联企业成员详细信息
 	 */
-	public ResponseResult update(Map<String, Object> deptMap) {
+	public ResponseResult getUser(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_UPDATE.replace("ACCESS_TOKEN", access_token);
-		HttpResponse httpResponse = HttpClientUtil.post(url, deptMap);
+		String url = WxworkStarterConstant.URL_LINKEDCORP_USER_GET.replace("ACCESS_TOKEN", access_token);
+		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
 		return responseResult;
 	}
 
 	/**
-	 * 删除部门
+	 * 获取互联企业部门成员
 	 */
-	public ResponseResult delete(String id) {
+	public ResponseResult userSimpleList(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_DELETE.replace("ACCESS_TOKEN", access_token).replace("ID", id);
-		HttpResponse httpResponse = HttpClientUtil.get(url);
+		String url = WxworkStarterConstant.URL_LINKEDCORP_USER_SIMPLELIST.replace("ACCESS_TOKEN", access_token);
+		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
 		return responseResult;
 	}
 
 	/**
-	 * 获取部门列表
+	 * 获取互联企业部门成员详情
 	 */
-	public ResponseResult list(String id) {
+	public ResponseResult userList(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_LIST.replace("ACCESS_TOKEN", access_token).replace("ID", id);
-		HttpResponse httpResponse = HttpClientUtil.get(url);
+		String url = WxworkStarterConstant.URL_LINKEDCORP_USER_LIST.replace("ACCESS_TOKEN", access_token);
+		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
 		return responseResult;
 	}
 
 	/**
-	 * 获取子部门ID列表
+	 * 获取互联企业部门成员详情
 	 */
-	public ResponseResult simpleList(String id) {
+	public ResponseResult departmentList(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_SIMPLELIST.replace("ACCESS_TOKEN", access_token).replace("ID", id);
-		HttpResponse httpResponse = HttpClientUtil.get(url);
+		String url = WxworkStarterConstant.URL_LINKEDCORP_DEPARTMENT_LIST.replace("ACCESS_TOKEN", access_token);
+		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
 		return responseResult;
 	}
 
-	/**
-	 * 获取单个部门详情
-	 */
-	public ResponseResult get(String id) {
-		// 从缓存中获取通讯录accesstoken
-		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_GET.replace("ACCESS_TOKEN", access_token).replace("ID", id);
-		HttpResponse httpResponse = HttpClientUtil.get(url);
-		// 响应信息
-		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
-		return responseResult;
-	}
 
 }

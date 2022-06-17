@@ -30,7 +30,7 @@ public class UserService {
 	 * @param userMap 用户信息
 	 * @return 是否创建成功
 	 */
-	public ResponseResult create(Map<String, String> userMap) throws IOException {
+	public ResponseResult create(Map<String, Object> userMap) throws IOException {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_USER_CREATE.replace("ACCESS_TOKEN", access_token);
@@ -59,7 +59,7 @@ public class UserService {
 	/**
 	 * 更新成员
 	 */
-	public ResponseResult update(Map<String, String> userMap) {
+	public ResponseResult update(Map<String, Object> userMap) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_USER_UPDATE.replace("ACCESS_TOKEN", access_token);
@@ -85,7 +85,7 @@ public class UserService {
 	/**
 	 * 批量删除成员
 	 */
-	public ResponseResult batchdelete(Map<String, String> params) {
+	public ResponseResult batchdelete(Map<String, Object> params) {
 		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_USER_DELETE.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);
@@ -121,7 +121,7 @@ public class UserService {
 	/**
 	 * userid与openid互换
 	 */
-	public ResponseResult convertToOpenid(Map<String, String> params) {
+	public ResponseResult convertToOpenid(Map<String, Object> params) {
 		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_USER_CONVERT_TO_OPENID.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);
@@ -146,7 +146,7 @@ public class UserService {
 	/**
 	 * 邀请成员
 	 */
-	public ResponseResult invite(Map<String, String> params) {
+	public ResponseResult invite(Map<String, Object> params) {
 		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_BATCH_INVITE.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);
@@ -168,7 +168,7 @@ public class UserService {
 		return responseResult;
 	}
 
-	public ResponseResult getUserid(Map<String, String> params) {
+	public ResponseResult getUserid(Map<String, Object> params) {
 		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_USER_GETUSERID.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);

@@ -25,6 +25,11 @@ public class WxCpProperties {
 	private ContactConfig contactConfig;
 
 	/**
+	 * 客户联系配置
+	 */
+	private ExternalContactConfig externalContactConfig;
+
+	/**
 	 * 应用配置
 	 */
 	private List<AppConfig> appConfigs;
@@ -43,6 +48,29 @@ public class WxCpProperties {
 
 		/**
 		 * 通讯录秘钥
+		 */
+		private String secret;
+
+		/**
+		 * aes密钥
+		 */
+		private String encodingAESKey;
+	}
+
+	/**
+	 * 客户联系
+	 */
+	@Getter
+	@Setter
+	public static class ExternalContactConfig {
+
+		/**
+		 * token
+		 */
+		private String token;
+
+		/**
+		 * 外部联系人秘钥
 		 */
 		private String secret;
 

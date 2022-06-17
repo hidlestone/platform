@@ -43,7 +43,7 @@ public class AccessTokenUtil {
 	}
 
 	/**
-	 * 获取token
+	 * 获取通讯录token
 	 */
 	public String getContactAccessToken() {
 		// 从缓存中获取通讯录accesstoken
@@ -51,6 +51,18 @@ public class AccessTokenUtil {
 		dto.setCorpId(wxCpProperties.getCorpId());
 		dto.setSecret(wxCpProperties.getContactConfig().getSecret());
 		dto.setAccessTokenType(AccessTokenTypeEnum.CONTACT);
+		return this.getAccessToken(dto);
+	}
+
+	/**
+	 * 获取客户联系token
+	 */
+	public String getExternalContactAccessToken() {
+		// 从缓存中获取通讯录accesstoken
+		GetAccessTokenDto dto = new GetAccessTokenDto();
+		dto.setCorpId(wxCpProperties.getCorpId());
+		dto.setSecret(wxCpProperties.getExternalContactConfig().getSecret());
+		dto.setAccessTokenType(AccessTokenTypeEnum.EXTERNALCONTACT);
 		return this.getAccessToken(dto);
 	}
 

@@ -25,7 +25,7 @@ public class TagService {
 	/**
 	 * 创建标签
 	 */
-	public ResponseResult create(Map<String, String> tagMap) {
+	public ResponseResult create(Map<String, Object> tagMap) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_TAG_CREATE.replace("ACCESS_TOKEN", access_token);
@@ -38,7 +38,7 @@ public class TagService {
 	/**
 	 * 更新标签名字
 	 */
-	public ResponseResult update(Map<String, String> tagMap) {
+	public ResponseResult update(Map<String, Object> tagMap) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_TAG_UPDATE.replace("ACCESS_TOKEN", access_token);
@@ -77,7 +77,7 @@ public class TagService {
 	/**
 	 * 增加标签成员
 	 */
-	public ResponseResult addTagUsers(Map<String, String> tagMap) {
+	public ResponseResult addTagUsers(Map<String, Object> tagMap) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_TAG_ADDTAGUSERS.replace("ACCESS_TOKEN", access_token);
@@ -90,7 +90,7 @@ public class TagService {
 	/**
 	 * 删除标签成员
 	 */
-	public ResponseResult delTagUsers(Map<String, String> tagMap) {
+	public ResponseResult delTagUsers(Map<String, Object> tagMap) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_TAG_DELTAGUSERS.replace("ACCESS_TOKEN", access_token);

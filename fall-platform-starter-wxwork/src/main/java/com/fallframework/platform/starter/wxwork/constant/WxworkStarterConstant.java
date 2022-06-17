@@ -143,5 +143,113 @@ public class WxworkStarterConstant {
 	 */
 	public static final String URL_TAG_LIST = "https://qyapi.weixin.qq.com/cgi-bin/tag/list?access_token=ACCESS_TOKEN";
 
+	/**
+	 * 增量更新成员 POST
+	 */
+	public static final String URL_BATCH_SYNCUSER = "https://qyapi.weixin.qq.com/cgi-bin/batch/syncuser?access_token=ACCESS_TOKEN";
 
+	/**
+	 * 全量覆盖成员 POST
+	 */
+	public static final String URL_BATCH_REPLACEUSER = "https://qyapi.weixin.qq.com/cgi-bin/batch/replaceuser?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 全量覆盖部门 POST
+	 */
+	public static final String URL_BATCH_REPLACEPARTY = "https://qyapi.weixin.qq.com/cgi-bin/batch/replaceparty?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取异步任务结果 GET
+	 */
+	public static final String URL_BATCH_GETRESULT = "https://qyapi.weixin.qq.com/cgi-bin/batch/getresult?access_token=ACCESS_TOKEN&jobid=JOBID";
+
+	/**
+	 * 获取应用的可见范围 POST
+	 */
+	public static final String URL_LINKEDCORP_AGENT_GET_PERM_LIST = "https://qyapi.weixin.qq.com/cgi-bin/linkedcorp/agent/get_perm_list?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取互联企业成员详细信息 POST
+	 */
+	public static final String URL_LINKEDCORP_USER_GET = "https://qyapi.weixin.qq.com/cgi-bin/linkedcorp/user/get?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取互联企业部门成员 POST
+	 */
+	public static final String URL_LINKEDCORP_USER_SIMPLELIST = "https://qyapi.weixin.qq.com/cgi-bin/linkedcorp/user/simplelist?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取互联企业部门成员详情 POST
+	 */
+	public static final String URL_LINKEDCORP_USER_LIST = "https://qyapi.weixin.qq.com/cgi-bin/linkedcorp/user/list?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取互联企业部门列表 POST
+	 */
+	public static final String URL_LINKEDCORP_DEPARTMENT_LIST = "https://qyapi.weixin.qq.com/cgi-bin/linkedcorp/department/list?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 导出成员 POST
+	 */
+	public static final String URL_EXPORT_SIMPLE_USER = "https://qyapi.weixin.qq.com/cgi-bin/export/simple_user?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 导出成员详情 POST
+	 */
+	public static final String URL_EXPORT_USER = "https://qyapi.weixin.qq.com/cgi-bin/export/user?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 导出部门 POST
+	 */
+	public static final String URL_EXPORT_DEPARTMENT = "https://qyapi.weixin.qq.com/cgi-bin/export/department?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 导出标签成员 POST
+	 */
+	public static final String URL_EXPORT_TAGUSER = "https://qyapi.weixin.qq.com/cgi-bin/export/taguser?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取导出结果 GET
+	 */
+	public static final String URL_EXPORT_GET_RESULT = "https://qyapi.weixin.qq.com/cgi-bin/export/get_result?access_token=ACCESS_TOKEN&jobid=JOBID";
+
+	// ----------------------------------------- 客户联系 ----------------------------------------- //
+	/**
+	 * 获取配置了客户联系功能的成员列表 GET
+	 */
+	public static final String URL_EXTERNALCONTACT_GET_FOLLOW_USER_LIST = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_follow_user_list?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 配置客户联系「联系我」方式 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_ADD_CONTACT_WAY = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/add_contact_way?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取企业已配置的「联系我」方式 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_GET_CONTACT_WAY = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_contact_way?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取企业已配置的「联系我」列表 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_LIST_CONTACT_WAY = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/list_contact_way?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 更新企业已配置的「联系我」方式 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_UPDATE_CONTACT_WAY = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/update_contact_way?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 删除企业已配置的「联系我」方式 
+	 */
+	public static final String URL_EXTERNALCONTACT_DEL_CONTACT_WAY = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/del_contact_way?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 结束临时会话 
+	 */
+	public static final String URL_EXTERNALCONTACT_CLOSE_TEMP_CHAT = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/close_temp_chat?access_token=ACCESS_TOKEN";
+
+	
+	
+	
 }

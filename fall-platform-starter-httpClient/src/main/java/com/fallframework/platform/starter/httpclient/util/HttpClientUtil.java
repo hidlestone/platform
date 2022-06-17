@@ -74,7 +74,7 @@ public class HttpClientUtil {
 	/**
 	 * GET 带请求参数
 	 */
-	public static HttpResponse get(String url, Map<String, String> params) {
+	public static HttpResponse get(String url, Map<String, Object> params) {
 		return get(url, null, params);
 	}
 
@@ -87,7 +87,7 @@ public class HttpClientUtil {
 	 * @return HttpClientResult
 	 * @throws Exception
 	 */
-	public static HttpResponse get(String url, Map<String, String> headers, Map<String, String> params) {
+	public static HttpResponse get(String url, Map<String, String> headers, Map<String, Object> params) {
 		// 创建httpClient对象
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		// 创建访问的地址
@@ -98,9 +98,9 @@ public class HttpClientUtil {
 			e.printStackTrace();
 		}
 		if (params != null) {
-			Set<Map.Entry<String, String>> entrySet = params.entrySet();
-			for (Map.Entry<String, String> entry : entrySet) {
-				uriBuilder.setParameter(entry.getKey(), entry.getValue());
+			Set<Map.Entry<String, Object>> entrySet = params.entrySet();
+			for (Map.Entry<String, Object> entry : entrySet) {
+				uriBuilder.setParameter(entry.getKey(), entry.getValue().toString());
 			}
 		}
 		// 创建http对象
@@ -142,14 +142,14 @@ public class HttpClientUtil {
 	/**
 	 * POST 带请求参数
 	 */
-	public static HttpResponse post(String url, Map<String, String> params) {
+	public static HttpResponse post(String url, Map<String, Object> params) {
 		return post(url, null, params);
 	}
 
 	/**
 	 * POST 带请求头和请求参数
 	 */
-	private static HttpResponse post(String url, Map<String, String> headers, Map<String, String> params) {
+	private static HttpResponse post(String url, Map<String, String> headers, Map<String, Object> params) {
 		// 创建httpClient对象
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		// 创建http对象
@@ -187,7 +187,7 @@ public class HttpClientUtil {
 	/**
 	 * PUT 带请求参数
 	 */
-	private static HttpResponse put(String url, Map<String, String> params) {
+	private static HttpResponse put(String url, Map<String, Object> params) {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpPut httpPut = new HttpPut(url);
 		httpPut.setConfig(requestConfig);
@@ -237,9 +237,9 @@ public class HttpClientUtil {
 	/**
 	 * DELETE 带请求参数
 	 */
-	public static HttpResponse delete(String url, Map<String, String> params) {
+	public static HttpResponse delete(String url, Map<String, Object> params) {
 		if (params == null) {
-			params = new HashMap<String, String>();
+			params = new HashMap<String, Object>();
 		}
 		params.put("_method", "delete");
 		return post(url, params);
@@ -270,13 +270,13 @@ public class HttpClientUtil {
 	 * @param httpMethod
 	 * @throws UnsupportedEncodingException
 	 */
-	public static void packageParam(Map<String, String> params, HttpEntityEnclosingRequestBase httpMethod) {
+	public static void packageParam(Map<String, Object> params, HttpEntityEnclosingRequestBase httpMethod) {
 		// 封装请求参数
 		if (params != null) {
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-			Set<Map.Entry<String, String>> entrySet = params.entrySet();
-			for (Map.Entry<String, String> entry : entrySet) {
-				nvps.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+			Set<Map.Entry<String, Object>> entrySet = params.entrySet();
+			for (Map.Entry<String, Object> entry : entrySet) {
+				nvps.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
 			}
 			// 设置到请求的http对象中
 			try {

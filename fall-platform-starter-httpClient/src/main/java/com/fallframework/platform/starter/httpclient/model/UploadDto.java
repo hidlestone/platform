@@ -28,7 +28,7 @@ public class UploadDto implements Serializable {
 	/**
 	 * 参数
 	 */
-	private Map<String, String> params;
+	private Map<String, Object> params;
 
 	/**
 	 * 上传的文件的文件名

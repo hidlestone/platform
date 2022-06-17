@@ -12,6 +12,8 @@ wechat:
       token: s86DYeCKWoD3ew5dknEDVxWWrv
       secret: uKCXBRISNHyQgxLjZYE1NCx49zNR7CAqqVWAft3R9rA
       encodingAESKey: EAp3uYDnB9bVCbxUQZyARZGp5FvrUK4I95CJ23F6GaF
+    externalContactConfig:
+      secret: zJnJnK0w3fgZnZbJYDr2FQZxGs2-cJN9bMXY9Xp8T2A
     appConfigs:
       - agentId: 1000001
         secret: 1111

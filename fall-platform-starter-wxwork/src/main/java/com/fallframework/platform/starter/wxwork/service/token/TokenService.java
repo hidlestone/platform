@@ -5,7 +5,6 @@ import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.wxwork.constant.WxworkStarterConstant;
 import com.fallframework.platform.starter.wxwork.dto.GetAccessTokenDto;
-import com.fallframework.platform.starter.wxwork.model.AccessTokenTypeEnum;
 import com.fallframework.platform.starter.wxwork.model.TokenResponse;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -45,7 +44,7 @@ public class TokenService {
 				// 将access_token存储到缓存中
 				redisUtil.hset(
 						WxworkStarterConstant.CACHE_KEY_ACCESS_TOKEN,
-						AccessTokenTypeEnum.CONTACT.name(),
+						dto.getAccessTokenType().name(),
 						tokenResponse.getAccess_token(),
 						tokenResponse.getExpires_in());
 				return ResponseResult.success();

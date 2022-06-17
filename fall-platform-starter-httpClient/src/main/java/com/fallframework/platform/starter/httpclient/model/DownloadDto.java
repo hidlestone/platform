@@ -36,6 +36,6 @@ public class DownloadDto implements Serializable {
 	/**
 	 * 参数
 	 */
-	private Map<String, String> params;
+	private Map<String, Object> params;
 
 }
