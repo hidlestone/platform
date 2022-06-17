@@ -28,6 +28,57 @@ public class WxworkStarterConstant {
 	public static final String URL_USER_GET = "https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&userid=USERID";
 
 	/**
+	 * 更新成员 POST
+	 */
+	public static final String URL_USER_UPDATE = "https://qyapi.weixin.qq.com/cgi-bin/user/update?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 删除成员 GET
+	 */
+	public static final String URL_USER_DELETE = "https://qyapi.weixin.qq.com/cgi-bin/user/delete?access_token=ACCESS_TOKEN&userid=USERID";
+
+	/**
+	 * 批量删除成员 POST
+	 */
+	public static final String URL_USER_BATCHDELETE = "https://qyapi.weixin.qq.com/cgi-bin/user/batchdelete?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取部门成员 GET
+	 */
+	public static final String URL_USER_SIMPLELIST = "https://qyapi.weixin.qq.com/cgi-bin/user/simplelist?access_token=ACCESS_TOKEN&department_id=DEPARTMENT_ID&fetch_child=FETCH_CHILD";
+
+	/**
+	 * 获取部门成员详情 GET
+	 */
+	public static final String URL_USER_LIST = "https://qyapi.weixin.qq.com/cgi-bin/user/list?access_token=ACCESS_TOKEN&department_id=DEPARTMENT_ID&fetch_child=FETCH_CHILD";
+
+	/**
+	 * userid与openid互换 POST
+	 */
+	public static final String URL_USER_CONVERT_TO_OPENID = "https://qyapi.weixin.qq.com/cgi-bin/user/convert_to_openid?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 二次验证 GET
+	 */
+	public static final String URL_USER_AUTHSUCC = "https://qyapi.weixin.qq.com/cgi-bin/user/authsucc?access_token=ACCESS_TOKEN&userid=USERID";
+
+	/**
+	 * 邀请成员 POST
+	 */
+	public static final String URL_BATCH_INVITE = "https://qyapi.weixin.qq.com/cgi-bin/batch/invite?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取加入企业二维码 GET
+	 */
+	public static final String URL_CORP_GET_JOIN_QRCODE = "https://qyapi.weixin.qq.com/cgi-bin/corp/get_join_qrcode?access_token=ACCESS_TOKEN&size_type=SIZE_TYPE";
+
+	/**
+	 * 手机号获取userid POST
+	 */
+	public static final String URL_USER_GETUSERID = "https://qyapi.weixin.qq.com/cgi-bin/user/getuserid?access_token=ACCESS_TOKEN";
+
+
+	/**
 	 * 创建部门 POST
 	 */
 	public static final String URL_DEPARTMENT_CREATE = "https://qyapi.weixin.qq.com/cgi-bin/department/create?access_token=ACCESS_TOKEN";

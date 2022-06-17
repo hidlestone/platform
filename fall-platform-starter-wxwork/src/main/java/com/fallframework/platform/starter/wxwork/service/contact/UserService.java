@@ -1,22 +1,12 @@
 package com.fallframework.platform.starter.wxwork.service.contact;
 
-import com.alibaba.fastjson.JSON;
 import com.fallframework.platform.starter.api.response.ResponseResult;
-import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
-import com.fallframework.platform.starter.wxwork.config.WxCpProperties;
+import com.fallframework.platform.starter.httpclient.util.HttpClientUtil;
 import com.fallframework.platform.starter.wxwork.constant.WxworkStarterConstant;
-import com.fallframework.platform.starter.wxwork.dto.GetAccessTokenDto;
 import com.fallframework.platform.starter.wxwork.entity.User;
-import com.fallframework.platform.starter.wxwork.model.AccessTokenTypeEnum;
-import com.fallframework.platform.starter.wxwork.model.TokenResponse;
-import com.fallframework.platform.starter.wxwork.service.token.TokenService;
 import com.fallframework.platform.starter.wxwork.util.AccessTokenUtil;
-import okhttp3.FormBody;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import com.fallframework.platform.starter.wxwork.util.HttpResponseUtil;
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,13 +22,7 @@ import java.util.Map;
 public class UserService {
 
 	@Autowired
-	private WxCpProperties wxCpProperties;
-	@Autowired
-	private TokenService tokenService;
-	@Autowired
 	private AccessTokenUtil accessTokenUtil;
-	@Autowired
-	private RedisUtil redisUtil;
 
 	/**
 	 * 创建用户
@@ -46,22 +30,14 @@ public class UserService {
 	 * @param userMap 用户信息
 	 * @return 是否创建成功
 	 */
-	public ResponseResult create(Map<String, Object> userMap) throws IOException {
+	public ResponseResult create(Map<String, String> userMap) throws IOException {
 		// 从缓存中获取通讯录accesstoken
-		String access_token = getAccessToken();
+		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_USER_CREATE.replace("ACCESS_TOKEN", access_token);
-		// 请求
-		RequestBody requestBody = FormBody.create(
-				MediaType.parse("application/json"), JSON.toJSONString(userMap));
-		Response response = new OkHttpClient().newCall(new Request.Builder().url(url).post(requestBody).build()).execute();
-		if (200 != response.code()) {
-			return ResponseResult.fail(String.valueOf(response.code()), response.message());
-		}
-		TokenResponse tokenResponse = JSON.parseObject(response.body().string(), TokenResponse.class);
-		if (0 != tokenResponse.getErrcode()) {
-			return ResponseResult.fail(String.valueOf(tokenResponse.getErrcode()), tokenResponse.getErrmsg());
-		}
-		return ResponseResult.success();
+		HttpResponse httpResponse = HttpClientUtil.post(url, userMap);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
 	}
 
 	/**
@@ -72,29 +48,133 @@ public class UserService {
 	 */
 	public ResponseResult<User> get(String userId) throws IOException {
 		// 从缓存中获取通讯录accesstoken
-		String access_token = getAccessToken();
+		String access_token = accessTokenUtil.getContactAccessToken();
 		String url = WxworkStarterConstant.URL_USER_GET.replace("ACCESS_TOKEN", access_token).replace("USERID", userId);
-		Response response = new OkHttpClient().newCall(new Request.Builder().url(url).get().build()).execute();
-		if (200 != response.code()) {
-			return ResponseResult.fail(String.valueOf(response.code()), response.message());
-		}
-		User user = JSON.parseObject(response.body().string(), User.class);
-		if (0 != user.getErrcode()) {
-			return ResponseResult.fail(String.valueOf(user.getErrcode()), user.getErrmsg());
-		}
-		return ResponseResult.success(user);
+		HttpResponse httpResponse = HttpClientUtil.get(url);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
 	}
 
 	/**
-	 * 获取token
+	 * 更新成员
 	 */
-	public String getAccessToken() throws IOException {
+	public ResponseResult update(Map<String, String> userMap) {
 		// 从缓存中获取通讯录accesstoken
-		GetAccessTokenDto dto = new GetAccessTokenDto();
-		dto.setCorpId(wxCpProperties.getCorpId());
-		dto.setSecret(wxCpProperties.getContactConfig().getSecret());
-		dto.setAccessTokenType(AccessTokenTypeEnum.CONTACT);
-		return accessTokenUtil.getAccessToken(dto);
+		String access_token = accessTokenUtil.getContactAccessToken();
+		String url = WxworkStarterConstant.URL_USER_UPDATE.replace("ACCESS_TOKEN", access_token);
+		HttpResponse httpResponse = HttpClientUtil.post(url, userMap);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
+	}
+
+	/**
+	 * 删除成员
+	 */
+	public ResponseResult delete(String userid) {
+		// 从缓存中获取通讯录accesstoken
+		String access_token = accessTokenUtil.getContactAccessToken();
+		String url = WxworkStarterConstant.URL_USER_DELETE.replace("ACCESS_TOKEN", access_token).replace("USERID", userid);
+		HttpResponse httpResponse = HttpClientUtil.get(url);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
+	}
+
+	/**
+	 * 批量删除成员
+	 */
+	public ResponseResult batchdelete(Map<String, String> params) {
+		String access_token = accessTokenUtil.getContactAccessToken();
+		String url = WxworkStarterConstant.URL_USER_DELETE.replace("ACCESS_TOKEN", access_token);
+		HttpResponse httpResponse = HttpClientUtil.post(url, params);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
+	}
+
+	/**
+	 * 获取部门成员
+	 */
+	public ResponseResult simplelist(String department_id, String fetch_child) {
+		String access_token = accessTokenUtil.getContactAccessToken();
+		String url = WxworkStarterConstant.URL_USER_SIMPLELIST.replace("ACCESS_TOKEN", access_token).replace("DEPARTMENT_ID", department_id).replace("FETCH_CHILD", fetch_child);
+		HttpResponse httpResponse = HttpClientUtil.get(url);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
+	}
+
+	/**
+	 * 获取部门成员详情
+	 */
+	public ResponseResult list(String department_id, String fetch_child) {
+		String access_token = accessTokenUtil.getContactAccessToken();
+		String url = WxworkStarterConstant.URL_USER_LIST.replace("ACCESS_TOKEN", access_token).replace("DEPARTMENT_ID", department_id).replace("FETCH_CHILD", fetch_child);
+		HttpResponse httpResponse = HttpClientUtil.get(url);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
+	}
+
+	/**
+	 * userid与openid互换
+	 */
+	public ResponseResult convertToOpenid(Map<String, String> params) {
+		String access_token = accessTokenUtil.getContactAccessToken();
+		String url = WxworkStarterConstant.URL_USER_CONVERT_TO_OPENID.replace("ACCESS_TOKEN", access_token);
+		HttpResponse httpResponse = HttpClientUtil.post(url, params);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
+	}
+
+	/**
+	 * 二次验证
+	 */
+	public ResponseResult authsucc(String userid) {
+		// 从缓存中获取通讯录accesstoken
+		String access_token = accessTokenUtil.getContactAccessToken();
+		String url = WxworkStarterConstant.URL_USER_AUTHSUCC.replace("ACCESS_TOKEN", access_token).replace("USERID", userid);
+		HttpResponse httpResponse = HttpClientUtil.get(url);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
+	}
+
+	/**
+	 * 邀请成员
+	 */
+	public ResponseResult invite(Map<String, String> params) {
+		String access_token = accessTokenUtil.getContactAccessToken();
+		String url = WxworkStarterConstant.URL_BATCH_INVITE.replace("ACCESS_TOKEN", access_token);
+		HttpResponse httpResponse = HttpClientUtil.post(url, params);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
+	}
+
+	/**
+	 * 获取加入企业二维码
+	 */
+	public ResponseResult getJoinQrcode(String size_type) {
+		// 从缓存中获取通讯录accesstoken
+		String access_token = accessTokenUtil.getContactAccessToken();
+		String url = WxworkStarterConstant.URL_CORP_GET_JOIN_QRCODE.replace("ACCESS_TOKEN", access_token).replace("SIZE_TYPE", size_type);
+		HttpResponse httpResponse = HttpClientUtil.get(url);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
+	}
+
+	public ResponseResult getUserid(Map<String, String> params) {
+		String access_token = accessTokenUtil.getContactAccessToken();
+		String url = WxworkStarterConstant.URL_USER_GETUSERID.replace("ACCESS_TOKEN", access_token);
+		HttpResponse httpResponse = HttpClientUtil.post(url, params);
+		// 响应信息
+		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
+		return responseResult;
 	}
 
 }

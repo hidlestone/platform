@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @TableName("wxwork_user")
-public class User extends BaseEntity {
+public class User extends WXWorkBaseEntity {
 
 	private static final long serialVersionUID = -8397056354063579252L;
 

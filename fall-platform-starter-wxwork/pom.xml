@@ -43,6 +43,10 @@
 	</issueManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.fallframework.platform</groupId>
+			<artifactId>fall-platform-starter-httpClient</artifactId>
+		</dependency>
 		<!-- starter-api-dependency -->
 		<dependency>
 			<groupId>com.fallframework.platform</groupId>
@@ -54,9 +58,8 @@
 		</dependency>
 		<dependency>
 			<groupId>com.fallframework.platform</groupId>
-			<artifactId>fall-platform-starter-da'ta</artifactId>
+			<artifactId>fall-platform-starter-data-mp</artifactId>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

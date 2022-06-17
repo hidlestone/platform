@@ -36,6 +36,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,14 +67,14 @@ public class HttpClientUtil {
 	/**
 	 * GET 不带请求头和请求参数
 	 */
-	public static HttpResponse get(String url) throws Exception {
+	public static HttpResponse get(String url) {
 		return get(url, null, null);
 	}
 
 	/**
 	 * GET 带请求参数
 	 */
-	public static HttpResponse get(String url, Map<String, String> params) throws Exception {
+	public static HttpResponse get(String url, Map<String, String> params) {
 		return get(url, null, params);
 	}
 
@@ -86,11 +87,16 @@ public class HttpClientUtil {
 	 * @return HttpClientResult
 	 * @throws Exception
 	 */
-	public static HttpResponse get(String url, Map<String, String> headers, Map<String, String> params) throws Exception {
+	public static HttpResponse get(String url, Map<String, String> headers, Map<String, String> params) {
 		// 创建httpClient对象
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		// 创建访问的地址
-		URIBuilder uriBuilder = new URIBuilder(url);
+		URIBuilder uriBuilder = null;
+		try {
+			uriBuilder = new URIBuilder(url);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 		if (params != null) {
 			Set<Map.Entry<String, String>> entrySet = params.entrySet();
 			for (Map.Entry<String, String> entry : entrySet) {
@@ -98,7 +104,12 @@ public class HttpClientUtil {
 			}
 		}
 		// 创建http对象
-		HttpGet httpGet = new HttpGet(uriBuilder.build());
+		HttpGet httpGet = null;
+		try {
+			httpGet = new HttpGet(uriBuilder.build());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 		// 默认配置
 		httpGet.setConfig(requestConfig);
 		// 设置请求头
@@ -108,31 +119,37 @@ public class HttpClientUtil {
 		try {
 			// 执行请求
 			httpResponse = httpClient.execute(httpGet);
-			return httpResponse;
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			// 释放资源
-			release(httpResponse, httpClient);
+			try {
+				release(httpResponse, httpClient);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		return httpResponse;
 	}
 
 	/**
 	 * POST 不带请求头和请求参数
 	 */
-	public static HttpResponse post(String url) throws Exception {
+	public static HttpResponse post(String url) {
 		return post(url, null, null);
 	}
 
 	/**
 	 * POST 带请求参数
 	 */
-	public static HttpResponse post(String url, Map<String, String> params) throws Exception {
+	public static HttpResponse post(String url, Map<String, String> params) {
 		return post(url, null, params);
 	}
 
 	/**
 	 * POST 带请求头和请求参数
 	 */
-	private static HttpResponse post(String url, Map<String, String> headers, Map<String, String> params) throws Exception {
+	private static HttpResponse post(String url, Map<String, String> headers, Map<String, String> params) {
 		// 创建httpClient对象
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		// 创建http对象
@@ -147,11 +164,17 @@ public class HttpClientUtil {
 		try {
 			// 执行请求
 			httpResponse = httpClient.execute(httpPost);
-			return httpResponse;
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			// 释放资源
-			release(httpResponse, httpClient);
+			try {
+				release(httpResponse, httpClient);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		return httpResponse;
 	}
 
 	/**
@@ -164,7 +187,7 @@ public class HttpClientUtil {
 	/**
 	 * PUT 带请求参数
 	 */
-	private static HttpResponse put(String url, Map<String, String> params) throws Exception {
+	private static HttpResponse put(String url, Map<String, String> params) {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpPut httpPut = new HttpPut(url);
 		httpPut.setConfig(requestConfig);
@@ -173,17 +196,23 @@ public class HttpClientUtil {
 		try {
 			// 执行请求
 			httpResponse = httpClient.execute(httpPut);
-			return httpResponse;
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			// 释放资源
-			release(httpResponse, httpClient);
+			try {
+				release(httpResponse, httpClient);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		return httpResponse;
 	}
 
 	/**
 	 * DELETE 不带请求参数
 	 */
-	public static HttpResponse delete(String url) throws Exception {
+	public static HttpResponse delete(String url) {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpDelete httpDelete = new HttpDelete(url);
 		httpDelete.setConfig(requestConfig);
@@ -192,16 +221,23 @@ public class HttpClientUtil {
 			// 执行请求
 			httpResponse = httpClient.execute(httpDelete);
 			return httpResponse;
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			// 释放资源
-			release(httpResponse, httpClient);
+			try {
+				release(httpResponse, httpClient);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		return httpResponse;
 	}
 
 	/**
 	 * DELETE 带请求参数
 	 */
-	public static HttpResponse delete(String url, Map<String, String> params) throws Exception {
+	public static HttpResponse delete(String url, Map<String, String> params) {
 		if (params == null) {
 			params = new HashMap<String, String>();
 		}
@@ -234,8 +270,7 @@ public class HttpClientUtil {
 	 * @param httpMethod
 	 * @throws UnsupportedEncodingException
 	 */
-	public static void packageParam(Map<String, String> params, HttpEntityEnclosingRequestBase httpMethod)
-			throws UnsupportedEncodingException {
+	public static void packageParam(Map<String, String> params, HttpEntityEnclosingRequestBase httpMethod) {
 		// 封装请求参数
 		if (params != null) {
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
@@ -244,7 +279,11 @@ public class HttpClientUtil {
 				nvps.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
 			}
 			// 设置到请求的http对象中
-			httpMethod.setEntity(new UrlEncodedFormEntity(nvps, httpClientConfig.getEncoding()));
+			try {
+				httpMethod.setEntity(new UrlEncodedFormEntity(nvps, httpClientConfig.getEncoding()));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -371,6 +410,10 @@ public class HttpClientUtil {
 				break;
 		}
 		return request;
+	}
+
+	public static String getEncoding() {
+		return httpClientConfig.getEncoding();
 	}
 
 }

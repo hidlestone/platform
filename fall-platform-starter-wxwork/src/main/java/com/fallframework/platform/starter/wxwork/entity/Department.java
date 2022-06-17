@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fallframework.platform.starter.data.mp.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @TableName("wxwork_department")
-public class Department extends BaseEntity {
+public class Department extends WXWorkBaseEntity {
 
 	private static final long serialVersionUID = -1340420751736336503L;
 
