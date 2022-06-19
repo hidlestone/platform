@@ -240,16 +240,59 @@ public class WxworkStarterConstant {
 	public static final String URL_EXTERNALCONTACT_UPDATE_CONTACT_WAY = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/update_contact_way?access_token=ACCESS_TOKEN";
 
 	/**
-	 * 删除企业已配置的「联系我」方式 
+	 * 删除企业已配置的「联系我」方式
 	 */
 	public static final String URL_EXTERNALCONTACT_DEL_CONTACT_WAY = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/del_contact_way?access_token=ACCESS_TOKEN";
 
 	/**
-	 * 结束临时会话 
+	 * 结束临时会话
 	 */
 	public static final String URL_EXTERNALCONTACT_CLOSE_TEMP_CHAT = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/close_temp_chat?access_token=ACCESS_TOKEN";
 
-	
-	
-	
+	/**
+	 * 获取客户列表 GET
+	 */
+	public static final String URL_EXTERNALCONTACT_LIST = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/list?access_token=ACCESS_TOKEN&userid=USERID";
+
+	/**
+	 * 获取客户详情 GET
+	 */
+	public static final String URL_EXTERNALCONTACT_GET = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get?access_token=ACCESS_TOKEN&external_userid=EXTERNAL_USERID&cursor=CURSOR";
+
+	/**
+	 * 批量获取客户详情 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_GET_BY_USER = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/batch/get_by_user?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 修改客户备注信息 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_REMARK = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/remark?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取规则组列表 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_CUSTOMER_STRATEGY = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/customer_strategy/list?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取企业标签库 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_GET_CORP_TAG_LIST = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_corp_tag_list?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取指定规则组下的企业客户标签 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_GET_STRATEGY_TAG_LIST = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_strategy_tag_list?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 编辑客户企业标签 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_MARK_TAG = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/mark_tag?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 分配在职成员的客户 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_TRANSFER_CUSTOMER = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/transfer_customer?access_token=ACCESS_TOKEN";
+
+
 }
