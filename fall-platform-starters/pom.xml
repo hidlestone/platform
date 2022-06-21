@@ -103,8 +103,9 @@
 		<module>../fall-platform-starter-hystrix-dashboard</module>
 		<module>../fall-platform-starter-data-jpa</module>
 		<module>../fall-platform-starter-logback</module>
-		<module>../fall-platform-starter-wxwork</module>
+		<module>../fall-platform-starter-wechatwork</module>
 		<module>../fall-platform-starter-okhttp</module>
+		<module>../fall-platform-starter-wechatmp</module>
 	</modules>
 
 </project>
