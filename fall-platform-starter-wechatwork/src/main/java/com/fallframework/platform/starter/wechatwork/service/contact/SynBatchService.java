@@ -2,7 +2,7 @@ package com.fallframework.platform.starter.wechatwork.service.contact;
 
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.httpclient.util.HttpClientUtil;
-import com.fallframework.platform.starter.wechatwork.constant.WxworkStarterConstant;
+import com.fallframework.platform.starter.wechatwork.constant.WechatWorkStarterConstant;
 import com.fallframework.platform.starter.wechatwork.util.AccessTokenUtil;
 import com.fallframework.platform.starter.wechatwork.util.HttpResponseUtil;
 import org.apache.http.HttpResponse;
@@ -26,7 +26,7 @@ public class SynBatchService {
 	public ResponseResult syncUser(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_BATCH_SYNCUSER.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_BATCH_SYNCUSER.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -39,7 +39,7 @@ public class SynBatchService {
 	public ResponseResult replaceUser(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_BATCH_REPLACEUSER.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_BATCH_REPLACEUSER.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -52,7 +52,7 @@ public class SynBatchService {
 	public ResponseResult replaceParty(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_BATCH_REPLACEPARTY.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_BATCH_REPLACEPARTY.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -65,7 +65,7 @@ public class SynBatchService {
 	public ResponseResult replaceParty(String jobid) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_BATCH_GETRESULT.replace("ACCESS_TOKEN", access_token).replace("JOBID", jobid);
+		String url = WechatWorkStarterConstant.URL_BATCH_GETRESULT.replace("ACCESS_TOKEN", access_token).replace("JOBID", jobid);
 		HttpResponse httpResponse = HttpClientUtil.get(url);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);

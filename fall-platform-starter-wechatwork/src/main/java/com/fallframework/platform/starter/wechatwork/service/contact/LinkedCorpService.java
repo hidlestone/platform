@@ -2,7 +2,7 @@ package com.fallframework.platform.starter.wechatwork.service.contact;
 
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.httpclient.util.HttpClientUtil;
-import com.fallframework.platform.starter.wechatwork.constant.WxworkStarterConstant;
+import com.fallframework.platform.starter.wechatwork.constant.WechatWorkStarterConstant;
 import com.fallframework.platform.starter.wechatwork.util.AccessTokenUtil;
 import com.fallframework.platform.starter.wechatwork.util.HttpResponseUtil;
 import org.apache.http.HttpResponse;
@@ -28,7 +28,7 @@ public class LinkedCorpService {
 	public ResponseResult getPermList(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_LINKEDCORP_AGENT_GET_PERM_LIST.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_LINKEDCORP_AGENT_GET_PERM_LIST.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -41,7 +41,7 @@ public class LinkedCorpService {
 	public ResponseResult getUser(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_LINKEDCORP_USER_GET.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_LINKEDCORP_USER_GET.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -54,7 +54,7 @@ public class LinkedCorpService {
 	public ResponseResult userSimpleList(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_LINKEDCORP_USER_SIMPLELIST.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_LINKEDCORP_USER_SIMPLELIST.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -67,7 +67,7 @@ public class LinkedCorpService {
 	public ResponseResult userList(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_LINKEDCORP_USER_LIST.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_LINKEDCORP_USER_LIST.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -80,7 +80,7 @@ public class LinkedCorpService {
 	public ResponseResult departmentList(Map<String, Object> params) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_LINKEDCORP_DEPARTMENT_LIST.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_LINKEDCORP_DEPARTMENT_LIST.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, params);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);

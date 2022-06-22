@@ -3,7 +3,7 @@ package com.fallframework.platform.starter.wechatwork.service.callback;
 import com.alibaba.fastjson.JSON;
 import com.fallframework.platform.starter.wechatwork.aes.AesException;
 import com.fallframework.platform.starter.wechatwork.aes.WXBizJsonMsgCrypt;
-import com.fallframework.platform.starter.wechatwork.config.WxCpProperties;
+import com.fallframework.platform.starter.wechatwork.config.WechatWorkProperties;
 import me.chanjar.weixin.cp.api.impl.WxCpServiceImpl;
 import me.chanjar.weixin.cp.bean.message.WxCpXmlMessage;
 import me.chanjar.weixin.cp.config.impl.WxCpDefaultConfigImpl;
@@ -26,7 +26,7 @@ public class CallbackService {
 	 * 企微配置
 	 */
 	@Autowired
-	private WxCpProperties wxCpProperties;
+	private WechatWorkProperties wechatWorkProperties;
 
 	/**
 	 * 回调验证接口
@@ -38,9 +38,9 @@ public class CallbackService {
 		LOGGER.info("CallbackService#callback , msg_signature : {},timestamp : {}, nonce : {},echostr : {}"
 				, msg_signature, timestamp, nonce, echostr);
 		// 获取通讯录配置
-		WxCpProperties.ContactConfig contactConfig = wxCpProperties.getContactConfig();
+		WechatWorkProperties.ContactConfig contactConfig = wechatWorkProperties.getContactConfig();
 		String token = contactConfig.getToken();
-		String corpId = wxCpProperties.getCorpId();
+		String corpId = wechatWorkProperties.getCorpId();
 		String encodingAESKey = contactConfig.getEncodingAESKey();
 		WXBizJsonMsgCrypt wxcpt = new WXBizJsonMsgCrypt(token, encodingAESKey, corpId);
 		/*------------使用示例一：验证回调URL---------------
@@ -80,9 +80,9 @@ public class CallbackService {
 		LOGGER.info("requestBody : {},signature : {}, timestamp : {},nonce : {}"
 				, requestBody, signature, timestamp, nonce);
 		// 获取通讯录配置
-		WxCpProperties.ContactConfig contactConfig = wxCpProperties.getContactConfig();
+		WechatWorkProperties.ContactConfig contactConfig = wechatWorkProperties.getContactConfig();
 		WxCpDefaultConfigImpl configStorage = new WxCpDefaultConfigImpl();
-		configStorage.setCorpId(wxCpProperties.getCorpId());
+		configStorage.setCorpId(wechatWorkProperties.getCorpId());
 		configStorage.setCorpSecret(contactConfig.getSecret());
 		configStorage.setToken(contactConfig.getToken());
 		configStorage.setAesKey(contactConfig.getEncodingAESKey());

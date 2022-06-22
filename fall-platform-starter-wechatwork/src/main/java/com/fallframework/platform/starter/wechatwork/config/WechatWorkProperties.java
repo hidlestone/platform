@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "wechat.corp")
-public class WxCpProperties {
+public class WechatWorkProperties {
 
 	/**
 	 * 企业微信的corpId

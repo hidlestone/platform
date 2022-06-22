@@ -3,7 +3,7 @@ package com.fallframework.platform.starter.wechatwork.constant;
 /**
  * @author zhuangpf
  */
-public class WxworkStarterConstant {
+public class WechatWorkStarterConstant {
 
 	/**
 	 * 缓存key：accesstoken
@@ -294,5 +294,38 @@ public class WxworkStarterConstant {
 	 */
 	public static final String URL_EXTERNALCONTACT_TRANSFER_CUSTOMER = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/transfer_customer?access_token=ACCESS_TOKEN";
 
+	/**
+	 * 查询客户接替状态 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_TRANSFER_RESULT = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/transfer_result?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 分配在职成员的客户群 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_ONJOB_TRANSFER = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/groupchat/onjob_transfer?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 获取待分配的离职成员列表 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_GET_UNASSIGNED_LIST = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_unassigned_list?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 分配离职成员的客户 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_RESIGNED_TRANSFER_CUSTOMER = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/resigned/transfer_customer?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 查询客户接替状态 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_RESIGNED_TRANSFER_RESULT = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/resigned/transfer_result?access_token=ACCESS_TOKEN";
+
+	/**
+	 * 分配离职成员的客户群 POST
+	 */
+	public static final String URL_EXTERNALCONTACT_GROUPCHAT_TRANSFER = "https://qyapi.weixin.qq.com/cgi-bin/externalcontact/groupchat/transfer?access_token=ACCESS_TOKEN";
+
+	
+	
+	
 
 }

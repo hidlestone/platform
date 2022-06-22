@@ -1,8 +1,8 @@
 package com.fallframework.platform.starter.wechatwork.util;
 
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
-import com.fallframework.platform.starter.wechatwork.config.WxCpProperties;
-import com.fallframework.platform.starter.wechatwork.constant.WxworkStarterConstant;
+import com.fallframework.platform.starter.wechatwork.config.WechatWorkProperties;
+import com.fallframework.platform.starter.wechatwork.constant.WechatWorkStarterConstant;
 import com.fallframework.platform.starter.wechatwork.dto.GetAccessTokenDto;
 import com.fallframework.platform.starter.wechatwork.model.AccessTokenTypeEnum;
 import com.fallframework.platform.starter.wechatwork.service.token.TokenService;
@@ -23,14 +23,14 @@ public class AccessTokenUtil {
 	@Autowired
 	private RedisUtil redisUtil;
 	@Autowired
-	private WxCpProperties wxCpProperties;
+	private WechatWorkProperties wechatWorkProperties;
 
 	/**
 	 * 获取access_token
 	 */
 	public String getAccessToken(GetAccessTokenDto dto) {
 		// 从缓存中获取通讯录accesstoken
-		String access_token = (String) redisUtil.hget(WxworkStarterConstant.CACHE_KEY_ACCESS_TOKEN, dto.getAccessTokenType().name());
+		String access_token = (String) redisUtil.hget(WechatWorkStarterConstant.CACHE_KEY_ACCESS_TOKEN, dto.getAccessTokenType().name());
 		// 缓存中不存在，则重新请求获取
 		try {
 			if (StringUtils.isEmpty(access_token)) {
@@ -48,8 +48,8 @@ public class AccessTokenUtil {
 	public String getContactAccessToken() {
 		// 从缓存中获取通讯录accesstoken
 		GetAccessTokenDto dto = new GetAccessTokenDto();
-		dto.setCorpId(wxCpProperties.getCorpId());
-		dto.setSecret(wxCpProperties.getContactConfig().getSecret());
+		dto.setCorpId(wechatWorkProperties.getCorpId());
+		dto.setSecret(wechatWorkProperties.getContactConfig().getSecret());
 		dto.setAccessTokenType(AccessTokenTypeEnum.CONTACT);
 		return this.getAccessToken(dto);
 	}
@@ -60,8 +60,8 @@ public class AccessTokenUtil {
 	public String getExternalContactAccessToken() {
 		// 从缓存中获取通讯录accesstoken
 		GetAccessTokenDto dto = new GetAccessTokenDto();
-		dto.setCorpId(wxCpProperties.getCorpId());
-		dto.setSecret(wxCpProperties.getExternalContactConfig().getSecret());
+		dto.setCorpId(wechatWorkProperties.getCorpId());
+		dto.setSecret(wechatWorkProperties.getExternalContactConfig().getSecret());
 		dto.setAccessTokenType(AccessTokenTypeEnum.EXTERNALCONTACT);
 		return this.getAccessToken(dto);
 	}

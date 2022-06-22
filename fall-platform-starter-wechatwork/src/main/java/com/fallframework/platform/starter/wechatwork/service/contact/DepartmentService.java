@@ -2,7 +2,7 @@ package com.fallframework.platform.starter.wechatwork.service.contact;
 
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.httpclient.util.HttpClientUtil;
-import com.fallframework.platform.starter.wechatwork.constant.WxworkStarterConstant;
+import com.fallframework.platform.starter.wechatwork.constant.WechatWorkStarterConstant;
 import com.fallframework.platform.starter.wechatwork.util.AccessTokenUtil;
 import com.fallframework.platform.starter.wechatwork.util.HttpResponseUtil;
 import org.apache.http.HttpResponse;
@@ -28,7 +28,7 @@ public class DepartmentService {
 	public ResponseResult create(Map<String, Object> deptMap) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_CREATE.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_DEPARTMENT_CREATE.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, deptMap);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -41,7 +41,7 @@ public class DepartmentService {
 	public ResponseResult update(Map<String, Object> deptMap) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_UPDATE.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_DEPARTMENT_UPDATE.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, deptMap);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -54,7 +54,7 @@ public class DepartmentService {
 	public ResponseResult delete(String id) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_DELETE.replace("ACCESS_TOKEN", access_token).replace("ID", id);
+		String url = WechatWorkStarterConstant.URL_DEPARTMENT_DELETE.replace("ACCESS_TOKEN", access_token).replace("ID", id);
 		HttpResponse httpResponse = HttpClientUtil.get(url);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -67,7 +67,7 @@ public class DepartmentService {
 	public ResponseResult list(String id) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_LIST.replace("ACCESS_TOKEN", access_token).replace("ID", id);
+		String url = WechatWorkStarterConstant.URL_DEPARTMENT_LIST.replace("ACCESS_TOKEN", access_token).replace("ID", id);
 		HttpResponse httpResponse = HttpClientUtil.get(url);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -80,7 +80,7 @@ public class DepartmentService {
 	public ResponseResult simpleList(String id) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_SIMPLELIST.replace("ACCESS_TOKEN", access_token).replace("ID", id);
+		String url = WechatWorkStarterConstant.URL_DEPARTMENT_SIMPLELIST.replace("ACCESS_TOKEN", access_token).replace("ID", id);
 		HttpResponse httpResponse = HttpClientUtil.get(url);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -93,7 +93,7 @@ public class DepartmentService {
 	public ResponseResult get(String id) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_DEPARTMENT_GET.replace("ACCESS_TOKEN", access_token).replace("ID", id);
+		String url = WechatWorkStarterConstant.URL_DEPARTMENT_GET.replace("ACCESS_TOKEN", access_token).replace("ID", id);
 		HttpResponse httpResponse = HttpClientUtil.get(url);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);

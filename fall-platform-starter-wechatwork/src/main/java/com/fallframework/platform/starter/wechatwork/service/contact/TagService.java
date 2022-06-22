@@ -2,7 +2,7 @@ package com.fallframework.platform.starter.wechatwork.service.contact;
 
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.httpclient.util.HttpClientUtil;
-import com.fallframework.platform.starter.wechatwork.constant.WxworkStarterConstant;
+import com.fallframework.platform.starter.wechatwork.constant.WechatWorkStarterConstant;
 import com.fallframework.platform.starter.wechatwork.util.AccessTokenUtil;
 import com.fallframework.platform.starter.wechatwork.util.HttpResponseUtil;
 import org.apache.http.HttpResponse;
@@ -28,7 +28,7 @@ public class TagService {
 	public ResponseResult create(Map<String, Object> tagMap) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_TAG_CREATE.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_TAG_CREATE.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, tagMap);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -41,7 +41,7 @@ public class TagService {
 	public ResponseResult update(Map<String, Object> tagMap) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_TAG_UPDATE.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_TAG_UPDATE.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, tagMap);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -54,7 +54,7 @@ public class TagService {
 	public ResponseResult delete(String tagid) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_TAG_DELETE.replace("ACCESS_TOKEN", access_token).replace("TAGID", tagid);
+		String url = WechatWorkStarterConstant.URL_TAG_DELETE.replace("ACCESS_TOKEN", access_token).replace("TAGID", tagid);
 		HttpResponse httpResponse = HttpClientUtil.get(url);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -67,7 +67,7 @@ public class TagService {
 	public ResponseResult get(String tagid) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_TAG_GET.replace("ACCESS_TOKEN", access_token).replace("TAGID", tagid);
+		String url = WechatWorkStarterConstant.URL_TAG_GET.replace("ACCESS_TOKEN", access_token).replace("TAGID", tagid);
 		HttpResponse httpResponse = HttpClientUtil.get(url);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -80,7 +80,7 @@ public class TagService {
 	public ResponseResult addTagUsers(Map<String, Object> tagMap) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_TAG_ADDTAGUSERS.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_TAG_ADDTAGUSERS.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, tagMap);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -93,7 +93,7 @@ public class TagService {
 	public ResponseResult delTagUsers(Map<String, Object> tagMap) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_TAG_DELTAGUSERS.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_TAG_DELTAGUSERS.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.post(url, tagMap);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);
@@ -106,7 +106,7 @@ public class TagService {
 	public ResponseResult list(String tagid) {
 		// 从缓存中获取通讯录accesstoken
 		String access_token = accessTokenUtil.getContactAccessToken();
-		String url = WxworkStarterConstant.URL_TAG_LIST.replace("ACCESS_TOKEN", access_token);
+		String url = WechatWorkStarterConstant.URL_TAG_LIST.replace("ACCESS_TOKEN", access_token);
 		HttpResponse httpResponse = HttpClientUtil.get(url);
 		// 响应信息
 		ResponseResult responseResult = HttpResponseUtil.httpResponse2ResponseResult(httpResponse);

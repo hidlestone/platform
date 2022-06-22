@@ -3,7 +3,7 @@ package com.fallframework.platform.starter.wechatwork.service.token;
 import com.alibaba.fastjson.JSON;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
-import com.fallframework.platform.starter.wechatwork.constant.WxworkStarterConstant;
+import com.fallframework.platform.starter.wechatwork.constant.WechatWorkStarterConstant;
 import com.fallframework.platform.starter.wechatwork.dto.GetAccessTokenDto;
 import com.fallframework.platform.starter.wechatwork.model.TokenResponse;
 import okhttp3.OkHttpClient;
@@ -30,7 +30,7 @@ public class TokenService {
 	 * 请求获取token
 	 */
 	public ResponseResult<TokenResponse> getToken(GetAccessTokenDto dto) throws IOException {
-		String url = WxworkStarterConstant.URL_GETTOKEN.replace("ID", dto.getCorpId()).replace("SECRET", dto.getSecret());
+		String url = WechatWorkStarterConstant.URL_GETTOKEN.replace("ID", dto.getCorpId()).replace("SECRET", dto.getSecret());
 		// 请求
 		Response response = new OkHttpClient().newCall(new Request.Builder().url(url).get().build()).execute();
 		TokenResponse tokenResponse = JSON.parseObject(response.body().string(), TokenResponse.class);
@@ -43,7 +43,7 @@ public class TokenService {
 				LOGGER.info("tokenResponse : " + JSON.toJSONString(tokenResponse));
 				// 将access_token存储到缓存中
 				redisUtil.hset(
-						WxworkStarterConstant.CACHE_KEY_ACCESS_TOKEN,
+						WechatWorkStarterConstant.CACHE_KEY_ACCESS_TOKEN,
 						dto.getAccessTokenType().name(),
 						tokenResponse.getAccess_token(),
 						tokenResponse.getExpires_in());
