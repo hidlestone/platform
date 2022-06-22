@@ -9,8 +9,64 @@
 		<version>1.0-SNAPSHOT</version>
 		<relativePath>../fall-platform-starters/pom.xml</relativePath>
 	</parent>
-
 	<artifactId>fall-platform-starter-okhttp</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>Fall Platform Okhttp Starter</name>
+	<description>starter of okhttp dependency</description>
+	<url>http://www.wordplay.work/#/fall-platform-starters/fall-platform-starter-okhttp</url>
+	<organization>
+		<name>Wordplay Software, Inc.</name>
+		<url>https://wordplay.work</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Wordplay</name>
+			<email>info@wordplay.work</email>
+			<organization>Wordplay Software, Inc.</organization>
+			<organizationUrl>https://www.wordplay.work</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git://github.com/hidlestone/platform.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/hidlestone/platform.git</developerConnection>
+		<url>https://github.com/hidlestone/platform</url>
+	</scm>
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/hidlestone/platform/issues</url>
+	</issueManagement>
 
-
+	<dependencies>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+		</dependency>
+		<!-- commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fallframework.platform</groupId>
+			<artifactId>fall-platform-starter-core</artifactId>
+		</dependency>
+		<!-- 测试 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>3.16</version>
+		</dependency>
+	</dependencies>
+	
 </project>
