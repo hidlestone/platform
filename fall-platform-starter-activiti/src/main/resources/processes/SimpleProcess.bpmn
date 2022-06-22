@@ -13,16 +13,24 @@
     <userTask activiti:assignee="admin" completionQuantity="1" id="sid-2B2AA039-82D2-479C-8FE9-6F48E4478BD8" implementation="##unspecified" isForCompensation="false" name="Admin Approver" startQuantity="1">
       <extensionElements>
         <modeler:activiti-idm-assignee xmlns:modeler="http://activiti.com/modeler">
-          <activiti-idm-assignee><![CDATA[true]]></activiti-idm-assignee>
+          <activiti-idm-assignee>
+            <activiti-idm-assignee><![CDATA[true]]></activiti-idm-assignee>
+          </activiti-idm-assignee>
         </modeler:activiti-idm-assignee>
         <modeler:assignee-info-email xmlns:modeler="http://activiti.com/modeler">
-          <assignee-info-email><![CDATA[admin]]></assignee-info-email>
+          <assignee-info-email>
+            <assignee-info-email><![CDATA[admin]]></assignee-info-email>
+          </assignee-info-email>
         </modeler:assignee-info-email>
         <modeler:assignee-info-lastname xmlns:modeler="http://activiti.com/modeler">
-          <assignee-info-lastname><![CDATA[Administrator]]></assignee-info-lastname>
+          <assignee-info-lastname>
+            <assignee-info-lastname><![CDATA[Administrator]]></assignee-info-lastname>
+          </assignee-info-lastname>
         </modeler:assignee-info-lastname>
         <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
-          <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+          <initiator-can-complete>
+            <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+          </initiator-can-complete>
         </modeler:initiator-can-complete>
       </extensionElements>
       <incoming>sid-F506EEC7-0411-4A97-930D-87500FF1414F</incoming>
@@ -56,17 +64,17 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="sid-F506EEC7-0411-4A97-930D-87500FF1414F" id="Yaoqiang-sid-F506EEC7-0411-4A97-930D-87500FF1414F">
-        <omgdi:waypoint x="1.0" y="1.0"/>
-        <omgdi:waypoint x="1.0" y="40.0"/>
+        <omgdi:waypoint x="16.82986073426903" y="1.0"/>
+        <omgdi:waypoint x="1.0" y="28.904761904763205"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="19.84" width="6.0" x="-2.0" y="10.58"/>
+          <omgdc:Bounds height="19.84" width="6.0" x="-2.0" y="-2.88"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-9FC989EE-BBC3-4EB2-A7AF-DA4F2649A68F" id="Yaoqiang-sid-9FC989EE-BBC3-4EB2-A7AF-DA4F2649A68F">
-        <omgdi:waypoint x="2.0" y="40.0"/>
-        <omgdi:waypoint x="2.0" y="2.0"/>
+        <omgdi:waypoint x="2.0" y="38.79487179487211"/>
+        <omgdi:waypoint x="17.82986073426903" y="2.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="19.84" width="6.0" x="-1.0" y="11.08"/>
+          <omgdc:Bounds height="19.84" width="6.0" x="-1.0" y="2.56"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
