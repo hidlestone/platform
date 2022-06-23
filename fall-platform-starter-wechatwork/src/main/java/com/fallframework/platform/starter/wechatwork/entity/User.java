@@ -19,7 +19,7 @@ public class User extends WXWorkBaseEntity {
 	private static final long serialVersionUID = -8397056354063579252L;
 
 	/**
-	 * 成员UserID
+	 * 成员userid
 	 */
 	@TableId(value = "userid", type = IdType.INPUT)
 	private String userid;
@@ -31,28 +31,22 @@ public class User extends WXWorkBaseEntity {
 	private String name;
 
 	/**
-	 * 成员所属部门id列表
+	 * 职务信息
+	 */
+	@TableField("position")
+	private String position;
+
+	/**
+	 * 手机号码
 	 */
 	@TableField("mobile")
 	private String mobile;
 
 	/**
-	 * 成员UserID
+	 * 性别
 	 */
-	@TableField("department")
-	private String department;
-
-	/**
-	 * 部门内的排序值，默认为0
-	 */
-	@TableField("order")
-	private String order;
-
-	/**
-	 * 职务信息
-	 */
-	@TableField("position")
-	private String position;
+	@TableField("gender")
+	private String gender;
 
 	/**
 	 * 邮箱
@@ -67,10 +61,10 @@ public class User extends WXWorkBaseEntity {
 	private String bizMail;
 
 	/**
-	 * 表示在所在的部门内是否为部门负责人
+	 * 直属上级UserID
 	 */
-	@TableField("is_leader_in_dept")
-	private String isLeaderInDept;
+	@TableField("direct_leader")
+	private String directLeader;
 
 	/**
 	 * 头像url
@@ -97,36 +91,6 @@ public class User extends WXWorkBaseEntity {
 	private String alias;
 
 	/**
-	 * 扩展属性
-	 */
-	@TableField("extattr")
-	private String extattr;
-
-	/**
-	 * 激活状态
-	 */
-	@TableField("status")
-	private Byte status;
-
-	/**
-	 * 员工个人二维码
-	 */
-	@TableField("qr_code")
-	private String qrCode;
-
-	/**
-	 * 成员对外属性
-	 */
-	@TableField("external_profile")
-	private String externalProfile;
-
-	/**
-	 * 对外职务
-	 */
-	@TableField("external_position")
-	private String externalPosition;
-
-	/**
 	 * 地址
 	 */
 	@TableField("address")
@@ -142,6 +106,36 @@ public class User extends WXWorkBaseEntity {
 	 * 主部门
 	 */
 	@TableField("main_department")
-	private String mainDepartment;
+	private Long mainDepartment;
+
+	/**
+	 * 扩展属性
+	 */
+	@TableField("extattr")
+	private String extattr;
+
+	/**
+	 * 激活状态
+	 */
+	@TableField("status")
+	private Boolean status;
+
+	/**
+	 * 员工个人二维码
+	 */
+	@TableField("qr_code")
+	private String qrCode;
+
+	/**
+	 * 对外职务
+	 */
+	@TableField("external_position")
+	private String externalPosition;
+
+	/**
+	 * 成员对外属性
+	 */
+	@TableField("external_profile")
+	private String externalProfile;
 
 }

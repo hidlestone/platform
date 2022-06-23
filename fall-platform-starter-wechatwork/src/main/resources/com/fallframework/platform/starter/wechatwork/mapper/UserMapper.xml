@@ -5,25 +5,24 @@
 		<!--@mbg.generated-->
 		<id column="userid" jdbcType="VARCHAR" property="userid"/>
 		<result column="name" jdbcType="VARCHAR" property="name"/>
-		<result column="mobile" jdbcType="VARCHAR" property="mobile"/>
-		<result column="department" jdbcType="VARCHAR" property="department"/>
-		<result column="order" jdbcType="VARCHAR" property="order"/>
 		<result column="position" jdbcType="VARCHAR" property="position"/>
+		<result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+		<result column="gender" jdbcType="CHAR" property="gender"/>
 		<result column="email" jdbcType="VARCHAR" property="email"/>
 		<result column="biz_mail" jdbcType="VARCHAR" property="bizMail"/>
-		<result column="is_leader_in_dept" jdbcType="VARCHAR" property="isLeaderInDept"/>
+		<result column="direct_leader" jdbcType="VARCHAR" property="directLeader"/>
 		<result column="avatar" jdbcType="VARCHAR" property="avatar"/>
 		<result column="thumb_avatar" jdbcType="VARCHAR" property="thumbAvatar"/>
 		<result column="telephone" jdbcType="VARCHAR" property="telephone"/>
 		<result column="alias" jdbcType="VARCHAR" property="alias"/>
-		<result column="extattr" jdbcType="LONGVARCHAR" property="extattr"/>
-		<result column="status" jdbcType="BYTE" property="status"/>
-		<result column="qr_code" jdbcType="VARCHAR" property="qrCode"/>
-		<result column="external_profile" jdbcType="LONGVARCHAR" property="externalProfile"/>
-		<result column="external_position" jdbcType="VARCHAR" property="externalPosition"/>
 		<result column="address" jdbcType="VARCHAR" property="address"/>
 		<result column="open_userid" jdbcType="VARCHAR" property="openUserid"/>
-		<result column="main_department" jdbcType="VARCHAR" property="mainDepartment"/>
+		<result column="main_department" jdbcType="BIGINT" property="mainDepartment"/>
+		<result column="extattr" jdbcType="LONGVARCHAR" property="extattr"/>
+		<result column="status" jdbcType="BOOLEAN" property="status"/>
+		<result column="qr_code" jdbcType="VARCHAR" property="qrCode"/>
+		<result column="external_position" jdbcType="VARCHAR" property="externalPosition"/>
+		<result column="external_profile" jdbcType="LONGVARCHAR" property="externalProfile"/>
 		<result column="create_user_id" jdbcType="BIGINT" property="createUserId"/>
 		<result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId"/>
 		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
@@ -31,9 +30,9 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		<!--@mbg.generated-->
-		userid, `name`, mobile, department, `order`, `position`, email, biz_mail, is_leader_in_dept,
-		avatar, thumb_avatar, telephone, `alias`, extattr, `status`, qr_code, external_profile,
-		external_position, address, open_userid, main_department, create_user_id, modify_user_id, gmt_create,
+		userid, `name`, `position`, mobile, gender, email, biz_mail, direct_leader, avatar, thumb_avatar,
+		telephone, `alias`, address, open_userid, main_department, extattr, `status`, qr_code,
+		external_position, external_profile, create_user_id, modify_user_id, gmt_create,
 		gmt_modified
 	</sql>
 
@@ -51,12 +50,6 @@
 			<if test="param2.mobile != null">
 				AND mobile LIKE CONCAT('%', #{param2.mobile,jdbcType=VARCHAR}, '%')
 			</if>
-			<if test="param2.department != null">
-				AND department LIKE CONCAT('%', #{param2.department,jdbcType=VARCHAR}, '%')
-			</if>
-			<if test="param2.order != null">
-				AND `order` = #{order,jdbcType=VARCHAR}
-			</if>
 			<if test="param2.position != null">
 				AND `position` = #{position,jdbcType=VARCHAR}
 			</if>
@@ -66,8 +59,8 @@
 			<if test="param2.bizMail != null">
 				AND biz_mail LIKE CONCAT('%', #{param2.bizMail,jdbcType=VARCHAR}, '%')
 			</if>
-			<if test="param2.isLeaderInDept != null">
-				AND is_leader_in_dept = #{isLeaderInDept,jdbcType=VARCHAR}
+			<if test="param2.directLeader != null">
+				AND direct_leader LIKE CONCAT('%', #{param2.directLeader} ,jdbcType=VARCHAR}, '%')
 			</if>
 			<if test="param2.avatar != null">
 				AND avatar LIKE CONCAT('%', #{param2.avatar,jdbcType=VARCHAR}, '%')

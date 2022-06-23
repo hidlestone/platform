@@ -45,8 +45,8 @@ public class Department extends WXWorkBaseEntity {
 	/**
 	 * 父部门id。根部门为1
 	 */
-	@TableField("parentid")
-	private Long parentid;
+	@TableField("parent_id")
+	private Long parentId;
 
 	/**
 	 * 在父部门中的次序值。order值大的排序靠前。值范围是[0, 2^32)

@@ -7,7 +7,7 @@
 		<result column="name" jdbcType="VARCHAR" property="name"/>
 		<result column="name_en" jdbcType="VARCHAR" property="nameEn"/>
 		<result column="department_leader" jdbcType="VARCHAR" property="departmentLeader"/>
-		<result column="parentid" jdbcType="BIGINT" property="parentid"/>
+		<result column="parent_id" jdbcType="BIGINT" property="parentId"/>
 		<result column="order" jdbcType="BIGINT" property="order"/>
 		<result column="create_user_id" jdbcType="BIGINT" property="createUserId"/>
 		<result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId"/>
@@ -16,7 +16,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		<!--@mbg.generated-->
-		id, `name`, name_en, department_leader, parentid, `order`, create_user_id,
+		id, `name`, name_en, department_leader, parent_id, `order`, create_user_id,
 		modify_user_id, gmt_create, gmt_modified
 	</sql>
 
@@ -37,7 +37,7 @@
 			<if test="param2.departmentLeader != null">
 				AND department_leader LIKE CONCAT('%', #{param2.departmentLeader,jdbcType=VARCHAR}, '%')
 			</if>
-			<if test="param2.parentid != null">
+			<if test="param2.parentId != null">
 				AND parentid = #{parentid,jdbcType=BIGINT}
 			</if>
 			<if test="param2.order != null">
