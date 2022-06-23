@@ -9,6 +9,8 @@ import com.fallframework.platform.starter.wechatwork.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
@@ -20,6 +22,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		Page<User> page = new Page<>(user.getPageNum(), user.getPageSize());
 		page = userMapper.list(page, user);
 		return ResponseResult.success(page);
+	}
+
+	@Override
+	public ResponseResult<List<User>> getUsersByDeptId(Long deptId) {
+		List<User> userList = userMapper.getUsersByDeptId(deptId);
+		return ResponseResult.success(userList);
 	}
 
 }

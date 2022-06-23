@@ -118,7 +118,7 @@ public class User extends WXWorkBaseEntity {
 	 * 激活状态
 	 */
 	@TableField("status")
-	private Boolean status;
+	private Byte status;
 
 	/**
 	 * 员工个人二维码

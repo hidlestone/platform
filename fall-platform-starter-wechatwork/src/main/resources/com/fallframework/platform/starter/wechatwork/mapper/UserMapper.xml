@@ -103,5 +103,21 @@
 		</where>
 		ORDER BY userid ASC
 	</select>
+	
+	<select id="getUsersByDeptId" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM
+			wxwork_user 
+		WHERE
+			userid IN (
+			SELECT
+				userid 
+			FROM
+				wxwork_dept_user 
+			WHERE
+			deptid = #{deptId,jdbcType=BIGINT}
+			)
+	</select>
 
 </mapper>
