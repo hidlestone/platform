@@ -9,6 +9,8 @@ import com.fallframework.platform.starter.wechatwork.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Department> implements DepartmentService {
 
@@ -20,6 +22,18 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
 		Page<Department> page = new Page<>(department.getPageNum(), department.getPageSize());
 		page = departmentMapper.list(page, department);
 		return ResponseResult.success(page);
+	}
+
+	@Override
+	public ResponseResult<List<Department>> getDepartmentTree(Department department) {
+		List<Department> departmentList = departmentMapper.getDepartmentTree(department);
+		return ResponseResult.success(departmentList);
+	}
+
+	@Override
+	public ResponseResult<Department> getDepartmentsByParentId(Long parentId) {
+		Department department = departmentMapper.getDepartmentsByParentId(parentId);
+		return ResponseResult.success(department);
 	}
 
 }

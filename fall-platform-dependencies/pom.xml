@@ -429,6 +429,16 @@
 			</dependency>
 			<dependency>
 				<groupId>com.fallframework.platform</groupId>
+				<artifactId>fall-platform-starter-wechatwork</artifactId>
+				<version>${platform.starters.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fallframework.platform</groupId>
+				<artifactId>fall-platform-starter-wechatmp</artifactId>
+				<version>${platform.starters.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fallframework.platform</groupId>
 				<artifactId>fall-platform-starters</artifactId>
 				<version>${platform.starters.version}</version>
 			</dependency>

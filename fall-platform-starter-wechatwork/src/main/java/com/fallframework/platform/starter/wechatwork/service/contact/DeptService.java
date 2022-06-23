@@ -17,7 +17,7 @@ import java.util.Map;
  * @author zhuangpf
  */
 @Service
-public class DepartmentService {
+public class DeptService {
 
 	@Autowired
 	private AccessTokenUtil accessTokenUtil;

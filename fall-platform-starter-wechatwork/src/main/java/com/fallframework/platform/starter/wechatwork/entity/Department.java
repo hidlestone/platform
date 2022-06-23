@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * 企微通讯录-部门<br/>
  * https://developer.work.weixin.qq.com/document/path/90208
@@ -53,5 +55,11 @@ public class Department extends WXWorkBaseEntity {
 	 */
 	@TableField("order")
 	private Long order;
+
+	/**
+	 * 子部门
+	 */
+	@TableField(exist = false)
+	private List<Department> children;
 
 }
