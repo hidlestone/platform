@@ -305,8 +305,8 @@ public class HttpClientUtil {
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}*/
-			httpMethod.setEntity(new StringEntity(JSON.toJSONString(params), httpClientConfig.getEncoding()));
 			httpMethod.setHeader("Content-Type", "application/json;charset=UTF-8");
+			httpMethod.setEntity(new StringEntity(JSON.toJSONString(params), httpClientConfig.getEncoding()));
 		}
 	}
 

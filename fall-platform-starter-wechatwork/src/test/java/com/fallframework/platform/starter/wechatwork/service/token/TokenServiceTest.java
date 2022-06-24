@@ -1,10 +1,7 @@
 package com.fallframework.platform.starter.wechatwork.service.token;
 
-import com.fallframework.platform.starter.httpclient.util.HttpClientUtil;
 import com.fallframework.platform.starter.wechatwork.WXWorkApplication;
-import com.fallframework.platform.starter.wechatwork.constant.WechatWorkStarterConstant;
 import com.fallframework.platform.starter.wechatwork.dto.GetAccessTokenDto;
-import org.apache.http.HttpResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +27,5 @@ public class TokenServiceTest {
 		dto.setSecret("uKCXBRISNHyQgxLjZYE1NCx49zNR7CAqqVWAft3R9rA");
 		tokenService.getToken(dto);
 	}
-
-
+	
 }
