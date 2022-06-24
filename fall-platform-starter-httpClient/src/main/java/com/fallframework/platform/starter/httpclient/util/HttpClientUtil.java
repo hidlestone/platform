@@ -1,5 +1,6 @@
 package com.fallframework.platform.starter.httpclient.util;
 
+import com.alibaba.fastjson.JSON;
 import com.fallframework.platform.starter.httpclient.config.HttpClientConfig;
 import com.fallframework.platform.starter.httpclient.model.DownloadDto;
 import com.fallframework.platform.starter.httpclient.model.HttpClientResult;
@@ -10,7 +11,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
@@ -24,6 +24,7 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.methods.HttpTrace;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -149,7 +150,7 @@ public class HttpClientUtil {
 	/**
 	 * POST 带请求头和请求参数
 	 */
-	private static HttpResponse post(String url, Map<String, String> headers, Map<String, Object> params) {
+	public static HttpResponse post(String url, Map<String, String> headers, Map<String, Object> params) {
 		// 创建httpClient对象
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		// 创建http对象
@@ -187,7 +188,7 @@ public class HttpClientUtil {
 	/**
 	 * PUT 带请求参数
 	 */
-	private static HttpResponse put(String url, Map<String, Object> params) {
+	public static HttpResponse put(String url, Map<String, Object> params) {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpPut httpPut = new HttpPut(url);
 		httpPut.setConfig(requestConfig);
@@ -264,6 +265,23 @@ public class HttpClientUtil {
 	}
 
 	/**
+	 * HttpResponse转换为HttpClientResult
+	 *
+	 * @param httpResponse
+	 */
+	public static HttpClientResult HttpResponse2HttpClientResult(HttpResponse httpResponse) throws IOException {
+		// 获取返回结果
+		if (httpResponse != null && httpResponse.getStatusLine() != null) {
+			String content = "";
+			if (httpResponse.getEntity() != null) {
+				content = EntityUtils.toString(httpResponse.getEntity(), httpClientConfig.getEncoding());
+			}
+			return new HttpClientResult(httpResponse.getStatusLine().getStatusCode(), content);
+		}
+		return null;
+	}
+
+	/**
 	 * 封装请求参数
 	 *
 	 * @param params
@@ -278,12 +296,17 @@ public class HttpClientUtil {
 			for (Map.Entry<String, Object> entry : entrySet) {
 				nvps.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
 			}
-			// 设置到请求的http对象中
-			try {
-				httpMethod.setEntity(new UrlEncodedFormEntity(nvps, httpClientConfig.getEncoding()));
+			// 设置到请求的http对象中。使用UrlEncodedFormEntity，会被编码成如下格式：
+			// encoding_aeskey=EAp3uYDnB9bVCbxUQZyARZGp5FvrUK4I95CJ23F6GaF&block_size=1000000
+			/*try {
+				UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(nvps, httpClientConfig.getEncoding());
+				urlEncodedFormEntity.setContentType("application/json");
+				httpMethod.setEntity(urlEncodedFormEntity);
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
-			}
+			}*/
+			httpMethod.setEntity(new StringEntity(JSON.toJSONString(params), httpClientConfig.getEncoding()));
+			httpMethod.setHeader("Content-Type", "application/json;charset=UTF-8");
 		}
 	}
 
@@ -378,7 +401,7 @@ public class HttpClientUtil {
 		return fileOutputStream;
 	}
 
-	private static HttpRequestBase getRequest(String url, HttpMethodEnum method) {
+	public static HttpRequestBase getRequest(String url, HttpMethodEnum method) {
 		HttpRequestBase request = null;
 		switch (method) {
 			case GET:// HttpGet

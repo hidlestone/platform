@@ -19,7 +19,7 @@ import java.util.Map;
  * @author zhuangpf
  */
 @Service
-public class UserService {
+public class ContactUserService {
 
 	@Autowired
 	private AccessTokenUtil accessTokenUtil;

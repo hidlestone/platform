@@ -4,6 +4,70 @@ server:
 spring:
   application:
     name: wechatcp
+  datasource:
+    username: root
+    password: root
+    jdbc-url: jdbc:mysql://localhost:3306/fallplatform
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${spring.datasource.jdbc-url}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      connection-test-query: SELECT 1 FROM DUAL
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: Wordplay-servicetest-HikariCP
+      max-lifetime: 60000
+      connection-timeout: 30000
+  redis:
+    host: localhost
+    port: 6379
+#   password: payn_redis$123        #密码（默认为空）
+    database: 15                    #Redis索引0~15，默认为0
+    timeout: 60000ms                #连接超时时间（毫秒）
+    lettuce:                        # 这里标明使用lettuce配置
+      pool:
+        max-active: 3               #连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms              #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 1                 #连接池中的最大空闲连接
+        min-idle: 0                 #连接池中的最小空闲连接        
+  
+#mybatis-plus配置
+mybatis-plus:
+  # 指定枚举所在的包
+  type-enums-package: com.fallframework.platform.starter
+  mapper-locations: classpath:/**/mapper/*.xml
+  # 实体扫描，多个package用逗号或者分号分隔
+  # typeAliasesPackage: com.xkcoding.orm.mybatis.plus.entity
+  global-config:
+    # 数据库相关配置
+    db-config:
+      # 主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: ID_WORKER
+      # 机器 ID 部分(影响雪花ID)
+      workerId: 1
+      # 数据标识 ID 部分(影响雪花ID)(workerId 和 datacenterId 一起配置才能重新初始化 Sequence)
+      datacenterId: 18
+      # 字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: not_empty
+      # 驼峰下划线转换
+      table-underline: true
+      # 是否开启大写命名，默认不开启
+      #capital-mode: true
+      # 逻辑删除配置
+      #logic-delete-value: 1
+      #logic-not-delete-value: 0
+      db-type: mysql
+    # 刷新mapper 调试神器
+    refresh: true
+  # 原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
 
 wechat:
   corp:
