@@ -29,12 +29,12 @@ public class FileGroupServiceImpl extends ServiceImpl<FileGroupMapper, FileGroup
 	}
 
 	@Override
-	public ResponseResult saveGroupAndInfoList(FileGroup fileGroup) {
+	public ResponseResult<Long> saveGroupAndInfoList(FileGroup fileGroup) {
 		save(fileGroup);
 		List<FileInfo> fileInfoList = fileGroup.getFileInfos();
 		fileInfoList.forEach(dtl -> dtl.setFileGroupId(fileGroup.getId()));
 		fileInfoService.saveBatch(fileInfoList);
-		return ResponseResult.success();
+		return ResponseResult.success(fileGroup.getId());
 	}
 
 }

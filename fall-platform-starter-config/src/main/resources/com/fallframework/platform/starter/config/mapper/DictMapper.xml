@@ -18,6 +18,36 @@
 		id, code, `value`, `desc`, `status`, create_user_id, modify_user_id, gmt_create, gmt_modified
 	</sql>
 
+	<!-- 基础字段过滤 -->
+	<sql id="Common_Column_Filter">
+		<if test="param2.createUserId != null">
+			AND create_user_id = #{param2.createUserId,jdbcType=BIGINT}
+		</if>
+		<if test="param2.modifyUserId != null">
+			AND modify_user_id = #{param2.modifyUserId,jdbcType=BIGINT}
+		</if>
+		<if test="param2.gmtCreate != null">
+			AND gmt_create = #{param2.gmtCreate,jdbcType=TIMESTAMP}
+		</if>
+		<if test="param2.gmtModified != null">
+			AND gmt_modified = #{param2.gmtModified,jdbcType=TIMESTAMP}
+		</if>
+		<!-- 创建时间范围 -->
+		<if test="param2.gmtCreateStart != null">
+			AND gmt_create &gt;= #{param2.gmtCreateStart, jdbcType=TIMESTAMP}
+		</if>
+		<if test="param2.gmtCreateEnd != null">
+			AND gmt_create &lt;= #{param2.gmtCreateEnd, jdbcType=TIMESTAMP}
+		</if>
+		<!-- 修改时间范围 -->
+		<if test="param2.gmtModifiedStart != null">
+			AND gmt_modified &gt;= #{param2.gmtModifiedStart, jdbcType=TIMESTAMP}
+		</if>
+		<if test="param2.gmtModifiedEnd != null">
+			AND gmt_modified &lt;= #{param2.gmtModifiedEnd, jdbcType=TIMESTAMP}
+		</if>
+	</sql>
+	
 	<select id="list" resultMap="BaseResultMap">
 		SELECT
 		<include refid="Base_Column_List"/>
@@ -40,7 +70,7 @@
 				AND `status` = #{param2.status,jdbcType=TINYINT}
 			</if>
 			<!-- 基础字段过滤 -->
-			<include refid="com.fallframework.platform.starter.data.mp.mapper.CommonMapper.Common_Column_Filter"/>
+			<include refid="Common_Column_Filter"/>
 		</where>
 		ORDER by id DESC
 	</select>

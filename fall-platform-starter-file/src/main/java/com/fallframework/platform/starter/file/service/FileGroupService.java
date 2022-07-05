@@ -9,6 +9,6 @@ public interface FileGroupService extends IService<FileGroup> {
 
 	ResponseResult<Page<FileGroup>> list(FileGroup fileGroup);
 
-	ResponseResult saveGroupAndInfoList(FileGroup fileGroup);
+	ResponseResult<Long> saveGroupAndInfoList(FileGroup fileGroup);
 
 }

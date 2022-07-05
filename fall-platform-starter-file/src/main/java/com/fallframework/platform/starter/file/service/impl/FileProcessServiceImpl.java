@@ -47,9 +47,12 @@ public class FileProcessServiceImpl implements FileProcessService {
 	@Autowired
 	private FileInfoService fileInfoService;
 
-	@Transactional
+	/**
+	 * 上传文件组多文件
+	 */
 	@Override
-	public ResponseResult uploadFileGroup(FileGroupUploadDto dto) {
+	@Transactional
+	public ResponseResult<Long> uploadFileGroup(FileGroupUploadDto dto) {
 		// // 所有待上传的文件 MultipartFile
 		List<MultipartFile> files = dto.getFiles();
 		if (CollectionUtil.isEmpty(files)) {
@@ -85,7 +88,8 @@ public class FileProcessServiceImpl implements FileProcessService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return fileGroupService.saveGroupAndInfoList(fileGroupRequest);
+		Long groupId = fileGroupService.saveGroupAndInfoList(fileGroupRequest).getData();
+		return ResponseResult.success(groupId);
 	}
 
 	@Override
