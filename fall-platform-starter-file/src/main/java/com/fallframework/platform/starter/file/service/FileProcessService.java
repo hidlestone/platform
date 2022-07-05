@@ -16,7 +16,7 @@ public interface FileProcessService {
 	 * @param dto 文件上传请求参数
 	 * @return 是否上传成功
 	 */
-	ResponseResult uploadFileGroup(FileGroupUploadDto dto);
+	ResponseResult<Long> uploadFileGroup(FileGroupUploadDto dto);
 
 	/**
 	 * 下载文件
