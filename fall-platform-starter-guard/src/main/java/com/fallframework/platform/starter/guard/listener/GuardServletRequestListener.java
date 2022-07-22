@@ -1,8 +1,5 @@
 package com.fallframework.platform.starter.guard.listener;
 
-import com.fallframework.platform.starter.core.context.CurrentContextHelper;
-import org.springframework.stereotype.Component;
-
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
 

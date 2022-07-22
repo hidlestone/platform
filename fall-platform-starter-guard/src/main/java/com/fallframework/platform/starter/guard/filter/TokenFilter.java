@@ -6,8 +6,6 @@ import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.config.model.SysParamGroupEnum;
 import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
-import com.fallframework.platform.starter.core.constant.CoreContextConstant;
-import com.fallframework.platform.starter.core.context.CurrentContextHelper;
 import com.fallframework.platform.starter.guard.exception.UnknownAccountException;
 import com.fallframework.platform.starter.guard.util.JWTUtil;
 import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;
@@ -17,7 +15,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.AntPathMatcher;
-import org.springframework.web.util.WebUtils;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

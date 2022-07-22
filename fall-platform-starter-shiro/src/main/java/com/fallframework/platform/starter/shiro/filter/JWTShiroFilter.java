@@ -6,7 +6,6 @@ import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.config.model.SysParamGroupEnum;
 import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
-import com.fallframework.platform.starter.core.constant.CoreContextConstant;
 import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;
 import com.fallframework.platform.starter.rbac.entity.User;
 import com.fallframework.platform.starter.rbac.model.TokenTypeEnum;

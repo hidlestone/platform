@@ -5,11 +5,11 @@
       <ProjectProfile>
         <option name="generateService" value="true" />
         <option name="generateServiceInterface" value="true" />
-        <option name="javaMapperPackage" value="com.fallframework.platform.starter.config.mapper" />
-        <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-config/src/main/java" />
-        <option name="javaModelPackage" value="com.fallframework.platform.starter.config.entity" />
-        <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-config/src/main/java" />
-        <option name="lastDatabaseCrudChooseModuleName" value="fall-platform-starter-config" />
+        <option name="javaMapperPackage" value="com.fallframework.platform.starter.wechatwork.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-wechatwork/src/main/java" />
+        <option name="javaModelPackage" value="com.fallframework.platform.starter.wechatwork.entity" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-wechatwork/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="fall-platform-starter-wechatwork" />
         <option name="lombokAnnotation" value="@GetterSetter" />
         <option name="modelSuperClass" value="com.fallframework.platform.starter.data.mp.entity.BaseEntity" />
         <option name="moduleNameToPackageAndPathMap">
@@ -156,6 +156,22 @@
                 </UserPackageAndPathInfoByModule>
               </value>
             </entry>
+            <entry key="fall-platform-starter-rbac">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.rbac.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-rbac/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.rbac.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-rbac/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.fallframework.platform.starter.rbac.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-rbac/src/main/java" />
+                  <option name="javaServicePackage" value="com.fallframework.platform.starter.rbac.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-rbac/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.rbac.mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-rbac/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
             <entry key="fall-platform-starter-sms">
               <value>
                 <UserPackageAndPathInfoByModule>
@@ -217,6 +233,54 @@
                   <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-ureport/src/main/java" />
                   <option name="xmlPackage" value="com.fallframework.platform.starter.ureport.mapper" />
                   <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-ureport/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+            <entry key="fall-platform-starter-wechatmp">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.wechatmp.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-wechatmp/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.wechatmp.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-wechatmp/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.fallframework.platform.starter.wechatmp.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-wechatmp/src/main/java" />
+                  <option name="javaServicePackage" value="com.fallframework.platform.starter.wechatmp.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-wechatmp/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.wechatmp.mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-wechatmp/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+            <entry key="fall-platform-starter-wechatwork">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.wechatwork.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-wechatwork/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.wechatwork.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-wechatwork/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.fallframework.platform.starter.wechatwork.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-wechatwork/src/main/java" />
+                  <option name="javaServicePackage" value="com.fallframework.platform.starter.wechatwork.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-wechatwork/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.wechatwork.mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-wechatwork/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+            <entry key="fall-platform-starter-wxwork">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.fallframework.platform.starter.wxwork.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/fall-platform-starter-wxwork/src/main/java" />
+                  <option name="javaModelPacakge" value="com.fallframework.platform.starter.wxwork.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/fall-platform-starter-wxwork/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.fallframework.platform.starter.wxwork.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/fall-platform-starter-wxwork/src/main/java" />
+                  <option name="javaServicePackage" value="com.fallframework.platform.starter.wxwork.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/fall-platform-starter-wxwork/src/main/java" />
+                  <option name="xmlPackage" value="com.fallframework.platform.starter.wxwork.mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/fall-platform-starter-wxwork/src/main/resources" />
                 </UserPackageAndPathInfoByModule>
               </value>
             </entry>
@@ -365,6 +429,15 @@
                 <TableGenerateConfig>
                   <option name="javaModelName" value="QrtzTriggers" />
                   <option name="moduleName" value="fall-platform-starter-task-quartz" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:s_department">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="Department" />
+                  <option name="moduleName" value="fall-platform-starter-rbac" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
@@ -587,6 +660,96 @@
                 </TableGenerateConfig>
               </value>
             </entry>
+            <entry key="fallplatform:wxmp_config">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="Config" />
+                  <option name="moduleName" value="fall-platform-starter-wechatmp" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:wxmp_menu">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="Menu" />
+                  <option name="moduleName" value="fall-platform-starter-wechatmp" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:wxmp_reply">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="Reply" />
+                  <option name="moduleName" value="fall-platform-starter-wechatmp" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:wxmp_template_msg">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="TemplateMsg" />
+                  <option name="moduleName" value="fall-platform-starter-wechatmp" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:wxwork_department">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="Department" />
+                  <option name="moduleName" value="fall-platform-starter-wxwork" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:wxwork_dept_user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="DeptUser" />
+                  <option name="moduleName" value="fall-platform-starter-wechatwork" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:wxwork_syn_config">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="SynConfig" />
+                  <option name="moduleName" value="fall-platform-starter-wechatwork" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:wxwork_sync_log">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="SyncLog" />
+                  <option name="moduleName" value="fall-platform-starter-wechatwork" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:wxwork_user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="User" />
+                  <option name="moduleName" value="fall-platform-starter-wxwork" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="fallplatform:wxwork_user_direct_leader">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="UserDirectLeader" />
+                  <option name="moduleName" value="fall-platform-starter-wechatwork" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="fallplatform:xxl_job_group">
               <value>
                 <TableGenerateConfig>
@@ -670,8 +833,8 @@
         </option>
         <option name="useLomBokOnModel" value="true" />
         <option name="userMybatisPlus" value="true" />
-        <option name="xmlMapperPackage" value="com.fallframework.platform.starter.config.mapper" />
-        <option name="xmlMapperPath" value="$PROJECT_DIR$/fall-platform-starter-config/src/main/resources" />
+        <option name="xmlMapperPackage" value="com.fallframework.platform.starter.wechatwork.mapper" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/fall-platform-starter-wechatwork/src/main/resources" />
       </ProjectProfile>
     </option>
   </component>

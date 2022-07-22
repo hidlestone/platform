@@ -1,7 +1,5 @@
 package com.fallframework.platform.starter.guard.filter;
 
-import com.fallframework.platform.starter.core.constant.CoreContextConstant;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import java.io.BufferedReader;

@@ -1,8 +1,7 @@
 package com.fallframework.platform.starter.guard.util;
 
 import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
-import com.fallframework.platform.starter.core.constant.CoreContextConstant;
-import com.fallframework.platform.starter.core.util.EncryptionUtil;
+import com.fallframework.platform.starter.utils.base.EncryptionUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,6 @@
 package com.fallframework.platform.starter.guard.filter;
 
 
-import com.fallframework.platform.starter.core.constant.CoreContextConstant;
 import com.fallframework.platform.starter.i18n.service.MessageBundleUtil;
 import org.apache.commons.lang3.StringUtils;
 

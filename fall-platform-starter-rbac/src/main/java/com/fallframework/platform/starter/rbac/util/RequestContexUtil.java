@@ -1,6 +1,5 @@
 package com.fallframework.platform.starter.rbac.util;
 
-import com.fallframework.platform.starter.core.constant.CoreContextConstant;
 import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

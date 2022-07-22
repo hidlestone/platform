@@ -3,7 +3,6 @@ package com.fallframework.platform.starter.security.filter;
 import com.alibaba.fastjson.JSON;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
-import com.fallframework.platform.starter.core.constant.CoreContextConstant;
 import com.fallframework.platform.starter.rbac.model.RolePermissionResponse;
 import com.fallframework.platform.starter.rbac.service.PermissionService;
 import com.fallframework.platform.starter.security.constant.SecurityStarterConstant;

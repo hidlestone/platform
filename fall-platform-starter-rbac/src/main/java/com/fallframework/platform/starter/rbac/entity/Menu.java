@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fallframework.platform.starter.api.model.OpenTypeEnum;
 import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.data.mp.entity.BaseEntity;
 import lombok.Getter;
@@ -71,7 +70,7 @@ public class Menu extends BaseEntity {
 	 * 打开方式，inner-link：通过链接打开tab，outter-link：通过链接打开浏览器新窗口，默认空
 	 */
 	@TableField(value = "open_type")
-	private OpenTypeEnum openType;
+	private Byte openType;
 
 	/**
 	 * 图标

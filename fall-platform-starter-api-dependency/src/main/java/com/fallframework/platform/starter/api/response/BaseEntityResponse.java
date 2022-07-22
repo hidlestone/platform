@@ -22,7 +22,7 @@ public class BaseEntityResponse implements Serializable {
 	@ApiModelProperty("创建用户ID")
 	private Long createUserId;
 
-	@ApiModelProperty("创建用户ID")
+	@ApiModelProperty("修改用户ID")
 	private Long modifyUserId;
 
 	// kk表示24小时制，HH表示12小时制

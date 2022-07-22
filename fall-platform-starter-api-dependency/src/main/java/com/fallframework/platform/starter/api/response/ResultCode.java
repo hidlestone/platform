@@ -4,7 +4,7 @@ package com.fallframework.platform.starter.api.response;
  * @author zhuangpf
  */
 public interface ResultCode {
-	
+
 	// 操作是否成功：true-成功，false-失败
 	boolean success();
 

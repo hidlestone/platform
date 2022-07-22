@@ -2,7 +2,6 @@ package com.fallframework.platform.starter.guard.config;
 
 import com.fallframework.platform.starter.config.model.SysParamItemResponse;
 import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
-import com.fallframework.platform.starter.guard.filter.CurrentContextFilter;
 import com.fallframework.platform.starter.guard.filter.LanguageFilter;
 import com.fallframework.platform.starter.guard.filter.RepeatSubmitFilter;
 import com.fallframework.platform.starter.guard.filter.XSSFilter;
