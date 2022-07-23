@@ -56,6 +56,7 @@
         <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
         <!-- others -->
         <javax.ee.version>7.0</javax.ee.version>
+        <commons-lang.version>2.6</commons-lang.version>
         <commons-lang3.version>3.6</commons-lang3.version>
         <commons-text.version>1.8</commons-text.version>
         <commons-beanutils.version>1.9.2</commons-beanutils.version>
@@ -158,6 +159,7 @@
         <!-- elasticsearch搜索引擎 -->
         <elasticsearch.version>7.8.0</elasticsearch.version>
         <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
+        <cos_api.version>5.6.89</cos_api.version>
     </properties>
 
     <dependencyManagement>
@@ -250,7 +252,12 @@
             </dependency>
             <dependency>
                 <groupId>com.fallframework.platform</groupId>
-                <artifactId>fall-platform-starter-file-ali</artifactId>
+                <artifactId>fall-platform-starter-file-alioss</artifactId>
+                <version>${platform.starters.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fallframework.platform</groupId>
+                <artifactId>fall-platform-starter-file-tencentcos</artifactId>
                 <version>${platform.starters.version}</version>
             </dependency>
             <dependency>
@@ -1043,6 +1050,11 @@
                 <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.qcloud</groupId>
+                <artifactId>cos_api</artifactId>
+                <version>${cos_api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

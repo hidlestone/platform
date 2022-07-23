@@ -47,6 +47,15 @@
 			<groupId>com.fallframework.platform</groupId>
 			<artifactId>fall-platform-starter-data-mp</artifactId>
 		</dependency>
+		<!-- hutool -->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

@@ -62,7 +62,8 @@
         <module>../fall-platform-starter-elasticsearch</module>
         <module>../fall-platform-starter-excel</module>
         <module>../fall-platform-starter-file</module>
-        <module>../fall-platform-starter-file-ali</module>
+        <module>../fall-platform-starter-file-alioss</module>
+        <module>../fall-platform-starter-file-tencentcos</module>
         <module>../fall-platform-starter-file-qiniu</module>
         <module>../fall-platform-starter-flyway</module>
         <module>../fall-platform-starter-graylog</module>
@@ -106,6 +107,7 @@
         <module>../fall-platform-starter-wechatwork</module>
         <module>../fall-platform-starter-okhttp</module>
         <module>../fall-platform-starter-wechatmp</module>
+        <module>../fall-platform-starter-file-tencentcos</module>
     </modules>
 
 </project>

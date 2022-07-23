@@ -47,21 +47,17 @@
 		<!-- starter-data-mp -->
 		<dependency>
 			<groupId>com.fallframework.platform</groupId>
-			<artifactId>fall-platform-starter-api-dependency</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fallframework.platform</groupId>
-			<artifactId>fall-platform-starter-i18n</artifactId>
-		</dependency>
-		<!-- starter-data-mp -->
-		<dependency>
-			<groupId>com.fallframework.platform</groupId>
 			<artifactId>fall-platform-starter-data-mp</artifactId>
 		</dependency>
 		<!-- starter-cache-redis -->
 		<dependency>
 			<groupId>com.fallframework.platform</groupId>
 			<artifactId>fall-platform-starter-cache-redis</artifactId>
+		</dependency>
+		<!-- starter-i18n -->
+		<dependency>
+			<groupId>com.fallframework.platform</groupId>
+			<artifactId>fall-platform-starter-i18n</artifactId>
 		</dependency>
 	</dependencies>
 

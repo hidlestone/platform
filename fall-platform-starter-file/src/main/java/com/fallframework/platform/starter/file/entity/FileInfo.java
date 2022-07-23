@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.data.mp.entity.BaseEntity;
-import com.fallframework.platform.starter.file.model.FileTypeEnum;
 import com.fallframework.platform.starter.file.model.StorageTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
@@ -55,34 +54,10 @@ public class FileInfo extends BaseEntity {
 	private StorageTypeEnum storageType;
 
 	/**
-	 * 文件类型
-	 */
-	@TableField(value = "file_type")
-	private FileTypeEnum fileType;
-
-	/**
-	 * contentType
-	 */
-	@TableField(value = "content_type")
-	private String contentType;
-
-	/**
-	 * 备注
-	 */
-	@TableField(value = "remark")
-	private String remark;
-
-	/**
 	 * 文件url
 	 */
 	@TableField(value = "url")
 	private String url;
-
-	/**
-	 * 文件业务类型
-	 */
-	@TableField(value = "category")
-	private String category;
 
 	/**
 	 * 文件状态

@@ -81,8 +81,6 @@ public class FileProcessServiceImpl implements FileProcessService {
 				infoRequest.setNonsenseName(fkey);
 				infoRequest.setExtension(FileStarterUtil.getFileExt(fname));
 				infoRequest.setStorageType(dto.getStorageType());
-				//infoRequest.setFileType();
-				infoRequest.setContentType(contentType);
 				fileInfoRequestList.add(infoRequest);
 			}
 		} catch (IOException e) {
