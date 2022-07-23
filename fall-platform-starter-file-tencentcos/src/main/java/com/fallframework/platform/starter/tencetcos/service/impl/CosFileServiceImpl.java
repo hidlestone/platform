@@ -1,8 +1,8 @@
 package com.fallframework.platform.starter.tencetcos.service.impl;
 
 import com.fallframework.platform.starter.tencetcos.config.COSConfig;
-import com.fallframework.platform.starter.tencetcos.model.CosDto;
-import com.fallframework.platform.starter.tencetcos.service.COSFileService;
+import com.fallframework.platform.starter.tencetcos.model.CosUploadDto;
+import com.fallframework.platform.starter.tencetcos.service.CosFileService;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.BasicCOSCredentials;
@@ -32,15 +32,16 @@ import java.util.UUID;
 /**
  * @author zhuangpf
  */
-public class COSFileServiceImpl implements COSFileService {
+public class CosFileServiceImpl implements CosFileService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(COSFileServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CosFileServiceImpl.class);
 
 	@Addressing
 	private COSConfig cosConfig;
 
 	@Override
-	public String fileUpload(MultipartFile file, CosDto dto) {
+	public String fileUpload(CosUploadDto dto) {
+		MultipartFile file = dto.getFile();
 		// 1 初始化用户身份信息（secretId, secretKey）。
 		// SECRETID和SECRETKEY请登录访问管理控制台 https://console.cloud.tencent.com/cam/capi 进行查看和管理
 		String secretId = cosConfig.getSecretId();

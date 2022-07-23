@@ -29,7 +29,7 @@ public class RequestContexUtil {
 	 */
 	public static String getAccesstoken() {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		return request.getHeader(CoreContextConstant.ACCESSTOKEN);
+		return request.getHeader(RbacStarterConstant.ACCESSTOKEN);
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class RequestContexUtil {
 	 */
 	public static String getRefreshtoken() {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		return request.getHeader(CoreContextConstant.REFRESHTOKEN);
+		return request.getHeader(RbacStarterConstant.REFRESHTOKEN);
 	}
 
 	/**

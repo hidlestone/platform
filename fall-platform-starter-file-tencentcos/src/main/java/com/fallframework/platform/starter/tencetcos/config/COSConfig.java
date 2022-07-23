@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * COS配置
+ * 腾讯云COS配置
  *
  * @author zhuangpf
  */
@@ -21,9 +21,9 @@ public class COSConfig {
 	private String secretId;
 
 	private String secretKey;
-	
+
 	private String regionName;
-	
+
 	private String bucketName;
 
 }

@@ -43,6 +43,11 @@
 	</issueManagement>
 
 	<dependencies>
+		<!-- hutool -->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.fallframework.platform</groupId>
 			<artifactId>fall-platform-starter-data-mp</artifactId>
