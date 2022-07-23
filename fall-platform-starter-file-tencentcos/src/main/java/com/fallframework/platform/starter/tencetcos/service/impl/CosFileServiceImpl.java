@@ -1,6 +1,6 @@
 package com.fallframework.platform.starter.tencetcos.service.impl;
 
-import com.fallframework.platform.starter.tencetcos.config.COSConfig;
+import com.fallframework.platform.starter.tencetcos.config.CosConfig;
 import com.fallframework.platform.starter.tencetcos.model.CosUploadDto;
 import com.fallframework.platform.starter.tencetcos.service.CosFileService;
 import com.qcloud.cos.COSClient;
@@ -37,7 +37,7 @@ public class CosFileServiceImpl implements CosFileService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CosFileServiceImpl.class);
 
 	@Addressing
-	private COSConfig cosConfig;
+	private CosConfig cosConfig;
 
 	@Override
 	public String fileUpload(CosUploadDto dto) {

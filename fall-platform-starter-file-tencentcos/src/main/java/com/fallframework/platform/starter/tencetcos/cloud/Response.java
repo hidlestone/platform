@@ -1,10 +1,13 @@
 package com.fallframework.platform.starter.tencetcos.cloud;
 
 public class Response {
+	// credentials
 	public Credentials credentials = new Credentials();
 	public String requestId;
 	public String expiration;
+	// 密钥的起始时间，是 UNIX 时间戳
 	public long startTime;
+	// 密钥的失效时间，是 UNIX 时间戳
 	public long expiredTime;
 
 	@Override
