@@ -44,10 +44,6 @@
     </issueManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>com.fallframework.platform</groupId>
-            <artifactId>fall-platform-starter-api-dependency</artifactId>
-        </dependency>
         <!-- mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>

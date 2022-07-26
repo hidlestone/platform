@@ -14,7 +14,7 @@ public interface FileProcessService {
 	 * 上传文件
 	 *
 	 * @param dto 文件上传请求参数
-	 * @return 是否上传成功
+	 * @return
 	 */
 	ResponseResult<Long> uploadFileGroup(FileGroupUploadDto dto);
 
@@ -23,7 +23,7 @@ public interface FileProcessService {
 	 *
 	 * @param fileInfoId 文件ID
 	 * @param response   response
-	 * @return 是否下载成功
+	 * @return
 	 */
 	ResponseResult downloadFile(Long fileInfoId, HttpServletResponse response);
 

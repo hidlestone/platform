@@ -2,7 +2,8 @@ package com.fallframework.platform.starter.rbac.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fallframework.platform.starter.api.response.ResponseResult;
+import com.fallframework.platform.starter.data.mp.model.Leaf;
+import com.fallframework.platform.starter.data.mp.util.LeafPageUtil;
 import com.fallframework.platform.starter.rbac.entity.Menu;
 import com.fallframework.platform.starter.rbac.mapper.MenuMapper;
 import com.fallframework.platform.starter.rbac.service.MenuService;
@@ -18,28 +19,28 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 	private MenuMapper menuMapper;
 
 	@Override
-	public ResponseResult<Page<Menu>> list(Menu menu) {
+	public Leaf<Menu> list(Menu menu) {
 		Page<Menu> page = new Page<>(menu.getPageNum(), menu.getPageSize());
 		page = menuMapper.list(page, menu);
-		return ResponseResult.success(page);
+		return LeafPageUtil.pageToLeaf(page);
 	}
 
 	@Override
-	public ResponseResult<List<Menu>> getAllMenusByUserId(Long userId) {
+	public List<Menu> getAllMenusByUserId(Long userId) {
 		List<Menu> menuList = menuMapper.getAllMenusByUserId(userId);
-		return ResponseResult.success(menuList);
+		return menuList;
 	}
 
 	@Override
-	public ResponseResult<List<Menu>> getMenuTree(Menu menu) {
+	public List<Menu> getMenuTree(Menu menu) {
 		List<Menu> menuList = menuMapper.getMenuTree(menu);
-		return ResponseResult.success(menuList);
+		return menuList;
 	}
 
 	@Override
-	public ResponseResult<List<Menu>> getMenusByParentId(Long parentId) {
+	public List<Menu> getMenusByParentId(Long parentId) {
 		List<Menu> menuList = menuMapper.getMenusByParentId(parentId);
-		return ResponseResult.success(menuList);
+		return menuList;
 	}
 
 }

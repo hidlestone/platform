@@ -2,7 +2,8 @@ package com.fallframework.platform.starter.rbac.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fallframework.platform.starter.api.response.ResponseResult;
+import com.fallframework.platform.starter.data.mp.model.Leaf;
+import com.fallframework.platform.starter.data.mp.util.LeafPageUtil;
 import com.fallframework.platform.starter.rbac.entity.User;
 import com.fallframework.platform.starter.rbac.mapper.UserMapper;
 import com.fallframework.platform.starter.rbac.service.UserService;
@@ -16,10 +17,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	private UserMapper userMapper;
 
 	@Override
-	public ResponseResult<Page<User>> list(User user) {
+	public Leaf<User> list(User user) {
 		Page<User> page = new Page<>(user.getPageNum(), user.getPageSize());
 		page = userMapper.list(page, user);
-		return ResponseResult.success(page);
+		return LeafPageUtil.pageToLeaf(page);
 	}
 
 }

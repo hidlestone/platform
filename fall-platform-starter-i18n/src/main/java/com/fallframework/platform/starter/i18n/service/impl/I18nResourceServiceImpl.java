@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
+import com.fallframework.platform.starter.data.mp.model.Leaf;
+import com.fallframework.platform.starter.data.mp.util.LeafPageUtil;
 import com.fallframework.platform.starter.i18n.constant.I18nStarterConstant;
 import com.fallframework.platform.starter.i18n.entity.I18nResource;
 import com.fallframework.platform.starter.i18n.mapper.I18nResourceMapper;
@@ -26,18 +28,18 @@ public class I18nResourceServiceImpl extends ServiceImpl<I18nResourceMapper, I18
 	private RedisUtil redisUtil;
 
 	@Override
-	public ResponseResult<Page<I18nResource>> list(I18nResource i18nResource) {
+	public Leaf<I18nResource> list(I18nResource i18nResource) {
 		Page<I18nResource> page = new Page<>(i18nResource.getPageNum(), i18nResource.getPageSize());
 		page = i18nResourceMapper.list(page, i18nResource);
-		return ResponseResult.success(page);
+		return LeafPageUtil.pageToLeaf(page);
 	}
 
 	@Override
-	public ResponseResult<List<I18nResource>> getByResourceKey(String resourceKey) {
+	public List<I18nResource> getByResourceKey(String resourceKey) {
 		QueryWrapper<I18nResource> wrapper = new QueryWrapper<>();
 		wrapper.eq("resource_key", resourceKey);
 		List<I18nResource> i18nResourceList = i18nResourceMapper.selectList(wrapper);
-		return ResponseResult.success(i18nResourceList);
+		return i18nResourceList;
 	}
 
 	/**

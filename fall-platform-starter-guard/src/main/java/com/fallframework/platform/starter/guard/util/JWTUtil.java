@@ -8,7 +8,7 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.config.model.SysParamGroupEnum;
-import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
+import com.fallframework.platform.starter.config.service.impl.PlatformSysParamUtil;
 import com.fallframework.platform.starter.rbac.entity.User;
 import com.fallframework.platform.starter.rbac.model.TokenTypeEnum;
 import org.apache.commons.lang3.StringUtils;

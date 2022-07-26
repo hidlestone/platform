@@ -2,7 +2,8 @@ package com.fallframework.platform.starter.sms.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fallframework.platform.starter.api.response.ResponseResult;
+import com.fallframework.platform.starter.data.mp.model.Leaf;
+import com.fallframework.platform.starter.data.mp.util.LeafPageUtil;
 import com.fallframework.platform.starter.sms.entity.SmsHistory;
 import com.fallframework.platform.starter.sms.mapper.SmsHistoryMapper;
 import com.fallframework.platform.starter.sms.service.SmsHistoryService;
@@ -16,9 +17,9 @@ public class SmsHistoryServiceImpl extends ServiceImpl<SmsHistoryMapper, SmsHist
 	private SmsHistoryMapper smsHistoryMapper;
 
 	@Override
-	public ResponseResult<Page<SmsHistory>> list(SmsHistory smsHistory) {
+	public Leaf<SmsHistory> list(SmsHistory smsHistory) {
 		Page<SmsHistory> page = new Page<>(smsHistory.getPageNum(), smsHistory.getPageSize());
 		page = smsHistoryMapper.list(page, smsHistory);
-		return ResponseResult.success(page);
+		return LeafPageUtil.pageToLeaf(page);
 	}
 }

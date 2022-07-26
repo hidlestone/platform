@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fallframework.platform.starter.api.model.StatusEnum;
 import com.fallframework.platform.starter.data.mp.entity.BaseEntity;
-import com.fallframework.platform.starter.i18n.entity.I18nResource;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,12 +47,6 @@ public class Dict extends BaseEntity {
 	 */
 	@TableField(value = "`status`")
 	private StatusEnum status;
-
-	/**
-	 * 字典多语言词条
-	 */
-	@TableField(exist = false)
-	private List<I18nResource> i18nResources;
 
 	/**
 	 * 字典项明细

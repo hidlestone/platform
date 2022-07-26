@@ -1,4 +1,4 @@
-package com.fallframework.platform.starter.config.service;
+package com.fallframework.platform.starter.config.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.fallframework.platform.starter.api.response.ResponseResult;
@@ -8,10 +8,10 @@ import com.fallframework.platform.starter.config.entity.SysParamGroup;
 import com.fallframework.platform.starter.config.entity.SysParamItem;
 import com.fallframework.platform.starter.config.mapper.SysParamGroupMapper;
 import com.fallframework.platform.starter.config.mapper.SysParamItemMapper;
+import com.fallframework.platform.starter.config.service.SysParamGroupService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class PlatformSysParamUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PlatformSysParamUtil.class);
-	
+
 	private RedisUtil redisUtil;
 	private SysParamGroupService sysParamGroupService;
 	private SysParamItemMapper sysParamItemMapper;
@@ -55,7 +55,7 @@ public class PlatformSysParamUtil {
 	public ResponseResult<Map<String, String>> getSysParamGroupItemMap(String groupCode) {
 		List<SysParamItem> sysParamItemList = (List<SysParamItem>) redisUtil.hget(ConfigStarterConstant.CACHE_KEY_SYS_PARAM, groupCode);
 		if (CollectionUtil.isEmpty(sysParamItemList)) {
-			SysParamGroup sysParamGroup = sysParamGroupService.get(groupCode).getData();
+			SysParamGroup sysParamGroup = sysParamGroupService.get(groupCode);
 			sysParamItemList = sysParamGroup.getSysParamItems();
 		}
 		if (CollectionUtil.isEmpty(sysParamItemList)) {

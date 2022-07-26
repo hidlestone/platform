@@ -3,7 +3,7 @@ package com.fallframework.platform.starter.shiro.config;
 import cn.hutool.core.codec.Base64;
 import com.alibaba.fastjson.JSON;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
-import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
+import com.fallframework.platform.starter.config.service.impl.PlatformSysParamUtil;
 import com.fallframework.platform.starter.shiro.constant.ShiroStarterConstant;
 import com.fallframework.platform.starter.shiro.custom.JWTSubjectFactory;
 import com.fallframework.platform.starter.shiro.filter.JWTShiroFilter;

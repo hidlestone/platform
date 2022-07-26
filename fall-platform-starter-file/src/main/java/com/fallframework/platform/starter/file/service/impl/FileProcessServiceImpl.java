@@ -86,7 +86,7 @@ public class FileProcessServiceImpl implements FileProcessService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Long groupId = fileGroupService.saveGroupAndInfoList(fileGroupRequest).getData();
+		Long groupId = fileGroupService.saveGroupAndInfoList(fileGroupRequest);
 		return ResponseResult.success(groupId);
 	}
 

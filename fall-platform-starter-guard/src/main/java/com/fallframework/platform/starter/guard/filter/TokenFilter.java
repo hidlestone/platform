@@ -5,7 +5,7 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.config.model.SysParamGroupEnum;
-import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
+import com.fallframework.platform.starter.config.service.impl.PlatformSysParamUtil;
 import com.fallframework.platform.starter.guard.exception.UnknownAccountException;
 import com.fallframework.platform.starter.guard.util.JWTUtil;
 import com.fallframework.platform.starter.rbac.constant.RbacStarterConstant;

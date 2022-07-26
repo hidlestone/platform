@@ -1,7 +1,7 @@
 package com.fallframework.platform.starter.config.listener;
 
 import com.fallframework.platform.starter.api.response.ResponseResult;
-import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
+import com.fallframework.platform.starter.config.service.impl.PlatformSysParamUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

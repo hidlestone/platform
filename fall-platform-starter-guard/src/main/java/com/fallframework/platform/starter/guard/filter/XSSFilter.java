@@ -3,7 +3,7 @@ package com.fallframework.platform.starter.guard.filter;
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.fastjson.JSON;
 import com.fallframework.platform.starter.config.model.SysParamGroupEnum;
-import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
+import com.fallframework.platform.starter.config.service.impl.PlatformSysParamUtil;
 import com.fallframework.platform.starter.guard.util.CookieFilterUtil;
 import com.fallframework.platform.starter.guard.util.PlatformRequestUtil;
 import org.slf4j.Logger;

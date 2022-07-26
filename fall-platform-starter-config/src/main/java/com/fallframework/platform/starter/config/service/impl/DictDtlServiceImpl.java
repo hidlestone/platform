@@ -2,10 +2,11 @@ package com.fallframework.platform.starter.config.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fallframework.platform.starter.api.response.ResponseResult;
+import com.fallframework.platform.starter.data.mp.model.Leaf;
 import com.fallframework.platform.starter.config.entity.DictDtl;
 import com.fallframework.platform.starter.config.mapper.DictDtlMapper;
 import com.fallframework.platform.starter.config.service.DictDtlService;
+import com.fallframework.platform.starter.data.mp.util.LeafPageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,16 +19,16 @@ public class DictDtlServiceImpl extends ServiceImpl<DictDtlMapper, DictDtl> impl
 	private DictDtlMapper dictDtlMapper;
 
 	@Override
-	public ResponseResult<List<DictDtl>> getDictDtlsByDictCode(String dictCode) {
+	public List<DictDtl> getDictDtlsByDictCode(String dictCode) {
 		List<DictDtl> dictDtls = dictDtlMapper.getDictDtlsByCode(dictCode);
-		return ResponseResult.success(dictDtls);
+		return dictDtls;
 	}
 
 	@Override
-	public ResponseResult<Page<DictDtl>> list(DictDtl dictDtl) {
+	public Leaf<DictDtl> list(DictDtl dictDtl) {
 		Page<DictDtl> page = new Page<>(dictDtl.getPageNum(), dictDtl.getPageSize());
 		page = dictDtlMapper.list(page, dictDtl);
-		return ResponseResult.success(page);
+		return LeafPageUtil.pageToLeaf(page);
 	}
 
 }

@@ -2,7 +2,8 @@ package com.fallframework.platform.starter.mail.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fallframework.platform.starter.api.response.ResponseResult;
+import com.fallframework.platform.starter.data.mp.model.Leaf;
+import com.fallframework.platform.starter.data.mp.util.LeafPageUtil;
 import com.fallframework.platform.starter.mail.entity.MailSenderConfig;
 import com.fallframework.platform.starter.mail.mapper.MailSenderConfigMapper;
 import com.fallframework.platform.starter.mail.service.MailSenderConfigService;
@@ -16,10 +17,10 @@ public class MailSenderConfigServiceImpl extends ServiceImpl<MailSenderConfigMap
 	private MailSenderConfigMapper mailSenderConfigMapper;
 
 	@Override
-	public ResponseResult<Page<MailSenderConfig>> list(MailSenderConfig mailSenderConfig) {
+	public Leaf<MailSenderConfig> list(MailSenderConfig mailSenderConfig) {
 		Page<MailSenderConfig> page = new Page<>(mailSenderConfig.getPageNum(), mailSenderConfig.getPageSize());
 		page = mailSenderConfigMapper.list(page, mailSenderConfig);
-		return ResponseResult.success(page);
+		return LeafPageUtil.pageToLeaf(page);
 	}
 
 }

@@ -2,7 +2,8 @@ package com.fallframework.platform.starter.sms.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fallframework.platform.starter.api.response.ResponseResult;
+import com.fallframework.platform.starter.data.mp.model.Leaf;
+import com.fallframework.platform.starter.data.mp.util.LeafPageUtil;
 import com.fallframework.platform.starter.sms.entity.SmsTemplate;
 import com.fallframework.platform.starter.sms.mapper.SmsTemplateMapper;
 import com.fallframework.platform.starter.sms.service.SmsTemplateService;
@@ -16,10 +17,10 @@ public class SmsTemplateServiceImpl extends ServiceImpl<SmsTemplateMapper, SmsTe
 	private SmsTemplateMapper smsTemplateMapper;
 
 	@Override
-	public ResponseResult<Page<SmsTemplate>> list(SmsTemplate smsTemplate) {
+	public Leaf<SmsTemplate> list(SmsTemplate smsTemplate) {
 		Page<SmsTemplate> page = new Page<>(smsTemplate.getPageNum(), smsTemplate.getPageSize());
 		page = smsTemplateMapper.list(page, smsTemplate);
-		return ResponseResult.success(page);
+		return LeafPageUtil.pageToLeaf(page);
 	}
 
 }

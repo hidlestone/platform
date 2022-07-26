@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
 import com.fallframework.platform.starter.config.model.SysParamGroupEnum;
 import com.fallframework.platform.starter.config.model.SysParamItemResponse;
-import com.fallframework.platform.starter.config.service.PlatformSysParamUtil;
+import com.fallframework.platform.starter.config.service.impl.PlatformSysParamUtil;
 import com.fallframework.platform.starter.core.context.ApplicationContextFallPlatform;
 import com.fallframework.platform.starter.utils.base.EncryptionUtil;
 import com.fallframework.platform.starter.guard.constant.GuardStarterConstant;

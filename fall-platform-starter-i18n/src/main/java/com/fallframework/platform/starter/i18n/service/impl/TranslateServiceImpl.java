@@ -1,6 +1,5 @@
 package com.fallframework.platform.starter.i18n.service.impl;
 
-import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.i18n.entity.I18nResource;
 import com.fallframework.platform.starter.i18n.model.TranslateDto;
 import com.fallframework.platform.starter.i18n.model.langCodeEnum;
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class TranslateServiceImpl implements TranslateService {
 
 	@Override
-	public ResponseResult<I18nResource> translate(TranslateDto dto) {
+	public I18nResource translate(TranslateDto dto) {
 		I18nResource i18nResourceResponse = new I18nResource();
 		// 简体->繁体
 		if (langCodeEnum.zh_CN.getCode().equals(dto.getSourceLangCode())
@@ -29,7 +28,7 @@ public class TranslateServiceImpl implements TranslateService {
 				&& langCodeEnum.en.getCode().equals(dto.getTrargetLangCode())) {
 
 		}
-		return ResponseResult.success(i18nResourceResponse);
+		return i18nResourceResponse;
 	}
 
 }
