@@ -1,7 +1,10 @@
 package com.fallframework.platform.starter.api.request;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * 基础分页请求参数
@@ -10,18 +13,20 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class BasePageRequest extends BaseEntityRequest {
+public class BasePageRequest implements Serializable {
 
 	private static final long serialVersionUID = 3355162771426361051L;
 
 	/**
 	 * 页码。系统默认：start from 1。
 	 */
+	@ApiModelProperty("页码")
 	private Integer pageNum = 1;
 
 	/**
 	 * 条数
 	 */
+	@ApiModelProperty("条数")
 	private Integer pageSize = 10;
 
 	/**

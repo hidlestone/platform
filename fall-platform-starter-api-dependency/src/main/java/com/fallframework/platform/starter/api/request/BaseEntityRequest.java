@@ -18,6 +18,12 @@ public class BaseEntityRequest implements Serializable {
 
 	private static final long serialVersionUID = -3908244974737701868L;
 
+	@ApiModelProperty("页码")
+	private Integer pageNum = 1;
+
+	@ApiModelProperty("条数")
+	private Integer pageSize = 10;
+
 	@ApiModelProperty(value = "多语言编码")
 	private String langCode = "zh_CN";
 
@@ -45,4 +51,11 @@ public class BaseEntityRequest implements Serializable {
 	@ApiModelProperty(value = "结束更改时间")
 	private Date gmtModifiedEnd;
 
+	/**
+	 * 第一条记录行号
+	 */
+	public Integer firstRowNum() {
+		return (pageNum - 1) * pageSize;
+	}
+	
 }
