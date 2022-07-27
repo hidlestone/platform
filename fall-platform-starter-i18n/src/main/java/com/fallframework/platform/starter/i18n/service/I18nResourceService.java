@@ -2,7 +2,7 @@ package com.fallframework.platform.starter.i18n.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.fallframework.platform.starter.api.response.ResponseResult;
-import com.fallframework.platform.starter.data.mp.model.Leaf;
+import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.i18n.entity.I18nResource;
 
 import java.util.List;

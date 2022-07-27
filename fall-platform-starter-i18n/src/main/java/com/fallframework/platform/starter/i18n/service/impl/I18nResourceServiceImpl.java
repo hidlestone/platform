@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fallframework.platform.starter.api.response.ResponseResult;
 import com.fallframework.platform.starter.cache.redis.util.RedisUtil;
-import com.fallframework.platform.starter.data.mp.model.Leaf;
+import com.fallframework.platform.starter.api.model.Leaf;
 import com.fallframework.platform.starter.data.mp.util.LeafPageUtil;
 import com.fallframework.platform.starter.i18n.constant.I18nStarterConstant;
 import com.fallframework.platform.starter.i18n.entity.I18nResource;

@@ -2,7 +2,7 @@ package com.fallframework.platform.starter.data.mp.util;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fallframework.platform.starter.data.mp.model.Leaf;
+import com.fallframework.platform.starter.api.model.Leaf;
 
 import java.util.List;
 
