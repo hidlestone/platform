@@ -40,7 +40,7 @@ public class FileProcessServiceImpl implements FileProcessService {
 	/**
 	 * 文件上传的位置，在yml中进行配置
 	 */
-	@Value("${fall.file.upload-file-path}")
+	@Value("${platform.starter.file.uploadFilePath}")
 	private String uploadFilePath;
 	@Autowired
 	private FileGroupService fileGroupService;
