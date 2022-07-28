@@ -302,6 +302,11 @@
             </dependency>
             <dependency>
                 <groupId>com.fallframework.platform</groupId>
+                <artifactId>fall-platform-starter-logback</artifactId>
+                <version>${platform.starters.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fallframework.platform</groupId>
                 <artifactId>fall-platform-starter-logstash</artifactId>
                 <version>${platform.starters.version}</version>
             </dependency>
